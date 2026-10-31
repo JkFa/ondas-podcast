@@ -88,6 +88,13 @@ await Promise.all(
   ),
 )
 
+/** Cada obra (`series`) vira uma temporada, numerada pela data do seu primeiro episódio (estável). */
+const seasons = new Map(
+  [...new Set(episodes.filter((e) => e.series).sort((a, b) => Date.parse(a.publishedAt) - Date.parse(b.publishedAt)).map((e) => e.series))].map(
+    (name, i) => [name, i + 1],
+  ),
+)
+
 const items = sorted.map((ep, i) => {
   const text = [plain(ep.description), ep.license && `Licença: ${ep.license}`].filter(Boolean).join('\n\n')
   return `    <item>
@@ -99,6 +106,10 @@ const items = sorted.map((ep, i) => {
       <enclosure url="${esc(ep.audioUrl)}" length="${lengths[i]}" type="audio/mpeg"/>
       <itunes:author>${esc(ep.show)}</itunes:author>
       <itunes:duration>${hms(ep.duration)}</itunes:duration>${
+        ep.series && ep.part
+          ? `\n      <itunes:season>${seasons.get(ep.series)}</itunes:season>\n      <itunes:episode>${ep.part}</itunes:episode>\n      <itunes:episodeType>full</itunes:episodeType>`
+          : ''
+      }${
         ep.chapters?.length
           ? `\n      <podcast:chapters url="${esc(`${site}chapters/${ep.id}.json`)}" type="application/json+chapters"/>`
           : ''

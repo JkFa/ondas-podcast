@@ -18,6 +18,16 @@ export default function Explore({ episodes, engine, loading, error }) {
   const q = query.trim().toLowerCase()
 
   const seriesList = useMemo(() => [...new Set(episodes.map((e) => e.series).filter(Boolean))], [episodes])
+  const seriesStats = useMemo(() => {
+    const stats = {}
+    for (const e of episodes) {
+      if (!e.series) continue
+      const st = (stats[e.series] ||= { done: 0, total: 0 })
+      st.total += 1
+      if (progressInfo(engine.progress, e).done) st.done += 1
+    }
+    return stats
+  }, [episodes, engine.progress])
   const activeSeries = seriesList.includes(series) ? series : ''
 
   const results = useMemo(() => {
@@ -64,6 +74,9 @@ export default function Explore({ episodes, engine, loading, error }) {
                 }`}
               >
                 {name || 'Todas'}
+                {name && seriesStats[name]?.done > 0 && (
+                  <span className="ml-1.5 text-xs tabular-nums opacity-60">{seriesStats[name].done}/{seriesStats[name].total}</span>
+                )}
               </button>
             ))}
           </div>
