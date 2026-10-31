@@ -68,6 +68,15 @@ Atalhos no desktop: **espaço** play/pause · **← / →** ∓15 s · **`<` / `
 Progresso, favoritos, fila, velocidade, volume e episódios importados ficam em
 `localStorage` (chaves `ondas:v1:*`).
 
+## Feed RSS
+
+`npm run build` também gera `dist/feed.xml` (RSS 2.0 com tags iTunes) a partir de
+`web/public/catalog.json`, via `web/scripts/build-feed.mjs`. O tamanho de cada MP3
+(`<enclosure length>`) é lido do archive.org no build. Em produção o feed fica em
+`<site>/feed.xml`; a URL base vem de `SITE_URL` (ou, no GitHub Actions, de `GITHUB_REPOSITORY`).
+Para ouvir em apps de podcast, adicione essa URL manualmente ("adicionar por URL"). Edite título,
+descrição e idioma do canal em `CHANNEL` no script. O app também expõe o feed via `<link rel="alternate">`.
+
 ## Deploy
 
 ### GitHub Pages (recomendado)
