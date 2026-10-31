@@ -76,7 +76,7 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <itunes:author>${esc(CHANNEL.author)}</itunes:author>
     <itunes:explicit>false</itunes:explicit>
-    <itunes:image href="${esc(site)}icon-512.png"/>
+    <itunes:image href="${esc(site)}cover-1400.png"/>
 ${items.join('\n')}
   </channel>
 </rss>
