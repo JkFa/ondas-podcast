@@ -105,11 +105,17 @@ export function useAudioEngine(episodes) {
 
   const skip = useCallback((delta) => seek((audioRef.current?.currentTime ?? 0) + delta), [seek])
 
+  // Fila explícita primeiro; sem fila, segue para a próxima parte da mesma obra (audiolivros).
   const playNext = useCallback(() => {
-    const nextId = live.current.queue[0]
-    const ep = live.current.byId.get(nextId)
-    if (ep) select(ep)
-    else if (nextId) setQueue((q) => q.slice(1)) // id órfão (episódio removido)
+    const { queue: q, byId: map, currentId: id } = live.current
+    const nextId = q[0]
+    const ep = map.get(nextId)
+    if (ep) return select(ep)
+    if (nextId) return setQueue((rest) => rest.slice(1)) // id órfão (episódio removido)
+    const cur = map.get(id)
+    if (!cur?.series || !cur.part) return
+    const following = [...map.values()].find((e) => e.series === cur.series && e.part === cur.part + 1)
+    if (following) select(following)
   }, [select, setQueue])
 
   const playPrevious = useCallback(() => seek(0), [seek])
