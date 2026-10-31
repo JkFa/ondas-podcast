@@ -25,6 +25,8 @@ export function validateEpisode(ep) {
   if (ep.accentColor && !/^#[0-9a-f]{6}$/i.test(ep.accentColor)) errs.push('accentColor inválida')
   if (!isNum(ep.duration)) errs.push('duration inválida')
   if (ep.publishedAt && Number.isNaN(Date.parse(ep.publishedAt))) errs.push('publishedAt inválida')
+  if (ep.series != null && !isStr(ep.series)) errs.push('series inválida')
+  if (ep.part != null && !(Number.isInteger(ep.part) && ep.part > 0)) errs.push('part inválido')
   if (ep.chapters && !(Array.isArray(ep.chapters) && ep.chapters.every((c) => isNum(c?.start) && isStr(c?.title))))
     errs.push('chapters inválido')
   if (ep.transcript && !(Array.isArray(ep.transcript) && ep.transcript.every((s) => isNum(s?.start) && isNum(s?.end) && typeof s?.text === 'string')))

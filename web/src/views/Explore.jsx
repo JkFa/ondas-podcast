@@ -14,12 +14,17 @@ export function Skeletons() {
 
 export default function Explore({ episodes, engine, loading, error }) {
   const [query, setQuery] = useState('')
+  const [series, setSeries] = useState('')
   const q = query.trim().toLowerCase()
 
-  const results = useMemo(
-    () => (q ? episodes.filter((e) => `${e.title} ${e.show} ${e.description}`.toLowerCase().includes(q)) : episodes),
-    [episodes, q],
-  )
+  const seriesList = useMemo(() => [...new Set(episodes.map((e) => e.series).filter(Boolean))], [episodes])
+  const activeSeries = seriesList.includes(series) ? series : ''
+
+  const results = useMemo(() => {
+    let list = activeSeries ? episodes.filter((e) => e.series === activeSeries) : episodes
+    if (activeSeries) list = [...list].sort((a, b) => (a.part || 0) - (b.part || 0))
+    return q ? list.filter((e) => `${e.title} ${e.show} ${e.description}`.toLowerCase().includes(q)) : list
+  }, [episodes, q, activeSeries])
   const continuing = useMemo(
     () =>
       episodes
@@ -46,6 +51,23 @@ export default function Explore({ episodes, engine, loading, error }) {
             className="w-full bg-transparent text-sm placeholder:text-zinc-500 focus:outline-none"
           />
         </label>
+        {seriesList.length > 1 && (
+          <div role="group" aria-label="Filtrar por obra" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+            {['', ...seriesList].map((name) => (
+              <button
+                key={name || 'todos'}
+                type="button"
+                aria-pressed={activeSeries === name}
+                onClick={() => setSeries(name)}
+                className={`press shrink-0 rounded-full border px-3.5 py-1.5 text-sm ${
+                  activeSeries === name ? 'border-white bg-white text-zinc-950' : 'border-white/10 text-zinc-300 hover:border-white/30'
+                }`}
+              >
+                {name || 'Todas'}
+              </button>
+            ))}
+          </div>
+        )}
       </header>
 
       {loading && <Skeletons />}
@@ -63,8 +85,8 @@ export default function Explore({ episodes, engine, loading, error }) {
 
       {featured && (
         <section aria-labelledby="all-h" className="flex flex-col gap-3">
-          <h2 id="all-h" className="eyebrow">{q ? `${results.length} resultado(s)` : 'Episódios'}</h2>
-          <EpisodeCard ep={featured} engine={engine} featured={!q} />
+          <h2 id="all-h" className="eyebrow">{q ? `${results.length} resultado(s)` : activeSeries || 'Episódios'}</h2>
+          <EpisodeCard ep={featured} engine={engine} featured={!q && !activeSeries} />
           {rest.map((e) => <EpisodeCard key={e.id} ep={e} engine={engine} />)}
         </section>
       )}

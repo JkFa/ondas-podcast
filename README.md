@@ -55,7 +55,7 @@ gravar/baixar ──► pipeline/publish.py ──► archive.org (MP3, capa, VT
 }
 ```
 
-`chapters` e `transcript` são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
+`chapters`, `transcript`, `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
 Episódios inválidos são ignorados com um aviso no console; um episódio importado com o mesmo `id` sobrescreve o da base.
 
 ## Desenvolvimento do front
