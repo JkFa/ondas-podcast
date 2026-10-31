@@ -444,9 +444,14 @@ def main(argv=None):
             "subject": ["podcast", "ondas"],
         }
 
+        verify_error = None
         if uploading:
             upload(identifier, files, metadata)
-            wait_for_url(episode["audioUrl"])
+            try:
+                wait_for_url(episode["audioUrl"])
+            except PipelineError as e:
+                verify_error = e  # o upload já foi feito: ainda entregamos o JSON abaixo
+                warn(str(e))
         else:
             step(9, "Upload")
             kept = out_dir / identifier
@@ -468,6 +473,8 @@ def main(argv=None):
     print(f"URL direta: {episode['audioUrl']}", file=sys.stderr)
     print(f"JSON salvo em: {out_file}\n", file=sys.stderr)
     print(payload)  # stdout só com o JSON: facilita `| pbcopy` / redirecionamento
+    if verify_error:
+        raise verify_error  # código 18, mas só depois de salvar e imprimir o JSON
     return 0
 
 
