@@ -152,21 +152,6 @@
           "title": "Início da leitura"
         }
       ]
-    },
-    {
-      "schemaVersion": 1,
-      "id": "ondas-episodio-teste-20261031",
-      "title": "Ondas — episódio de teste",
-      "show": "Ondas",
-      "description": "Episódio de teste do pipeline **Ondas**: um tom de 440 Hz de 10 segundos gerado com ffmpeg.",
-      "audioUrl": "https://archive.org/download/ondas-episodio-teste-20261031/ondas-episodio-teste-20261031.mp3",
-      "archiveId": "ondas-episodio-teste-20261031",
-      "cover": "https://archive.org/download/ondas-episodio-teste-20261031/cover.jpg",
-      "accentColor": "#e63c28",
-      "duration": 10,
-      "publishedAt": "2026-10-31T04:31:44Z",
-      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "source": "local"
     }
   ]
 }
