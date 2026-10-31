@@ -34,25 +34,56 @@ const hms = (sec) => {
   return [Math.floor(s / 3600), Math.floor((s % 3600) / 60), s % 60].map((n) => String(n).padStart(2, '0')).join(':')
 }
 
-/** Tamanho em bytes do MP3 (obrigatório no <enclosure>); estima se o HEAD falhar. */
-async function audioLength(ep) {
+/** Tamanhos já publicados no feed do site (reserva quando o archive.org falha no build). */
+async function previousLengths() {
+  try {
+    const res = await fetch(`${site}feed.xml`, { signal: AbortSignal.timeout(15000) })
+    if (!res.ok) return new Map()
+    const xml = await res.text()
+    return new Map([...xml.matchAll(/<enclosure url="([^"]+)" length="(\d+)"/g)].map((m) => [m[1].replace(/&amp;/g, '&'), Number(m[2])]))
+  } catch {
+    return new Map()
+  }
+}
+
+/** Tamanho em bytes do MP3 (obrigatório no <enclosure>): feed já publicado, senão HEAD com tentativas, senão estimativa. */
+async function audioLength(ep, previous) {
+  // O arquivo no archive.org não muda de tamanho; ignora valores que foram só estimativa no build anterior.
+  const known = previous.get(ep.audioUrl)
+  if (known && known !== Math.round(ep.duration * 12000)) return known
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(ep.audioUrl, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(15000) })
+      const res = await fetch(ep.audioUrl, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(10000) })
       const n = Number(res.headers.get('content-length'))
       if (res.ok && n > 0) return n
     } catch {
-      /* tenta de novo; sem rede, cai na estimativa */
+      /* tenta de novo */
     }
-    await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)))
+    await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)))
   }
   console.warn(`[feed] não consegui o tamanho de ${ep.id}; estimando (96 kbps)`)
   return Math.round(ep.duration * 12000)
 }
 
+/** Executa `fn` sobre `list` com no máximo `limit` chamadas simultâneas (o archive.org não gosta de rajadas). */
+async function mapLimit(list, limit, fn) {
+  const out = new Array(list.length)
+  let next = 0
+  await Promise.all(
+    Array.from({ length: Math.min(limit, list.length) }, async () => {
+      while (next < list.length) {
+        const i = next++
+        out[i] = await fn(list[i])
+      }
+    }),
+  )
+  return out
+}
+
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const sorted = [...episodes].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
-const lengths = await Promise.all(sorted.map(audioLength))
+const previous = await previousLengths()
+const lengths = await mapLimit(sorted, 6, (ep) => audioLength(ep, previous))
 
 /** Capítulos no formato Podcasting 2.0 (JSON Chapters 1.2.0), um arquivo por episódio. */
 const withChapters = sorted.filter((ep) => ep.chapters?.length)
