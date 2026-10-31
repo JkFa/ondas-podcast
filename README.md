@@ -80,7 +80,7 @@ Progresso, favoritos, fila, velocidade, volume e episódios importados ficam em
 Para ouvir em apps de podcast, adicione essa URL manualmente ("adicionar por URL"). Edite título,
 descrição e idioma do canal em `CHANNEL` no script. Episódios com `chapters` ganham
 `<podcast:chapters>` (Podcasting 2.0): o build gera `dist/chapters/<id>.json` e o feed aponta para ele,
-então apps como Pocket Casts, Podcast Addict e AntennaPod mostram os marcadores. O app também expõe o feed via `<link rel="alternate">`.
+e as transcrições viram `dist/transcripts/<id>.vtt` (`<podcast:transcript>`). Só apps com suporte a Podcasting 2.0 usam essas tags. O app também expõe o feed via `<link rel="alternate">`.
 
 ## Deploy
 
