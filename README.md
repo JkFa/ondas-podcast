@@ -106,7 +106,7 @@ Conecte o repositório e use:
 
 ## Biblioteca e contador de acessos
 
-A tela inicial é uma **biblioteca de obras**: episódios com o mesmo `series` viram um livro (capa,
+A **página principal** (`#/`) apresenta o projeto (“Áudios e podcasts indies arquivados e prontos para ouvir.”), com números do catálogo, atalho para continuar, obras para começar, o endereço do feed RSS e como publicar. A **biblioteca** (`#/biblioteca`) é uma grade de obras: episódios com o mesmo `series` viram um livro (capa,
 autor, nº de partes, duração, progresso); episódios sem `series` aparecem como obra de uma parte.
 Cada obra tem página própria (`#/livro/<slug>`, link compartilhável) com sinopse, partes numeradas,
 progresso por parte e um botão que leva ao ponto certo (Ouvir / Continuar / próxima parte / de novo).

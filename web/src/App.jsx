@@ -13,6 +13,7 @@ import { buildBooks } from './lib/books'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
 import Book from './views/Book'
 import Explore from './views/Explore'
+import Home from './views/Home'
 import Notes from './views/Notes'
 import Saved from './views/Saved'
 
@@ -73,7 +74,7 @@ export default function App() {
   }
 
   const view = route.name === 'book' ? 'explore' : route.name
-  const wide = route.name === 'explore' || route.name === 'book'
+  const wide = ['home', 'explore', 'book'].includes(route.name)
   const hasPlayer = !!engine.current
 
   return (
@@ -84,6 +85,7 @@ export default function App() {
 
       <main ref={mainRef} className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] lg:pl-28 lg:pr-8 ${hasPlayer ? 'pb-56' : 'pb-36'} lg:pb-32`}>
         <div className={`mx-auto ${wide ? 'max-w-5xl' : 'max-w-3xl'}`}>
+          {route.name === 'home' && <Home books={books} episodes={episodes} engine={engine} loading={loading} />}
           {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} />}
           {route.name === 'book' && <Book book={book} engine={engine} loading={loading} />}
           {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}

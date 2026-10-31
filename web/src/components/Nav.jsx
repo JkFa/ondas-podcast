@@ -1,7 +1,8 @@
-import { BookOpen, Compass, Plus, Bookmark } from 'lucide-react'
+import { BookOpen, Bookmark, Home, Library, Plus } from 'lucide-react'
 
 const ITEMS = [
-  { id: 'explore', label: 'Explorar', Icon: Compass },
+  { id: 'home', label: 'Início', Icon: Home },
+  { id: 'explore', label: 'Biblioteca', Icon: Library },
   { id: 'notes', label: 'Notas', Icon: BookOpen },
   { id: 'saved', label: 'Salvos', Icon: Bookmark },
 ]
@@ -42,6 +43,7 @@ export default function Nav({ view, onView, onImport }) {
         {tab(ITEMS[1].id, ITEMS[1].label, ITEMS[1].Icon)}
         {importBtn}
         {tab(ITEMS[2].id, ITEMS[2].label, ITEMS[2].Icon)}
+        {tab(ITEMS[3].id, ITEMS[3].label, ITEMS[3].Icon)}
       </nav>
 
       {/* Desktop: sidebar estreita */}

@@ -83,3 +83,14 @@ export function resumeTarget(book, progress) {
   const next = book.parts.slice(i + 1).find(pending) ?? book.parts.slice(0, i).find(pending)
   return next ? { part: next, state: 'next', resumeAt: 0 } : { part: book.parts[0], state: 'again', resumeAt: 0 }
 }
+
+/** Obra mexida mais recentemente (ou undefined se nada foi ouvido). */
+export function lastListened(books, progress) {
+  let best
+  let bestAt = 0
+  for (const b of books) {
+    const { lastAt } = bookStats(b, progress)
+    if (lastAt > bestAt) { best = b; bestAt = lastAt }
+  }
+  return best
+}

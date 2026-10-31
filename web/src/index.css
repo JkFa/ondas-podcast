@@ -172,6 +172,19 @@
   animation: fade-up 300ms var(--ease-out-soft) both;
 }
 
+/* Onda do herói: duas camadas deslizando em velocidades diferentes. */
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.wave-a {
+  animation: drift 14s linear infinite;
+}
+.wave-b {
+  animation: drift 22s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

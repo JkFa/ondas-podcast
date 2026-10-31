@@ -12,7 +12,7 @@ const site = (
 
 const CHANNEL = {
   title: 'Ondas',
-  description: 'Podcasts independentes, hospedados no Internet Archive.',
+  description: 'Áudios e podcasts indies arquivados e prontos para ouvir.',
   language: 'pt-br',
   author: 'Ondas',
 }
