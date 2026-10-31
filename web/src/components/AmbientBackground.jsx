@@ -5,7 +5,7 @@ export default function AmbientBackground({ color }) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-zinc-950"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-ink-950"
       style={{ '--accent': color, transition: '--accent 800ms ease' }}
     >
       <div className={`${blob} -top-40 -left-32 h-[34rem] w-[34rem]`} style={{ background: tint(38) }} />

@@ -7,7 +7,7 @@ export default function Saved({ episodes, engine }) {
   const byId = new Map(episodes.map((e) => [e.id, e]))
   const favs = engine.favorites.map((id) => byId.get(id)).filter(Boolean)
   const queue = engine.queue.map((id) => byId.get(id)).filter(Boolean)
-  const btn = 'press flex h-9 w-9 items-center justify-center rounded-full text-zinc-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent'
+  const btn = 'press flex h-9 w-9 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent'
 
   return (
     <div className="flex flex-col gap-10">
@@ -15,7 +15,7 @@ export default function Saved({ episodes, engine }) {
 
       <section aria-labelledby="queue-h" className="flex flex-col gap-3">
         <h2 id="queue-h" className="eyebrow">A seguir</h2>
-        {queue.length === 0 && <p className="text-sm text-zinc-400">A fila está vazia. Adicione episódios com o botão de fila.</p>}
+        {queue.length === 0 && <p className="text-sm text-ink-400">A fila está vazia. Adicione episódios com o botão de fila.</p>}
         <ol className="flex flex-col gap-2">
           {queue.map((ep, i) => (
             <li key={ep.id} className="glass flex items-center gap-3 rounded-2xl p-2 pr-3">
@@ -34,7 +34,7 @@ export default function Saved({ episodes, engine }) {
 
       <section aria-labelledby="fav-h" className="flex flex-col gap-3">
         <h2 id="fav-h" className="eyebrow">Favoritos</h2>
-        {favs.length === 0 && <p className="text-sm text-zinc-400">Nenhum favorito ainda. Toque no coração de um episódio.</p>}
+        {favs.length === 0 && <p className="text-sm text-ink-400">Nenhum favorito ainda. Toque no coração de um episódio.</p>}
         {favs.map((ep) => <EpisodeCard key={ep.id} ep={ep} engine={engine} />)}
       </section>
     </div>

@@ -1,16 +1,32 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-display: 'Bricolage Grotesque', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Neutros com subtom azul-violeta ("tinta") e um único tom de marca ("sinal"). */
+  --color-ink-50: #f6f6fc;
+  --color-ink-100: #ececf7;
+  --color-ink-200: #d9d9ea;
+  --color-ink-300: #b9b9d2;
+  --color-ink-400: #9a9ab8;
+  --color-ink-500: #6f6f8f;
+  --color-ink-600: #4a4a66;
+  --color-ink-700: #2d2d45;
+  --color-ink-800: #1d1d31;
+  --color-ink-900: #13131f;
+  --color-ink-950: #0b0b14;
+  --color-signal: #c6f432;
+  --color-signal-hover: #d8ff63;
+  --color-iris: #6d5dfc;
 }
 
 /* Registrada para que a cor de destaque possa ser animada (~800ms) entre faixas. */
 @property --accent {
   syntax: '<color>';
   inherits: true;
-  initial-value: #71717a;
+  initial-value: #6d5dfc;
 }
 
 @layer base {
@@ -20,8 +36,8 @@
     height: 100%;
   }
   body {
-    background: #09090b;
-    color: #fafafa;
+    background: var(--color-ink-950);
+    color: var(--color-ink-50);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overscroll-behavior: none;
@@ -30,10 +46,16 @@
     cursor: pointer;
   }
   :focus-visible {
-    outline: 2px solid #fafafa;
+    outline: 2px solid var(--color-signal);
     outline-offset: 2px;
     border-radius: 0.5rem;
   }
+}
+
+/* Títulos: grotesca geométrica, peso firme e tracking fechado. */
+.font-display {
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
 
 @layer components {
@@ -44,11 +66,11 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgb(161 161 170); /* zinc-400: AA sobre #09090b */
+    color: var(--color-ink-400); /* AA sobre ink-950 */
   }
   .glass {
-    background: rgb(255 255 255 / 0.04);
-    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(190 190 255 / 0.05);
+    border: 1px solid rgb(190 190 255 / 0.12);
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
   }
@@ -80,12 +102,12 @@
 .scrubber::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(to right, #fafafa var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-signal) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
 }
 .scrubber::-moz-range-track {
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(to right, #fafafa var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-signal) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
 }
 .scrubber::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -93,8 +115,8 @@
   height: 14px;
   margin-top: -5px;
   border-radius: 50%;
-  background: #fafafa;
-  box-shadow: 0 0 0 4px rgb(0 0 0 / 0.25);
+  background: var(--color-signal);
+  box-shadow: 0 0 0 4px rgb(198 244 50 / 0.2);
   transition: transform 150ms var(--ease-out-soft);
 }
 .scrubber::-moz-range-thumb {
@@ -102,7 +124,7 @@
   height: 14px;
   border: 0;
   border-radius: 50%;
-  background: #fafafa;
+  background: var(--color-signal);
 }
 .scrubber:active::-webkit-slider-thumb {
   transform: scale(1.35);
@@ -119,12 +141,12 @@
 .volume::-webkit-slider-runnable-track {
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(to right, #d4d4d8 var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-ink-200) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
 }
 .volume::-moz-range-track {
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(to right, #d4d4d8 var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-ink-200) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
 }
 .volume::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -132,7 +154,7 @@
   height: 10px;
   margin-top: -3.5px;
   border-radius: 50%;
-  background: #fafafa;
+  background: var(--color-signal);
 }
 
 @keyframes shimmer {

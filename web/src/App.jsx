@@ -59,7 +59,7 @@ export default function App() {
   const hasPlayer = !!engine.current
 
   return (
-    <div className="h-dvh text-zinc-50">
+    <div className="h-dvh text-ink-50">
       <AmbientBackground color={accent} />
       <audio ref={engine.audioRef} preload="metadata" />
       <Nav view={view} onView={setView} onImport={() => setImportOpen(true)} />

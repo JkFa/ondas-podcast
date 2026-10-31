@@ -10,9 +10,9 @@ export default function MiniPlayer({ engine, onOpen }) {
     <div
       className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+4.75rem)] z-20 fade-up lg:bottom-5 lg:left-20 lg:right-0 lg:px-8"
     >
-      <div className="glass relative mx-auto max-w-3xl bg-zinc-900/85 flex items-center gap-3 overflow-hidden rounded-2xl p-2 pr-3 shadow-2xl shadow-black/40">
+      <div className="glass relative mx-auto max-w-3xl bg-ink-900/85 flex items-center gap-3 overflow-hidden rounded-2xl p-2 pr-3 shadow-2xl shadow-black/40">
         <div className="absolute inset-x-0 top-0 h-0.5 bg-white/10" aria-hidden="true">
-          <div className="h-full bg-white" style={{ width: `${pct}%` }} />
+          <div className="h-full bg-signal" style={{ width: `${pct}%` }} />
         </div>
         <button
           onClick={onOpen}
@@ -28,7 +28,7 @@ export default function MiniPlayer({ engine, onOpen }) {
         <button
           onClick={toggle}
           aria-label={playing ? 'Pausar' : 'Tocar'}
-          className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-zinc-950 hover:bg-zinc-200"
+          className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
         >
           {buffering && playing ? <Loader2 size={18} className="animate-spin" /> : playing ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" className="translate-x-px" />}
         </button>

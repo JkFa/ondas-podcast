@@ -15,7 +15,7 @@ function Inline({ text }) {
 /** Markdown simples (ver lib/format.js) renderizado como elementos React. */
 export function Markdown({ text }) {
   return (
-    <div className="flex flex-col gap-3 text-[0.9375rem] leading-relaxed text-zinc-300">
+    <div className="flex flex-col gap-3 text-[0.9375rem] leading-relaxed text-ink-300">
       {parseMarkdown(text).map((b, i) =>
         b.type === 'h' ? <h4 key={i} className="eyebrow pt-2"><Inline text={b.text} /></h4>
         : b.type === 'ul' ? <ul key={i} className="list-disc space-y-1 pl-5">{b.items.map((it, j) => <li key={j}><Inline text={it} /></li>)}</ul>
@@ -72,9 +72,9 @@ export default function Transcript({ transcript, position, onSeek, scrollRef, ac
             <button
               onClick={() => { setFollow(true); onSeek(s.start) }}
               aria-current={i === activeIdx ? 'true' : undefined}
-              className={`press flex w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/5 ${i === activeIdx ? 'bg-white/10 text-white' : 'text-zinc-400'}`}
+              className={`press flex w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/5 ${i === activeIdx ? 'bg-white/10 text-white' : 'text-ink-400'}`}
             >
-              <span className="w-12 shrink-0 pt-0.5 text-xs tabular-nums text-zinc-500">{formatTime(s.start)}</span>
+              <span className="w-12 shrink-0 pt-0.5 text-xs tabular-nums text-ink-500">{formatTime(s.start)}</span>
               <span>{s.text}</span>
             </button>
           </li>

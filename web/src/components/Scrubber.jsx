@@ -33,7 +33,7 @@ export default function Scrubber({ position, duration, onCommit }) {
         onKeyUp={commit}
         onBlur={commit}
       />
-      <div className="mt-1 flex justify-between text-xs tabular-nums text-zinc-400">
+      <div className="mt-1 flex justify-between text-xs tabular-nums text-ink-400">
         <span>{formatTime(value)}</span>
         <span>-{formatTime(Math.max(0, max - value))}</span>
       </div>

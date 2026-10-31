@@ -13,7 +13,7 @@ export default function Nav({ view, onView, onImport }) {
       onClick={() => onView(id)}
       aria-current={view === id ? 'page' : undefined}
       className={`press flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-2 text-[0.6875rem] font-medium tracking-wide lg:w-14 lg:flex-none ${
-        view === id ? 'text-white' : 'text-zinc-400 hover:text-zinc-200'
+        view === id ? 'text-signal' : 'text-ink-400 hover:text-ink-200'
       } ${extra}`}
     >
       <Icon size={20} strokeWidth={view === id ? 2.2 : 1.7} aria-hidden="true" />
@@ -24,7 +24,7 @@ export default function Nav({ view, onView, onImport }) {
     <button
       onClick={onImport}
       aria-label="Publicar ou importar episódio"
-      className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-zinc-950 hover:bg-zinc-200"
+      className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
     >
       <Plus size={22} aria-hidden="true" />
     </button>
@@ -35,7 +35,7 @@ export default function Nav({ view, onView, onImport }) {
       {/* Mobile: barra inferior em vidro fosco */}
       <nav
         aria-label="Principal"
-        className="glass fixed inset-x-0 bottom-0 bg-zinc-950/85 z-30 flex items-center gap-1 rounded-t-3xl border-x-0 border-b-0 px-3 pt-2 lg:hidden"
+        className="glass fixed inset-x-0 bottom-0 bg-ink-950/85 z-30 flex items-center gap-1 rounded-t-3xl border-x-0 border-b-0 px-3 pt-2 lg:hidden"
         style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}
       >
         {tab(ITEMS[0].id, ITEMS[0].label, ITEMS[0].Icon)}
@@ -49,7 +49,9 @@ export default function Nav({ view, onView, onImport }) {
         aria-label="Principal"
         className="fixed inset-y-0 left-0 z-30 hidden w-20 flex-col items-center gap-2 border-r border-white/10 py-6 lg:flex"
       >
-        <span className="mb-6 font-display text-2xl italic" aria-label="Ondas">o.</span>
+        <svg role="img" aria-label="Ondas" viewBox="0 0 64 64" className="mb-6 h-9 w-9 text-signal">
+          <path d="M8 34c6-14 10-14 16 0s10 14 16 0 8-10 12-4" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+        </svg>
         {ITEMS.map(({ id, label, Icon }) => tab(id, label, Icon))}
         <div className="mt-auto">{importBtn}</div>
       </nav>

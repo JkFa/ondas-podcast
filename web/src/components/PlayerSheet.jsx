@@ -53,7 +53,7 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
 
   const fav = favorites.includes(ep.id)
   const queued = queue.includes(ep.id)
-  const round = 'press flex h-11 w-11 items-center justify-center rounded-full text-zinc-200 hover:bg-white/10 hover:text-white'
+  const round = 'press flex h-11 w-11 items-center justify-center rounded-full text-ink-200 hover:bg-white/10 hover:text-white'
 
   return (
     <div
@@ -62,7 +62,7 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
       aria-modal="true"
       aria-label={`Player: ${ep.title}`}
       inert={!open}
-      className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-zinc-950/90 backdrop-blur-2xl lg:left-20"
+      className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-ink-950/90 backdrop-blur-2xl lg:left-20"
       style={{
         transform: open ? `translateY(${dy}px)` : 'translateY(100%)',
         transition: dragging ? 'none' : 'transform 320ms cubic-bezier(0.22, 1, 0.36, 1)',
@@ -110,7 +110,7 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
           </div>
 
           <div className="flex items-center justify-between">
-            <button onClick={engine.cycleRate} aria-label={`Velocidade ${rate}x. Tocar para alterar`} className="press w-14 rounded-full py-2 text-sm font-medium tabular-nums text-zinc-200 hover:bg-white/10">
+            <button onClick={engine.cycleRate} aria-label={`Velocidade ${rate}x. Tocar para alterar`} className="press w-14 rounded-full py-2 text-sm font-medium tabular-nums text-ink-200 hover:bg-white/10">
               {rate}x
             </button>
             <div className="flex items-center gap-2">
@@ -118,7 +118,7 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
               <button
                 onClick={engine.toggle}
                 aria-label={playing ? 'Pausar' : 'Tocar'}
-                className="press flex h-16 w-16 items-center justify-center rounded-full bg-white text-zinc-950 hover:bg-zinc-200"
+                className="press flex h-16 w-16 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
               >
                 {buffering && playing ? <Loader2 size={26} className="animate-spin" /> : playing ? <Pause size={26} fill="currentColor" /> : <Play size={26} fill="currentColor" className="translate-x-0.5" />}
               </button>
@@ -134,12 +134,12 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
           <div className="flex items-center justify-between">
             <button
               onClick={() => (queued ? engine.dequeue(ep.id) : engine.enqueue(ep.id))}
-              className="press flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-white/10"
+              className="press flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-ink-300 hover:bg-white/10"
             >
               <ListPlus size={16} aria-hidden="true" /> {queued ? 'Na fila' : 'Adicionar à fila'}
             </button>
             {/* Volume só no desktop: no celular o hardware controla */}
-            <label className="hidden items-center gap-2 text-zinc-400 lg:flex">
+            <label className="hidden items-center gap-2 text-ink-400 lg:flex">
               <Volume2 size={16} aria-hidden="true" />
               <input
                 type="range" className="volume" min={0} max={1} step={0.05} value={volume}
@@ -159,7 +159,7 @@ export default function PlayerSheet({ engine, accent, open, onClose }) {
                   aria-selected={tab === t.id}
                   aria-controls={`panel-${t.id}`}
                   onClick={() => setTab(t.id)}
-                  className={`press -mb-px border-b-2 px-4 py-2.5 text-sm font-medium ${tab === t.id ? 'border-white text-white' : 'border-transparent text-zinc-400 hover:text-zinc-200'}`}
+                  className={`press -mb-px border-b-2 px-4 py-2.5 text-sm font-medium ${tab === t.id ? 'border-white text-white' : 'border-transparent text-ink-400 hover:text-ink-200'}`}
                 >
                   {t.label}
                 </button>

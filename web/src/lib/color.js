@@ -1,4 +1,4 @@
-export const NEUTRAL_ACCENT = '#71717a'
+export const NEUTRAL_ACCENT = '#6d5dfc'
 
 export const isHex = (v) => typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v)
 

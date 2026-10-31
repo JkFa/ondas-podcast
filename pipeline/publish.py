@@ -21,7 +21,7 @@ import urllib.request
 from pathlib import Path
 
 SCHEMA_VERSION = 1
-NEUTRAL_ACCENT = "#71717a"
+NEUTRAL_ACCENT = "#6d5dfc"
 COVER_SIZE = 1400
 IA_DOWNLOAD = "https://archive.org/download"
 DEFAULT_CATALOG = Path(__file__).resolve().parent.parent / "web" / "public" / "catalog.json"

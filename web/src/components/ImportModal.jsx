@@ -26,11 +26,11 @@ function parseInput(raw) {
   return /^[\w.-]+$/.test(text) ? { id: text, file: null } : null
 }
 
-const input = 'w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm placeholder:text-zinc-500 focus:border-white/30 focus:outline-none'
+const input = 'w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm placeholder:text-ink-500 focus:border-white/30 focus:outline-none'
 
 function Status({ s }) {
   if (!s) return null
-  const tone = s.kind === 'err' ? 'text-rose-300' : s.kind === 'ok' ? 'text-emerald-300' : 'text-zinc-400'
+  const tone = s.kind === 'err' ? 'text-rose-300' : s.kind === 'ok' ? 'text-emerald-300' : 'text-ink-400'
   return (
     <p role="status" className={`flex items-center gap-2 text-xs ${tone}`}>
       {s.kind === 'busy' ? <Loader2 size={14} className="animate-spin" /> : s.kind === 'ok' ? <CheckCircle2 size={14} /> : <XCircle size={14} />}
@@ -184,7 +184,7 @@ export default function ImportModal({ open, onClose, onSave, onExport, onImportF
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm sm:items-center sm:p-6" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="import-title" className="fade-up flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-zinc-900/95 backdrop-blur-xl sm:rounded-3xl">
+      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="import-title" className="fade-up flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-ink-900/95 backdrop-blur-xl sm:rounded-3xl">
         <header className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <h2 id="import-title" className="font-display text-2xl">Importar do Archive.org</h2>
           <button onClick={onClose} aria-label="Fechar" className="press flex h-9 w-9 items-center justify-center rounded-full hover:bg-white/10"><X size={18} /></button>
@@ -195,7 +195,7 @@ export default function ImportModal({ open, onClose, onSave, onExport, onImportF
             <Field label="Identificador ou URL do .mp3">
               <div className="flex gap-2">
                 <input data-autofocus className={input} value={source} onChange={(e) => setSource(e.target.value)} placeholder="ex.: o_alienista_0904_librivox" />
-                <button type="button" onClick={onLookup} className="press shrink-0 rounded-xl bg-white px-4 text-sm font-medium text-zinc-950 hover:bg-zinc-200">Buscar</button>
+                <button type="button" onClick={onLookup} className="press shrink-0 rounded-xl bg-signal px-4 text-sm font-medium text-ink-950 hover:bg-signal-hover">Buscar</button>
               </div>
             </Field>
             {files.length > 1 && (
@@ -216,7 +216,7 @@ export default function ImportModal({ open, onClose, onSave, onExport, onImportF
             <Field label="Capa (URL)"><input type="url" className={input} value={form.cover} onChange={set('cover')} /></Field>
             <Field label="Cor de destaque">
               <div className="flex gap-2">
-                <input type="color" aria-label="Escolher cor" className="h-[2.625rem] w-12 rounded-xl border border-white/10 bg-transparent p-1" value={isHex(form.accentColor) ? form.accentColor : '#71717a'} onChange={set('accentColor')} />
+                <input type="color" aria-label="Escolher cor" className="h-[2.625rem] w-12 rounded-xl border border-white/10 bg-transparent p-1" value={isHex(form.accentColor) ? form.accentColor : '#6d5dfc'} onChange={set('accentColor')} />
                 <input className={input} value={form.accentColor} onChange={set('accentColor')} placeholder="#rrggbb" />
               </div>
             </Field>
@@ -234,7 +234,7 @@ export default function ImportModal({ open, onClose, onSave, onExport, onImportF
           <div className="flex flex-wrap items-center gap-3">
             <button type="button" onClick={testAudio} className="press rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium hover:bg-white/10">Testar áudio</button>
             <Status s={audioTest} />
-            <button type="submit" className="press ml-auto rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-zinc-200">Salvar episódio</button>
+            <button type="submit" className="press ml-auto rounded-xl bg-signal px-5 py-2.5 text-sm font-medium text-ink-950 hover:bg-signal-hover">Salvar episódio</button>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 border-t border-white/10 pt-4">

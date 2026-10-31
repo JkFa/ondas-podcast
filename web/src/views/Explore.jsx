@@ -49,16 +49,16 @@ export default function Explore({ episodes, engine, loading, error }) {
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-4">
         <h1 className="font-display text-5xl sm:text-6xl">Ondas</h1>
-        <p className="-mt-2 max-w-md text-zinc-400">Podcasts independentes, hospedados no Internet Archive.</p>
+        <p className="-mt-2 max-w-md text-ink-400">Podcasts independentes, hospedados no Internet Archive.</p>
         <label className="glass flex items-center gap-3 rounded-2xl px-4 py-3 focus-within:border-white/30">
-          <Search size={18} className="text-zinc-400" aria-hidden="true" />
+          <Search size={18} className="text-ink-400" aria-hidden="true" />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar por título ou descrição"
             aria-label="Buscar episódios"
-            className="w-full bg-transparent text-sm placeholder:text-zinc-500 focus:outline-none"
+            className="w-full bg-transparent text-sm placeholder:text-ink-500 focus:outline-none"
           />
         </label>
         {seriesList.length > 1 && (
@@ -70,7 +70,7 @@ export default function Explore({ episodes, engine, loading, error }) {
                 aria-pressed={activeSeries === name}
                 onClick={() => setSeries(name)}
                 className={`press shrink-0 rounded-full border px-3.5 py-1.5 text-sm ${
-                  activeSeries === name ? 'border-white bg-white text-zinc-950' : 'border-white/10 text-zinc-300 hover:border-white/30'
+                  activeSeries === name ? 'border-signal bg-signal text-ink-950' : 'border-white/10 text-ink-300 hover:border-white/30'
                 }`}
               >
                 {name || 'Todas'}
@@ -86,7 +86,7 @@ export default function Explore({ episodes, engine, loading, error }) {
       {loading && <Skeletons />}
       {error && <p role="alert" className="text-sm text-rose-300">Não foi possível carregar o catálogo. Verifique a conexão e recarregue.</p>}
       {!loading && !error && !results.length && (
-        <p className="text-zinc-400">{q ? `Nenhum episódio encontrado para “${query}”.` : 'O catálogo está vazio. Use + para importar um episódio.'}</p>
+        <p className="text-ink-400">{q ? `Nenhum episódio encontrado para “${query}”.` : 'O catálogo está vazio. Use + para importar um episódio.'}</p>
       )}
 
       {!q && continuing.length > 0 && (
