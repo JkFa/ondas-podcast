@@ -89,6 +89,34 @@ substituído se o `id` já existir; escrita atômica). Se o arquivo estiver inv�
 script só avisa — o JSON continua em `out/<id>.json` e no stdout. Opções: `--catalog ARQUIVO`, `--no-catalog`.
 Depois: `git add web/public/catalog.json && git commit && git push` para publicar no site.
 
+## Importar do Internet Archive (`import_archive.py`)
+
+Traz para o catálogo obras que já estão no archive.org, sem baixar nem reenviar nada.
+
+```bash
+python pipeline/import_archive.py <identificador|URL> [...]          # itens específicos
+python pipeline/import_archive.py --search --limit 10 --dry-run      # prévia do lote
+python pipeline/import_archive.py --search --limit 10 --slim         # grava
+```
+
+| Opção | Efeito |
+|---|---|
+| `--search` / `--query Q` | busca (padrão `collection:librivoxaudio AND language:por`, mais baixados primeiro) e ignora o que já está no catálogo |
+| `--limit N` | quantas obras novas importar na busca (10) |
+| `--max-parts N`, `--max-hours H` | pula obras maiores que isso na busca (40 partes, sem limite de horas) |
+| `--series NOME` | nome da obra (só com um identificador); padrão: título do item |
+| `--slim` | partes 2..N com descrição curta; também encurta as obras já existentes |
+| `--allow-unlicensed` | aceita item fora do LibriVox sem `licenseurl` (confirme os direitos!) |
+| `--no-verify` | não verifica URLs (não recomendado) |
+| `--dry-run` | mostra o plano e não grava |
+| `--catalog ARQUIVO` | outro catalog.json |
+
+Regras: precisa ser `mediatype: audio`; LibriVox é domínio público, os demais precisam de `licenseurl`;
+cada parte é o melhor MP3 do arquivo (original antes de derivado); obra com uma parte só vira episódio
+avulso (sem `series`); se alguma URL não responder 200 com `audio/*`, a obra inteira é ignorada (rode de
+novo mais tarde: o archive.org falha às vezes). Reexecutar é seguro e preserva título, descrição,
+capítulos e transcrição já curados.
+
 ## Schema do JSON
 
 Contrato com o front (`web/src/lib/catalog.js`): `schemaVersion`, `id`, `title`, `show`,

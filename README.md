@@ -20,7 +20,31 @@ gravar/baixar ──► pipeline/publish.py ──► archive.org (MP3, capa, VT
 | `web/` | App Vite + React + Tailwind v4 (PWA leve). |
 | `.github/workflows/deploy.yml` | Deploy automático no GitHub Pages. |
 
-## Fluxo de publicação
+## Trazer obras que já estão no Internet Archive
+
+Para encher a biblioteca com audiolivros e programas que **já existem** no archive.org (sem baixar nem
+reenviar nada), use o importador. Um item do archive.org vira uma obra e cada MP3 vira uma parte:
+
+```bash
+source .venv/bin/activate        # ambiente do pipeline (ver pipeline/README.md)
+
+# itens específicos: identificador ou URL da página
+python pipeline/import_archive.py dom_casmurro_2102_librivox https://archive.org/details/senhora_0910_librivox
+
+# em lote: os mais baixados do LibriVox em português que ainda não estão no catálogo
+python pipeline/import_archive.py --search --limit 10 --dry-run   # só mostra o plano
+python pipeline/import_archive.py --search --limit 10 --slim      # grava (sinopse só na parte 1)
+
+git add web/public/catalog.json && git commit -m "feat: novas obras" && git push   # o deploy publica
+```
+
+Ele confere a licença (LibriVox = domínio público; fora dele exige `licenseurl`), verifica cada URL de
+áudio e capa com HEAD, calcula a cor de destaque da capa e só grava obras completas. Obras muito longas
+são puladas na busca (`--max-parts`, `--max-hours`); itens citados pelo nome entram sempre. Rodar de novo é
+seguro: entradas existentes mantêm título, descrição, capítulos e transcrição. Outra consulta:
+`--query 'collection:librivoxaudio AND language:eng'`. Detalhes em `pipeline/README.md`.
+
+## Fluxo de publicação (conteúdo seu)
 
 1. **Gravar** (ou escolher um vídeo seu no YouTube).
 2. **Publicar:** `python pipeline/publish.py ... --license <url>` (instalação em `pipeline/README.md`).
