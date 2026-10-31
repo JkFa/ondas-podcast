@@ -49,7 +49,7 @@ export default function Explore({ books, engine, loading, error }) {
       <header className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h1 className="font-display text-5xl sm:text-6xl">Biblioteca</h1>
-          <p className="max-w-lg text-ink-400">Audiolivros e podcasts independentes, todos arquivados no Internet Archive.</p>
+          <p className="max-w-lg text-ink-400">Áudios e podcasts indies arquivados e prontos para ouvir.</p>
         </div>
         <label className="glass flex items-center gap-3 rounded-2xl px-4 py-3 focus-within:border-white/30 sm:max-w-md">
           <Search size={18} className="text-ink-400" aria-hidden="true" />
