@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import AmbientBackground from './components/AmbientBackground'
 import ImportModal from './components/ImportModal'
 import MiniPlayer from './components/MiniPlayer'
@@ -8,7 +8,10 @@ import { useAccent } from './hooks/useAccent'
 import { useAudioEngine } from './hooks/useAudioEngine'
 import { useMediaSession } from './hooks/useMediaSession'
 import { usePersistentState } from './hooks/usePersistentState'
+import { navigate, paths, useRoute } from './hooks/useRoute'
+import { buildBooks } from './lib/books'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
+import Book from './views/Book'
 import Explore from './views/Explore'
 import Notes from './views/Notes'
 import Saved from './views/Saved'
@@ -18,7 +21,8 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [imported, setImported] = usePersistentState('imported', [])
-  const [view, setView] = useState('explore')
+  const route = useRoute()
+  const mainRef = useRef(null)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [importOpen, setImportOpen] = useState(false)
 
@@ -35,7 +39,20 @@ export default function App() {
   const episodes = useMemo(() => mergeCatalog(base, validEpisodes(imported, 'importados')), [base, imported])
   const engine = useAudioEngine(episodes)
   useMediaSession(engine)
-  const accent = useAccent(engine.current)
+  const books = useMemo(() => buildBooks(episodes), [episodes])
+  const book = route.name === 'book' ? books.find((b) => b.slug === route.slug) : undefined
+  const playerAccent = useAccent(engine.current)
+  const pageAccent = useAccent(book?.parts[0])
+  const ambient = book ? pageAccent : playerAccent
+
+  // Cada rota lembra a própria posição de rolagem (voltar da obra reabre a biblioteca onde estava).
+  const scrolls = useRef(new Map())
+  useLayoutEffect(() => {
+    const el = mainRef.current
+    const saved = scrolls.current
+    el.scrollTop = saved.get(route.key) ?? 0
+    return () => saved.set(route.key, el.scrollTop)
+  }, [route.key])
 
   const addImported = useCallback((list) => setImported((prev) => mergeCatalog(prev, list)), [setImported])
 
@@ -55,23 +72,27 @@ export default function App() {
     }
   }
 
-  const View = { explore: Explore, notes: Notes, saved: Saved }[view]
+  const view = route.name === 'book' ? 'explore' : route.name
+  const wide = route.name === 'explore' || route.name === 'book'
   const hasPlayer = !!engine.current
 
   return (
     <div className="h-dvh text-ink-50">
-      <AmbientBackground color={accent} />
+      <AmbientBackground color={ambient} />
       <audio ref={engine.audioRef} preload="metadata" />
-      <Nav view={view} onView={setView} onImport={() => setImportOpen(true)} />
+      <Nav view={view} onView={(id) => navigate(paths[id])} onImport={() => setImportOpen(true)} />
 
-      <main className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] lg:pl-28 lg:pr-8 ${hasPlayer ? 'pb-56' : 'pb-36'} lg:pb-32`}>
-        <div className="mx-auto max-w-3xl">
-          <View episodes={episodes} engine={engine} loading={loading} error={error} />
+      <main ref={mainRef} className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] lg:pl-28 lg:pr-8 ${hasPlayer ? 'pb-56' : 'pb-36'} lg:pb-32`}>
+        <div className={`mx-auto ${wide ? 'max-w-5xl' : 'max-w-3xl'}`}>
+          {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} />}
+          {route.name === 'book' && <Book book={book} engine={engine} loading={loading} />}
+          {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
+          {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
         </div>
       </main>
 
       <MiniPlayer engine={engine} onOpen={() => setSheetOpen(true)} />
-      <PlayerSheet engine={engine} accent={accent} open={sheetOpen} onClose={() => setSheetOpen(false)} />
+      <PlayerSheet engine={engine} accent={playerAccent} open={sheetOpen} onClose={() => setSheetOpen(false)} />
       <ImportModal open={importOpen} onClose={() => setImportOpen(false)} onSave={addImported} onExport={exportCatalog} onImportFile={importFile} />
     </div>
   )

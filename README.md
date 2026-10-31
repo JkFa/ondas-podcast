@@ -104,7 +104,25 @@ Conecte o repositório e use:
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
 
+## Biblioteca e contador de acessos
+
+A tela inicial é uma **biblioteca de obras**: episódios com o mesmo `series` viram um livro (capa,
+autor, nº de partes, duração, progresso); episódios sem `series` aparecem como obra de uma parte.
+Cada obra tem página própria (`#/livro/<slug>`, link compartilhável) com sinopse, partes numeradas,
+progresso por parte e um botão que leva ao ponto certo (Ouvir / Continuar / próxima parte / de novo).
+
+Os acessos ao site e a cada obra são contados pelo [Abacus](https://v2.jasoncameron.dev/abacus)
+(API pública gratuita, sem cadastro; namespace `ondas-jkfa`, chaves `site` e `livro-<slug>`):
+conta **uma visita por sessão do navegador** e por página, e em `localhost` só lê o número. O
+serviço não pede nem guarda dados pessoais além do que qualquer requisição HTTP já expõe (IP).
+Se estiver fora do ar, o contador simplesmente não aparece. Para trocar de provedor, edite
+`web/src/lib/views.js`.
+
 ## Limitações conhecidas
+
+- **O contador é só indicativo:** qualquer pessoa que conheça a URL do Abacus pode incrementar um
+  contador; não há como separar robôs de pessoas nem contar visitantes únicos de verdade. O
+  serviço apaga contadores sem acesso por 6 meses.
 
 - **MediaSession no iOS:** a tela de bloqueio mostra play/pause e ±15 s, mas `seekto`/faixas
   anterior-próxima variam por versão; em PWA instalado o áudio pode pausar ao bloquear a tela

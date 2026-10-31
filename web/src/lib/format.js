@@ -8,6 +8,12 @@ export function formatTime(sec) {
   return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`
 }
 
+/** 45 → "1 min"; 3000 → "50 min"; 18720 → "5 h 12 min" */
+export function formatDuration(sec) {
+  const m = Math.max(1, Math.round((Number.isFinite(sec) ? sec : 0) / 60))
+  return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${String(m % 60).padStart(2, '0')} min` : ''}`
+}
+
 /** Texto para leitores de tela: "12 minutos de 45". */
 export function spokenProgress(pos, dur) {
   const min = (s) => {
