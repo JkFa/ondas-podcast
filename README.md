@@ -58,6 +58,7 @@ gravar/baixar ──► pipeline/publish.py ──► archive.org (MP3, capa, VT
 `chapters`, `transcript`, `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
 
 Ao terminar um episódio, o player toca o próximo da fila; sem fila, segue para a próxima `part` da mesma `series` (audiolivros tocam em sequência). Na última parte, para.
+
 Episódios inválidos são ignorados com um aviso no console; um episódio importado com o mesmo `id` sobrescreve o da base.
 
 ## Desenvolvimento do front
