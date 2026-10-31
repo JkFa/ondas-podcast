@@ -24,6 +24,7 @@ SCHEMA_VERSION = 1
 NEUTRAL_ACCENT = "#71717a"
 COVER_SIZE = 1400
 IA_DOWNLOAD = "https://archive.org/download"
+DEFAULT_CATALOG = Path(__file__).resolve().parent.parent / "web" / "public" / "catalog.json"
 
 # Códigos de saída distintos por tipo de erro (argparse usa 2 para uso incorreto).
 EXIT_DEPENDENCY = 10
@@ -374,6 +375,35 @@ def build_episode(identifier, title, show, description, accent, duration, chapte
     return episode
 
 
+def update_catalog(path, episode):
+    """Insere (ou substitui, pelo id) o episódio no catalog.json. Escrita atômica."""
+    path = Path(path)
+    if path.exists():
+        try:
+            catalog = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            raise PipelineError(EXIT_INPUT, f"{path} não é um JSON válido ({e}); catálogo não alterado.")
+        if not isinstance(catalog, dict) or not isinstance(catalog.get("episodes"), list):
+            raise PipelineError(EXIT_INPUT, f"{path} não tem a lista 'episodes'; catálogo não alterado.")
+    else:
+        catalog = {"schemaVersion": SCHEMA_VERSION, "episodes": []}
+
+    episodes = catalog["episodes"]
+    for i, existing in enumerate(episodes):
+        if isinstance(existing, dict) and existing.get("id") == episode["id"]:
+            episodes[i] = episode
+            action = "substituído"
+            break
+    else:
+        episodes.append(episode)
+        action = "adicionado"
+
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(path)
+    return action
+
+
 def parse_args(argv):
     p = argparse.ArgumentParser(
         prog="publish.py",
@@ -390,6 +420,9 @@ def parse_args(argv):
     p.add_argument("--transcribe", action="store_true", help="Gera transcrição com faster-whisper")
     p.add_argument("--dry-run", action="store_true", help="Faz tudo menos o upload e mostra o que seria enviado")
     p.add_argument("--no-upload", action="store_true", help="Gera os arquivos em ./out/<id>/ sem enviar")
+    p.add_argument("--catalog", metavar="ARQUIVO", default=str(DEFAULT_CATALOG),
+                   help="catalog.json a atualizar após o upload (padrão: web/public/catalog.json)")
+    p.add_argument("--no-catalog", action="store_true", help="Não atualiza o catalog.json")
     return p.parse_args(argv)
 
 
@@ -468,6 +501,15 @@ def main(argv=None):
     out_file = out_dir / f"{identifier}.json"
     payload = json.dumps(episode, ensure_ascii=False, indent=2)
     out_file.write_text(payload + "\n", encoding="utf-8")
+
+    if uploading and not args.no_catalog:
+        step(11, "Catálogo")
+        try:
+            action = update_catalog(args.catalog, episode)
+            ok(f"episódio {action} em {args.catalog}")
+            info("para publicar no site: git add, commit e push do catalog.json")
+        except (PipelineError, OSError) as e:
+            warn(f"catálogo não atualizado: {e}")  # o upload já foi feito; o JSON abaixo continua valendo
 
     print(_paint("1;32", "\nConcluído."), file=sys.stderr)
     print(f"URL direta: {episode['audioUrl']}", file=sys.stderr)

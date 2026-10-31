@@ -24,8 +24,11 @@ gravar/baixar ──► pipeline/publish.py ──► archive.org (MP3, capa, VT
 
 1. **Gravar** (ou escolher um vídeo seu no YouTube).
 2. **Publicar:** `python pipeline/publish.py ... --license <url>` (instalação em `pipeline/README.md`).
-3. **Adicionar ao catálogo**, de uma destas formas:
-   - colar o JSON impresso em `web/public/catalog.json` (dentro de `episodes`) e fazer commit — vale para todo mundo;
+3. **Adicionar ao catálogo:** depois de um upload real, o `publish.py` já insere o episódio em
+   `web/public/catalog.json` (ou troca a entrada de mesmo `id`); basta fazer commit e push. Use `--no-catalog`
+   para pular ou `--catalog ARQUIVO` para outro destino. `--dry-run` e `--no-upload` nunca mexem no catálogo.
+   Sem o pipeline, dá para:
+   - colar o JSON em `web/public/catalog.json` (dentro de `episodes`) e fazer commit — vale para todo mundo;
    - ou abrir o app → **+** → colar o JSON (ou digitar o identificador do archive.org) — fica só no seu navegador (localStorage).
      Use **Exportar catalog.json** para levar essa lista para o repositório depois.
 4. **Deploy:** push na `main` publica via GitHub Actions.
@@ -75,7 +78,9 @@ Progresso, favoritos, fila, velocidade, volume e episódios importados ficam em
 (`<enclosure length>`) é lido do archive.org no build. Em produção o feed fica em
 `<site>/feed.xml`; a URL base vem de `SITE_URL` (ou, no GitHub Actions, de `GITHUB_REPOSITORY`).
 Para ouvir em apps de podcast, adicione essa URL manualmente ("adicionar por URL"). Edite título,
-descrição e idioma do canal em `CHANNEL` no script. O app também expõe o feed via `<link rel="alternate">`.
+descrição e idioma do canal em `CHANNEL` no script. Episódios com `chapters` ganham
+`<podcast:chapters>` (Podcasting 2.0): o build gera `dist/chapters/<id>.json` e o feed aponta para ele,
+então apps como Pocket Casts, Podcast Addict e AntennaPod mostram os marcadores. O app também expõe o feed via `<link rel="alternate">`.
 
 ## Deploy
 

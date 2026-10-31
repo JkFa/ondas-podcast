@@ -82,6 +82,13 @@ Saída: a URL direta e o JSON do episódio em stdout (logs vão para stderr, ent
 | 18 | MP3 não respondeu 200 em ~2 min (o item pode só estar demorando; tente a URL depois) |
 | 130 | Interrompido (Ctrl+C) |
 
+## Catálogo automático
+
+Após um upload real, o episódio é gravado em `web/public/catalog.json` (inserido no fim de `episodes`, ou
+substituído se o `id` já existir; escrita atômica). Se o arquivo estiver inválido, ele não é tocado e o
+script só avisa — o JSON continua em `out/<id>.json` e no stdout. Opções: `--catalog ARQUIVO`, `--no-catalog`.
+Depois: `git add web/public/catalog.json && git commit && git push` para publicar no site.
+
 ## Schema do JSON
 
 Contrato com o front (`web/src/lib/catalog.js`): `schemaVersion`, `id`, `title`, `show`,

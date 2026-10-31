@@ -1,7 +1,7 @@
 // Gera dist/feed.xml (RSS 2.0 + tags iTunes) a partir de public/catalog.json.
 // Roda depois do `vite build`. A URL do site vem de SITE_URL; no GitHub Actions
 // é derivada de GITHUB_REPOSITORY (https://<dono>.github.io/<repo>/).
-import { readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const root = new URL('../', import.meta.url)
 const repo = process.env.GITHUB_REPOSITORY?.split('/')
@@ -36,12 +36,15 @@ const hms = (sec) => {
 
 /** Tamanho em bytes do MP3 (obrigatório no <enclosure>); estima se o HEAD falhar. */
 async function audioLength(ep) {
-  try {
-    const res = await fetch(ep.audioUrl, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(15000) })
-    const n = Number(res.headers.get('content-length'))
-    if (res.ok && n > 0) return n
-  } catch {
-    /* sem rede: cai na estimativa */
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(ep.audioUrl, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(15000) })
+      const n = Number(res.headers.get('content-length'))
+      if (res.ok && n > 0) return n
+    } catch {
+      /* tenta de novo; sem rede, cai na estimativa */
+    }
+    await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)))
   }
   console.warn(`[feed] não consegui o tamanho de ${ep.id}; estimando (96 kbps)`)
   return Math.round(ep.duration * 12000)
@@ -50,6 +53,22 @@ async function audioLength(ep) {
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const sorted = [...episodes].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
 const lengths = await Promise.all(sorted.map(audioLength))
+
+/** Capítulos no formato Podcasting 2.0 (JSON Chapters 1.2.0), um arquivo por episódio. */
+const withChapters = sorted.filter((ep) => ep.chapters?.length)
+await mkdir(new URL('dist/chapters/', root), { recursive: true })
+await Promise.all(
+  withChapters.map((ep) =>
+    writeFile(
+      new URL(`dist/chapters/${ep.id}.json`, root),
+      JSON.stringify(
+        { version: '1.2.0', title: ep.title, chapters: ep.chapters.map((c) => ({ startTime: c.start, title: c.title })) },
+        null,
+        2,
+      ) + '\n',
+    ),
+  ),
+)
 
 const items = sorted.map((ep, i) => {
   const text = [plain(ep.description), ep.license && `Licença: ${ep.license}`].filter(Boolean).join('\n\n')
@@ -61,12 +80,16 @@ const items = sorted.map((ep, i) => {
       <description>${esc(text)}</description>
       <enclosure url="${esc(ep.audioUrl)}" length="${lengths[i]}" type="audio/mpeg"/>
       <itunes:author>${esc(ep.show)}</itunes:author>
-      <itunes:duration>${hms(ep.duration)}</itunes:duration>${ep.cover ? `\n      <itunes:image href="${esc(ep.cover)}"/>` : ''}
+      <itunes:duration>${hms(ep.duration)}</itunes:duration>${
+        ep.chapters?.length
+          ? `\n      <podcast:chapters url="${esc(`${site}chapters/${ep.id}.json`)}" type="application/json+chapters"/>`
+          : ''
+      }${ep.cover ? `\n      <itunes:image href="${esc(ep.cover)}"/>` : ''}
     </item>`
 })
 
 const feed = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <title>${esc(CHANNEL.title)}</title>
     <link>${esc(site)}</link>
@@ -83,4 +106,4 @@ ${items.join('\n')}
 `
 
 await writeFile(new URL('dist/feed.xml', root), feed)
-console.log(`[feed] dist/feed.xml: ${sorted.length} episódios (${site}feed.xml)`)
+console.log(`[feed] dist/feed.xml: ${sorted.length} episódios, ${withChapters.length} com capítulos (${site}feed.xml)`)
