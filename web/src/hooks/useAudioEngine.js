@@ -14,7 +14,7 @@ const SAVE_EVERY_MS = 5000
  * favoritos, velocidade/volume e progresso persistidos.
  * `episodes` é o catálogo mesclado, usado para resolver ids → episódio.
  */
-export function useAudioEngine(episodes) {
+export function useAudioEngine(episodes, { isPlayable } = {}) {
   const audioRef = useRef(null)
   const [currentId, setCurrentId] = useState(null)
   const [playing, setPlaying] = useState(false)
@@ -36,7 +36,7 @@ export function useAudioEngine(episodes) {
   // Refs para handlers do <audio> não ficarem com valores velhos.
   const live = useRef({ volume })
   useLayoutEffect(() => {
-    live.current = { currentId, progress, queue, rate, volume, byId, sleep }
+    live.current = { currentId, progress, queue, rate, volume, byId, sleep, isPlayable }
   })
   const lastSave = useRef(0)
   const pendingSeek = useRef(0)
@@ -102,16 +102,21 @@ export function useAudioEngine(episodes) {
   const skip = useCallback((delta) => seek((audioRef.current?.currentTime ?? 0) + delta), [seek])
 
   // Fila explícita primeiro; sem fila, segue para a próxima parte da mesma obra (audiolivros).
+  // `isPlayable` (offline): só avança para o que dá para tocar agora, ou seja, o que foi baixado.
   const playNext = useCallback(() => {
-    const { queue: q, byId: map, currentId: id } = live.current
-    const nextId = q[0]
-    const ep = map.get(nextId)
-    if (ep) return select(ep)
-    if (nextId) return setQueue((rest) => rest.slice(1)) // id órfão (episódio removido)
+    const { queue: q, byId: map, currentId: id, isPlayable: playable } = live.current
+    const ok = (e) => !playable || playable(e)
+    const nextId = q.find((qid) => map.get(qid) && ok(map.get(qid)))
+    if (nextId) return select(map.get(nextId))
+    if (q.length && !q.some((qid) => map.get(qid))) return setQueue((rest) => rest.slice(1)) // ids órfãos (episódio removido)
     const cur = map.get(id)
     if (!cur?.series || !cur.part) return
-    const following = [...map.values()].find((e) => e.series === cur.series && e.part === cur.part + 1)
+    const following = [...map.values()]
+      .filter((e) => e.series === cur.series && e.part > cur.part)
+      .sort((a, b) => a.part - b.part)
+      .find(ok)
     if (following) select(following)
+    else if ([...map.values()].some((e) => e.series === cur.series && e.part > cur.part)) announce(t.downloads.endOfOffline)
   }, [select, setQueue])
 
   const playPrevious = useCallback(() => seek(0), [seek])

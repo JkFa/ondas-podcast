@@ -4,14 +4,14 @@ import { bookStats } from '../lib/books'
 import { bookPath } from '../hooks/useRoute'
 import { formatDuration } from '../lib/format'
 
-export default function BookCard({ book, progress, playing }) {
+export default function BookCard({ book, progress, playing, offline = 0 }) {
   const stats = bookStats(book, progress)
   const n = book.parts.length
   const meta = book.isSeries ? `${n} ${n === 1 ? 'parte' : 'partes'}` : 'episódio'
   return (
     <a
       href={bookPath(book.slug)}
-      aria-label={`${book.title}, de ${book.author}. ${meta}, ${formatDuration(book.duration)}${stats.finished ? '. Concluído' : stats.started ? '. Em andamento' : ''}`}
+      aria-label={`${book.title}, de ${book.author}. ${meta}, ${formatDuration(book.duration)}${stats.finished ? '. Concluído' : stats.started ? '. Em andamento' : ''}${offline ? `. ${offline === book.parts.length ? 'Disponível offline' : `${offline} de ${book.parts.length} partes disponíveis offline`}` : ''}`}
       className="group fade-up flex flex-col gap-3 rounded-3xl outline-offset-4"
     >
       <div
@@ -21,6 +21,11 @@ export default function BookCard({ book, progress, playing }) {
         <Cover src={book.cover} className="h-full w-full" />
         {playing && (
           <span className="absolute left-2.5 top-2.5 rounded-full bg-signal px-2.5 py-1 text-[0.6875rem] font-semibold text-ink-950">Tocando</span>
+        )}
+        {offline > 0 && (
+          <span className="absolute bottom-2.5 left-2.5 rounded-full bg-ink-950/85 px-2.5 py-1 text-[0.6875rem] font-semibold text-signal" aria-hidden="true">
+            {offline === book.parts.length ? 'Offline' : `Offline ${offline}/${book.parts.length}`}
+          </span>
         )}
         {stats.finished && (
           <span className="absolute right-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-signal text-ink-950" aria-hidden="true">

@@ -47,6 +47,11 @@ jobs:
           npx vite preview --port 4176 &
           sleep 4
           BASE_URL=http://localhost:4176/ npm run test:share
+      - name: Ouvir sem internet (service worker, downloads, modo avião, Range)
+        run: |
+          npx vite preview --port 4177 &
+          sleep 4
+          BASE_URL=http://localhost:4177/ npm run test:offline
       - name: Lighthouse (acessibilidade ≥ 95)
         run: npm run lhci
       - uses: actions/upload-artifact@v4

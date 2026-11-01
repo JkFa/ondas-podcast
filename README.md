@@ -129,6 +129,30 @@ Conecte o repositório e use:
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
 
+## Ouvir sem internet (PWA)
+
+O Ondas é um app instalável (manifest + service worker com Workbox) e abre sem conexão: o aplicativo, as fontes
+(auto-hospedadas, sem Google Fonts) e o catálogo ficam pré-carregados. **Baixar para ouvir offline** (botão em cada
+parte e **Baixar a obra inteira**) guarda o MP3 completo, a capa e a transcrição no Cache Storage do navegador, com
+progresso, cancelamento e aviso por leitor de tela. O player usa o arquivo local quando existe: o service worker
+responde as requisições `Range` (saltos na barra de progresso funcionam offline). **Meus downloads** (`#/downloads`,
+também no rodapé e em Salvos) mostra o espaço usado, remove itens ou tudo, pede ao navegador para **não apagar** os
+downloads (`navigator.storage.persist()`), e mostra o botão de instalar. Sem rede aparece a faixa "Sem conexão. Você
+pode ouvir os episódios baixados.", as partes não baixadas ficam indisponíveis e a "próxima parte" só avança para o
+que foi baixado. Há o filtro **Baixados** na biblioteca e o selo "Disponível offline". Quando sai uma versão nova, o
+app avisa e só atualiza quando você clicar (não interrompe o episódio).
+
+Verificado no archive.org em 2026-10-31: os arquivos têm CORS aberto (`access-control-allow-origin: *`, inclusive no
+redirecionamento para o servidor do arquivo) e aceitam `Range` (206), então o download direto funciona e as respostas
+guardadas não são "opacas" (que gastariam ~7 MB de cota por arquivo). Capas também pedem CORS pelo mesmo motivo.
+
+Limitações: **iPhone/iPad (Safari)** limita e pode apagar dados de sites que ficam dias sem uso; a proteção
+`persist()` não é garantida lá, então a página orienta a instalar o app ("Adicionar à Tela de Início"), que não sofre
+essa limpeza. Obras longas ocupam muito espaço (Os Sertões tem ~24 h; a estimativa de tamanho aparece antes de baixar,
+e o app recusa baixar se faltar espaço). Downloads interrompidos recomeçam do zero (não há retomada parcial). Um MP3 é
+carregado inteiro na memória ao baixar e ao saltar offline (arquivos de dezenas de MB; em celulares muito modestos pode
+pesar). Os downloads ficam só neste navegador: limpar os dados do site os apaga.
+
 ## Compartilhamento
 
 Botão **Compartilhar** na página de cada obra, no player (para o episódio, com a opção "Compartilhar a partir de

@@ -2,6 +2,7 @@ import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import BookCard from '../components/BookCard'
 import ResumeCard from '../components/ResumeCard'
+import { useDownloads } from '../hooks/useDownloads'
 import { bookStats, lastListened } from '../lib/books'
 
 export function Skeletons() {
@@ -22,11 +23,13 @@ const FILTERS = [
   { id: 'all', label: 'Todos' },
   { id: 'going', label: 'Em andamento' },
   { id: 'done', label: 'Concluídos' },
+  { id: 'offline', label: 'Baixados' },
 ]
 
 export default function Explore({ books, engine, loading, error }) {
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('all')
+  const { meta: downloads } = useDownloads()
   const q = query.trim().toLowerCase()
 
   const stats = useMemo(() => new Map(books.map((b) => [b.slug, bookStats(b, engine.progress)])), [books, engine.progress])
@@ -38,9 +41,10 @@ export default function Explore({ books, engine, loading, error }) {
         const s = stats.get(b.slug)
         if (filter === 'going' && !(s.started && !s.finished)) return false
         if (filter === 'done' && !s.finished) return false
+        if (filter === 'offline' && !b.parts.some((p) => downloads[p.id])) return false
         return !q || `${b.title} ${b.author} ${b.description} ${b.parts.map((p) => p.title).join(' ')}`.toLowerCase().includes(q)
       }),
-    [books, stats, filter, q],
+    [books, stats, filter, q, downloads],
   )
   const playingSlug = engine.current && engine.playing ? books.find((b) => b.parts.some((p) => p.id === engine.current.id))?.slug : null
 
@@ -93,7 +97,7 @@ export default function Explore({ books, engine, loading, error }) {
             </p>
           ) : (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8">
-              {results.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={b.slug === playingSlug} />)}
+              {results.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={b.slug === playingSlug} offline={b.parts.filter((p) => downloads[p.id]).length} />)}
             </div>
           )}
         </section>

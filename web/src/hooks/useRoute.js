@@ -7,7 +7,7 @@ const subscribe = (cb) => {
   return () => window.removeEventListener('hashchange', cb)
 }
 
-export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos' }
+export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos', downloads: '#/downloads' }
 export const bookPath = (slug) => `#/livro/${encodeURIComponent(slug)}`
 
 export function useRoute() {
@@ -23,6 +23,7 @@ export function useRoute() {
     }
     if (a === 'biblioteca') return { name: 'explore', key: 'biblioteca' }
     if (a === 'notas') return { name: 'notes', key: 'notas' }
+    if (a === 'downloads') return { name: 'downloads', key: 'downloads' }
     if (a === 'salvos') return { name: 'saved', key: 'salvos' }
     return { name: 'home', key: '' }
   }, [hash])

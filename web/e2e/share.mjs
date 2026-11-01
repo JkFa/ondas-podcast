@@ -10,7 +10,7 @@ const check = async (g, n, fn) => { try { const r = await fn(); rec(g, n, r === 
 
 const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] })
 async function newPage({ prefs = {}, nativeShare = false, width = 1100, height = 900 } = {}) {
-  const ctx = await browser.newContext({ viewport: { width, height }, colorScheme: 'dark', permissions: ['clipboard-read', 'clipboard-write'] })
+  const ctx = await browser.newContext({ viewport: { width, height }, colorScheme: 'dark', serviceWorkers: 'block', permissions: ['clipboard-read', 'clipboard-write'] })
   await ctx.route('https://abacus.jasoncameron.dev/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"value":1}' }))
   await ctx.addInitScript(({ p, native }) => {
     try { if (!localStorage.getItem('ondas:v1:a11y')) localStorage.setItem('ondas:v1:a11y', JSON.stringify(p)) } catch { /* ignora */ }
@@ -178,7 +178,9 @@ const NAMES = ['WhatsApp', 'X', 'Facebook', 'Telegram', 'Threads', 'Bluesky', 'L
     await check('prévia', 'abrir o link com ponto redireciona para o app e carrega o episódio no ponto', async () => {
       await p2.goto(link)
       await p2.getByRole('button', { name: /^Abrir player/ }).waitFor({ timeout: 15000 })
-      await p2.waitForFunction(() => document.querySelector('audio')?.readyState >= 1, null, { timeout: 30000 }).catch(() => {})
+      const m = /t=(\d+)m(\d+)s/.exec(link); const want = Number(m[1]) * 60 + Number(m[2])
+      // o salto é aplicado quando os metadados chegam (no CI a rede é mais lenta): espera o tempo certo, não só readyState
+      await p2.waitForFunction((w) => Math.abs((document.querySelector('audio')?.currentTime ?? 0) - w) < 2, want, { timeout: 40000 }).catch(() => {})
       const st = await p2.evaluate(() => ({ t: document.querySelector('audio').currentTime, paused: document.querySelector('audio').paused, hash: location.hash, src: document.querySelector('audio').src.split('/').pop() }))
       return { ok: Math.abs(st.t - Number(link.match(/t=(\d+)m(\d+)s/)[1]) * 60 - Number(link.match(/t=(\d+)m(\d+)s/)[2])) < 2 && st.paused && /ruth_2/.test(st.src), detail: JSON.stringify(st) }
     })

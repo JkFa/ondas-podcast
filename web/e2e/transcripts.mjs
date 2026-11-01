@@ -24,7 +24,7 @@ const mmss = (t) => { const s = Math.floor(t); return `${Math.floor(s / 60)}:${S
 
 const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] })
 async function newPage(prefs = {}, extra = {}) {
-  const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 }, colorScheme: 'dark', acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'], ...extra })
+  const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 }, colorScheme: 'dark', acceptDownloads: true, serviceWorkers: 'block', permissions: ['clipboard-read', 'clipboard-write'], ...extra })
   await ctx.route('https://abacus.jasoncameron.dev/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"value":1}' }))
   await ctx.addInitScript((p) => { try { if (!localStorage.getItem('ondas:v1:a11y')) localStorage.setItem('ondas:v1:a11y', JSON.stringify(p)) } catch { /* ignora */ } }, prefs)
   const page = await ctx.newPage()
@@ -173,7 +173,7 @@ const scan = async (page, label) => {
       const p2 = await newPage()
       await p2.goto(link)
       await p2.getByRole('button', { name: /^Abrir player/ }).waitFor({ timeout: 10000 })
-      await p2.waitForFunction(() => document.querySelector('audio')?.readyState >= 1, null, { timeout: 30000 }).catch(() => {})
+      await p2.waitForFunction((w) => Math.abs((document.querySelector('audio')?.currentTime ?? 0) - w) < 2, t, { timeout: 40000 }).catch(() => {})
       const st = await p2.evaluate(() => ({ t: document.querySelector('audio').currentTime, paused: document.querySelector('audio').paused }))
       await p2.context().close()
       return { ok: Math.abs(st.t - t) < 2 && st.paused, detail: `t=${t} → ${st.t.toFixed(1)} pausado=${st.paused}` }

@@ -32,3 +32,13 @@ O modelo do Whisper (`small`, da Systran no Hugging Face, licença MIT) é baixa
 | `simple-icons` | logos de WhatsApp, X, Facebook, Telegram, Threads, Bluesky, Instagram e TikTok (só os usados entram no bundle: o pacote é `sideEffects: false`) | CC0-1.0 (os logos são marcas dos respectivos donos; ver o DISCLAIMER do pacote) |
 
 Não há SDK de nenhuma rede: os botões são links de compartilhamento comuns, sem rastreadores.
+
+## Fase 4 — Ouvir sem internet
+
+| Pacote | Uso | Licença |
+|---|---|---|
+| `vite-plugin-pwa` (dev) | gera o service worker (modo injectManifest) e o registro | MIT |
+| `workbox-window`, `workbox-core`, `workbox-precaching`, `workbox-routing`, `workbox-strategies`, `workbox-expiration`, `workbox-cacheable-response`, `workbox-range-requests` | cache do app, rotas e resposta a Range no `src/sw.js` | MIT |
+| `@fontsource-variable/inter`, `@fontsource-variable/bricolage-grotesque` | fontes auto-hospedadas (só os subconjuntos latin e latin-ext), no lugar do Google Fonts | OFL-1.1 |
+
+Sem serviço externo: todo o armazenamento é local (Cache Storage + localStorage).

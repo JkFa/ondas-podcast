@@ -1,4 +1,8 @@
-import { ArrowDown, ArrowUp, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, Download, X } from 'lucide-react'
+import { useDownloads } from '../hooks/useDownloads'
+import { paths } from '../hooks/useRoute'
+import { formatBytes, totalBytes } from '../lib/downloads'
+import { t } from '../strings'
 import Cover from '../components/Cover'
 import EpisodeCard from '../components/EpisodeCard'
 import { formatTime } from '../lib/format'
@@ -7,11 +11,21 @@ export default function Saved({ episodes, engine }) {
   const byId = new Map(episodes.map((e) => [e.id, e]))
   const favs = engine.favorites.map((id) => byId.get(id)).filter(Boolean)
   const queue = engine.queue.map((id) => byId.get(id)).filter(Boolean)
+  const { meta } = useDownloads()
+  const nDownloads = Object.keys(meta).length
   const btn = 'press flex h-11 w-11 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent'
 
   return (
     <div className="flex flex-col gap-10">
       <h1 className="font-display text-5xl">Salvos</h1>
+
+      <a href={paths.downloads} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+        <Download size={20} className="text-signal" aria-hidden="true" />
+        <span className="min-w-0 flex-1">
+          <span className="block font-medium">{t.downloads.link}</span>
+          <span className="block text-xs text-ink-400">{nDownloads ? t.downloads.downloadsSize(nDownloads, formatBytes(totalBytes(meta))) : t.downloads.empty.split('.')[0] + '.'}</span>
+        </span>
+      </a>
 
       <section aria-labelledby="queue-h" className="flex flex-col gap-3">
         <h2 id="queue-h" className="eyebrow">A seguir</h2>

@@ -4,6 +4,7 @@ import { useDialog } from '../hooks/useDialog'
 import { authorOf } from '../lib/books'
 import { t } from '../strings'
 import SleepTimer from './SleepTimer'
+import { useDownloads } from '../hooks/useDownloads'
 import TranscriptPanel from './TranscriptPanel'
 import Chapters from './Chapters'
 import Cover from './Cover'
@@ -21,6 +22,7 @@ const TABS = [
 export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab, transcriptOn, onToggleTranscript, transcript, linkFor, onShare }) {
   const { current: ep, playing, buffering, error, position, duration, rate, volume, muted, favorites, queue } = engine
   const sheetRef = useRef(null)
+  const { meta: downloads } = useDownloads()
   const bodyRef = useRef(null)
   const drag = useRef(null)
   const [dy, setDy] = useState(0)
@@ -103,6 +105,7 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab,
           <div className="text-center">
             <p className="eyebrow">{ep.show}</p>
             <h2 className="mt-1 font-display text-3xl leading-tight sm:text-4xl">{ep.title}</h2>
+            {downloads[ep.id] && <p className="mt-2 text-xs font-medium text-signal">{t.downloads.available}</p>}
           </div>
 
           <div>

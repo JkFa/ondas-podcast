@@ -44,8 +44,8 @@ function wrap(ctx, text, maxWidth, maxLines) {
 /** Devolve um Blob PNG 1080×1920. `cover` pode faltar ou falhar: aí o card usa um bloco com a cor de destaque. */
 export async function renderStoryCard({ title, author, cover, accent = '#6d5dfc', host }) {
   await Promise.all([
-    document.fonts?.load("700 80px 'Bricolage Grotesque'").catch(() => {}),
-    document.fonts?.load("500 40px 'Inter'").catch(() => {}),
+    document.fonts?.load("700 80px 'Bricolage Grotesque Variable'").catch(() => {}),
+    document.fonts?.load("500 40px 'Inter Variable'").catch(() => {}),
   ])
   const canvas = document.createElement('canvas')
   canvas.width = W
@@ -87,13 +87,13 @@ export async function renderStoryCard({ title, author, cover, accent = '#6d5dfc'
   // título e autor
   ctx.textAlign = 'center'
   ctx.fillStyle = '#f6f6fc'
-  ctx.font = "700 84px 'Bricolage Grotesque', 'Inter', sans-serif"
+  ctx.font = "700 84px 'Bricolage Grotesque Variable', 'Inter Variable', 'Inter', sans-serif"
   const lines = wrap(ctx, title, 900, 4)
   lines.forEach((l, i) => ctx.fillText(l, W / 2, 1290 + i * 96))
   const afterTitle = 1290 + lines.length * 96
   if (author) {
     ctx.fillStyle = '#9a9ab8'
-    ctx.font = "500 46px 'Inter', sans-serif"
+    ctx.font = "500 46px 'Inter Variable', 'Inter', sans-serif"
     ctx.fillText(wrap(ctx, author, 900, 1)[0], W / 2, afterTitle + 40)
   }
 
@@ -102,7 +102,7 @@ export async function renderStoryCard({ title, author, cover, accent = '#6d5dfc'
   roundRect(ctx, 200, 1700, W - 400, 110, 55)
   ctx.fill()
   ctx.fillStyle = BG
-  ctx.font = "700 44px 'Bricolage Grotesque', 'Inter', sans-serif"
+  ctx.font = "700 44px 'Bricolage Grotesque Variable', 'Inter Variable', 'Inter', sans-serif"
   ctx.fillText(`Ouça no Ondas · ${host}`, W / 2, 1771)
 
   return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('canvas vazio'))), 'image/png'))

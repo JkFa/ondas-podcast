@@ -1,6 +1,10 @@
 import { ArrowLeft, Bookmark, ListPlus, Pause, Play, Share2 } from 'lucide-react'
 import { useState } from 'react'
+import BookDownload from '../components/BookDownload'
 import Cover from '../components/Cover'
+import DownloadButton from '../components/DownloadButton'
+import { useDownloads } from '../hooks/useDownloads'
+import { useOnline } from '../hooks/useOnline'
 import ViewCount from '../components/ViewCount'
 import { progressInfo } from '../hooks/useAudioEngine'
 import { paths } from '../hooks/useRoute'
@@ -14,14 +18,19 @@ function Part({ book, ep, index, engine }) {
   const isCurrent = current?.id === ep.id
   const isPlaying = isCurrent && playing
   const info = progressInfo(progress, ep)
+  const { meta } = useDownloads()
+  const online = useOnline()
+  const offlineReady = !!meta[ep.id]
+  const blocked = !online && !offlineReady && !isCurrent // sem rede e sem arquivo baixado: não há como tocar
   const queued = queue.includes(ep.id)
   const label = partLabel(book, ep)
   return (
     <li className={`flex items-center gap-1 rounded-2xl pr-1 ${isCurrent ? 'bg-white/10' : 'hover:bg-white/5'}`}>
       <button
         onClick={() => (isCurrent ? engine.toggle() : engine.select(ep))}
-        aria-label={`${isPlaying ? 'Pausar' : 'Tocar'} ${ep.title}${info.done ? '. Concluída' : ''}`}
-        className="press flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-3 py-3 text-left"
+        disabled={blocked}
+        aria-label={`${isPlaying ? 'Pausar' : 'Tocar'} ${ep.title}${info.done ? '. Concluída' : ''}${offlineReady ? `. ${t.downloads.available}` : ''}${blocked ? `. ${t.downloads.unavailable}` : ''}`}
+        className="press flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-3 py-3 text-left disabled:opacity-50"
       >
         <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm tabular-nums ${isCurrent ? 'bg-signal text-ink-950' : 'bg-white/10 text-ink-300'}`}>
           {isPlaying ? <Pause size={16} fill="currentColor" aria-hidden="true" /> : isCurrent ? <Play size={16} fill="currentColor" aria-hidden="true" /> : info.done ? '✓' : index + 1}
@@ -30,6 +39,8 @@ function Part({ book, ep, index, engine }) {
           <span className={`block truncate text-[0.9375rem] font-medium ${info.done && !isCurrent ? 'text-ink-400' : ''}`}>{label}</span>
           <span className="mt-0.5 flex items-center gap-2 text-xs tabular-nums text-ink-400">
             {formatDuration(ep.duration)}
+            {offlineReady && <span className="rounded-full border border-[color:var(--control-line)] px-2 py-0.5 text-[0.6875rem] font-medium text-signal" aria-hidden="true">{t.downloads.available}</span>}
+            {blocked && <span className="text-[0.6875rem]" aria-hidden="true">{t.downloads.unavailable}</span>}
             {info.resumeAt > 0 && !info.done && (
               <>
                 <span className="h-0.5 w-16 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
@@ -41,6 +52,7 @@ function Part({ book, ep, index, engine }) {
           </span>
         </span>
       </button>
+      <DownloadButton ep={ep} />
       <button
         onClick={() => (queued ? engine.dequeue(ep.id) : engine.enqueue(ep.id))}
         aria-pressed={queued}
@@ -109,6 +121,7 @@ export default function Book({ book, engine, loading, onShare }) {
               <Share2 size={18} aria-hidden="true" /> {t.share.button}
             </button>
             </div>
+            <BookDownload book={book} />
             {sub && book.isSeries && <p className="max-w-xs truncate text-xs text-ink-400">{sub}</p>}
           </div>
         </div>

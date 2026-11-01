@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import A11yPanel from './components/A11yPanel'
 import LiveRegion from './components/LiveRegion'
 import ShareDialog from './components/ShareDialog'
+import StatusBar from './components/StatusBar'
 import ShortcutsHelp from './components/ShortcutsHelp'
 import AmbientBackground from './components/AmbientBackground'
 import ImportModal from './components/ImportModal'
@@ -11,8 +12,11 @@ import Nav from './components/Nav'
 import PlayerSheet from './components/PlayerSheet'
 import { useAccent } from './hooks/useAccent'
 import { useAnnouncements } from './hooks/useAnnouncements'
+import { useDownloads } from './hooks/useDownloads'
 import { useMonoAudio } from './hooks/useMonoAudio'
+import { useOnline } from './hooks/useOnline'
 import { usePrefs } from './hooks/usePrefs'
+import { usePwa } from './hooks/usePwa'
 import { useShortcuts } from './hooks/useShortcuts'
 import { useTranscript } from './hooks/useTranscript'
 import { useVLibras } from './hooks/useVLibras'
@@ -27,6 +31,7 @@ import { formatTime } from './lib/format'
 import { t } from './strings'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
 import Book from './views/Book'
+import Downloads from './views/Downloads'
 import Explore from './views/Explore'
 import Home from './views/Home'
 import Notes from './views/Notes'
@@ -44,6 +49,7 @@ export default function App() {
   const [helpOpen, setHelpOpen] = useState(false)
   const [shareTarget, setShareTarget] = useState(null)
   const [prefs] = usePrefs()
+  const pwa = usePwa()
   const [transcriptOn, setTranscriptOn] = usePersistentState('transcript-on', false) // "Ver transcrição": desligada por padrão, lembrada
   const [importOpen, setImportOpen] = useState(false)
 
@@ -58,7 +64,10 @@ export default function App() {
   }, [])
 
   const episodes = useMemo(() => mergeCatalog(base, validEpisodes(imported, 'importados')), [base, imported])
-  const engine = useAudioEngine(episodes)
+  const online = useOnline()
+  const { meta: downloaded } = useDownloads()
+  // Sem internet só dá para tocar o que foi baixado; o motor usa isso para escolher a "próxima parte".
+  const engine = useAudioEngine(episodes, { isPlayable: (ep) => online || !!downloaded[ep.id] })
   useMediaSession(engine)
   useAnnouncements(engine)
   useMonoAudio(engine, prefs.mono)
@@ -150,7 +159,7 @@ export default function App() {
     }
   }
 
-  const view = route.name === 'book' ? 'explore' : route.name
+  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : route.name
   const wide = ['home', 'explore', 'book'].includes(route.name)
   const hasPlayer = !!engine.current
 
@@ -171,6 +180,7 @@ export default function App() {
       <LiveRegion />
       <Nav view={view} onView={(id) => navigate(paths[id])} onImport={() => setImportOpen(true)} />
       <A11yPanel onShowShortcuts={() => setHelpOpen(true)} />
+      <StatusBar needRefresh={pwa.needRefresh} onUpdate={pwa.update} />
 
       <div ref={mainRef} className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] lg:pl-28 lg:pr-8 ${hasPlayer ? 'pb-56' : 'pb-36'} lg:pb-32`}>
         <div className={`mx-auto ${wide ? 'max-w-5xl' : 'max-w-3xl'}`}>
@@ -183,6 +193,7 @@ export default function App() {
             {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
+            {route.name === 'downloads' && <Downloads episodes={episodes} engine={engine} pwa={pwa} />}
           </main>
           <footer aria-label={t.footer.label} className="mt-16 flex flex-col gap-2 border-t border-[color:var(--line)] pt-6 text-xs text-ink-400">
             <p>{t.footer.credits}</p>
@@ -191,6 +202,8 @@ export default function App() {
               <a href="https://github.com/JkFa/ondas-podcast" target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-200">github.com/JkFa/ondas-podcast</a>
               {' · '}
               <button onClick={() => setHelpOpen(true)} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.footer.shortcuts}</button>
+              {' · '}
+              <a href={paths.downloads} className="underline underline-offset-2 hover:text-ink-200">{t.downloads.link}</a>
               {' · '}
               <button onClick={shareSite} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.share.shareSite}</button>
             </p>

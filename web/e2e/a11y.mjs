@@ -31,7 +31,7 @@ const COMBOS = {
 }
 
 async function newPage(prefs = {}, { width = 390, height = 844, reducedMotion = 'no-preference' } = {}) {
-  const ctx = await browser.newContext({ viewport: { width, height }, reducedMotion, colorScheme: 'dark' })
+  const ctx = await browser.newContext({ viewport: { width, height }, reducedMotion, colorScheme: 'dark', serviceWorkers: 'block' })
   await ctx.route('https://abacus.jasoncameron.dev/**', (r) =>
     r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"value":1}' }))
   // só semeia as preferências na primeira visita (recarregar não pode apagar o que a pessoa escolheu)

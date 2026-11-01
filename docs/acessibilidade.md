@@ -54,6 +54,15 @@ de 2:30", Web Share simulado, card de Stories (1080×1920 e arquivo PNG), prévi
 `#t=`, `?t=` e sem tempo, player incorporado, e axe em claro e escuro (janela da obra com card, janela do episódio com
 incorporar, janela do site, página incorporada). O card de Stories tem `alt` na prévia; o `<audio>` do embed tem rótulo.
 
+## Fase 4 — ouvir sem internet
+
+`npm run test:offline` (38 verificações, no CI, contra o build de produção com service worker): instalabilidade
+(CDP `Page.getInstallabilityErrors` vazio), pré-carga do app, download com progresso, **modo avião** (reload offline,
+catálogo, Meus downloads, toca **do início ao fim** até `ended` e **saltos** via `Range`, incluindo o slider), mono +
+cache, remoção, obra inteira, cancelamento, erro de rede, falta de espaço, aviso de iOS e axe (claro/escuro, online/offline).
+A faixa de conexão e os avisos de download são lidos por `aria-live`; o anel de progresso é decorativo e o texto
+"Baixando, 25/50/75%" só muda em passos de 25% (evita o excesso de falas que achamos com o Orca na Fase 1).
+
 ## Problemas que os testes encontraram (e foram corrigidos)
 
 1. **O foco voltava ao primeiro botão do player 4 vezes por segundo enquanto o áudio tocava** (`useDialog` dependia de `onClose`, uma função nova a cada render). Quem usava teclado ou leitor de tela não conseguia navegar no player. Achado pelo Orca; há teste de regressão.

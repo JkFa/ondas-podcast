@@ -8,19 +8,30 @@
         "http://localhost:4174/#/biblioteca",
         "http://localhost:4174/#/livro/o-livro-de-ruth",
         "http://localhost:4174/#/notas",
-        "http://localhost:4174/#/salvos"
+        "http://localhost:4174/#/salvos",
+        "http://localhost:4174/#/downloads"
       ],
       "numberOfRuns": 1,
       "settings": {
-        "onlyCategories": ["accessibility"],
+        "onlyCategories": [
+          "accessibility"
+        ],
         "chromeFlags": "--no-sandbox --headless=new"
       }
     },
     "assert": {
       "assertions": {
-        "categories:accessibility": ["error", { "minScore": 0.95 }]
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ]
       }
     },
-    "upload": { "target": "filesystem", "outputDir": ".lighthouseci" }
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci"
+    }
   }
 }
