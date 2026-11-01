@@ -1,5 +1,5 @@
 import { ExternalLink, Send } from 'lucide-react'
-import { useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { announce } from '../lib/announce'
 import { LICENSES, REPO, buildIssueUrl, issueUrl, validateRequest } from '../lib/publishRequest'
 import { t } from '../strings'
@@ -24,6 +24,7 @@ export default function Publish() {
   const [f, setF] = useState({ link: '', program: '', author: '', license: 'by', notes: '', confirmed: false })
   const [errors, setErrors] = useState({})
   const [sent, setSent] = useState(false)
+  const [attempt, setAttempt] = useState(0) // conta envios com erro: leva o foco ao resumo depois de renderizá-lo
   const summary = useRef(null)
   const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
   const license = LICENSES.find((l) => l.code === f.license)
@@ -35,13 +36,15 @@ export default function Publish() {
     setSent(false)
     if (Object.keys(errs).length) {
       announce(p.errors.summary(Object.keys(errs).length))
-      setTimeout(() => summary.current?.focus(), 0)
+      setAttempt((n) => n + 1)
       return
     }
     window.open(buildIssueUrl(f), '_blank', 'noopener')
     setSent(true)
     announce(p.sent)
   }
+  useEffect(() => { if (attempt) summary.current?.focus() }, [attempt])
+
   const err = (k) => (errors[k] ? p.errors[errors[k]] : null)
   const describedBy = (k) => [`${uid}-${k}-hint`, errors[k] ? `${uid}-${k}-err` : null].filter(Boolean).join(' ') || undefined
 

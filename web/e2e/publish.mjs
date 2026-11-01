@@ -58,6 +58,7 @@ const submit = (page) => page.getByRole('button', { name: 'Enviar para publicaç
     const alert = page.getByRole('alert')
     await alert.waitFor()
     const text = await alert.textContent()
+    await page.waitForFunction(() => document.activeElement?.getAttribute('role') === 'alert', null, { timeout: 3000 }).catch(() => {})
     const focused = await page.evaluate(() => document.activeElement?.getAttribute('role'))
     const invalid = await page.getByLabel('Link do áudio ou do YouTube').getAttribute('aria-invalid')
     return { ok: text.includes('2 campos') && text.includes('Informe o link') && text.includes('direitos') && focused === 'alert' && invalid === 'true' && (await opened(page)).length === 0, detail: text.slice(0, 120) }
