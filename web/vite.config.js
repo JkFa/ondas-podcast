@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 // VITE_BASE permite publicar em subcaminho (GitHub Pages: /ondas-podcast/).
 export default defineConfig({
   base: process.env.VITE_BASE || '/',
+  server: { fs: { allow: ['..'] } }, // config/platforms.json fica na raiz do repositório
   plugins: [
     react(),
     tailwindcss(),

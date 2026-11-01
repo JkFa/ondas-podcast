@@ -36,6 +36,7 @@ import Explore from './views/Explore'
 import Home from './views/Home'
 import Notes from './views/Notes'
 import Saved from './views/Saved'
+import Subscribe from './views/Subscribe'
 
 export default function App() {
   const [base, setBase] = useState([])
@@ -101,6 +102,7 @@ export default function App() {
     [bookOfEp],
   )
   const shareBook = useCallback((b) => setShareTarget({ key: `book:${b.slug}`, kind: 'book', slug: b.slug, title: b.title, author: b.author, cover: b.cover, accentColor: b.accentColor }), [])
+  const shareSubscribe = useCallback(() => setShareTarget({ key: 'subscribe', kind: 'subscribe', title: t.subscribe.title, cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
   const shareSite = useCallback(() => setShareTarget({ key: 'site', kind: 'site', title: 'Ondas', cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
 
   const playerAccent = useAccent(engine.current)
@@ -159,8 +161,8 @@ export default function App() {
     }
   }
 
-  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : route.name
-  const wide = ['home', 'explore', 'book'].includes(route.name)
+  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : route.name === 'subscribe' ? 'home' : route.name
+  const wide = ['home', 'explore', 'book', 'subscribe'].includes(route.name)
   const hasPlayer = !!engine.current
 
   return (
@@ -193,6 +195,7 @@ export default function App() {
             {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
+            {route.name === 'subscribe' && <Subscribe books={books} onShare={shareSubscribe} />}
             {route.name === 'downloads' && <Downloads episodes={episodes} engine={engine} pwa={pwa} />}
           </main>
           <footer aria-label={t.footer.label} className="mt-16 flex flex-col gap-2 border-t border-[color:var(--line)] pt-6 text-xs text-ink-400">
@@ -202,6 +205,8 @@ export default function App() {
               <a href="https://github.com/JkFa/ondas-podcast" target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-200">github.com/JkFa/ondas-podcast</a>
               {' · '}
               <button onClick={() => setHelpOpen(true)} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.footer.shortcuts}</button>
+              {' · '}
+              <a href={paths.subscribe} className="underline underline-offset-2 hover:text-ink-200">{t.subscribe.link}</a>
               {' · '}
               <a href={paths.downloads} className="underline underline-offset-2 hover:text-ink-200">{t.downloads.link}</a>
               {' · '}

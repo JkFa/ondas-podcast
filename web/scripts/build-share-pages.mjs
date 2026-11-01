@@ -9,27 +9,13 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { buildBooks, partLabel } from '../src/lib/books.js'
 import { site } from './site.mjs'
+import { clip, escHtml, fmt, synopsis } from './text.mjs'
 
 const root = new URL('../', import.meta.url)
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const books = buildBooks(episodes)
 
-const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
-const clip = (s, n) => {
-  const t = String(s).replace(/\s+/g, ' ').trim()
-  return t.length <= n ? t : `${t.slice(0, n - 1).replace(/\s+\S*$/, '')}…`
-}
-const fmt = (sec) => {
-  const m = Math.max(1, Math.round(sec / 60))
-  return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${String(m % 60).padStart(2, '0')} min` : ''}`
-}
-/** Sinopse sem a linha "LibriVox recording of…" (em inglês) e sem markdown. */
-const synopsis = (d) =>
-  String(d ?? '')
-    .split(/\n{2,}/)
-    .filter((p) => !/^LibriVox recording/i.test(p.trim()) && !/^Read in/i.test(p.trim()))
-    .join(' ')
-    .replace(/\*\*|\[|\]\([^)]*\)|^#+\s*/gm, '')
+const esc = escHtml
 
 const page = ({ url, title, description, image, audio, redirect, heading, lead, cta }) => `<!doctype html>
 <html lang="pt-BR">
@@ -49,19 +35,19 @@ ${image ? `<meta property="og:image" content="${esc(image)}">\n<meta property="o
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 ${image ? `<meta name="twitter:image" content="${esc(image)}">\n` : ''}<meta name="theme-color" content="#0b0b14">
-<noscript><meta http-equiv="refresh" content="0;url=${esc(redirect.base)}"></noscript>
+<noscript><meta http-equiv="refresh" content="0;url=${esc(redirect.up + redirect.hash)}"></noscript>
 <style>body{margin:0;font:16px/1.5 system-ui,sans-serif;background:#0b0b14;color:#f6f6fc;display:grid;place-items:center;min-height:100vh;padding:24px}main{max-width:32rem;text-align:center}img{width:min(70vw,260px);aspect-ratio:1;object-fit:cover;border-radius:24px}h1{font-size:1.75rem;line-height:1.15;margin:1rem 0 .5rem}p{color:#b9b9d2}a{display:inline-block;margin-top:1rem;padding:.8rem 1.4rem;border-radius:999px;background:#c6f432;color:#0b0b14;font-weight:700;text-decoration:none}a:focus-visible{outline:3px solid #f6f6fc;outline-offset:3px}</style>
 </head>
 <body>
 <main>
 ${image ? `<img src="${esc(image)}" alt="Capa de ${esc(title)}" width="260" height="260">\n` : ''}<h1>${esc(heading)}</h1>
 <p>${esc(lead)}</p>
-<a href="${esc(redirect.base)}">${esc(cta)}</a>
+<a href="${esc(redirect.up + redirect.hash)}">${esc(cta)}</a>
 </main>
 <script>
 // Leva para o app. Aceita #t=12m30s, ?t=12m30s e ?t=750 (segundos); o hash não chega ao servidor, então fica só no navegador.
 (function () {
-  var base = ${JSON.stringify(redirect.base)};
+  var base = new URL(${JSON.stringify(redirect.up)}, location.href).href + ${JSON.stringify(redirect.hash)}; // relativo: vale em qualquer endereço
   var needsTime = ${JSON.stringify(redirect.withTime)};
   var m = /[#&?]t=([^&#]+)/.exec(location.hash + location.search);
   var sec = 0;
@@ -96,7 +82,7 @@ for (const b of books) {
     description: clip(`${b.author} · ${meta}. ${lead}`, 200),
     image: b.cover,
     audio: first.audioUrl,
-    redirect: { base: `${site}#/livro/${encodeURIComponent(b.slug)}`, withTime: false },
+    redirect: { up: '../../', hash: `#/livro/${encodeURIComponent(b.slug)}`, withTime: false },
     heading: b.title,
     lead: `${b.author} · ${meta}`,
     cta: 'Ouvir no Ondas',
@@ -111,11 +97,22 @@ for (const b of books) {
       description: clip(`${what}. ${b.author} · ${fmt(ep.duration)}. ${lead}`, 200),
       image: ep.cover || b.cover,
       audio: ep.audioUrl,
-      redirect: { base: `${site}#/livro/${encodeURIComponent(b.slug)}?ep=${encodeURIComponent(ep.id)}`, withTime: true },
+      redirect: { up: '../../', hash: `#/livro/${encodeURIComponent(b.slug)}?ep=${encodeURIComponent(ep.id)}`, withTime: true },
       heading: b.isSeries ? `${b.title} — ${label}` : ep.title,
       lead: `${b.author} · ${fmt(ep.duration)}`,
       cta: 'Ouvir no Ondas',
     }))
   }
 }
-console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios)`)
+// Página de assinatura (compartilhar o catálogo): prévia própria e redireciona para #/assinar
+await write('assinar', page({
+  url: `${site}assinar/`,
+  title: 'Ouça no seu app',
+  description: 'Assine o Ondas no app de podcasts que você já usa: Apple Podcasts, Overcast, Pocket Casts, AntennaPod e outros. Áudios e podcasts indies arquivados e prontos para ouvir.',
+  image: `${site}cover-1400.png`,
+  redirect: { up: '../', hash: '#/assinar', withTime: false },
+  heading: 'Ouça no seu app',
+  lead: 'Assine o Ondas no app de podcasts que você já usa.',
+  cta: 'Escolher o app',
+}))
+console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios) + assinar`)

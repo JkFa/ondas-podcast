@@ -63,6 +63,14 @@ cache, remoção, obra inteira, cancelamento, erro de rede, falta de espaço, av
 A faixa de conexão e os avisos de download são lidos por `aria-live`; o anel de progresso é decorativo e o texto
 "Baixando, 25/50/75%" só muda em passos de 25% (evita o excesso de falas que achamos com o Orca na Fase 1).
 
+## Fase 5 — assinar no app
+
+`npm run test:subscribe` (31 verificações, no CI): detecção por sistema (iPhone, Android, Mac, computador), a URL exata
+enviada ao sistema por app, "assinar de novo", plano B em ~1,5 s e sua ausência quando o app abre, copiar feed, **QR code
+decodificado com jsQR**, passo a passo, feeds por obra (RSS válido, serial, em ordem), página `/assinar/` com Open Graph,
+e axe (iPhone/computador, claro/escuro, plano B, QR e passo a passo abertos, obra com assinatura). Cada app é um botão com
+rótulo "Assinar no …"; os passos manuais são `<details>` com lista ordenada rotulada; o aviso de falha é `role="alert"`.
+
 ## Problemas que os testes encontraram (e foram corrigidos)
 
 1. **O foco voltava ao primeiro botão do player 4 vezes por segundo enquanto o áudio tocava** (`useDialog` dependia de `onClose`, uma função nova a cada render). Quem usava teclado ou leitor de tela não conseguia navegar no player. Achado pelo Orca; há teste de regressão.

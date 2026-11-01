@@ -2,7 +2,9 @@
 // Roda depois do `vite build`. A URL do site vem de SITE_URL; no GitHub Actions
 // é derivada de GITHUB_REPOSITORY (https://<dono>.github.io/<repo>/).
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { buildBooks } from '../src/lib/books.js'
 import { site } from './site.mjs'
+import { clip, synopsis } from './text.mjs'
 
 const root = new URL('../', import.meta.url)
 
@@ -78,8 +80,10 @@ async function mapLimit(list, limit, fn) {
 
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const sorted = [...episodes].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
-const previous = await previousLengths()
-const lengths = await mapLimit(sorted, 6, (ep) => audioLength(ep, previous))
+// --offline: não consulta a rede (testes e CI): os tamanhos dos MP3 viram estimativa. O build de produção sempre consulta.
+const offline = process.argv.includes('--offline')
+const previous = offline ? new Map() : await previousLengths()
+const lengths = offline ? sorted.map((ep) => Math.round(ep.duration * 12000)) : await mapLimit(sorted, 6, (ep) => audioLength(ep, previous))
 
 /** Capítulos no formato Podcasting 2.0 (JSON Chapters 1.2.0), um arquivo por episódio. */
 const withChapters = sorted.filter((ep) => ep.chapters?.length)
@@ -128,15 +132,18 @@ const seasons = new Map(
   ),
 )
 
-const items = sorted.map((ep, i) => {
+const lengthOf = new Map(sorted.map((ep, i) => [ep.id, lengths[i]]))
+
+/** <item> de um episódio. `pubDate` permite escalonar as partes de uma obra (feeds por obra). */
+const itemXml = (ep, { pubDate = new Date(ep.publishedAt) } = {}) => {
   const text = [plain(ep.description), ep.license && `Licença: ${ep.license}`].filter(Boolean).join('\n\n')
   return `    <item>
       <title>${esc(ep.title)}</title>
       <link>${esc(site)}</link>
       <guid isPermaLink="false">${esc(ep.id)}</guid>
-      <pubDate>${new Date(ep.publishedAt).toUTCString()}</pubDate>
+      <pubDate>${pubDate.toUTCString()}</pubDate>
       <description>${esc(text)}</description>
-      <enclosure url="${esc(ep.audioUrl)}" length="${lengths[i]}" type="audio/mpeg"/>
+      <enclosure url="${esc(ep.audioUrl)}" length="${lengthOf.get(ep.id)}" type="audio/mpeg"/>
       <itunes:author>${esc(ep.show)}</itunes:author>
       <itunes:duration>${hms(ep.duration)}</itunes:duration>${
         ep.series && ep.part
@@ -152,24 +159,47 @@ const items = sorted.map((ep, i) => {
           : ''
       }${ep.cover ? `\n      <itunes:image href="${esc(ep.cover)}"/>` : ''}
     </item>`
-})
+}
+const items = sorted.map((ep) => itemXml(ep))
 
-const feed = `<?xml version="1.0" encoding="UTF-8"?>
+const feedXml = ({ title, link, self, description, author, image, type, items: list }) => `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
-    <title>${esc(CHANNEL.title)}</title>
-    <link>${esc(site)}</link>
-    <atom:link href="${esc(site)}feed.xml" rel="self" type="application/rss+xml"/>
-    <description>${esc(CHANNEL.description)}</description>
+    <title>${esc(title)}</title>
+    <link>${esc(link)}</link>
+    <atom:link href="${esc(self)}" rel="self" type="application/rss+xml"/>
+    <description>${esc(description)}</description>
     <language>${CHANNEL.language}</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <itunes:author>${esc(CHANNEL.author)}</itunes:author>
-    <itunes:explicit>false</itunes:explicit>
-    <itunes:image href="${esc(site)}cover-1400.png"/>
-${items.join('\n')}
+    <itunes:author>${esc(author)}</itunes:author>
+    <itunes:explicit>false</itunes:explicit>${type ? `\n    <itunes:type>${type}</itunes:type>` : ''}
+    <itunes:image href="${esc(image)}"/>
+${list.join('\n')}
   </channel>
 </rss>
 `
 
+const feed = feedXml({ title: CHANNEL.title, link: site, self: `${site}feed.xml`, description: CHANNEL.description, author: CHANNEL.author, image: `${site}cover-1400.png`, items })
+
 await writeFile(new URL('dist/feed.xml', root), feed)
 console.log(`[feed] dist/feed.xml: ${sorted.length} episódios, ${withChapters.length} com capítulos, ${sorted.filter((e) => transcriptUrl(e)).length} com transcrição (${site}feed.xml)`)
+
+// Feeds por obra (feeds/<slug>.xml): quem quer acompanhar só uma série assina só ela. As partes saem em ordem
+// (itunes:type serial) e com datas escalonadas de 1 minuto, porque todas as partes de uma obra têm a mesma data de publicação.
+const books = buildBooks(episodes)
+await mkdir(new URL('dist/feeds/', root), { recursive: true })
+for (const b of books) {
+  const list = b.parts.map((ep, i) => itemXml(ep, { pubDate: new Date(Date.parse(ep.publishedAt) + i * 60000) }))
+  const xml = feedXml({
+    title: b.title,
+    link: `${site}obra/${encodeURIComponent(b.slug)}/`,
+    self: `${site}feeds/${encodeURIComponent(b.slug)}.xml`,
+    description: clip(synopsis(b.description), 600) || `${b.title}, de ${b.author}.`,
+    author: b.author,
+    image: b.cover || `${site}cover-1400.png`,
+    type: b.isSeries ? 'serial' : 'episodic',
+    items: list,
+  })
+  await writeFile(new URL(`dist/feeds/${b.slug}.xml`, root), xml)
+}
+console.log(`[feed] ${books.length} feeds por obra em dist/feeds/<obra>.xml`)

@@ -208,14 +208,14 @@ for (const [combo, prefs] of Object.entries(COMBOS)) {
       return { ok: /Livro de Ruth/.test(m.title || '') && !!m.artist && m.art > 0, detail: JSON.stringify(m) }
     })
     await check('avisos', 'região aria-live anuncia "Tocando: …"', async () => {
-      const text = await page.locator('[role=status]').textContent()
+      const text = await page.locator('[role=status][aria-label="Avisos"]').textContent()
       return { ok: /Tocando:/.test(text), detail: text }
     })
     await page.keyboard.press('Escape')
     await check('atalhos', 'K pausa e depois retoma; aviso "Pausado"', async () => {
       await page.keyboard.press('k'); await page.waitForTimeout(500)
       const paused = await audio(() => document.querySelector('audio').paused)
-      const said = await page.locator('[role=status]').textContent()
+      const said = await page.locator('[role=status][aria-label="Avisos"]').textContent()
       await page.keyboard.press('k'); await page.waitForTimeout(500)
       const playing = await audio(() => !document.querySelector('audio').paused)
       return { ok: paused && playing && /Pausado/.test(said), detail: `pausou=${paused} retomou=${playing} aviso="${said}"` }

@@ -9,7 +9,8 @@
         "http://localhost:4174/#/livro/o-livro-de-ruth",
         "http://localhost:4174/#/notas",
         "http://localhost:4174/#/salvos",
-        "http://localhost:4174/#/downloads"
+        "http://localhost:4174/#/downloads",
+        "http://localhost:4174/#/assinar"
       ],
       "numberOfRuns": 1,
       "settings": {

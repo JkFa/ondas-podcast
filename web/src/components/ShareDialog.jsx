@@ -38,7 +38,7 @@ export default function ShareDialog({ target, onClose, embedEpisode }) {
   const base = siteBase()
   const canStart = target?.kind === 'episode' && (target.position ?? 0) >= 5
   const startSec = canStart && fromTime ? Math.floor(target.position) : 0
-  const url = !target ? '' : target.kind === 'episode' ? episodeShareUrl(base, target.id, startSec) : target.kind === 'book' ? bookShareUrl(base, target.slug) : base
+  const url = !target ? '' : target.kind === 'episode' ? episodeShareUrl(base, target.id, startSec) : target.kind === 'book' ? bookShareUrl(base, target.slug) : target.kind === 'subscribe' ? `${base}assinar/` : base
   const text = useMemo(
     () => (target ? shareText({ kind: target.kind, title: target.title, author: target.author, part: target.part, startSec }) : ''),
     [target, startSec],

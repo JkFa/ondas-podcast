@@ -129,6 +129,64 @@ Conecte o repositório e use:
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
 
+## Ouça no seu app (assinar o feed)
+
+A página **Ouça no seu app** (`#/assinar`, também no rodapé e na seção "Leve para o seu app" da página inicial) e a
+seção **Assinar só esta obra no seu app** (em cada obra) mostram botões que abrem o app de podcasts já assinando o
+feed. O sistema é detectado (iPhone/iPad, Android, Mac, computador) e os apps certos aparecem primeiro; o último app
+usado vira **"Assinar no … de novo"** em um toque; se o app não abrir em ~1,5 s, aparece o plano B (loja do app,
+**Copiar link do feed**, passo a passo). Há também **QR code** do feed (gerado no navegador, sem serviço externo) e o
+botão **Compartilhar o catálogo** (usa a janela da Fase 3, com a página `/assinar/` e sua prévia).
+
+**Feeds por obra:** além do feed geral (`feed.xml`), o build gera um RSS por obra em `feeds/<obra>.xml` (71 hoje; partes em
+ordem, `itunes:type serial`, datas escalonadas de 1 min porque todas as partes de uma obra têm a mesma data). A página
+tem um seletor "O que assinar" e os mesmos botões funcionam por obra.
+
+### Como cada app é aberto (conferido em 2026-11-01 nas páginas oficiais de cada app)
+
+| App | Mecanismo | Fonte |
+|---|---|---|
+| Overcast (iOS) | `overcast://x-callback-url/add?url=<feed codificado>` (oficial) | overcast.fm/podcasterinfo |
+| Pocket Casts (iOS) | `pktc://subscribe/<feed sem http://>` (oficial; documentado só para iOS) | support.pocketcasts.com |
+| AntennaPod (Android) | `https://antennapod.org/deeplink/subscribe?url=<feed>&title=<nome>` (oficial; abre o app se instalado, senão mostra instruções) | antennapod.org/documentation |
+| Apple Podcasts (iOS/Mac) | `podcast://<feed sem https://>`: **funciona (relatos em macOS 12 e iOS 16), mas a Apple não documenta**; depois de cadastrar o feed no Apple Podcasts Connect, preencha `applePodcasts` em `config/platforms.json` para usar o link do diretório | relatos da comunidade |
+| Castro, Podcast Addict, Castbox, Podverse, Fountain | **sem link de assinatura documentado**: passo a passo (colar o feed na busca do app, ou "adicionar por RSS"), botão da loja e copiar o feed; o Fountain só aceita feeds que estão no Podcast Index (podcastindex.org/add) | ajuda de cada app |
+
+Diferenças em relação à tabela original do projeto, descobertas na verificação (nada foi inventado): o esquema
+`antennapod-subscribe://` **não está documentado** (usamos o link web oficial); `castros://subscribe/` e
+`podcastaddict://` **não aparecem em nenhuma documentação**; para o Pocket Casts no Android não há link documentado. O
+código marca a data de verificação e a fonte de cada esquema (`web/src/lib/podcastApps.js`), com testes.
+**Não testei o toque em um celular real com o app instalado**: os testes automáticos conferem a URL enviada ao sistema,
+a detecção de plataforma, o plano B (quando a página não perde o foco em 1,5 s) e os feeds.
+
+### Spotify, YouTube Music, Amazon Music e Deezer
+
+Essas plataformas **não deixam o ouvinte assinar um RSS qualquer**: o dono do projeto cadastra o feed **uma vez** em cada
+uma. Depois de cadastrado, cole o link público do podcast em `config/platforms.json`; campo preenchido = o botão aparece
+em "Também no…"; campo vazio = fica oculto. Passo a passo (conferido em 2026-11-01; os rótulos podem mudar):
+
+1. **Spotify** (Spotify for Creators, antes Spotify for Podcasters): entre em [creators.spotify.com](https://creators.spotify.com)
+   com uma conta Spotify → menu do avatar → **Adicionar novo programa** → **Encontrar um programa existente** →
+   **Em outro lugar** → cole o feed (`https://jkfa.github.io/ondas-podcast/feed.xml`) → o Spotify envia um código de 8 dígitos ao e-mail
+   que está **dentro do feed** → informe país, idioma e categoria → envie. Guia oficial:
+   [support.spotify.com](https://support.spotify.com/us/creators/article/claiming-your-podcast-on-spotify-for-creators/).
+2. **YouTube Music** (YouTube Studio): no [YouTube Studio](https://studio.youtube.com), **Criar → Novo podcast → Enviar feed RSS** →
+   aceite os termos da ferramenta de ingestão → cole o feed → (pode pedir verificação de identidade) → depois de alguns
+   dias, em **Conteúdo → Podcasts**, publique. O feed precisa ter ao menos um episódio publicado; os episódios viram vídeos
+   com a capa estática. Guia oficial: [support.google.com/youtube/answer/13973017](https://support.google.com/youtube/answer/13973017).
+3. **Amazon Music e Audible**: em [podcasters.amazon.com](https://podcasters.amazon.com) entre com uma conta Amazon →
+   **Adicionar ou reivindicar seu podcast** → cole o feed e escolha o país → confirme o e-mail que está no feed →
+   aceite o contrato de licença; pode levar até 24 h. (Não achei guia oficial da Amazon; os passos vêm de guias de
+   hospedagens.)
+4. **Deezer**: em [podcasters.deezer.com](https://podcasters.deezer.com) → **Publish my podcast** → cole o feed →
+   informe o código enviado ao e-mail do feed → preencha as informações do programa. (Passos de guias de hospedagens.)
+5. **Apple Podcasts** (opcional, para o link do diretório): no [Apple Podcasts Connect](https://podcastsconnect.apple.com),
+   adicione o feed. O Apple exige capa de 1400 a 3000 px: o feed geral usa `cover-1400.png`, mas os **feeds por obra usam a
+   capa do LibriVox, que é pequena** (limitação; use só o feed geral para o diretório da Apple).
+
+Observação: o feed é de conteúdo de terceiros em domínio público (LibriVox). Antes de listar em diretórios, confirme que
+isso é permitido pelas regras de cada plataforma e use a licença/autoria informadas em cada episódio.
+
 ## Ouvir sem internet (PWA)
 
 O Ondas é um app instalável (manifest + service worker com Workbox) e abre sem conexão: o aplicativo, as fontes

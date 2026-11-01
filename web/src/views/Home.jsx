@@ -135,6 +135,9 @@ export default function Home({ books, episodes, engine, loading }) {
           </Feature>
         </div>
         <CopyField value={feedUrl} />
+        <a href={paths.subscribe} className="press flex min-h-11 w-fit items-center gap-2 text-sm font-medium text-signal hover:underline">
+          Ouça no seu app: Apple Podcasts, Overcast, Pocket Casts, AntennaPod… <ArrowRight size={16} aria-hidden="true" />
+        </a>
       </section>
 
       <section aria-labelledby="pub-h" className="glass flex flex-col gap-5 rounded-3xl p-6 sm:p-8">

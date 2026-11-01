@@ -47,6 +47,11 @@ jobs:
           npx vite preview --port 4176 &
           sleep 4
           BASE_URL=http://localhost:4176/ npm run test:share
+      - name: Assinar no app (esquemas, plano B, feeds por obra, QR)
+        run: |
+          npx vite preview --port 4178 &
+          sleep 4
+          BASE_URL=http://localhost:4178/ npm run test:subscribe
       - name: Ouvir sem internet (service worker, downloads, modo avião, Range)
         run: |
           npx vite preview --port 4177 &

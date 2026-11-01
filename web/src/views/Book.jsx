@@ -10,6 +10,8 @@ import { progressInfo } from '../hooks/useAudioEngine'
 import { paths } from '../hooks/useRoute'
 import { bookStats, partLabel, resumeTarget } from '../lib/books'
 import { viewKey } from '../lib/views'
+import SubscribeApps from '../components/SubscribeApps'
+import { feedUrl } from '../lib/podcastApps'
 import { t } from '../strings'
 import { formatDuration, formatTime } from '../lib/format'
 
@@ -67,6 +69,7 @@ function Part({ book, ep, index, engine }) {
 
 export default function Book({ book, engine, loading, onShare }) {
   const [expanded, setExpanded] = useState(false)
+  const [subscribeOpen, setSubscribeOpen] = useState(false)
 
   if (!book) {
     return (
@@ -138,6 +141,13 @@ export default function Book({ book, engine, loading, onShare }) {
           </button>
         </section>
       )}
+
+      <details className="group glass rounded-2xl" onToggle={(e) => setSubscribeOpen(e.currentTarget.open)}>
+        <summary className="min-h-11 cursor-pointer list-none px-4 py-3 text-sm font-medium">{t.subscribe.bookSummary}</summary>
+        <div className="px-4 pb-5">
+          {subscribeOpen && <SubscribeApps feed={feedUrl(new URL(import.meta.env.BASE_URL, location.origin).href, book.slug)} title={book.title} scope="book" />}
+        </div>
+      </details>
 
       <section aria-labelledby="parts-h" className="flex flex-col gap-3">
         <h2 id="parts-h" className="eyebrow">{book.isSeries ? 'Partes' : 'Episódio'}</h2>

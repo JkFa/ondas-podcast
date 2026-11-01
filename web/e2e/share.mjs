@@ -206,7 +206,7 @@ const NAMES = ['WhatsApp', 'X', 'Facebook', 'Telegram', 'Threads', 'Bluesky', 'L
   })
   await check('prévia', 'a página tem texto e botão "Ouvir no Ondas" mesmo sem JavaScript', async () => {
     const { html } = await meta(`${BASE}episodio/livro-de-ruth-1811-02/`)
-    return { ok: /<h1>O Livro de Ruth — Capitulo 2<\/h1>/.test(html) && /href="[^"]+#\/livro\/o-livro-de-ruth\?ep=livro-de-ruth-1811-02">Ouvir no Ondas/.test(html) && /<noscript><meta http-equiv="refresh"/.test(html) }
+    return { ok: /<h1>O Livro de Ruth — Capitulo 2<\/h1>/.test(html) && /href="\.\.\/\.\.\/#\/livro\/o-livro-de-ruth\?ep=livro-de-ruth-1811-02">Ouvir no Ondas/.test(html) && /<noscript><meta http-equiv="refresh"/.test(html) }
   })
   await check('prévia', 'redireciona também com #t=12m30s, ?t=750 e sem tempo', async () => {
     const out = []

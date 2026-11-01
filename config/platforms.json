@@ -1,0 +1,8 @@
+{
+  "_comment": "Links do Ondas nas plataformas que NÃO aceitam assinar um RSS qualquer. Cadastre o feed uma vez em cada uma (passo a passo no README, seção 'Cadastrar o feed nas plataformas') e cole aqui o link público do podcast. Campo preenchido: o botão aparece em 'Ouça no seu app'. Campo vazio: o botão fica oculto.",
+  "applePodcasts": "",
+  "spotify": "",
+  "youtubeMusic": "",
+  "amazonMusic": "",
+  "deezer": ""
+}

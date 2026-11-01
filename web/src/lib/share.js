@@ -67,5 +67,6 @@ export const STORY_NETWORKS = [
 export function shareText({ kind, title, author, part, startSec }) {
   const from = startSec >= 1 ? ` (a partir de ${timeToken(startSec).replace(/(\d+)h/, '$1 h ').replace(/(\d+)m/, '$1 min ').replace(/(\d+)s/, '$1 s').trim()})` : ''
   if (kind === 'site') return 'Ondas: áudios e podcasts indies arquivados e prontos para ouvir.'
+  if (kind === 'subscribe') return 'Assine o Ondas no seu app de podcasts: áudios e podcasts indies arquivados e prontos para ouvir.'
   return `Ouça “${title}”${author ? `, de ${author}` : ''}${part ? ` — ${part}` : ''}${from} no Ondas.`
 }
