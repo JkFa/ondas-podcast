@@ -258,14 +258,17 @@ for (const [combo, prefs] of Object.entries(COMBOS)) {
       await page.keyboard.press('Shift+ArrowUp')
       return { ok: v1 < 1 && before === after, detail: `Shift+↓ → ${v1}; ↑ sem Shift manteve ${before}→${after}` }
     })
-    await check('atalhos', 'T abre o player na transcrição e fecha na segunda vez', async () => {
-      await page.keyboard.press('t'); await page.waitForTimeout(500)
+    await check('atalhos', 'T liga a transcrição (abrindo o player) e desliga na segunda vez', async () => {
       // A folha fechada continua no DOM (fora da tela, com `inert`): "aberta" = sem inert.
       const sheetOpen = () => page.evaluate(() => { const d = document.querySelector('[role=dialog][aria-label^="Player:"]'); return !!d && !d.inert })
-      const open1 = await sheetOpen()
+      const pressed = () => page.evaluate(() => document.querySelector('[aria-pressed][class*="chip"], button[aria-pressed]')?.closest('div') && [...document.querySelectorAll('button[aria-pressed]')].find((b) => /transcrição/.test(b.textContent))?.getAttribute('aria-pressed'))
+      const before = await sheetOpen()
       await page.keyboard.press('t'); await page.waitForTimeout(600)
-      const open2 = await sheetOpen()
-      return { ok: open1 && !open2, detail: `abriu=${open1} depois=${open2}` }
+      const open1 = await sheetOpen(); const on = await pressed()
+      await page.keyboard.press('t'); await page.waitForTimeout(400)
+      const off = await pressed()
+      await page.keyboard.press('Escape'); await page.waitForTimeout(500)
+      return { ok: !before && open1 && on === 'true' && off === 'false' && !(await sheetOpen()), detail: `abriu=${open1} ligada=${on} desligada=${off}` }
     })
     await check('atalhos', 'teclas de letra não agem dentro de campo de texto', async () => {
       await open(page, '#/biblioteca')
@@ -331,7 +334,10 @@ for (const [combo, prefs] of Object.entries(COMBOS)) {
       const st = await audio(() => ({ src: document.querySelector('audio').src.split('/').pop(), paused: document.querySelector('audio').paused }))
       return { ok: st.paused && /ruth_1/.test(st.src), detail: JSON.stringify(st) }
     })
-    await check('player', 'áudio mono: liga sem quebrar a reprodução (CORS) e desliga', async () => {
+    // O archive.org responde 500 de vez em quando; como o app volta ao estéreo se o áudio falhar com CORS ligado, tentamos até 2 vezes.
+    for (let attempt = 1; attempt <= 2; attempt++) {
+    const before = results.length
+    await check('player', `áudio mono: liga sem quebrar a reprodução (CORS) e desliga${attempt > 1 ? ' (2ª tentativa)' : ''}`, async () => {
       await page.keyboard.press('Escape')
       await page.getByRole('button', { name: 'Abrir painel de acessibilidade' }).click()
       await page.getByRole('switch', { name: /^Áudio mono/ }).check()
@@ -345,6 +351,9 @@ for (const [combo, prefs] of Object.entries(COMBOS)) {
       const still = await page.evaluate(() => JSON.parse(localStorage.getItem('ondas:v1:a11y')).mono)
       return { ok: st.t > t0 + 1 && st.cors === 'anonymous' && !st.err && still === true, detail: `t ${t0.toFixed(1)}→${st.t.toFixed(1)} crossOrigin=${st.cors} erro=${st.err} mono=${still}` }
     })
+    if (results[before]?.ok) break
+    if (attempt === 1) { results.splice(before, 1); await page.reload(); await page.waitForSelector('main h1'); await page.getByRole('button', { name: /^(Ouvir|Continuar|Pausar)/ }).first().click(); await page.waitForTimeout(4000) }
+    }
   }
   await page.context().close()
 }

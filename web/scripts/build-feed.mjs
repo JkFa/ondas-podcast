@@ -107,7 +107,13 @@ const vttTime = (sec) => {
   const p = (n, w = 2) => String(n).padStart(w, '0')
   return `${p(Math.floor(ms / 3600000))}:${p(Math.floor((ms % 3600000) / 60000))}:${p(Math.floor((ms % 60000) / 1000))}.${p(ms % 1000, 3)}`
 }
-const withTranscript = sorted.filter((ep) => ep.transcript?.length)
+const withTranscript = sorted.filter((ep) => ep.transcript?.length) // legado: segmentos dentro do catálogo
+const transcriptUrl = (ep) => {
+  // Preferência: arquivo .vtt registrado no catálogo (absoluto ou relativo ao site); senão o gerado acima.
+  const u = ep.transcripts?.vtt
+  if (u) return /^https?:\/\//i.test(u) ? u : `${site}${u.replace(/^\//, '')}`
+  return ep.transcript?.length ? `${site}transcripts/${ep.id}.vtt` : null
+}
 await mkdir(new URL('dist/transcripts/', root), { recursive: true })
 await Promise.all(
   withTranscript.map((ep) =>
@@ -145,8 +151,8 @@ const items = sorted.map((ep, i) => {
           ? `\n      <podcast:chapters url="${esc(`${site}chapters/${ep.id}.json`)}" type="application/json+chapters"/>`
           : ''
       }${
-        ep.transcript?.length
-          ? `\n      <podcast:transcript url="${esc(`${site}transcripts/${ep.id}.vtt`)}" type="text/vtt" language="${CHANNEL.language.split('-')[0]}"/>`
+        transcriptUrl(ep)
+          ? `\n      <podcast:transcript url="${esc(transcriptUrl(ep))}" type="text/vtt" language="${ep.transcripts?.language || CHANNEL.language.split('-')[0]}"/>`
           : ''
       }${ep.cover ? `\n      <itunes:image href="${esc(ep.cover)}"/>` : ''}
     </item>`
@@ -170,4 +176,4 @@ ${items.join('\n')}
 `
 
 await writeFile(new URL('dist/feed.xml', root), feed)
-console.log(`[feed] dist/feed.xml: ${sorted.length} episódios, ${withChapters.length} com capítulos, ${withTranscript.length} com transcrição (${site}feed.xml)`)
+console.log(`[feed] dist/feed.xml: ${sorted.length} episódios, ${withChapters.length} com capítulos, ${sorted.filter((e) => transcriptUrl(e)).length} com transcrição (${site}feed.xml)`)

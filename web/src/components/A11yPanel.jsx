@@ -66,6 +66,7 @@ export default function A11yPanel({ onShowShortcuts }) {
             />
             <Toggle label={a.spacing} checked={prefs.spacing} onChange={(v) => set({ spacing: v })} />
             <Toggle label={a.mono} hint={a.monoHint} checked={prefs.mono} onChange={(v) => set({ mono: v })} />
+            <Toggle label={a.captions} hint={a.captionsHint} checked={prefs.captions} onChange={(v) => set({ captions: v })} />
             <Toggle label={a.shortcuts} hint={a.shortcutsHint} checked={prefs.shortcuts} onChange={(v) => set({ shortcuts: v })} />
             <Toggle
               label={a.vlibras}

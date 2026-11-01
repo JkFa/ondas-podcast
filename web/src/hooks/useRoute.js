@@ -13,11 +13,13 @@ export const bookPath = (slug) => `#/livro/${encodeURIComponent(slug)}`
 export function useRoute() {
   const hash = useSyncExternalStore(subscribe, () => location.hash, () => '')
   return useMemo(() => {
-    const [a, b] = hash.replace(/^#\/?/, '').split('/')
+    const [path, qs = ''] = hash.replace(/^#\/?/, '').split('?')
+    const [a, b] = path.split('/')
+    const query = Object.fromEntries(new URLSearchParams(qs))
     if (a === 'livro' && b) {
       let slug = b
       try { slug = decodeURIComponent(b) } catch { /* mantém cru */ }
-      return { name: 'book', slug, key: `livro/${b}` }
+      return { name: 'book', slug, key: `livro/${b}`, query }
     }
     if (a === 'biblioteca') return { name: 'explore', key: 'biblioteca' }
     if (a === 'notas') return { name: 'notes', key: 'notas' }

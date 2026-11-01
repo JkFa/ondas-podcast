@@ -38,6 +38,14 @@ npm run lhci                  # Lighthouse (usa o Chrome do sistema ou CHROME_PA
 - **Preferências:** persistência após recarregar, restaurar padrões, animações (sistema pede movimento reduzido → onda parada).
 - **Texto a 200%** sem rolagem horizontal em 360 px e 1280 px.
 
+## Fase 2 — transcrições (painel, busca, legenda)
+
+`npm run test:transcripts` (23 verificações, no CI): sincronia do destaque, rolagem que acompanha e para de acompanhar,
+clique que leva o áudio, busca sem acento, legenda, downloads, link com ponto, estado "em breve", erro de rede com
+"Tentar de novo", e axe (escuro e claro) com o painel aberto, a legenda ligada e o estado "em breve".
+Verificado explicitamente: o destaque **não move o foco** e **não muda a região `aria-live`**; a faixa de legenda é
+`aria-hidden` (quem usa leitor de tela ouve o áudio); a lista de trechos é focável (rolável por teclado).
+
 ## Problemas que os testes encontraram (e foram corrigidos)
 
 1. **O foco voltava ao primeiro botão do player 4 vezes por segundo enquanto o áudio tocava** (`useDialog` dependia de `onClose`, uma função nova a cada render). Quem usava teclado ou leitor de tela não conseguia navegar no player. Achado pelo Orca; há teste de regressão.

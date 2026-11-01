@@ -82,6 +82,25 @@ Saída: a URL direta e o JSON do episódio em stdout (logs vão para stderr, ent
 | 18 | MP3 não respondeu 200 em ~2 min (o item pode só estar demorando; tente a URL depois) |
 | 130 | Interrompido (Ctrl+C) |
 
+## Transcrições (`--transcribe` e `transcribe_backlog.py`)
+
+`publish.py --transcribe [--whisper-model small] [--language pt]` transcreve com o faster-whisper (CPU, int8),
+gera `<id>.vtt`, `<id>.txt` e `<id>.md` (o `.md` tem título, autor, licença, links e o tempo de cada parágrafo), envia
+os três ao archive.org junto do MP3 e coloca `transcripts: {vtt, txt, md, language}` no JSON do episódio.
+
+`transcribe_backlog.py` faz o mesmo para episódios já publicados e **pode ser interrompido e retomado**:
+cada episódio concluído é gravado e registrado no `catalog.json` na hora; quem já tem arquivos só é registrado.
+
+```bash
+python pipeline/transcribe_backlog.py --dry-run --limit 5            # o que seria feito
+python pipeline/transcribe_backlog.py --series "O Livro de Ruth"
+python pipeline/transcribe_backlog.py --shortest-first --max-minutes 90   # orçamento de tempo
+```
+
+Os arquivos vão para `web/public/transcripts/` (padrão `--out`); com `--upload-own EMAIL` também são enviados ao
+item do archive.org se ele foi enviado por esse e-mail (não testado com upload real: exige credenciais).
+Testes (`python -m pytest pipeline/tests`) cobrem a geração de parágrafos, VTT/TXT/MD, escrita atômica e a seleção do backlog.
+
 ## Catálogo automático
 
 Após um upload real, o episódio é gravado em `web/public/catalog.json` (inserido no fim de `episodes`, ou
@@ -121,5 +140,5 @@ capítulos e transcrição já curados.
 
 Contrato com o front (`web/src/lib/catalog.js`): `schemaVersion`, `id`, `title`, `show`,
 `description`, `audioUrl`, `archiveId`, `cover`, `accentColor`, `duration`, `publishedAt`,
-`license`, `source` e, opcionais, `chapters` (`[{start,title}]`) e `transcript`
-(`[{start,end,text}]`). Detalhes no README da raiz.
+`license`, `source` e, opcionais, `chapters` (`[{start,title}]`), `transcripts` (`{vtt,txt,md,language}`) e
+`transcript` (formato antigo: `[{start,end,text}]` dentro do catálogo). Detalhes no README da raiz.

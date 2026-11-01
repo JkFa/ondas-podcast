@@ -4,6 +4,7 @@ import LiveRegion from './components/LiveRegion'
 import ShortcutsHelp from './components/ShortcutsHelp'
 import AmbientBackground from './components/AmbientBackground'
 import ImportModal from './components/ImportModal'
+import CaptionBar from './components/CaptionBar'
 import MiniPlayer from './components/MiniPlayer'
 import Nav from './components/Nav'
 import PlayerSheet from './components/PlayerSheet'
@@ -12,12 +13,15 @@ import { useAnnouncements } from './hooks/useAnnouncements'
 import { useMonoAudio } from './hooks/useMonoAudio'
 import { usePrefs } from './hooks/usePrefs'
 import { useShortcuts } from './hooks/useShortcuts'
+import { useTranscript } from './hooks/useTranscript'
 import { useVLibras } from './hooks/useVLibras'
 import { useAudioEngine } from './hooks/useAudioEngine'
 import { useMediaSession } from './hooks/useMediaSession'
 import { usePersistentState } from './hooks/usePersistentState'
-import { navigate, paths, useRoute } from './hooks/useRoute'
+import { bookPath, navigate, paths, useRoute } from './hooks/useRoute'
 import { buildBooks } from './lib/books'
+import { announce } from './lib/announce'
+import { formatTime } from './lib/format'
 import { t } from './strings'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
 import Book from './views/Book'
@@ -37,6 +41,7 @@ export default function App() {
   const [sheetTab, setSheetTab] = useState('chapters')
   const [helpOpen, setHelpOpen] = useState(false)
   const [prefs] = usePrefs()
+  const [transcriptOn, setTranscriptOn] = usePersistentState('transcript-on', false) // "Ver transcrição": desligada por padrão, lembrada
   const [importOpen, setImportOpen] = useState(false)
 
   useEffect(() => {
@@ -59,18 +64,46 @@ export default function App() {
     engine,
     enabled: prefs.shortcuts,
     sheetOpen,
-    // T: abre o player na aba da transcrição (Caderno) ou fecha se já estiver nela.
+    // T: mostra/oculta a transcrição; ao mostrar, abre o player se estiver fechado.
     onToggleTranscript: () => {
-      if (sheetOpen && sheetTab === 'notes') setSheetOpen(false)
-      else { setSheetTab('notes'); setSheetOpen(true) }
+      const next = !transcriptOn
+      setTranscriptOn(next)
+      if (next) setSheetOpen(true)
     },
     onHelp: () => setHelpOpen(true),
   })
   const books = useMemo(() => buildBooks(episodes), [episodes])
   const book = route.name === 'book' ? books.find((b) => b.slug === route.slug) : undefined
+  const transcript = useTranscript(engine.current, transcriptOn || prefs.captions)
+  const slugOf = useMemo(() => new Map(books.flatMap((b) => b.parts.map((p) => [p.id, b.slug]))), [books])
+  /** Link para um episódio (e ponto, em segundos). Na Fase 3 vira uma página estática com prévia nas redes. */
+  const linkFor = useCallback(
+    (ep, sec = 0) => {
+      const slug = slugOf.get(ep.id) ?? ep.id
+      const url = new URL(import.meta.env.BASE_URL, location.href)
+      url.hash = `${bookPath(slug)}?ep=${encodeURIComponent(ep.id)}${sec > 0 ? `&t=${Math.floor(sec)}` : ''}`
+      return url.href
+    },
+    [slugOf],
+  )
   const playerAccent = useAccent(engine.current)
   const pageAccent = useAccent(book?.parts[0])
   const ambient = book ? pageAccent : playerAccent
+
+  // Link com ponto (#/livro/<obra>?ep=<id>&t=<s>): carrega o episódio nesse ponto, sem tocar sozinho.
+  const appliedLink = useRef('')
+  useEffect(() => {
+    const { ep: epId, t: at } = route.query ?? {}
+    if (route.name !== 'book' || !epId || loading) return
+    const sig = `${route.key}|${epId}|${at}`
+    if (appliedLink.current === sig) return
+    const target = episodes.find((e) => e.id === epId)
+    if (!target) return
+    appliedLink.current = sig
+    const start = Math.max(0, Number(at) || 0)
+    engine.select(target, { autoplay: false, startAt: start })
+    announce(`${target.title}, pronto para tocar a partir de ${formatTime(start)}`)
+  }, [route, loading, episodes, engine])
 
   // Título da página por rota (leitores de tela anunciam) e foco no conteúdo ao navegar.
   const firstRoute = useRef(true)
@@ -156,7 +189,12 @@ export default function App() {
       </div>
 
       <MiniPlayer engine={engine} onOpen={() => setSheetOpen(true)} />
-      <PlayerSheet engine={engine} accent={playerAccent} open={sheetOpen} onClose={() => setSheetOpen(false)} tab={sheetTab} onTab={setSheetTab} />
+      {prefs.captions && !sheetOpen && <CaptionBar transcript={transcript} position={engine.position} lifted />}
+      <PlayerSheet
+        engine={engine} accent={playerAccent} open={sheetOpen} onClose={() => setSheetOpen(false)} tab={sheetTab} onTab={setSheetTab}
+        transcriptOn={transcriptOn} onToggleTranscript={() => setTranscriptOn((v) => !v)} transcript={transcript} linkFor={linkFor}
+      />
+      {prefs.captions && sheetOpen && <CaptionBar transcript={transcript} position={engine.position} />}
       <ImportModal open={importOpen} onClose={() => setImportOpen(false)} onSave={addImported} onExport={exportCatalog} onImportFile={importFile} />
       <ShortcutsHelp open={helpOpen} onClose={() => setHelpOpen(false)} />
     </div>

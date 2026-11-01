@@ -11,6 +11,7 @@ export const DEFAULT_PREFS = {
   spacing: false,
   mono: false,
   shortcuts: true,
+  captions: false,
   vlibras: false,
 }
 
@@ -24,7 +25,7 @@ export function sanitize(raw) {
   if (TEXT_SCALES.includes(raw.textScale)) p.textScale = raw.textScale
   if (['default', 'atkinson', 'opendyslexic'].includes(raw.font)) p.font = raw.font
   if (['system', 'reduce', 'full'].includes(raw.motion)) p.motion = raw.motion
-  for (const k of ['contrast', 'spacing', 'mono', 'shortcuts', 'vlibras']) if (typeof raw[k] === 'boolean') p[k] = raw[k]
+  for (const k of ['contrast', 'spacing', 'mono', 'shortcuts', 'vlibras', 'captions']) if (typeof raw[k] === 'boolean') p[k] = raw[k]
   return p
 }
 

@@ -73,13 +73,14 @@ seguro: entradas existentes mantêm título, descrição, capítulos e transcri�
   "duration": 1234,
   "publishedAt": "ISO-8601",
   "chapters": [{ "start": 0, "title": "Abertura" }],
+  "transcripts": { "vtt": "transcripts/<id>.vtt", "txt": "...", "md": "...", "language": "pt" },
   "transcript": [{ "start": 0.0, "end": 4.2, "text": "..." }],
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "source": "youtube|local"
 }
 ```
 
-`chapters`, `transcript`, `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
+`chapters`, `transcripts` (URLs dos arquivos de transcrição, absolutas ou relativas ao site), `transcript` (formato antigo, com os segmentos dentro do catálogo), `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
 
 Ao terminar um episódio, o player toca o próximo da fila; sem fila, segue para a próxima `part` da mesma `series` (audiolivros tocam em sequência). Na última parte, para.
 
@@ -127,6 +128,35 @@ Conecte o repositório e use:
 - **Build command:** `cd web && npm ci && npm run build`
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
+
+## Transcrições
+
+No player, o botão **Ver transcrição** (desligado por padrão; a escolha é lembrada; tecla `T`) mostra o texto
+sincronizado com o áudio: o trecho atual fica destacado e a lista acompanha a fala (**Parar de seguir** ou
+rolar à mão pausa o acompanhamento, e **Voltar ao trecho atual** retoma). Clicar num trecho pula o áudio para ele.
+Também há **busca** na transcrição (sem acento e sem diferenciar maiúsculas, com contagem e navegação),
+**modo legenda** (a frase atual em fonte grande numa faixa sobre o player, útil para pessoas surdas; também no
+painel Acessibilidade), **download em .txt e .md** (o .md traz título, autor, licença, links e o tempo de cada
+parágrafo) e **Copiar trecho com link**, que copia a citação com um link que abre o episódio no ponto certo
+(`#/livro/<obra>?ep=<id>&t=<segundos>`; na Fase 3 o link compartilhado passa a ser uma página estática com
+prévia nas redes). Episódio sem transcrição mostra "Transcrição em breve". O destaque nunca move o foco nem
+dispara avisos do leitor de tela.
+
+Como a transcrição chega ao catálogo (campo `transcripts`, ver o schema abaixo):
+
+- **Episódio novo:** `python pipeline/publish.py ... --transcribe` roda o faster-whisper local (modelo
+  `--whisper-model small`, idioma `--language pt`), gera `.vtt`, `.txt` e `.md`, envia os três ao archive.org junto
+  do MP3 e registra as URLs no catálogo.
+- **Episódios já publicados:** `python pipeline/transcribe_backlog.py` (com retomada). Para obras de terceiros
+  (LibriVox etc.) não dá para enviar arquivos ao item de outra pessoa no archive.org, então os arquivos ficam
+  em `web/public/transcripts/` e vão para o site no deploy. `--upload-own EMAIL` envia ao archive.org apenas
+  os itens enviados por esse e-mail. Mede-se cerca de 2× o tempo real no CPU com o modelo `small`
+  (4 episódios do Livro de Ruth, 17 min de áudio, levaram ~6 min); por isso o script tem `--limit`,
+  `--max-minutes`, `--shortest-first` e `--series`: transcrever as ~315 h do catálogo inteiro levaria dias.
+  Hoje só O Livro de Ruth (4 partes) e o trecho de exemplo de O Alienista têm transcrição.
+- O feed RSS ganha `<podcast:transcript>` (VTT) para cada episódio que tiver o arquivo.
+- Os arquivos baixados são gerados no navegador a partir do texto carregado; **funcionar offline** depende de o
+  episódio estar baixado (Fase 4), que também vai guardar o `.vtt` em cache.
 
 ## Acessibilidade (WCAG 2.2 AA)
 

@@ -1,13 +1,14 @@
-import { ChevronDown, Heart, ListPlus, Loader2, Minus, MoonStar, Pause, Play, Plus, RotateCcw, RotateCw, Volume2, VolumeX } from 'lucide-react'
+import { ChevronDown, FileText, Heart, ListPlus, Loader2, Minus, MoonStar, Pause, Play, Plus, RotateCcw, RotateCw, Volume2, VolumeX } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
 import { useDialog } from '../hooks/useDialog'
 import { authorOf } from '../lib/books'
 import { t } from '../strings'
 import SleepTimer from './SleepTimer'
+import TranscriptPanel from './TranscriptPanel'
 import Chapters from './Chapters'
 import Cover from './Cover'
 import Scrubber from './Scrubber'
-import Transcript, { Markdown } from './Transcript'
+import { Markdown } from './Transcript'
 
 const CLOSE_DISTANCE = 120 // px
 const CLOSE_VELOCITY = 0.6 // px/ms
@@ -17,7 +18,7 @@ const TABS = [
   { id: 'notes', label: t.player.tabNotes },
 ]
 
-export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab }) {
+export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab, transcriptOn, onToggleTranscript, transcript, linkFor }) {
   const { current: ep, playing, buffering, error, position, duration, rate, volume, muted, favorites, queue } = engine
   const sheetRef = useRef(null)
   const bodyRef = useRef(null)
@@ -146,6 +147,9 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab 
             >
               <ListPlus size={16} aria-hidden="true" /> {queued ? t.player.queueIn : t.player.queueAdd}
             </button>
+            <button onClick={onToggleTranscript} aria-pressed={transcriptOn} className={chip}>
+              <FileText size={16} aria-hidden="true" /> {transcriptOn ? t.transcript.hide : t.transcript.show}
+            </button>
             <button onClick={() => setSleepOpen((v) => !v)} aria-expanded={sleepOpen} aria-controls="sleep-panel" className={chip}>
               <MoonStar size={16} aria-hidden="true" /> {engine.sleep.mode === 'off' ? t.sleep.button : t.sleep.buttonOn(engine.sleep.mode === 'end' ? t.sleep.endOfPart : t.sleep.min(engine.sleep.minutes))}
             </button>
@@ -164,6 +168,19 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab 
               onChange={(e) => engine.setVolume(Number(e.target.value))}
             />
           </div>
+
+          {transcriptOn && (
+            <section aria-labelledby="transcript-h" className="flex flex-col gap-3">
+              <h3 id="transcript-h" className="eyebrow">{t.player.transcript}</h3>
+              <TranscriptPanel
+                transcript={transcript}
+                position={position}
+                onSeek={seekTo}
+                linkFor={(sec) => linkFor(ep, sec)}
+                meta={{ title: ep.title, author: authorOf(ep), license: ep.license, archiveUrl: ep.archiveId ? `https://archive.org/details/${ep.archiveId}` : null }}
+              />
+            </section>
+          )}
 
           <div>
             <div role="tablist" aria-label={t.player.contentTabs} className="mb-3 flex gap-1 border-b border-white/10">
@@ -186,10 +203,6 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab 
             </div>
             <div role="tabpanel" id="panel-notes" aria-labelledby="tab-notes" hidden={tab !== 'notes'} className="flex flex-col gap-8">
               <Markdown text={ep.description} />
-              <section aria-labelledby="transcript-h">
-                <h3 id="transcript-h" className="eyebrow mb-2">{t.player.transcript}</h3>
-                <Transcript transcript={ep.transcript} position={position} onSeek={seekTo} scrollRef={bodyRef} active={open && tab === 'notes'} />
-              </section>
             </div>
           </div>
         </div>

@@ -1519,7 +1519,13 @@
       "title": "O Livro de Ruth — Capitulo 1",
       "duration": 258,
       "series": "O Livro de Ruth",
-      "part": 1
+      "part": 1,
+      "transcripts": {
+        "vtt": "transcripts/livro-de-ruth-1811-01.vtt",
+        "txt": "transcripts/livro-de-ruth-1811-01.txt",
+        "md": "transcripts/livro-de-ruth-1811-01.md",
+        "language": "pt"
+      }
     },
     {
       "schemaVersion": 1,
@@ -1536,7 +1542,13 @@
       "title": "O Livro de Ruth — Capitulo 2",
       "duration": 287,
       "series": "O Livro de Ruth",
-      "part": 2
+      "part": 2,
+      "transcripts": {
+        "vtt": "transcripts/livro-de-ruth-1811-02.vtt",
+        "txt": "transcripts/livro-de-ruth-1811-02.txt",
+        "md": "transcripts/livro-de-ruth-1811-02.md",
+        "language": "pt"
+      }
     },
     {
       "schemaVersion": 1,
@@ -1553,7 +1565,13 @@
       "title": "O Livro de Ruth — Capitulo 3",
       "duration": 204,
       "series": "O Livro de Ruth",
-      "part": 3
+      "part": 3,
+      "transcripts": {
+        "vtt": "transcripts/livro-de-ruth-1811-03.vtt",
+        "txt": "transcripts/livro-de-ruth-1811-03.txt",
+        "md": "transcripts/livro-de-ruth-1811-03.md",
+        "language": "pt"
+      }
     },
     {
       "schemaVersion": 1,
@@ -1570,7 +1588,13 @@
       "title": "O Livro de Ruth — Capitulo 4",
       "duration": 262,
       "series": "O Livro de Ruth",
-      "part": 4
+      "part": 4,
+      "transcripts": {
+        "vtt": "transcripts/livro-de-ruth-1811-04.vtt",
+        "txt": "transcripts/livro-de-ruth-1811-04.txt",
+        "md": "transcripts/livro-de-ruth-1811-04.md",
+        "language": "pt"
+      }
     },
     {
       "schemaVersion": 1,

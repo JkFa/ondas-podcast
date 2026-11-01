@@ -24,6 +24,7 @@ SCHEMA_VERSION = 1
 NEUTRAL_ACCENT = "#6d5dfc"
 COVER_SIZE = 1400
 IA_DOWNLOAD = "https://archive.org/download"
+SITE_URL = "https://jkfa.github.io/ondas-podcast/"
 DEFAULT_CATALOG = Path(__file__).resolve().parent.parent / "web" / "public" / "catalog.json"
 
 # Códigos de saída distintos por tipo de erro (argparse usa 2 para uso incorreto).
@@ -256,32 +257,38 @@ def prepare_cover(source, dest):
 
 
 # ------------------------------------------------------------------- 7. transcrição
-def vtt_time(t):
-    ms = int(round(t * 1000))
-    h, ms = divmod(ms, 3_600_000)
-    m, ms = divmod(ms, 60_000)
-    s, ms = divmod(ms, 1000)
-    return f"{h:02d}:{m:02d}:{s:02d}.{ms:03d}"
-
-
-def transcribe(mp3, vtt_path):
-    step(7, "Transcrição (faster-whisper small, pt, CPU int8)")
+def transcribe(mp3, work, base, meta, model_name, language):
+    """Gera <base>.vtt/.txt/.md em `work` (ver transcripts.py) e devolve {'vtt': Path, ...}."""
+    step(7, f"Transcrição (faster-whisper {model_name}, {language}, CPU int8)")
     try:
-        from faster_whisper import WhisperModel
+        import transcripts as T
+    except ImportError:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import transcripts as T
+    try:
+        model = T.load_model(model_name)
     except ImportError:
         raise PipelineError(EXIT_DEPENDENCY, "faster-whisper não instalado. Rode: pip install faster-whisper")
+    except Exception as e:
+        raise PipelineError(EXIT_TRANSCRIBE, f"Não consegui carregar o modelo '{model_name}': {e}")
+    last = [0]
+
+    def progress(done, total):
+        pct = int(done / total * 100) if total else 0
+        if pct >= last[0] + 10:
+            last[0] = pct
+            info(f"{pct}%")
+
     try:
-        model = WhisperModel("small", device="cpu", compute_type="int8")
-        segments, _ = model.transcribe(str(mp3), language="pt", vad_filter=True)
-        result = [{"start": round(s.start, 2), "end": round(s.end, 2), "text": s.text.strip()} for s in segments]
+        segments, _ = T.transcribe_file(mp3, model, language, progress)
     except Exception as e:
         raise PipelineError(EXIT_TRANSCRIBE, f"Transcrição falhou: {e}")
-    lines = ["WEBVTT", ""]
-    for seg in result:
-        lines += [f"{vtt_time(seg['start'])} --> {vtt_time(seg['end'])}", seg["text"], ""]
-    vtt_path.write_text("\n".join(lines), encoding="utf-8")
-    ok(f"{len(result)} segmentos → {vtt_path.name}")
-    return result
+    if not segments:
+        warn("nenhuma fala detectada; sem transcrição")
+        return {}
+    paths = T.write_all(work, base, segments, meta)
+    ok(f"{len(segments)} segmentos → {', '.join(p.name for p in paths.values())}")
+    return paths
 
 
 # ------------------------------------------------------------------- 8. identificador
@@ -352,7 +359,7 @@ def wait_for_url(url, timeout=120):
 
 
 # ------------------------------------------------------------------- episódio
-def build_episode(identifier, title, show, description, accent, duration, chapters, transcript, args, youtube):
+def build_episode(identifier, title, show, description, accent, duration, chapters, transcript_files, args, youtube):
     episode = {
         "schemaVersion": SCHEMA_VERSION,
         "id": identifier,
@@ -370,8 +377,11 @@ def build_episode(identifier, title, show, description, accent, duration, chapte
     }
     if chapters:
         episode["chapters"] = chapters
-    if transcript:
-        episode["transcript"] = transcript
+    if transcript_files:
+        episode["transcripts"] = {
+            ext: f"{IA_DOWNLOAD}/{identifier}/{identifier}.{ext}" for ext in ("vtt", "txt", "md") if ext in transcript_files
+        }
+        episode["transcripts"]["language"] = args.language
     return episode
 
 
@@ -417,7 +427,9 @@ def parse_args(argv):
     p.add_argument("--cover", help="Imagem de capa (jpg/png/webp)")
     p.add_argument("--license", required=True, help="URL da licença, ex.: https://creativecommons.org/licenses/by/4.0/")
     p.add_argument("--music", action="store_true", help="128 kbps joint stereo em vez de voz 96 kbps mono")
-    p.add_argument("--transcribe", action="store_true", help="Gera transcrição com faster-whisper")
+    p.add_argument("--transcribe", action="store_true", help="Gera transcrição (.vtt, .txt, .md) com faster-whisper e envia junto do MP3")
+    p.add_argument("--whisper-model", default="small", help="modelo do faster-whisper (tiny, base, small, medium...; padrão small)")
+    p.add_argument("--language", default="pt", help="idioma da fala para a transcrição (padrão pt)")
     p.add_argument("--dry-run", action="store_true", help="Faz tudo menos o upload e mostra o que seria enviado")
     p.add_argument("--no-upload", action="store_true", help="Gera os arquivos em ./out/<id>/ sem enviar")
     p.add_argument("--catalog", metavar="ARQUIVO", default=str(DEFAULT_CATALOG),
@@ -459,18 +471,24 @@ def main(argv=None):
         normalize_and_encode(source, cover, mp3_tmp, args, {"title": title, "artist": show, "album": show})
         duration = probe_duration(mp3_tmp)
 
-        vtt_tmp = work / "transcript.vtt"
-        transcript = transcribe(mp3_tmp, vtt_tmp) if args.transcribe else None
-        if not args.transcribe:
+        identifier = choose_identifier(args, title, check_remote=True)  # antes da transcrição: nomeia os arquivos
+
+        transcript_files = {}
+        if args.transcribe:
+            meta_t = {
+                "title": title, "author": show, "license": args.license, "language": args.language, "model": args.whisper_model,
+                "episode_url": f"{SITE_URL}#/livro/{slugify(title)}?ep={identifier}", "archive_url": f"https://archive.org/details/{identifier}",
+            }
+            transcript_files = transcribe(mp3_tmp, work, identifier, meta_t, args.whisper_model, args.language)
+        else:
             step(7, "Transcrição")
             info("ignorada (use --transcribe)")
 
-        identifier = choose_identifier(args, title, check_remote=True)
-        episode = build_episode(identifier, title, show, description, accent, duration, chapters, transcript, args, youtube)
+        episode = build_episode(identifier, title, show, description, accent, duration, chapters, transcript_files, args, youtube)
 
         files = {f"{identifier}.mp3": str(mp3_tmp), "cover.jpg": str(cover)}
-        if transcript:
-            files[f"{identifier}.vtt"] = str(vtt_tmp)
+        for ext, path in transcript_files.items():
+            files[f"{identifier}.{ext}"] = str(path)
         metadata = {
             "mediatype": "audio", "collection": "opensource_audio", "title": title, "creator": show,
             "description": description, "licenseurl": args.license, "language": "por",
