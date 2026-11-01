@@ -35,6 +35,7 @@ import Downloads from './views/Downloads'
 import Explore from './views/Explore'
 import Home from './views/Home'
 import Notes from './views/Notes'
+import Publish from './views/Publish'
 import Saved from './views/Saved'
 import Subscribe from './views/Subscribe'
 
@@ -161,8 +162,8 @@ export default function App() {
     }
   }
 
-  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : route.name === 'subscribe' ? 'home' : route.name
-  const wide = ['home', 'explore', 'book', 'subscribe'].includes(route.name)
+  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : route.name
+  const wide = ['home', 'explore', 'book', 'subscribe', 'publish'].includes(route.name)
   const hasPlayer = !!engine.current
 
   return (
@@ -195,6 +196,7 @@ export default function App() {
             {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
+            {route.name === 'publish' && <Publish />}
             {route.name === 'subscribe' && <Subscribe books={books} onShare={shareSubscribe} />}
             {route.name === 'downloads' && <Downloads episodes={episodes} engine={engine} pwa={pwa} />}
           </main>
@@ -205,6 +207,8 @@ export default function App() {
               <a href="https://github.com/JkFa/ondas-podcast" target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-200">github.com/JkFa/ondas-podcast</a>
               {' · '}
               <button onClick={() => setHelpOpen(true)} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.footer.shortcuts}</button>
+              {' · '}
+              <a href={paths.publish} className="underline underline-offset-2 hover:text-ink-200">{t.publish.link2}</a>
               {' · '}
               <a href={paths.subscribe} className="underline underline-offset-2 hover:text-ink-200">{t.subscribe.link}</a>
               {' · '}

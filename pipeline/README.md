@@ -26,7 +26,10 @@ Sem elas, o script encerra com código 11 antes de processar qualquer coisa
 ## Uso
 
 ```bash
-# Arquivo local (voz: MP3 96 kbps mono)
+# Link direto ou do YouTube, sem argumentos além da licença (o resto é sugerido e você confirma)
+python publish.py https://exemplo.com/episodio.mp3 --license by --transcribe
+
+# Arquivo local (voz: MP3 128 kbps mono)
 python publish.py gravacao.wav --title "Episódio 1" --show "Meu Podcast" \
   --cover capa.jpg --license https://creativecommons.org/licenses/by/4.0/
 
@@ -43,11 +46,21 @@ python publish.py gravacao.wav --title "Teste" --license <url> --dry-run
 
 | Opção | Efeito |
 |---|---|
-| `--license URL` | **Obrigatória.** Licença do conteúdo (ex.: CC BY 4.0). |
+| `--license` | Licença Creative Commons: código (`cc0`, `by`, `by-sa`, `by-nc`, `by-nd`, `by-nc-sa`, `by-nc-nd`) ou URL. Sem ela, um seletor guiado explica cada uma em uma frase (em automações sem terminal, a licença é obrigatória). |
+| `--kind auto\|voice\|music`, `--music` | Voz = 128 kbps mono; música = 128 kbps estéreo. `auto` (padrão) olha o áudio: mono ou "estéreo falso" é voz, estéreo largo é música. |
+| `--trim-silence` | Remove o silêncio do começo e do fim. |
+| `--ai auto\|ollama\|openai\|heuristic` | Quem escreve título, descrições, capítulos, tags e categoria a partir da transcrição. `ollama` = local (`OLLAMA_HOST`, `OLLAMA_MODEL`); `openai` = qualquer API compatível (`AI_BASE_URL`, `AI_API_KEY`, `AI_MODEL`); `heuristic` = regras simples, sem IA. Se o provedor falhar, cai na heurística. |
+| `--notes TEXTO` | Contexto para a IA (tema, convidados, termos difíceis). |
+| `--metadata-file ARQ.yaml` | Usa metadados já revisados (pula a geração). Cada execução grava `out/<id>/metadata.yaml`. |
+| `--yes` | Pula a confirmação humana. Sem terminal (CI), a confirmação é obrigatória: sem `--yes` sai com código 20. |
+| `--max-minutes N`, `--transcribe-max-minutes N` | Recusa áudios maiores que N min; só pula a transcrição acima de N min. |
+| `--restrict-sources` | Aceita só YouTube e links diretos de áudio (usado nas automações, que recebem links de desconhecidos). |
+| `--allow-duplicate` | Publica mesmo que o mesmo áudio (por SHA-256) já esteja no catálogo. |
+| `--json-out ARQ` | Grava o episódio, os metadados e o resumo em JSON (usado pelas automações). |
+| `--license URL` (antigo) | Continua funcionando: o comando de antes não mudou. |
 | `--title`, `--show`, `--description` | Metadados. `--title` é obrigatório em arquivos locais. |
 | `--identifier slug` | Identificador no archive.org (sanitizado; recebe sufixo de data e, se já existir, `-2`, `-3`…). |
 | `--cover img` | Capa; vira JPEG 1400×1400 (crop central). |
-| `--music` | 128 kbps joint stereo em vez de voz 96 kbps mono. |
 | `--transcribe` | Transcrição pt com faster-whisper; gera segmentos no JSON e um `.vtt`. |
 | `--dry-run` | Faz tudo menos o upload e mostra o que seria enviado. |
 | `--no-upload` | Igual ao dry-run, sem exigir credenciais; mantém os arquivos em `./out/<id>/`. |
@@ -79,6 +92,9 @@ Saída: a URL direta e o JSON do episódio em stdout (logs vão para stderr, ent
 | 15 | Falha ao processar a capa |
 | 16 | Falha na transcrição |
 | 17 | Falha no upload |
+| 19 | Este áudio já está no catálogo (mesmo SHA-256); use `--allow-duplicate` para forçar |
+| 20 | Confirmação humana necessária e não há terminal (use `--yes` depois de revisar) |
+| 21 | Metadados inválidos (título vazio, categoria fora da lista do Apple Podcasts etc.) |
 | 18 | MP3 não respondeu 200 em ~2 min (o item pode só estar demorando; tente a URL depois) |
 | 130 | Interrompido (Ctrl+C) |
 

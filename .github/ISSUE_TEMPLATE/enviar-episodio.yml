@@ -1,0 +1,57 @@
+name: Enviar episódio
+description: "Cole o link do áudio (ou do YouTube) e o Ondas faz o resto: trata o áudio, transcreve, escreve a descrição e publica depois da aprovação."
+title: "Episódio: "
+labels: ["enviar-episodio"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Como funciona
+        1. Você preenche este formulário (precisa de uma conta no GitHub).
+        2. Em alguns minutos o sistema baixa o áudio, ajusta o volume, transcreve e comenta aqui uma **prévia** com título, descrição, capítulos e tags sugeridos.
+        3. Quem mantém o projeto confere e aplica o rótulo **aprovado**.
+        4. O episódio é enviado ao Internet Archive, entra no catálogo e no feed RSS.
+
+        **Dicas:** links diretos para arquivos de áudio (`.mp3`, `.m4a`, `.wav`, `.ogg`) funcionam melhor. Links do YouTube podem ser bloqueados quando o download é feito em servidores na nuvem; se acontecer, o comentário da prévia explica.
+        Não edite este pedido depois da prévia: se editar, uma nova prévia é gerada e a aprovação anterior deixa de valer.
+  - type: input
+    id: link
+    attributes:
+      label: Link do áudio ou do YouTube
+      description: Precisa começar com https://
+      placeholder: https://exemplo.com/meu-episodio.mp3
+    validations:
+      required: true
+  - type: input
+    id: programa
+    attributes:
+      label: Nome do programa
+      description: O nome do podcast ou série (opcional).
+  - type: input
+    id: autor
+    attributes:
+      label: Autoria (nome de quem fala ou produz)
+      description: Aparece no catálogo e no feed.
+  - type: input
+    id: licenca
+    attributes:
+      label: Licença Creative Commons
+      description: |
+        Escreva o código: cc0 (domínio público), by (dar crédito), by-sa (crédito + mesma licença), by-nc (só uso não comercial), by-nd (sem modificar), by-nc-sa ou by-nc-nd. Em dúvida, use by.
+      placeholder: by
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Confirmações
+      options:
+        - label: Sou a pessoa autora, ou tenho permissão para publicar este áudio com a licença escolhida.
+          required: true
+        - label: Entendo que o áudio e a transcrição ficarão públicos no Internet Archive e no Ondas.
+          required: true
+  - type: textarea
+    id: observacoes
+    attributes:
+      label: Observações (opcional)
+      description: Contexto, tema, nomes de convidados ou termos difíceis. Ajuda a gerar uma descrição melhor.

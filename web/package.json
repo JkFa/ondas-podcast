@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-feed.mjs && node scripts/build-share-pages.mjs",
+    "build": "vite build && node scripts/build-feed.mjs && node scripts/build-share-pages.mjs && node scripts/validate-feed.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "build:fast": "vite build && node scripts/build-feed.mjs --offline && node scripts/build-share-pages.mjs",
+    "build:fast": "vite build && node scripts/build-feed.mjs --offline && node scripts/build-share-pages.mjs && node scripts/validate-feed.mjs",
     "test": "vitest run",
     "test:contrast": "node scripts/contrast.mjs",
     "test:a11y": "node e2e/a11y.mjs",
@@ -16,7 +16,8 @@
     "test:transcripts": "node e2e/transcripts.mjs",
     "test:share": "node e2e/share.mjs",
     "test:offline": "node e2e/offline.mjs",
-    "test:subscribe": "node e2e/subscribe.mjs"
+    "test:subscribe": "node e2e/subscribe.mjs",
+    "test:publish": "node e2e/publish.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
@@ -36,6 +37,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "fast-xml-parser": "^5.11.2",
     "jsqr": "^1.4.0",
     "oxlint": "^1.89.0",
     "playwright": "^1.64.1",

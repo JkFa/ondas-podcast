@@ -52,3 +52,14 @@ Sem serviço externo: todo o armazenamento é local (Cache Storage + localStorag
 | `simple-icons` (já existente) | logos de Apple Podcasts, Overcast, Pocket Casts, AntennaPod, Castro, Podcast Addict, Castbox, Spotify, YouTube Music e Deezer | CC0-1.0 (marcas dos donos) |
 
 Sem SDK de nenhum app: tudo são links e esquemas de URL.
+
+## Fase 6 — Publicar sem terminal
+
+| Componente | Uso | Licença |
+|---|---|---|
+| `PyYAML` (pipeline) | metadados editáveis em `metadata.yaml` | MIT |
+| `fast-xml-parser` (dev) | validador dos feeds RSS (`scripts/validate-feed.mjs`) | MIT |
+| Atkinson Hyperlegible (arquivos `.ttf` em `pipeline/assets/fonts/`) | texto das capas geradas | OFL-1.1 (`OFL.txt` junto) |
+| Ollama / API compatível com a da OpenAI | opcionais; só se você configurar `AI_*` ou rodar o Ollama | conforme o provedor |
+
+GitHub Actions, formulários de Issue e a CLI `gh` são recursos do próprio GitHub (gratuitos em repositório público).

@@ -6,8 +6,8 @@ import ViewCount from '../components/ViewCount'
 import { paths } from '../hooks/useRoute'
 import { lastListened } from '../lib/books'
 import { formatDuration } from '../lib/format'
+import { t } from '../strings'
 
-const REPO = 'https://github.com/JkFa/ondas-podcast'
 
 /** Duas ondas senoidais sobrepostas, em laço contínuo (o SVG tem 6 períodos e desliza metade (3 períodos inteiros)). */
 function Waves() {
@@ -143,19 +143,13 @@ export default function Home({ books, episodes, engine, loading }) {
       <section aria-labelledby="pub-h" className="glass flex flex-col gap-5 rounded-3xl p-6 sm:p-8">
         <div className="flex flex-col gap-2">
           <p className="eyebrow">Para quem produz</p>
-          <h2 id="pub-h" className="font-display text-3xl sm:text-4xl">Publique o seu episódio</h2>
-          <p className="max-w-2xl text-ink-300">
-            Um comando baixa o áudio (do YouTube ou de um arquivo seu), nivela o volume, converte para MP3, envia ao Internet Archive e inclui o episódio aqui.
-          </p>
+          <h2 id="pub-h" className="font-display text-3xl sm:text-4xl">{t.publish.title}</h2>
+          <p className="max-w-2xl text-ink-300">Cole o link do áudio ou do YouTube e o Ondas faz o resto: baixa, ajusta o volume, transcreve, escreve a descrição e publica no Internet Archive depois de uma conferência.</p>
         </div>
-        <pre tabIndex={0} aria-label="Exemplo de comando para publicar um episódio" className="overflow-x-auto rounded-2xl bg-ink-950/70 p-4 text-xs leading-relaxed text-ink-200 sm:text-sm"><code>{`python pipeline/publish.py meu-episodio.wav \\
-  --title "Título do episódio" --show "Meu programa" \\
-  --license https://creativecommons.org/licenses/by/4.0/`}</code></pre>
-        <a href={REPO} target="_blank" rel="noreferrer noopener" className="press flex min-h-11 w-fit items-center gap-2 text-sm font-medium text-signal hover:underline">
-          Ver instruções no GitHub <ArrowRight size={16} aria-hidden="true" />
+        <a href={paths.publish} className="press flex min-h-12 w-fit items-center gap-2 rounded-full bg-signal px-6 text-[0.9375rem] font-semibold text-ink-950 hover:bg-signal-hover">
+          Publicar um episódio <ArrowRight size={18} aria-hidden="true" />
         </a>
       </section>
-
     </div>
   )
 }

@@ -32,6 +32,11 @@ export function validateEpisode(ep) {
     const okUrl = (u) => isStr(u) && (isHttps(u) || !/^[a-z][a-z0-9+.-]*:/i.test(u)) // https ou caminho relativo do site
     if (typeof t !== 'object' || !['vtt', 'txt', 'md'].some((k) => t[k]) || ['vtt', 'txt', 'md'].some((k) => t[k] && !okUrl(t[k]))) errs.push('transcripts inválido')
   }
+  // Campos opcionais da Fase 6 (metadados gerados no pipeline): quando presentes, precisam ter o tipo certo.
+  for (const k of ['shortDescription', 'licenseName', 'category', 'language', 'sha256', 'sourceSha256'])
+    if (ep[k] != null && typeof ep[k] !== 'string') errs.push(`${k} inválido`)
+  if (ep.explicit != null && typeof ep.explicit !== 'boolean') errs.push('explicit inválido')
+  if (ep.tags != null && !(Array.isArray(ep.tags) && ep.tags.every(isStr))) errs.push('tags inválido')
   if (ep.chapters && !(Array.isArray(ep.chapters) && ep.chapters.every((c) => isNum(c?.start) && isStr(c?.title))))
     errs.push('chapters inválido')
   if (ep.transcript && !(Array.isArray(ep.transcript) && ep.transcript.every((s) => isNum(s?.start) && isNum(s?.end) && typeof s?.text === 'string')))

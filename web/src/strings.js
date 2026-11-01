@@ -6,7 +6,7 @@ export const t = {
   site: { name: 'Ondas', tagline: 'Áudios e podcasts indies arquivados e prontos para ouvir.' },
 
   skip: 'Pular para o conteúdo',
-  titles: { home: 'Ondas — áudios e podcasts indies', explore: 'Biblioteca — Ondas', notes: 'Notas — Ondas', saved: 'Salvos — Ondas', subscribe: 'Ouça no seu app — Ondas', downloads: 'Meus downloads — Ondas', book: (title) => `${title} — Ondas`, notFound: 'Obra não encontrada — Ondas' },
+  titles: { home: 'Ondas — áudios e podcasts indies', explore: 'Biblioteca — Ondas', notes: 'Notas — Ondas', saved: 'Salvos — Ondas', publish: 'Publique o seu episódio — Ondas', subscribe: 'Ouça no seu app — Ondas', downloads: 'Meus downloads — Ondas', book: (title) => `${title} — Ondas`, notFound: 'Obra não encontrada — Ondas' },
   main: 'Conteúdo principal',
 
   nav: {
@@ -113,6 +113,43 @@ export const t = {
     embedCopy: 'Copiar código',
     embedCopied: 'Código copiado',
     shareSite: 'Compartilhar o Ondas',
+  },
+
+  publish: {
+    title: 'Publique o seu episódio',
+    lead: 'Cole o link do áudio ou do YouTube. O Ondas baixa, ajusta o volume, transcreve, escreve a descrição e publica depois de uma conferência.',
+    stepsTitle: 'O que acontece',
+    steps: [
+      'Você envia o formulário abaixo (o envio termina no GitHub, onde é preciso ter uma conta).',
+      'Em alguns minutos o sistema trata o áudio e comenta uma prévia com título, descrição, capítulos e tags.',
+      'Quem mantém o projeto confere e aprova (ou ajusta os campos).',
+      'O episódio vai para o Internet Archive e entra no catálogo e no feed, em poucos minutos.',
+    ],
+    link: 'Link do áudio ou do YouTube',
+    linkHint: 'Começa com https://. Links diretos para arquivos de áudio (.mp3, .m4a, .wav, .ogg) funcionam melhor; o YouTube pode ser bloqueado em servidores na nuvem.',
+    program: 'Nome do programa',
+    programHint: 'Opcional.',
+    author: 'Autoria',
+    authorHint: 'Nome de quem fala ou produz. Aparece no catálogo e no feed.',
+    license: 'Licença Creative Commons',
+    notes: 'Observações',
+    notesHint: 'Opcional: contexto, tema, nomes de convidados. Ajuda a gerar uma descrição melhor.',
+    confirm: 'Sou a pessoa autora, ou tenho permissão para publicar este áudio com a licença escolhida.',
+    submit: 'Enviar para publicação',
+    submitHint: 'Abre o GitHub com o formulário já preenchido, em outra aba. Lá você só confirma e envia.',
+    errors: {
+      link: 'Informe o link do áudio ou do YouTube.',
+      linkHttps: 'O link precisa começar com https://.',
+      linkFormat: 'Este link não parece um endereço válido.',
+      confirm: 'Marque a confirmação de direitos para continuar.',
+      summary: (n) => `${n === 1 ? 'Há 1 campo' : `Há ${n} campos`} para corrigir`,
+    },
+    sent: 'Formulário aberto no GitHub, em outra aba. A prévia aparece nos comentários do pedido.',
+    track: 'Acompanhar os pedidos',
+    cliTitle: 'Linha de comando (avançado)',
+    cliText: 'Quem prefere o terminal roda o pipeline direto; ele pede uma confirmação antes de publicar.',
+    cliHelp: 'Ver instruções no GitHub',
+    link2: 'Publique o seu episódio',
   },
 
   subscribe: {

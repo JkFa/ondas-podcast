@@ -1,0 +1,14 @@
+{
+  "_comment": "Dados do canal para o feed RSS (Podcasting 2.0 + iTunes). ownerEmail é opcional e fica PÚBLICO no feed; o Apple Podcasts Connect e outras plataformas usam esse e-mail para confirmar que você é o dono. Deixe vazio para não publicar nenhum e-mail.",
+  "title": "Ondas",
+  "description": "Áudios e podcasts indies arquivados e prontos para ouvir.",
+  "language": "pt-br",
+  "author": "Ondas",
+  "ownerName": "Ondas",
+  "ownerEmail": "",
+  "category": "Arts",
+  "subcategory": "Books",
+  "explicit": false,
+  "locked": true,
+  "copyright": "Os episódios têm autoria e licença próprias, indicadas em cada um."
+}

@@ -1,6 +1,7 @@
 yt-dlp
 internetarchive
 Pillow
+PyYAML
 # Opcional (--transcribe):
 # faster-whisper
 # av<17   (faster-whisper 1.2 não funciona com av >= 17)

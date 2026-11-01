@@ -76,15 +76,75 @@ seguro: entradas existentes mantêm título, descrição, capítulos e transcri�
   "transcripts": { "vtt": "transcripts/<id>.vtt", "txt": "...", "md": "...", "language": "pt" },
   "transcript": [{ "start": 0.0, "end": 4.2, "text": "..." }],
   "license": "https://creativecommons.org/licenses/by/4.0/",
+  "licenseName": "CC BY 4.0",
+  "shortDescription": "uma ou duas frases (resumo do feed)",
+  "category": "categoria do Apple Podcasts",
+  "explicit": false,
+  "language": "pt",
+  "tags": ["tema", "assunto"],
+  "sha256": "hash do MP3 publicado",
+  "sourceSha256": "hash do áudio original (evita duplicatas)",
   "source": "youtube|local"
 }
 ```
 
-`chapters`, `transcripts` (URLs dos arquivos de transcrição, absolutas ou relativas ao site), `transcript` (formato antigo, com os segmentos dentro do catálogo), `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais. O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
+`chapters`, `transcripts` (URLs dos arquivos de transcrição, absolutas ou relativas ao site), `transcript` (formato antigo, com os segmentos dentro do catálogo), `series` (nome da obra, vira filtro no app) e `part` (ordem dentro da obra) são opcionais, assim como `licenseName`, `shortDescription`, `category`, `explicit`, `language`, `tags`, `sha256` e `sourceSha256` (gerados pelo pipeline a partir da Fase 6; os tipos são validados). O catálogo é `{ "schemaVersion": 1, "episodes": [...] }`.
 
 Ao terminar um episódio, o player toca o próximo da fila; sem fila, segue para a próxima `part` da mesma `series` (audiolivros tocam em sequência). Na última parte, para.
 
 Episódios inválidos são ignorados com um aviso no console; um episódio importado com o mesmo `id` sobrescreve o da base.
+
+## Publicar sem terminal ("cole o link, o sistema faz o resto")
+
+O site tem a página **Publique o seu episódio** (`#/publicar`): a pessoa cola o link do áudio (ou do YouTube), escolhe a licença
+Creative Commons e envia. O formulário abre o GitHub com um pedido (Issue) já preenchido e o resto é automático:
+
+1. **Pedido:** a Issue do formulário `.github/ISSUE_TEMPLATE/enviar-episodio.yml` (precisa de conta no GitHub; o site não tem login próprio).
+2. **Prévia** (`.github/workflows/episodio-previa.yml`): baixa o áudio, ajusta o volume (−16 LUFS), transcreve com Whisper, gera título,
+   descrições, capítulos, tags e categoria e comenta tudo na Issue. Esta etapa **não** tem as chaves do Internet Archive.
+3. **Aprovação:** quem mantém o projeto lê a prévia e aplica o rótulo `aprovado`. Para ajustar algo, comenta `/metadados` com o YAML
+   corrigido (vale o último comentário de quem mantém o projeto).
+4. **Publicação** (`.github/workflows/episodio-publicar.yml`): confere que quem aprovou tem permissão de escrita e que a Issue **não foi
+   editada depois da prévia** (hash do pedido), envia ao Internet Archive, grava em `web/public/catalog.json`, dispara o deploy e responde
+   na Issue com o link. Falhas viram um comentário explicando o motivo e o rótulo `erro-publicacao`.
+
+### Configuração (uma vez)
+
+```bash
+gh secret set IA_ACCESS_KEY      # chaves S3 do archive.org (https://archive.org/account/s3.php)
+gh secret set IA_SECRET_KEY
+# opcional: IA para os metadados (sem isso, usa a heurística, que sempre funciona)
+gh variable set AI_BASE_URL --body https://api.exemplo.com/v1
+gh variable set AI_MODEL --body nome-do-modelo
+gh secret set AI_API_KEY
+gh label create enviar-episodio; gh label create aprovado; gh label create publicado; gh label create erro-publicacao
+```
+
+### Segurança
+
+- O texto da Issue é tratado como **não confiável**: chega ao script por variável de ambiente (nunca dentro de `run:`), campos são
+  limitados e sem caracteres de controle, e um `### Campo` falso digitado nas observações não vira outro campo.
+- Só `https://`, portas 80/443, sem usuário na URL e **sem endereços de rede interna** (SSRF), conferido a cada redirecionamento;
+  nas automações só YouTube e links diretos de áudio (`--restrict-sources`); limite de 800 MB e de 180 min.
+- Rótulo `aprovado` de quem não tem permissão é desfeito e recusado; comentários de prévia só valem se forem do robô do Actions.
+- As chaves do archive.org existem só no workflow de publicação, num único passo.
+
+### Limites honestos
+
+- **YouTube em servidores na nuvem** costuma ser bloqueado pelo próprio YouTube; link direto para arquivo de áudio é o caminho confiável.
+  Quando o download falha, a Issue explica e sugere o terminal.
+- Whisper `small` no runner gratuito roda perto de 2–3× o tempo real; acima de 90 min o episódio é publicado **sem transcrição**.
+- O envio termina no GitHub (conta necessária): é uma escolha para continuar sem servidor, sem login próprio e sem custo.
+- O fluxo completo (Issue → prévia → aprovação → upload real) depende dos secrets acima. As peças foram testadas localmente
+  (`pytest`: leitura do pedido, hash, comentários, decisão de publicar, guardas dos workflows; prévia real rodada com um áudio do archive.org),
+  mas o upload real pela Action só pode ser verificado depois de configurar os secrets.
+
+### Pelo terminal
+
+`python pipeline/publish.py <link ou arquivo> --license by --transcribe` faz as mesmas etapas e pede uma confirmação antes de enviar
+(detalhes e códigos de saída em `pipeline/README.md`). Cada feed é validado em `npm run build` (`web/scripts/validate-feed.mjs`:
+RSS 2.0, iTunes e Podcasting 2.0, incluindo `podcast:guid`, `podcast:locked`, licença, capítulos e transcrição). Dados do canal:
+`config/channel.json`; licenças e explicações: `config/licenses.json` (usadas também pelo formulário do site).
 
 ## Desenvolvimento do front
 

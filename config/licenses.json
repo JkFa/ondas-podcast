@@ -1,0 +1,37 @@
+{
+  "cc0": {
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "name": "CC0 1.0",
+    "explain": "Você abre mão de todos os direitos: qualquer pessoa pode usar, inclusive comercialmente, sem pedir permissão nem dar crédito."
+  },
+  "by": {
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "CC BY 4.0",
+    "explain": "Qualquer pessoa pode copiar, adaptar e usar (até comercialmente), desde que dê o crédito a você."
+  },
+  "by-sa": {
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "name": "CC BY-SA 4.0",
+    "explain": "Como a CC BY, e quem adaptar a obra precisa publicá-la com a mesma licença (compartilha igual)."
+  },
+  "by-nc": {
+    "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "name": "CC BY-NC 4.0",
+    "explain": "Pode copiar e adaptar com crédito, mas só para fins não comerciais."
+  },
+  "by-nd": {
+    "url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "name": "CC BY-ND 4.0",
+    "explain": "Pode copiar e compartilhar com crédito, inclusive comercialmente, mas sem modificar a obra."
+  },
+  "by-nc-sa": {
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "CC BY-NC-SA 4.0",
+    "explain": "Uso não comercial, com crédito, e quem adaptar precisa manter a mesma licença."
+  },
+  "by-nc-nd": {
+    "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "name": "CC BY-NC-ND 4.0",
+    "explain": "A mais restritiva: só copiar e compartilhar, com crédito, sem fins comerciais e sem modificar."
+  }
+}
