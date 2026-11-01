@@ -61,6 +61,10 @@ async function startPlaying(page) {
 const PAGES = { início: '', biblioteca: '#/biblioteca', obra: `#/livro/${EPISODE}`, notas: '#/notas', salvos: '#/salvos' }
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']
 async function scan(page, label) {
+  // Espera as animações de entrada terminarem: o axe mede o contraste com a opacidade do momento
+  // (no CI, mais lento, ele pegava diálogos no meio do fade-in).
+  await page.evaluate(() => Promise.all(document.getAnimations().filter((a) => a.effect?.getComputedTiming().iterations !== Infinity).map((a) => a.finished.catch(() => {}))))
+  await page.waitForTimeout(150)
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze()
   const bad = violations.filter((v) => ['serious', 'critical'].includes(v.impact))
   const minor = violations.filter((v) => !['serious', 'critical'].includes(v.impact))
