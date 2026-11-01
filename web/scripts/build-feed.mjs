@@ -2,13 +2,9 @@
 // Roda depois do `vite build`. A URL do site vem de SITE_URL; no GitHub Actions
 // é derivada de GITHUB_REPOSITORY (https://<dono>.github.io/<repo>/).
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { site } from './site.mjs'
 
 const root = new URL('../', import.meta.url)
-const repo = process.env.GITHUB_REPOSITORY?.split('/')
-const site = (
-  process.env.SITE_URL ||
-  (repo ? `https://${repo[0].toLowerCase()}.github.io/${repo[1]}/` : 'https://jkfa.github.io/ondas-podcast/')
-).replace(/\/?$/, '/')
 
 const CHANNEL = {
   title: 'Ondas',

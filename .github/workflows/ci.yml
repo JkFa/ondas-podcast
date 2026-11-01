@@ -42,6 +42,11 @@ jobs:
           npx vite preview --port 4175 &
           sleep 4
           BASE_URL=http://localhost:4175/ npm run test:transcripts
+      - name: Compartilhamento (redes, Web Share, Stories, link com ponto, prévias, incorporar)
+        run: |
+          npx vite preview --port 4176 &
+          sleep 4
+          BASE_URL=http://localhost:4176/ npm run test:share
       - name: Lighthouse (acessibilidade ≥ 95)
         run: npm run lhci
       - uses: actions/upload-artifact@v4

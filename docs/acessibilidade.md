@@ -46,6 +46,14 @@ clique que leva o áudio, busca sem acento, legenda, downloads, link com ponto, 
 Verificado explicitamente: o destaque **não move o foco** e **não muda a região `aria-live`**; a faixa de legenda é
 `aria-hidden` (quem usa leitor de tela ouve o áudio); a lista de trechos é focável (rolável por teclado).
 
+## Fase 3 — compartilhamento
+
+`npm run test:share` (29 verificações, no CI): rótulos "Compartilhar no …" em todas as redes, hrefs codificados,
+foco preso e devolvido, janela sobre o player (pilha de diálogos: `Esc` fecha só a de cima), caixa "Compartilhar a partir
+de 2:30", Web Share simulado, card de Stories (1080×1920 e arquivo PNG), prévias Open Graph, redirecionamento com
+`#t=`, `?t=` e sem tempo, player incorporado, e axe em claro e escuro (janela da obra com card, janela do episódio com
+incorporar, janela do site, página incorporada). O card de Stories tem `alt` na prévia; o `<audio>` do embed tem rótulo.
+
 ## Problemas que os testes encontraram (e foram corrigidos)
 
 1. **O foco voltava ao primeiro botão do player 4 vezes por segundo enquanto o áudio tocava** (`useDialog` dependia de `onClose`, uma função nova a cada render). Quem usava teclado ou leitor de tela não conseguia navegar no player. Achado pelo Orca; há teste de regressão.

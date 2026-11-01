@@ -24,3 +24,11 @@ Nenhuma dependência nova no front. No pipeline, `faster-whisper` (MIT) e `av<17
 | `pytest` (dev, Python) | testes do pipeline | MIT |
 
 O modelo do Whisper (`small`, da Systran no Hugging Face, licença MIT) é baixado na primeira execução e fica em cache local; não vai para o repositório.
+
+## Fase 3 — Compartilhamento
+
+| Pacote | Uso | Licença |
+|---|---|---|
+| `simple-icons` | logos de WhatsApp, X, Facebook, Telegram, Threads, Bluesky, Instagram e TikTok (só os usados entram no bundle: o pacote é `sideEffects: false`) | CC0-1.0 (os logos são marcas dos respectivos donos; ver o DISCLAIMER do pacote) |
+
+Não há SDK de nenhuma rede: os botões são links de compartilhamento comuns, sem rastreadores.

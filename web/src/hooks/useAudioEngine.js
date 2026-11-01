@@ -1,20 +1,13 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { announce } from '../lib/announce'
 import { t } from '../strings'
+import { DONE_RATIO, progressInfo } from '../lib/progress'
 import { usePersistentState } from './usePersistentState'
+
+export { DONE_RATIO, progressInfo }
 
 export const RATES = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] // passos de 0,25× (0,5× a 2×)
 const SAVE_EVERY_MS = 5000
-export const DONE_RATIO = 0.95
-
-/** Estado de progresso de um episódio: {ratio, resumeAt, done}. */
-export function progressInfo(progress, ep) {
-  const p = progress[ep.id]
-  if (!p || !p.dur) return { ratio: 0, resumeAt: 0, done: false }
-  const ratio = Math.min(p.pos / p.dur, 1)
-  const done = ratio >= DONE_RATIO
-  return { ratio: done ? 1 : ratio, resumeAt: done || p.pos < 5 ? 0 : p.pos, done }
-}
 
 /**
  * Motor de áudio: um único <audio> (o App renderiza `audioRef`), com fila,

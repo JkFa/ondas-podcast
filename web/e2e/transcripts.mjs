@@ -164,11 +164,12 @@ const scan = async (page, label) => {
       await page.getByRole('button', { name: 'Copiar trecho com link' }).click()
       await page.waitForTimeout(400)
       copied = await page.evaluate(() => navigator.clipboard.readText())
-      return { ok: /\?ep=livro-de-ruth-1811-01&t=\d+/.test(copied) && copied.includes(paragraphs[2].text.slice(0, 25)), detail: copied.split('\n').at(-1) }
+      return { ok: /\/episodio\/livro-de-ruth-1811-01\/#t=[\dhms]+/.test(copied) && copied.includes(paragraphs[2].text.slice(0, 25)), detail: copied.split('\n').at(-1) }
     })
     await check('link', 'abrir o link carrega o episódio no ponto indicado (sem tocar sozinho)', async () => {
       const link = copied.split('\n').at(-1)
-      const t = Number(link.match(/t=(\d+)/)[1])
+      const tok = /#t=(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?/.exec(link)
+      const t = (+tok[1] || 0) * 3600 + (+tok[2] || 0) * 60 + (+tok[3] || 0)
       const p2 = await newPage()
       await p2.goto(link)
       await p2.getByRole('button', { name: /^Abrir player/ }).waitFor({ timeout: 10000 })

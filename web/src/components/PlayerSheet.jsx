@@ -1,4 +1,4 @@
-import { ChevronDown, FileText, Heart, ListPlus, Loader2, Minus, MoonStar, Pause, Play, Plus, RotateCcw, RotateCw, Volume2, VolumeX } from 'lucide-react'
+import { ChevronDown, FileText, Heart, ListPlus, Share2, Loader2, Minus, MoonStar, Pause, Play, Plus, RotateCcw, RotateCw, Volume2, VolumeX } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
 import { useDialog } from '../hooks/useDialog'
 import { authorOf } from '../lib/books'
@@ -18,7 +18,7 @@ const TABS = [
   { id: 'notes', label: t.player.tabNotes },
 ]
 
-export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab, transcriptOn, onToggleTranscript, transcript, linkFor }) {
+export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab, transcriptOn, onToggleTranscript, transcript, linkFor, onShare }) {
   const { current: ep, playing, buffering, error, position, duration, rate, volume, muted, favorites, queue } = engine
   const sheetRef = useRef(null)
   const bodyRef = useRef(null)
@@ -146,6 +146,9 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab,
               className={chip}
             >
               <ListPlus size={16} aria-hidden="true" /> {queued ? t.player.queueIn : t.player.queueAdd}
+            </button>
+            <button onClick={onShare} aria-haspopup="dialog" className={chip}>
+              <Share2 size={16} aria-hidden="true" /> {t.share.button}
             </button>
             <button onClick={onToggleTranscript} aria-pressed={transcriptOn} className={chip}>
               <FileText size={16} aria-hidden="true" /> {transcriptOn ? t.transcript.hide : t.transcript.show}

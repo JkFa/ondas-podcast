@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import A11yPanel from './components/A11yPanel'
 import LiveRegion from './components/LiveRegion'
+import ShareDialog from './components/ShareDialog'
 import ShortcutsHelp from './components/ShortcutsHelp'
 import AmbientBackground from './components/AmbientBackground'
 import ImportModal from './components/ImportModal'
@@ -18,8 +19,9 @@ import { useVLibras } from './hooks/useVLibras'
 import { useAudioEngine } from './hooks/useAudioEngine'
 import { useMediaSession } from './hooks/useMediaSession'
 import { usePersistentState } from './hooks/usePersistentState'
-import { bookPath, navigate, paths, useRoute } from './hooks/useRoute'
-import { buildBooks } from './lib/books'
+import { navigate, paths, useRoute } from './hooks/useRoute'
+import { authorOf, buildBooks, partLabel } from './lib/books'
+import { episodeShareUrl } from './lib/share'
 import { announce } from './lib/announce'
 import { formatTime } from './lib/format'
 import { t } from './strings'
@@ -40,6 +42,7 @@ export default function App() {
   const [sheetOpen, setSheetOpen] = useState(false)
   const [sheetTab, setSheetTab] = useState('chapters')
   const [helpOpen, setHelpOpen] = useState(false)
+  const [shareTarget, setShareTarget] = useState(null)
   const [prefs] = usePrefs()
   const [transcriptOn, setTranscriptOn] = usePersistentState('transcript-on', false) // "Ver transcrição": desligada por padrão, lembrada
   const [importOpen, setImportOpen] = useState(false)
@@ -75,17 +78,22 @@ export default function App() {
   const books = useMemo(() => buildBooks(episodes), [episodes])
   const book = route.name === 'book' ? books.find((b) => b.slug === route.slug) : undefined
   const transcript = useTranscript(engine.current, transcriptOn || prefs.captions)
-  const slugOf = useMemo(() => new Map(books.flatMap((b) => b.parts.map((p) => [p.id, b.slug]))), [books])
-  /** Link para um episódio (e ponto, em segundos). Na Fase 3 vira uma página estática com prévia nas redes. */
-  const linkFor = useCallback(
-    (ep, sec = 0) => {
-      const slug = slugOf.get(ep.id) ?? ep.id
-      const url = new URL(import.meta.env.BASE_URL, location.href)
-      url.hash = `${bookPath(slug)}?ep=${encodeURIComponent(ep.id)}${sec > 0 ? `&t=${Math.floor(sec)}` : ''}`
-      return url.href
+  /** Link compartilhável de um episódio (e ponto, em segundos): página estática com prévia nas redes que redireciona ao app. */
+  const linkFor = useCallback((ep, sec = 0) => episodeShareUrl(new URL(import.meta.env.BASE_URL, location.origin).href, ep.id, sec), [])
+  const bookOfEp = useMemo(() => new Map(books.flatMap((b) => b.parts.map((p) => [p.id, b]))), [books])
+  const shareEpisode = useCallback(
+    (ep, position = 0) => {
+      const book = bookOfEp.get(ep.id)
+      setShareTarget({
+        key: `ep:${ep.id}`, kind: 'episode', id: ep.id, title: book?.isSeries ? book.title : ep.title, part: book?.isSeries ? partLabel(book, ep) : null,
+        author: authorOf(ep), cover: ep.cover, accentColor: ep.accentColor, position, episode: ep,
+      })
     },
-    [slugOf],
+    [bookOfEp],
   )
+  const shareBook = useCallback((b) => setShareTarget({ key: `book:${b.slug}`, kind: 'book', slug: b.slug, title: b.title, author: b.author, cover: b.cover, accentColor: b.accentColor }), [])
+  const shareSite = useCallback(() => setShareTarget({ key: 'site', kind: 'site', title: 'Ondas', cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
+
   const playerAccent = useAccent(engine.current)
   const pageAccent = useAccent(book?.parts[0])
   const ambient = book ? pageAccent : playerAccent
@@ -172,7 +180,7 @@ export default function App() {
           <main id="conteudo" tabIndex={-1} aria-label={t.main} className="outline-none focus-visible:outline-none">
             {route.name === 'home' && <Home books={books} episodes={episodes} engine={engine} loading={loading} />}
             {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} />}
-            {route.name === 'book' && <Book book={book} engine={engine} loading={loading} />}
+            {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
           </main>
@@ -183,6 +191,8 @@ export default function App() {
               <a href="https://github.com/JkFa/ondas-podcast" target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-200">github.com/JkFa/ondas-podcast</a>
               {' · '}
               <button onClick={() => setHelpOpen(true)} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.footer.shortcuts}</button>
+              {' · '}
+              <button onClick={shareSite} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.share.shareSite}</button>
             </p>
           </footer>
         </div>
@@ -193,10 +203,12 @@ export default function App() {
       <PlayerSheet
         engine={engine} accent={playerAccent} open={sheetOpen} onClose={() => setSheetOpen(false)} tab={sheetTab} onTab={setSheetTab}
         transcriptOn={transcriptOn} onToggleTranscript={() => setTranscriptOn((v) => !v)} transcript={transcript} linkFor={linkFor}
+        onShare={() => engine.current && shareEpisode(engine.current, engine.position)}
       />
       {prefs.captions && sheetOpen && <CaptionBar transcript={transcript} position={engine.position} />}
       <ImportModal open={importOpen} onClose={() => setImportOpen(false)} onSave={addImported} onExport={exportCatalog} onImportFile={importFile} />
       <ShortcutsHelp open={helpOpen} onClose={() => setHelpOpen(false)} />
+      {shareTarget && <ShareDialog key={shareTarget.key} target={shareTarget} onClose={() => setShareTarget(null)} embedEpisode={shareTarget.kind === 'episode' ? shareTarget.episode : null} />}
     </div>
   )
 }

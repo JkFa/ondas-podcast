@@ -129,6 +129,32 @@ Conecte o repositório e use:
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
 
+## Compartilhamento
+
+Botão **Compartilhar** na página de cada obra, no player (para o episódio, com a opção "Compartilhar a partir de
+12:30") e no rodapé (para o site). A janela oferece:
+
+- **Menu nativo do aparelho** (Web Share API) como primeira opção quando o navegador tem `navigator.share`
+  (celulares e alguns desktops); os botões das redes ficam como alternativa.
+- **WhatsApp, X, Facebook, Telegram, Threads, Bluesky, LinkedIn e e-mail**, com ícones do
+  [Simple Icons](https://simpleicons.org) (CC0; as marcas são dos donos; usamos a versão de uma cor, permitida pelas
+  diretrizes, para manter contraste). LinkedIn não existe no pacote e fica com ícone genérico. Cada botão tem rótulo
+  "Compartilhar no …". As URLs de compartilhamento foram verificadas em 2026-10-31 (ver `web/src/lib/share.js`).
+- **Instagram e TikTok** não têm URL web de compartilhamento: o botão copia o link e gera um **card vertical
+  1080×1920** (capa, título, autor, onda e endereço) para baixar ou compartilhar como Story, com o aviso "Link copiado,
+  cole no seu Story".
+- **Link com ponto:** `…/episodio/<id>/#t=12m30s` abre o episódio já naquele ponto (também aceita `?t=750`).
+- **Prévias bonitas (Open Graph / Twitter Card):** o GitHub Pages só serve arquivos estáticos, então o build gera uma
+  página HTML por obra (`/obra/<slug>/`) e por episódio (`/episodio/<id>/`) com `og:title`, `og:description`,
+  `og:image` (a capa) e `og:audio`, que redireciona para a rota do app (`scripts/build-share-pages.mjs`, roda em
+  `npm run build` e `build:fast`; ~1.740 páginas, sem usar a rede).
+- **Player incorporável:** o código `<iframe>` (aba "Incorporar em um site" da janela do episódio) aponta para
+  `/embed/?ep=<id>`, uma página leve em HTML puro com o `<audio controls>` nativo.
+
+Limitações: **não testei em WhatsApp, X ou Telegram de verdade** (só valido as meta tags, o redirecionamento e o formato
+das URLs); essas redes guardam prévias em cache, então uma capa nova pode demorar a aparecer. A prévia usa a capa
+quadrada do archive.org (`twitter:card=summary`), sem imagem própria por obra.
+
 ## Transcrições
 
 No player, o botão **Ver transcrição** (desligado por padrão; a escolha é lembrada; tecla `T`) mostra o texto
@@ -138,8 +164,7 @@ Também há **busca** na transcrição (sem acento e sem diferenciar maiúsculas
 **modo legenda** (a frase atual em fonte grande numa faixa sobre o player, útil para pessoas surdas; também no
 painel Acessibilidade), **download em .txt e .md** (o .md traz título, autor, licença, links e o tempo de cada
 parágrafo) e **Copiar trecho com link**, que copia a citação com um link que abre o episódio no ponto certo
-(`#/livro/<obra>?ep=<id>&t=<segundos>`; na Fase 3 o link compartilhado passa a ser uma página estática com
-prévia nas redes). Episódio sem transcrição mostra "Transcrição em breve". O destaque nunca move o foco nem
+(`…/episodio/<id>/#t=12m30s`, a página de compartilhamento descrita abaixo). Episódio sem transcrição mostra "Transcrição em breve". O destaque nunca move o foco nem
 dispara avisos do leitor de tela.
 
 Como a transcrição chega ao catálogo (campo `transcripts`, ver o schema abaixo):

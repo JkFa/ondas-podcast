@@ -1,4 +1,4 @@
-import { ArrowLeft, Bookmark, ListPlus, Pause, Play } from 'lucide-react'
+import { ArrowLeft, Bookmark, ListPlus, Pause, Play, Share2 } from 'lucide-react'
 import { useState } from 'react'
 import Cover from '../components/Cover'
 import ViewCount from '../components/ViewCount'
@@ -53,7 +53,7 @@ function Part({ book, ep, index, engine }) {
   )
 }
 
-export default function Book({ book, engine, loading }) {
+export default function Book({ book, engine, loading, onShare }) {
   const [expanded, setExpanded] = useState(false)
 
   if (!book) {
@@ -97,6 +97,7 @@ export default function Book({ book, engine, loading }) {
           </p>
           <ViewCount viewKey={viewKey('livro', book.slug)} label="acessos a esta obra" />
           <div className="mt-1 flex flex-col items-center gap-2 sm:items-start">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
             <button
               onClick={() => (inBook ? engine.toggle() : engine.select(target.part))}
               className="press flex items-center gap-2.5 rounded-full bg-signal px-6 py-3 text-[0.9375rem] font-semibold text-ink-950 hover:bg-signal-hover"
@@ -104,6 +105,10 @@ export default function Book({ book, engine, loading }) {
               {inBook && engine.playing ? <Pause size={18} fill="currentColor" aria-hidden="true" /> : <Play size={18} fill="currentColor" aria-hidden="true" />}
               {cta}
             </button>
+            <button onClick={() => onShare(book)} aria-haspopup="dialog" className="press flex min-h-11 items-center gap-2 rounded-full border border-[color:var(--control-line)] px-5 text-[0.9375rem] font-medium text-ink-200 hover:bg-white/10">
+              <Share2 size={18} aria-hidden="true" /> {t.share.button}
+            </button>
+            </div>
             {sub && book.isSeries && <p className="max-w-xs truncate text-xs text-ink-400">{sub}</p>}
           </div>
         </div>

@@ -1,5 +1,8 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 
+// Pilha de diálogos abertos: com um diálogo sobre outro (ex.: compartilhar sobre o player), só o de cima age.
+const stack = []
+
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 /**
@@ -22,7 +25,9 @@ export function useDialog(ref, open, onClose) {
     document.body.style.overflow = 'hidden'
     ;(root.querySelector('[data-autofocus]') || root.querySelector(FOCUSABLE))?.focus()
 
+    stack.push(root)
     const onKey = (e) => {
+      if (stack[stack.length - 1] !== root) return
       if (e.key === 'Escape') {
         e.stopPropagation()
         closeRef.current()
@@ -38,6 +43,7 @@ export function useDialog(ref, open, onClose) {
     }
     document.addEventListener('keydown', onKey)
     return () => {
+      stack.splice(stack.indexOf(root), 1)
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prevOverflow
       if (previous instanceof HTMLElement) previous.focus()

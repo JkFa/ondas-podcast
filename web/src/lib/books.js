@@ -1,6 +1,6 @@
 // Agrupa episódios em "livros" (obras com várias partes) para a biblioteca.
 // Episódio sem `series` vira um livro de uma parte só.
-import { progressInfo } from '../hooks/useAudioEngine'
+import { progressInfo } from './progress.js'
 
 const slugify = (s) =>
   String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
