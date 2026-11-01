@@ -62,7 +62,7 @@ function CopyField({ value }) {
   return (
     <div className="glass flex items-center gap-2 rounded-2xl py-1.5 pl-4 pr-1.5">
       <code className="min-w-0 flex-1 truncate text-xs text-ink-200 sm:text-sm">{value}</code>
-      <button onClick={copy} className="press flex shrink-0 items-center gap-1.5 rounded-xl bg-white/10 px-3 py-2 text-xs font-medium hover:bg-white/15" aria-live="polite">
+      <button onClick={copy} className="press flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl bg-white/10 px-3 py-2 text-xs font-medium hover:bg-white/15" aria-live="polite">
         {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
         {copied ? 'Copiado' : 'Copiar'}
       </button>
@@ -109,13 +109,13 @@ export default function Home({ books, episodes, engine, loading }) {
 
       {picks.length > 0 && (
         <section aria-labelledby="picks-h" className="flex flex-col gap-5">
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex flex-wrap items-end justify-between gap-x-4">
             <h2 id="picks-h" className="font-display text-3xl sm:text-4xl">Para começar</h2>
-            <a href={paths.explore} className="press flex items-center gap-1.5 text-sm font-medium text-signal hover:underline">
+            <a href={paths.explore} className="press flex min-h-11 items-center gap-1.5 text-sm font-medium text-signal hover:underline">
               Ver tudo <ArrowRight size={16} aria-hidden="true" />
             </a>
           </div>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8">
             {picks.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={engine.playing && b.parts.some((p) => p.id === engine.current?.id)} />)}
           </div>
         </section>
@@ -145,18 +145,14 @@ export default function Home({ books, episodes, engine, loading }) {
             Um comando baixa o áudio (do YouTube ou de um arquivo seu), nivela o volume, converte para MP3, envia ao Internet Archive e inclui o episódio aqui.
           </p>
         </div>
-        <pre className="overflow-x-auto rounded-2xl bg-ink-950/70 p-4 text-xs leading-relaxed text-ink-200 sm:text-sm"><code>{`python pipeline/publish.py meu-episodio.wav \\
+        <pre tabIndex={0} aria-label="Exemplo de comando para publicar um episódio" className="overflow-x-auto rounded-2xl bg-ink-950/70 p-4 text-xs leading-relaxed text-ink-200 sm:text-sm"><code>{`python pipeline/publish.py meu-episodio.wav \\
   --title "Título do episódio" --show "Meu programa" \\
   --license https://creativecommons.org/licenses/by/4.0/`}</code></pre>
-        <a href={REPO} target="_blank" rel="noreferrer noopener" className="press flex w-fit items-center gap-2 text-sm font-medium text-signal hover:underline">
+        <a href={REPO} target="_blank" rel="noreferrer noopener" className="press flex min-h-11 w-fit items-center gap-2 text-sm font-medium text-signal hover:underline">
           Ver instruções no GitHub <ArrowRight size={16} aria-hidden="true" />
         </a>
       </section>
 
-      <footer className="flex flex-col gap-1 border-t border-white/10 pt-6 text-xs text-ink-500">
-        <p>As obras de exemplo são gravações do LibriVox em português, de domínio público. Cada obra indica sua licença na própria página.</p>
-        <p>Código aberto em <a href={REPO} target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-300">github.com/JkFa/ondas-podcast</a>.</p>
-      </footer>
     </div>
   )
 }

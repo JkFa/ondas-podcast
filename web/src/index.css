@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import './themes.css';
+@import '@fontsource/atkinson-hyperlegible/latin-400.css';
+@import '@fontsource/atkinson-hyperlegible/latin-700.css';
+@import '@fontsource/opendyslexic/latin-400.css';
+@import '@fontsource/opendyslexic/latin-700.css';
 
 @theme {
   --font-display: 'Bricolage Grotesque', 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -29,6 +34,35 @@
   initial-value: #6d5dfc;
 }
 
+/* Preferências de acessibilidade (definidas em <html data-*> por lib/prefs.js). */
+:root[data-font='atkinson'] {
+  --font-sans: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+}
+:root[data-font='opendyslexic'] {
+  --font-sans: 'OpenDyslexic', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'OpenDyslexic', ui-sans-serif, system-ui, sans-serif;
+}
+/* WCAG 1.4.12: o conteúdo continua legível com estes espaçamentos. */
+:root[data-spacing='wide'] body {
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+}
+:root[data-spacing='wide'] :where(p, li, dd, dt, label, span, button, a) {
+  line-height: 1.7;
+}
+:root[data-spacing='wide'] :where(p) {
+  margin-bottom: 0.5em;
+}
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 @layer base {
   html,
   body,
@@ -45,9 +79,17 @@
   button {
     cursor: pointer;
   }
+  /* Com texto a 200% uma palavra longa não pode empurrar o layout para os lados (reflow, WCAG 1.4.10). */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: anywhere;
+  }
+  /* Foco em dois tons: visível sobre qualquer fundo (inclusive botões lima). */
   :focus-visible {
-    outline: 2px solid var(--color-signal);
+    outline: 3px solid var(--focus-a);
     outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--focus-b);
     border-radius: 0.5rem;
   }
 }
@@ -69,8 +111,8 @@
     color: var(--color-ink-400); /* AA sobre ink-950 */
   }
   .glass {
-    background: rgb(190 190 255 / 0.05);
-    border: 1px solid rgb(190 190 255 / 0.12);
+    background: var(--glass);
+    border: 1px solid var(--line);
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
   }
@@ -102,12 +144,12 @@
 .scrubber::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(to right, var(--color-signal) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-signal) var(--fill), var(--track) var(--fill));
 }
 .scrubber::-moz-range-track {
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(to right, var(--color-signal) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-signal) var(--fill), var(--track) var(--fill));
 }
 .scrubber::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -141,12 +183,12 @@
 .volume::-webkit-slider-runnable-track {
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(to right, var(--color-ink-200) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-ink-200) var(--fill), var(--track) var(--fill));
 }
 .volume::-moz-range-track {
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(to right, var(--color-ink-200) var(--fill), rgb(255 255 255 / 0.15) var(--fill));
+  background: linear-gradient(to right, var(--color-ink-200) var(--fill), var(--track) var(--fill));
 }
 .volume::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -185,13 +227,30 @@
   animation: drift 22s linear infinite;
 }
 
+/* Movimento reduzido: pelo sistema (padrão) ou pela preferência "Reduzir" do painel. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  :root:not([data-motion='full']) *,
+  :root:not([data-motion='full']) *::before,
+  :root:not([data-motion='full']) *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  :root:not([data-motion='full']) .wave-a,
+  :root:not([data-motion='full']) .wave-b {
+    animation: none;
+  }
+}
+:root[data-motion='reduce'] *,
+:root[data-motion='reduce'] *::before,
+:root[data-motion='reduce'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+:root[data-motion='reduce'] .wave-a,
+:root[data-motion='reduce'] .wave-b {
+  animation: none;
 }

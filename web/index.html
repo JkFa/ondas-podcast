@@ -16,6 +16,16 @@
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="Ondas" href="%BASE_URL%feed.xml" />
     <link rel="apple-touch-icon" href="%BASE_URL%icon-192.png" />
+    <script>
+      // Aplica as preferências de acessibilidade antes do primeiro desenho (evita piscar o tema errado).
+      try {
+        var p = JSON.parse(localStorage.getItem('ondas:v1:a11y') || '{}'), r = document.documentElement;
+        var light = p.theme === 'light' || (p.theme !== 'dark' && matchMedia('(prefers-color-scheme: light)').matches);
+        r.dataset.theme = light ? 'light' : 'dark';
+        r.dataset.contrast = p.contrast ? 'high' : 'normal';
+        if (p.textScale) r.style.fontSize = p.textScale + '%';
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />

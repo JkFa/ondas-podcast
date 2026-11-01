@@ -1,10 +1,11 @@
 import { BookOpen, Bookmark, Home, Library, Plus } from 'lucide-react'
+import { t } from '../strings'
 
 const ITEMS = [
-  { id: 'home', label: 'Início', Icon: Home },
-  { id: 'explore', label: 'Biblioteca', Icon: Library },
-  { id: 'notes', label: 'Notas', Icon: BookOpen },
-  { id: 'saved', label: 'Salvos', Icon: Bookmark },
+  { id: 'home', label: t.nav.home, Icon: Home },
+  { id: 'explore', label: t.nav.library, Icon: Library },
+  { id: 'notes', label: t.nav.notes, Icon: BookOpen },
+  { id: 'saved', label: t.nav.saved, Icon: Bookmark },
 ]
 
 export default function Nav({ view, onView, onImport }) {
@@ -24,7 +25,7 @@ export default function Nav({ view, onView, onImport }) {
   const importBtn = (
     <button
       onClick={onImport}
-      aria-label="Publicar ou importar episódio"
+      aria-label={t.nav.import}
       className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
     >
       <Plus size={22} aria-hidden="true" />
@@ -35,7 +36,7 @@ export default function Nav({ view, onView, onImport }) {
     <>
       {/* Mobile: barra inferior em vidro fosco */}
       <nav
-        aria-label="Principal"
+        aria-label={t.nav.label}
         className="glass fixed inset-x-0 bottom-0 bg-ink-950/85 z-30 flex items-center gap-1 rounded-t-3xl border-x-0 border-b-0 px-3 pt-2 lg:hidden"
         style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}
       >
@@ -48,10 +49,10 @@ export default function Nav({ view, onView, onImport }) {
 
       {/* Desktop: sidebar estreita */}
       <nav
-        aria-label="Principal"
+        aria-label={t.nav.label}
         className="fixed inset-y-0 left-0 z-30 hidden w-20 flex-col items-center gap-2 border-r border-white/10 py-6 lg:flex"
       >
-        <svg role="img" aria-label="Ondas" viewBox="0 0 64 64" className="mb-6 h-9 w-9 text-signal">
+        <svg role="img" aria-label={t.site.name} viewBox="0 0 64 64" className="mb-6 h-9 w-9 text-signal">
           <path d="M8 34c6-14 10-14 16 0s10 14 16 0 8-10 12-4" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
         </svg>
         {ITEMS.map(({ id, label, Icon }) => tab(id, label, Icon))}

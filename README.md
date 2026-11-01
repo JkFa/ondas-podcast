@@ -128,6 +128,23 @@ Conecte o repositório e use:
 - **Build output directory:** `web/dist`
 - Variável `NODE_VERSION=20`. Não defina `VITE_BASE` (o padrão `/` serve na raiz).
 
+## Acessibilidade (WCAG 2.2 AA)
+
+Botão fixo no canto superior direito abre o painel **Acessibilidade** (salvo só no aparelho): tema
+claro/escuro/sistema, alto contraste, texto de 100% a 200%, fonte Atkinson Hyperlegible ou OpenDyslexic
+(auto-hospedadas), animações (sistema/reduzir/permitir), espaçamento ampliado, áudio mono, atalhos de
+teclado ligados/desligados e tradução em Libras (VLibras, só carrega se você ativar).
+
+- **Teclado:** `Espaço`/`K` toca e pausa · `J`/`L` ou `←`/`→` ∓15 s · `<` `>` velocidade · `M` mudo ·
+  `T` transcrição · `Shift+↑/↓` volume (só `↑/↓` com o player aberto) · `?` ajuda · `Esc` fecha painéis.
+  Link "Pular para o conteúdo", landmarks, foco visível em dois tons e foco preso em janelas.
+- **Player:** velocidade de 0,5× a 2× em passos de 0,25×, timer de soneca (15/30/60 min ou fim da parte),
+  avisos por leitor de tela ("Tocando: …", "Pausado") e Media Session (tela de bloqueio, fones, carro).
+- **Testes:** `npm test` · `npm run test:contrast` · `npm run test:a11y` (axe + teclado + player) · `npm run lhci`,
+  todos no CI. Relatório completo, incluindo a sessão real com o Orca e o que **não** foi testado
+  (NVDA, VoiceOver, TalkBack): [`docs/acessibilidade.md`](docs/acessibilidade.md).
+- Textos da interface em [`web/src/strings.js`](web/src/strings.js) (migração em andamento, ver o relatório).
+
 ## Biblioteca e contador de acessos
 
 A **página principal** (`#/`) apresenta o projeto (“Áudios e podcasts indies arquivados e prontos para ouvir.”), com números do catálogo, atalho para continuar, obras para começar, o endereço do feed RSS e como publicar. A **biblioteca** (`#/biblioteca`) é uma grade de obras: episódios com o mesmo `series` viram um livro (capa,

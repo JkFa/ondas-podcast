@@ -12,7 +12,7 @@ export default function EpisodeCard({ ep, engine, featured = false }) {
   const queued = queue.includes(ep.id)
 
   const onPlay = () => (isCurrent ? engine.toggle() : engine.select(ep))
-  const icon = 'press flex h-9 w-9 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white'
+  const icon = 'press flex h-11 w-11 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white'
 
   return (
     <article className={`group fade-up glass flex gap-4 rounded-3xl p-3 ${featured ? 'flex-col sm:flex-row sm:p-4' : 'items-center'}`}>
@@ -38,7 +38,7 @@ export default function EpisodeCard({ ep, engine, featured = false }) {
         </p>
         {info.resumeAt > 0 && (
           <div className="mt-1 flex items-center gap-3">
-            <div className="h-0.5 flex-1 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-label="Progresso" aria-valuenow={Math.round(info.ratio * 100)} aria-valuemin={0} aria-valuemax={100}>
+            <div className="h-0.5 flex-1 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
               <div className="h-full bg-signal" style={{ width: `${info.ratio * 100}%` }} />
             </div>
             <button onClick={() => engine.select(ep)} className="press text-xs font-medium tabular-nums text-ink-300 hover:text-white">

@@ -29,7 +29,7 @@ export default function Notes({ episodes, engine }) {
                     <li key={i}>
                       <button
                         onClick={() => engine.select(ep, { startAt: c.start })}
-                        className="press flex w-full gap-4 rounded-xl px-3 py-2 text-left hover:bg-white/5"
+                        className="press flex min-h-11 w-full gap-4 rounded-xl px-3 py-2 text-left hover:bg-white/5"
                       >
                         <span className="w-14 shrink-0 text-xs tabular-nums text-ink-400">{formatTime(c.start)}</span>
                         <span className="text-ink-200">{c.title}</span>
@@ -38,9 +38,9 @@ export default function Notes({ episodes, engine }) {
                   ))}
                 </ol>
               ) : (
-                <p className="text-sm text-ink-500">Sem capítulos neste episódio.</p>
+                <p className="text-sm text-ink-400">Sem capítulos neste episódio.</p>
               )}
-              {ep.license && <p className="text-xs text-ink-500">Licença: <a className="underline" href={ep.license} target="_blank" rel="noopener noreferrer">{ep.license}</a></p>}
+              {ep.license && <p className="text-xs text-ink-400">Licença: <a className="underline" href={ep.license} target="_blank" rel="noopener noreferrer">{ep.license}</a></p>}
             </div>
           </details>
         ))}

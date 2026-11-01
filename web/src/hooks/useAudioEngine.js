@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { announce } from '../lib/announce'
+import { t } from '../strings'
 import { usePersistentState } from './usePersistentState'
 
-export const RATES = [1, 1.25, 1.5, 2]
-const SKIP = 15
+export const RATES = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] // passos de 0,25× (0,5× a 2×)
 const SAVE_EVERY_MS = 5000
 export const DONE_RATIO = 0.95
 
@@ -33,6 +34,8 @@ export function useAudioEngine(episodes) {
   const [queue, setQueue] = usePersistentState('queue', [])
   const [rate, setRate] = usePersistentState('rate', 1)
   const [volume, setVolumeState] = usePersistentState('volume', 1)
+  const [muted, setMuted] = useState(false)
+  const [sleep, setSleepState] = useState({ mode: 'off', endsAt: 0, minutes: 0 }) // 'off' | 'time' | 'end'
 
   const byId = useMemo(() => new Map(episodes.map((e) => [e.id, e])), [episodes])
   const current = byId.get(currentId) ?? null
@@ -40,7 +43,7 @@ export function useAudioEngine(episodes) {
   // Refs para handlers do <audio> não ficarem com valores velhos.
   const live = useRef({ volume })
   useLayoutEffect(() => {
-    live.current = { currentId, progress, queue, rate, volume, byId }
+    live.current = { currentId, progress, queue, rate, volume, byId, sleep }
   })
   const lastSave = useRef(0)
   const pendingSeek = useRef(0)
@@ -127,18 +130,56 @@ export function useAudioEngine(episodes) {
     },
     [setRate],
   )
-  const cycleRate = useCallback(() => {
-    const i = RATES.indexOf(live.current.rate)
-    setPlaybackRate(RATES[(i + 1) % RATES.length])
-  }, [setPlaybackRate])
+  /** dir = +1 / -1: um passo de 0,25× (para nos limites 0,5× e 2×). */
+  const stepRate = useCallback(
+    (dir) => {
+      const i = RATES.indexOf(live.current.rate)
+      const next = RATES[Math.min(Math.max((i < 0 ? RATES.indexOf(1) : i) + dir, 0), RATES.length - 1)]
+      setPlaybackRate(next)
+      announce(t.live.speed(next))
+    },
+    [setPlaybackRate],
+  )
 
   const setVolume = useCallback(
     (v) => {
-      setVolumeState(v)
-      if (audioRef.current) audioRef.current.volume = v
+      const clamped = Math.min(1, Math.max(0, v))
+      setVolumeState(clamped)
+      if (audioRef.current) audioRef.current.volume = clamped
     },
     [setVolumeState],
   )
+  const adjustVolume = useCallback(
+    (delta) => {
+      const v = Math.round(Math.min(1, Math.max(0, live.current.volume + delta)) * 100) / 100
+      setVolume(v)
+      announce(t.live.volume(Math.round(v * 100)))
+    },
+    [setVolume],
+  )
+  const toggleMute = useCallback(() => {
+    const a = audioRef.current
+    if (!a) return
+    a.muted = !a.muted
+    setMuted(a.muted)
+    announce(a.muted ? t.live.muted : t.live.unmuted)
+  }, [])
+
+  /** Soneca: mode 'off' | 'time' (minutes) | 'end' (ao fim da parte atual). */
+  const setSleep = useCallback((mode, minutes = 0) => {
+    const next = mode === 'time' ? { mode, endsAt: Date.now() + minutes * 60000, minutes } : { mode, endsAt: 0, minutes: 0 }
+    setSleepState(next)
+    announce(mode === 'off' ? t.sleep.cleared : t.sleep.set(mode === 'time' ? t.sleep.min(minutes) : t.sleep.endOfPart))
+  }, [])
+  useEffect(() => {
+    if (sleep.mode !== 'time') return
+    const id = setTimeout(() => {
+      audioRef.current?.pause()
+      setSleepState({ mode: 'off', endsAt: 0, minutes: 0 })
+      announce(t.sleep.fired)
+    }, Math.max(0, sleep.endsAt - Date.now()))
+    return () => clearTimeout(id)
+  }, [sleep])
 
   const retry = useCallback(() => {
     const a = audioRef.current
@@ -200,6 +241,11 @@ export function useAudioEngine(episodes) {
         const { currentId: id } = live.current
         if (Number.isFinite(a.duration)) setProgress((p) => ({ ...p, [id]: { pos: a.duration, dur: a.duration, at: Date.now() } }))
         setPlaying(false)
+        if (live.current.sleep.mode === 'end') {
+          setSleepState({ mode: 'off', endsAt: 0, minutes: 0 })
+          announce(t.sleep.fired)
+          return
+        }
         playNext()
       },
     }
@@ -211,29 +257,10 @@ export function useAudioEngine(episodes) {
     }
   }, [persistPosition, playNext, setProgress])
 
-  // Atalhos de desktop. Ignora campos de texto, sliders e botões (espaço já ativa o botão).
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.metaKey || e.ctrlKey || e.altKey || !live.current.currentId) return
-      const tag = e.target.tagName
-      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) || e.target.isContentEditable) return
-      if (e.key === ' ' && ['BUTTON', 'A'].includes(tag)) return
-      if (e.key === ' ') toggle()
-      else if (e.key === 'ArrowLeft') skip(-SKIP)
-      else if (e.key === 'ArrowRight') skip(SKIP)
-      else if (e.key === '>') setPlaybackRate(RATES[Math.min(RATES.indexOf(live.current.rate) + 1, RATES.length - 1)])
-      else if (e.key === '<') setPlaybackRate(RATES[Math.max(RATES.indexOf(live.current.rate) - 1, 0)])
-      else return
-      e.preventDefault()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [toggle, skip, setPlaybackRate])
-
   return {
-    audioRef, current, playing, buffering, error, position, duration, rate, volume,
+    audioRef, current, playing, buffering, error, position, duration, rate, volume, muted, sleep,
     progress, favorites, queue,
-    select, toggle, seek, skip, playNext, playPrevious, cycleRate, setVolume, retry,
+    select, toggle, seek, skip, playNext, playPrevious, stepRate, setPlaybackRate, setVolume, adjustVolume, toggleMute, setSleep, retry,
     toggleFavorite, enqueue, dequeue, moveInQueue,
   }
 }

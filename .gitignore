@@ -6,3 +6,4 @@ pipeline/out/
 out/
 *.log
 .DS_Store
+.lighthouseci/

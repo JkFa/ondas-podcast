@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
@@ -7,6 +7,13 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), texta
  * `ref`, o scroll do body é travado e o foco volta ao elemento anterior.
  */
 export function useDialog(ref, open, onClose) {
+  // onClose costuma ser uma função nova a cada render (o app re-renderiza ~4x/s durante a reprodução).
+  // Se ela fosse dependência do efeito, o foco voltaria ao primeiro botão a cada tick.
+  const closeRef = useRef(onClose)
+  useLayoutEffect(() => {
+    closeRef.current = onClose
+  })
+
   useEffect(() => {
     if (!open || !ref.current) return
     const root = ref.current
@@ -18,7 +25,7 @@ export function useDialog(ref, open, onClose) {
     const onKey = (e) => {
       if (e.key === 'Escape') {
         e.stopPropagation()
-        onClose()
+        closeRef.current()
       } else if (e.key === 'Tab') {
         const items = [...root.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null)
         if (!items.length) return
@@ -35,5 +42,5 @@ export function useDialog(ref, open, onClose) {
       document.body.style.overflow = prevOverflow
       if (previous instanceof HTMLElement) previous.focus()
     }
-  }, [ref, open, onClose])
+  }, [ref, open])
 }

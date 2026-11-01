@@ -6,7 +6,7 @@ import { bookStats, lastListened } from '../lib/books'
 
 export function Skeletons() {
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4" aria-hidden="true">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8" aria-hidden="true">
       {Array.from({ length: 8 }, (_, i) => (
         <div key={i} className="flex flex-col gap-3">
           <div className="skeleton aspect-square rounded-3xl" />
@@ -51,7 +51,7 @@ export default function Explore({ books, engine, loading, error }) {
           <h1 className="font-display text-5xl sm:text-6xl">Biblioteca</h1>
           <p className="max-w-lg text-ink-400">Áudios e podcasts indies arquivados e prontos para ouvir.</p>
         </div>
-        <label className="glass flex items-center gap-3 rounded-2xl px-4 py-3 focus-within:border-white/30 sm:max-w-md">
+        <label className="glass flex items-center gap-3 rounded-2xl border-[color:var(--control-line)] px-4 sm:max-w-md">
           <Search size={18} className="text-ink-400" aria-hidden="true" />
           <input
             type="search"
@@ -59,7 +59,7 @@ export default function Explore({ books, engine, loading, error }) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar por título, autor ou capítulo"
             aria-label="Buscar na biblioteca"
-            className="w-full bg-transparent text-sm placeholder:text-ink-500 focus:outline-none"
+            className="min-h-12 w-full bg-transparent text-sm placeholder:text-ink-400"
           />
         </label>
       </header>
@@ -73,14 +73,14 @@ export default function Explore({ books, engine, loading, error }) {
         <section aria-labelledby="lib-h" className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 id="lib-h" className="eyebrow">Biblioteca · {results.length} {results.length === 1 ? 'obra' : 'obras'}</h2>
-            <div role="group" aria-label="Filtrar biblioteca" className="flex gap-2">
+            <div role="group" aria-label="Filtrar biblioteca" className="flex flex-wrap gap-2">
               {FILTERS.map((f) => (
                 <button
                   key={f.id}
                   type="button"
                   aria-pressed={filter === f.id}
                   onClick={() => setFilter(f.id)}
-                  className={`press rounded-full border px-3.5 py-1.5 text-sm ${filter === f.id ? 'border-signal bg-signal text-ink-950' : 'border-white/10 text-ink-300 hover:border-white/30'}`}
+                  className={`press min-h-11 rounded-full border px-4 py-2 text-sm ${filter === f.id ? 'border-signal bg-signal text-ink-950' : 'border-[color:var(--control-line)] text-ink-300 hover:bg-white/10'}`}
                 >
                   {f.label}
                 </button>
@@ -92,7 +92,7 @@ export default function Explore({ books, engine, loading, error }) {
               {q ? `Nada encontrado para “${query}”.` : filter === 'all' ? 'O catálogo está vazio. Use + para importar um episódio.' : 'Nenhuma obra nesta seção ainda.'}
             </p>
           ) : (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8">
               {results.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={b.slug === playingSlug} />)}
             </div>
           )}

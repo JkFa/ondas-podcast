@@ -72,9 +72,9 @@ export default function Transcript({ transcript, position, onSeek, scrollRef, ac
             <button
               onClick={() => { setFollow(true); onSeek(s.start) }}
               aria-current={i === activeIdx ? 'true' : undefined}
-              className={`press flex w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/5 ${i === activeIdx ? 'bg-white/10 text-white' : 'text-ink-400'}`}
+              className={`press flex min-h-11 w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/5 ${i === activeIdx ? 'bg-white/10 text-white' : 'text-ink-400'}`}
             >
-              <span className="w-12 shrink-0 pt-0.5 text-xs tabular-nums text-ink-500">{formatTime(s.start)}</span>
+              <span className="w-12 shrink-0 pt-0.5 text-xs tabular-nums text-ink-400">{formatTime(s.start)}</span>
               <span>{s.text}</span>
             </button>
           </li>

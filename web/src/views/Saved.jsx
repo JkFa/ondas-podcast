@@ -7,7 +7,7 @@ export default function Saved({ episodes, engine }) {
   const byId = new Map(episodes.map((e) => [e.id, e]))
   const favs = engine.favorites.map((id) => byId.get(id)).filter(Boolean)
   const queue = engine.queue.map((id) => byId.get(id)).filter(Boolean)
-  const btn = 'press flex h-9 w-9 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent'
+  const btn = 'press flex h-11 w-11 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent'
 
   return (
     <div className="flex flex-col gap-10">

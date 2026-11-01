@@ -1,4 +1,5 @@
 import Cover from './Cover'
+import { t } from '../strings'
 import { Loader2, Pause, Play } from 'lucide-react'
 
 export default function MiniPlayer({ engine, onOpen }) {
@@ -16,7 +17,7 @@ export default function MiniPlayer({ engine, onOpen }) {
         </div>
         <button
           onClick={onOpen}
-          aria-label={`Abrir player: ${current.title}`}
+          aria-label={t.player.open(current.title)}
           className="press flex min-w-0 flex-1 items-center gap-3 rounded-xl text-left"
         >
           <Cover src={current.cover} className="h-11 w-11 shrink-0 rounded-lg" />
@@ -27,8 +28,8 @@ export default function MiniPlayer({ engine, onOpen }) {
         </button>
         <button
           onClick={toggle}
-          aria-label={playing ? 'Pausar' : 'Tocar'}
-          className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
+          aria-label={playing ? t.player.pause : t.player.play}
+          className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-signal text-ink-950 hover:bg-signal-hover"
         >
           {buffering && playing ? <Loader2 size={18} className="animate-spin" /> : playing ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" className="translate-x-px" />}
         </button>

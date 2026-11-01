@@ -20,7 +20,8 @@ export default function ResumeCard({ book, engine }) {
         <h2 id="resume-h" className="eyebrow">Continue de onde parou</h2>
         <a href={bookPath(book.slug)} className="font-display line-clamp-2 text-xl leading-tight sm:text-2xl">{book.title}</a>
         <p className="truncate text-sm text-ink-400">{book.isSeries ? partLabel(book, part) : book.author}</p>
-        <div className="h-1 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-label="Progresso da obra" aria-valuenow={Math.round(stats.ratio * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <p className="sr-only">{Math.round(stats.ratio * 100)}% da obra ouvido</p>
+        <div className="h-1 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
           <div className="h-full bg-signal" style={{ width: `${stats.ratio * 100}%` }} />
         </div>
         <button

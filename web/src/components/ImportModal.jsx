@@ -26,7 +26,7 @@ function parseInput(raw) {
   return /^[\w.-]+$/.test(text) ? { id: text, file: null } : null
 }
 
-const input = 'w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm placeholder:text-ink-500 focus:border-white/30 focus:outline-none'
+const input = 'w-full rounded-xl border border-[color:var(--control-line)] bg-white/[0.04] px-3 py-2.5 text-sm placeholder:text-ink-400'
 
 function Status({ s }) {
   if (!s) return null
@@ -187,7 +187,7 @@ export default function ImportModal({ open, onClose, onSave, onExport, onImportF
       <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="import-title" className="fade-up flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-ink-900/95 backdrop-blur-xl sm:rounded-3xl">
         <header className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <h2 id="import-title" className="font-display text-2xl">Importar do Archive.org</h2>
-          <button onClick={onClose} aria-label="Fechar" className="press flex h-9 w-9 items-center justify-center rounded-full hover:bg-white/10"><X size={18} /></button>
+          <button onClick={onClose} aria-label="Fechar" className="press flex h-11 w-11 items-center justify-center rounded-full hover:bg-white/10"><X size={18} /></button>
         </header>
 
         <form onSubmit={submit} className="flex flex-col gap-5 overflow-y-auto px-5 py-5">

@@ -6,6 +6,7 @@ import { progressInfo } from '../hooks/useAudioEngine'
 import { paths } from '../hooks/useRoute'
 import { bookStats, partLabel, resumeTarget } from '../lib/books'
 import { viewKey } from '../lib/views'
+import { t } from '../strings'
 import { formatDuration, formatTime } from '../lib/format'
 
 function Part({ book, ep, index, engine }) {
@@ -31,7 +32,7 @@ function Part({ book, ep, index, engine }) {
             {formatDuration(ep.duration)}
             {info.resumeAt > 0 && !info.done && (
               <>
-                <span className="h-0.5 w-16 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-label="Progresso" aria-valuenow={Math.round(info.ratio * 100)} aria-valuemin={0} aria-valuemax={100}>
+                <span className="h-0.5 w-16 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
                   <span className="block h-full bg-signal" style={{ width: `${info.ratio * 100}%` }} />
                 </span>
                 {formatTime(info.resumeAt)}
@@ -44,7 +45,7 @@ function Part({ book, ep, index, engine }) {
         onClick={() => (queued ? engine.dequeue(ep.id) : engine.enqueue(ep.id))}
         aria-pressed={queued}
         aria-label={queued ? `Remover ${label} da fila` : `Adicionar ${label} à fila`}
-        className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white"
+        className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white"
       >
         {queued ? <Bookmark size={18} fill="currentColor" /> : <ListPlus size={18} />}
       </button>
@@ -76,16 +77,16 @@ export default function Book({ book, engine, loading }) {
 
   return (
     <article className="flex flex-col gap-8">
-      <a href={paths.explore} className="press -ml-2 flex w-fit items-center gap-1.5 rounded-full px-2 py-1.5 text-sm text-ink-300 hover:text-white">
+      <a href={paths.explore} className="press -ml-2 flex min-h-11 w-fit items-center gap-1.5 rounded-full px-3 py-2 text-sm text-ink-300 hover:text-white">
         <ArrowLeft size={16} aria-hidden="true" /> Biblioteca
       </a>
 
       <header className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-end sm:text-left">
         <div
-          className="aspect-square w-56 shrink-0 overflow-hidden rounded-3xl bg-ink-800 sm:w-60"
+          className="aspect-square w-56 max-w-full shrink-0 overflow-hidden rounded-3xl bg-ink-800 sm:w-60"
           style={{ boxShadow: `0 30px 70px -28px ${book.accentColor || '#6d5dfc'}` }}
         >
-          <Cover src={book.cover} className="h-full w-full" />
+          <Cover src={book.cover} alt={t.player.cover(book.title, book.author)} className="h-full w-full" />
         </div>
         <div className="flex min-w-0 flex-col items-center gap-3 sm:items-start">
           <p className="eyebrow">{book.author}</p>
@@ -114,7 +115,7 @@ export default function Book({ book, engine, loading }) {
           <div className={`flex max-w-2xl flex-col gap-3 text-[0.9375rem] leading-relaxed text-ink-300 ${expanded ? '' : 'line-clamp-5'}`}>
             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
           </div>
-          <button onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} className="press w-fit text-sm font-medium text-signal hover:underline">
+          <button onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} className="press min-h-11 w-fit text-sm font-medium text-signal hover:underline">
             {expanded ? 'Mostrar menos' : 'Ler mais'}
           </button>
         </section>
@@ -127,7 +128,7 @@ export default function Book({ book, engine, loading }) {
         </ol>
       </section>
 
-      <p className="text-xs text-ink-500">
+      <p className="text-xs text-ink-400">
         Fonte: Internet Archive{book.license && <> · <a href={book.license} target="_blank" rel="noreferrer noopener" className="underline underline-offset-2 hover:text-ink-300">licença</a></>}
       </p>
     </article>
