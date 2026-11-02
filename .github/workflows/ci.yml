@@ -57,6 +57,11 @@ jobs:
           npx vite preview --port 4179 &
           sleep 4
           BASE_URL=http://localhost:4179/ npm run test:publish
+      - name: Busca, autores e gêneros
+        run: |
+          npx vite preview --port 4181 &
+          sleep 4
+          BASE_URL=http://localhost:4181/ npm run test:browse
       - name: Estatísticas e backup (importar, exportar, QR)
         run: |
           npx vite preview --port 4180 &

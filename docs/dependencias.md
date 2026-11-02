@@ -64,6 +64,14 @@ Sem SDK de nenhum app: tudo são links e esquemas de URL.
 
 GitHub Actions, formulários de Issue e a CLI `gh` são recursos do próprio GitHub (gratuitos em repositório público).
 
+## Fase 7 — Busca, autores e gêneros
+
+| Pacote | Uso | Licença |
+|---|---|---|
+| `minisearch` 7.2.0 | índice de busca (gerado no build, consultado no navegador) | MIT |
+
+Autores e gêneros não usam dependências novas (regras em `config/genres.json`).
+
 ## Fase 7 — Estatísticas e backup
 
 Nenhuma dependência nova. O backup usa `CompressionStream`/`DecompressionStream` (API do navegador) e o `qrcode-generator` (MIT) que já existia;

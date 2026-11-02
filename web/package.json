@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-feed.mjs && node scripts/build-share-pages.mjs && node scripts/validate-feed.mjs",
+    "build": "vite build && node scripts/build-feed.mjs && node scripts/build-share-pages.mjs && node scripts/build-search.mjs && node scripts/validate-feed.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "build:fast": "vite build && node scripts/build-feed.mjs --offline && node scripts/build-share-pages.mjs && node scripts/validate-feed.mjs",
+    "build:fast": "vite build && node scripts/build-feed.mjs --offline && node scripts/build-share-pages.mjs && node scripts/build-search.mjs && node scripts/validate-feed.mjs",
     "test": "vitest run",
     "test:contrast": "node scripts/contrast.mjs",
     "test:a11y": "node e2e/a11y.mjs",
@@ -18,7 +18,8 @@
     "test:offline": "node e2e/offline.mjs",
     "test:subscribe": "node e2e/subscribe.mjs",
     "test:publish": "node e2e/publish.mjs",
-    "test:mydata": "node e2e/mydata.mjs"
+    "test:mydata": "node e2e/mydata.mjs",
+    "test:browse": "node e2e/browse.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
@@ -26,6 +27,7 @@
     "@fontsource/atkinson-hyperlegible": "^5.3.0",
     "@fontsource/opendyslexic": "^5.3.0",
     "lucide-react": "^1.65.0",
+    "minisearch": "^7.2.0",
     "qrcode-generator": "^2.0.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

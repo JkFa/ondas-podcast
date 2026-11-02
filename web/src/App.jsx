@@ -27,7 +27,9 @@ import { navigate, paths, useRoute } from './hooks/useRoute'
 import { authorOf, buildBooks, partLabel } from './lib/books'
 import { episodeShareUrl } from './lib/share'
 import { announce } from './lib/announce'
-import { formatTime } from './lib/format'
+import { formatDuration, formatTime } from './lib/format'
+import { authorBySlug, buildAuthors } from './lib/authors'
+import { groupByGenre } from './lib/genres'
 import { t } from './strings'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
 import Book from './views/Book'
@@ -36,7 +38,9 @@ import Explore from './views/Explore'
 import Home from './views/Home'
 import Notes from './views/Notes'
 import Publish from './views/Publish'
+import Authors from './views/Authors'
 import Backup from './views/Backup'
+import Collection from './views/Collection'
 import Saved from './views/Saved'
 import Stats from './views/Stats'
 import Subscribe from './views/Subscribe'
@@ -89,6 +93,10 @@ export default function App() {
     onHelp: () => setHelpOpen(true),
   })
   const books = useMemo(() => buildBooks(episodes), [episodes])
+  const authors = useMemo(() => buildAuthors(books), [books])
+  const genreGroups = useMemo(() => groupByGenre(books), [books])
+  const author = route.name === 'author' ? authorBySlug(authors, route.slug) : undefined
+  const genre = route.name === 'genre' ? genreGroups.find((g) => g.id === route.id) : undefined
   const book = route.name === 'book' ? books.find((b) => b.slug === route.slug) : undefined
   const transcript = useTranscript(engine.current, transcriptOn || prefs.captions)
   /** Link compartilhável de um episódio (e ponto, em segundos): página estática com prévia nas redes que redireciona ao app. */
@@ -106,6 +114,7 @@ export default function App() {
   )
   const shareBook = useCallback((b) => setShareTarget({ key: `book:${b.slug}`, kind: 'book', slug: b.slug, title: b.title, author: b.author, cover: b.cover, accentColor: b.accentColor }), [])
   const shareSubscribe = useCallback(() => setShareTarget({ key: 'subscribe', kind: 'subscribe', title: t.subscribe.title, cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
+  const shareCollection = useCallback((kind, path, title, books) => setShareTarget({ key: `${kind}:${path}`, kind, path, title, cover: books.find((b) => b.cover)?.cover, accentColor: books[0]?.accentColor }), [])
   const shareSite = useCallback(() => setShareTarget({ key: 'site', kind: 'site', title: 'Ondas', cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
 
   const playerAccent = useAccent(engine.current)
@@ -130,8 +139,12 @@ export default function App() {
   // Título da página por rota (leitores de tela anunciam) e foco no conteúdo ao navegar.
   const firstRoute = useRef(true)
   useEffect(() => {
-    document.title = route.name === 'book' ? (book ? t.titles.book(book.title) : t.titles.notFound) : t.titles[route.name]
-  }, [route.name, route.key, book])
+    document.title =
+      route.name === 'book' ? (book ? t.titles.book(book.title) : t.titles.notFound)
+      : route.name === 'author' ? (author ? t.titles.author(author.name) : t.titles.notFound)
+      : route.name === 'genre' ? (genre ? t.titles.genre(genre.label) : t.titles.notFound)
+      : t.titles[route.name]
+  }, [route.name, route.key, book, author, genre])
   useEffect(() => {
     if (firstRoute.current) { firstRoute.current = false; return }
     document.getElementById('conteudo')?.focus({ preventScroll: true })
@@ -164,8 +177,8 @@ export default function App() {
     }
   }
 
-  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : ['stats', 'backup'].includes(route.name) ? 'saved' : route.name
-  const wide = ['home', 'explore', 'book', 'subscribe', 'publish'].includes(route.name)
+  const view = ['book', 'authors', 'author', 'genre'].includes(route.name) ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : ['stats', 'backup'].includes(route.name) ? 'saved' : route.name
+  const wide = ['home', 'explore', 'book', 'subscribe', 'publish', 'author', 'genre'].includes(route.name)
   const hasPlayer = !!engine.current
 
   return (
@@ -194,7 +207,14 @@ export default function App() {
           </header>
           <main id="conteudo" tabIndex={-1} aria-label={t.main} className="outline-none focus-visible:outline-none">
             {route.name === 'home' && <Home books={books} episodes={episodes} engine={engine} loading={loading} />}
-            {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} />}
+            {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} genres={genreGroups} />}
+            {route.name === 'authors' && <Authors authors={authors} loading={loading} />}
+            {route.name === 'author' && (
+              <Collection eyebrow={t.browse.authorEyebrow} title={author?.name} lead={author && t.browse.authorLead(author.books.length, formatDuration(author.duration))} books={author?.books} engine={engine} loading={loading} onShare={() => shareCollection('author', `autor/${encodeURIComponent(author.slug)}/`, author.name, author.books)} />
+            )}
+            {route.name === 'genre' && (
+              <Collection eyebrow={t.browse.genreEyebrow} title={genre?.label} lead={genre && t.browse.genreLead(genre.books.length)} books={genre?.books} engine={engine} loading={loading} onShare={() => shareCollection('genre', `genero/${encodeURIComponent(genre.id)}/`, genre.label, genre.books)} />
+            )}
             {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}

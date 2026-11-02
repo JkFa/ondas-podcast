@@ -6,6 +6,9 @@ import { sanitize as sanitizePrefs } from './prefs'
 import { mergeStats, sanitizeStats } from './stats'
 
 export const BACKUP_VERSION = 1
+// Quanto menor o QR, mais fácil a câmera do celular lê (menos módulos por lado). 600 caracteres em nível L ≈ 85×85 módulos.
+export const QR_MAX_CHARS = 600
+export const QR_EC = 'L'
 export const MAX_FILE_BYTES = 2 * 1024 * 1024
 export const KEYS = ['progress', 'favorites', 'queue', 'rate', 'volume', 'transcript-on', 'a11y', 'imported', 'stats']
 const LIMITS = { progress: 6000, ids: 6000, imported: 500 }
@@ -173,7 +176,7 @@ export async function decodeCompact(str) {
  * Maior número de episódios com progresso cujo link cabe em `maxChars`. Devolve { url, count, total } (url null se nem o
  * mínimo cabe). `base` é o endereço do app (…/ondas-podcast/).
  */
-export async function qrLink(data, base, maxChars = 1100) {
+export async function qrLink(data, base, maxChars = QR_MAX_CHARS) {
   const total = Object.keys(data.progress || {}).length
   const make = async (n) => `${base}#/backup?d=${await encodeCompact(compact(data, n))}`
   let lo = 0

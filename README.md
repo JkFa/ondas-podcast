@@ -346,12 +346,30 @@ outro aparelho** (`#/backup`). Os atalhos ficam em *Salvos* e no rodapé.
   recente, favoritos e fila são somados e as estatísticas ficam com o maior valor de cada dia, então importar o mesmo arquivo duas vezes
   não duplica nada; suas preferências não mudam. *Substituir*: o que o backup traz troca o que há aqui, inclusive as preferências.
 - **QR code**: é um link `#/backup?d=…` com os dados compactados (deflate + base64url). A câmera do outro aparelho abre o link; o Ondas
-  mostra a prévia e só grava depois da confirmação. **Limite honesto:** um QR comporta pouco (o link fica em ~1.100 caracteres), então
+  mostra a prévia e só grava depois da confirmação. **Limite honesto:** um QR comporta pouco; para a câmera do celular ler fácil o link fica em até 600 caracteres (≈ 85×85 módulos, correção de erro L, exibido a 320 px), então
   ele leva o progresso dos episódios *mais recentes*, os favoritos, a fila e a velocidade. Para levar tudo, use o arquivo. A tela diz
-  quantos episódios couberam.
+  quantos episódios couberam (cerca de 25–30).
+- **Como o QR foi verificado:** decodificado por software (jsQR no e2e e OpenCV com ruído, desfoque, rotação e JPEG). Nessa simulação severa,
+  QRs de 1.100 caracteres falharam bastante; por isso o limite caiu para 600. **Não** foi testado com câmeras de celulares reais.
 - **Segurança**: tudo o que entra é tratado como texto não confiável (tipos, tamanhos, 2 MB no máximo, chaves conhecidas, `__proto__`
   ignorado, preferências e episódios revalidados). Ao importar, a página recarrega e o app antigo fica proibido de gravar, para a posição
   do áudio que estava tocando não sobrescrever o backup.
+
+## Busca, autores e gêneros
+
+- **Busca (Biblioteca):** índice MiniSearch gerado no build (`web/scripts/build-search.mjs` → `search-index.json`, ~190 kB, baixado só quando a
+  pessoa foca a busca e guardado para uso offline). Procura em título, autor, descrição, assuntos, títulos das partes, **capítulos** e no **texto das
+  transcrições**, sem acento, sem diferença de maiúsculas, com prefixo e tolerância a erro de digitação. Os trechos falados aparecem com a palavra
+  marcada e levam ao episódio no segundo certo (`#/livro/<obra>?ep=<id>&t=<s>`). O total de resultados é anunciado a leitores de tela.
+  Se o índice não carregar, a busca simples por título e autor continua funcionando.
+- **Limite honesto:** só os episódios com transcrição entram na busca por trecho falado. Hoje são 5 de 1.669 (a tela mostra esse número ao buscar).
+  Para ampliar, rode `pipeline/transcribe_backlog.py` (Whisper em CPU leva 2–3× o tempo do áudio) ou publique novos episódios com `--transcribe`.
+- **Autores** (`#/autores`, `#/autor/<nome>`): agrupados pelo nome da obra, sem diferença de acento ou maiúsculas. Nomes escritos de formas diferentes
+  no archive.org (por exemplo "Machado de Assis" e "Joaquim Maria Machado de Assis") aparecem como autores separados.
+- **Gêneros** (`#/genero/<id>`): classificação **automática** por palavras-chave (`config/genres.json`, editável) aplicadas aos assuntos que o archive.org
+  registra (`tags` no catálogo, preenchidas por `pipeline/enrich_subjects.py` e, nas próximas importações, por `import_archive.py`), ao título e à série.
+  O archive.org não tem campo de gênero, então há erros e uma obra pode estar em mais de um; quem não casa vai para "Outros".
+- Autores e gêneros têm botão de compartilhar e páginas estáticas com prévia nas redes (`/autor/<slug>/`, `/genero/<id>/`).
 
 ## Acessibilidade (WCAG 2.2 AA)
 

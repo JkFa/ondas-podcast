@@ -272,3 +272,9 @@ def test_review_requires_confirmation_without_terminal(tmp_path, monkeypatch):
     assert e.value.code == P.EXIT_CONFIRM and (tmp_path / "m.yaml").exists() and seen
     Args.yes = True
     assert P.review(M.heuristic(CTX), tmp_path / "m2.yaml", CTX, Args(), True, lambda m: None)["title"]
+
+
+def test_heuristic_does_not_take_a_surname_for_religion():
+    """Regressão do teste real da Issue #1: "Qorpo Santo" (autor de teatro) foi classificado como Religião e espiritualidade."""
+    ctx = {"segments": [{"start": 0, "end": 6, "text": "Ato único de Matheus e Matheusa, por Qorpo Santo. Personagens: Mateus, Mateusa, Silvestra."}], "duration": 600}
+    assert M.heuristic(ctx)["category"] != "Religion & Spirituality"

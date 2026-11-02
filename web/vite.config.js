@@ -18,7 +18,7 @@ export default defineConfig({
       injectRegister: false, // o registro é feito em src/hooks/usePwa.js
       manifest: false, // usamos public/manifest.webmanifest
       injectManifest: {
-        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest,woff2}', 'catalog.json'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest,woff2}', 'catalog.json', 'search-index.json'],
         // Fontes opcionais (acessibilidade) entram só quando usadas; o resto abaixo não faz parte do app.
         globIgnores: ['**/opendyslexic*', '**/atkinson*', 'obra/**', 'episodio/**', 'embed/**', 'transcripts/**', 'feed.xml', 'cover-1400.png'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,

@@ -1,5 +1,5 @@
 // Utilitários da transcrição (puros, testados em transcript.test.js).
-import { formatTime } from './format'
+import { formatTime } from './format.js'
 
 /** Mesma regra de pipeline/transcripts.py: quebra numa pausa > gap s, acima de max_chars ou de max_segments. */
 export function toParagraphs(segments, { gap = 1.5, maxChars = 600, maxSegments = 6 } = {}) {

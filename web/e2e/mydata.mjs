@@ -286,12 +286,12 @@ const file = (page, content, name = 'backup.json') => page.locator('input[type=f
       const el = document.querySelector('svg[aria-label^="QR code"]')
       const img = new Image(); img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(el))}`
       await img.decode()
-      const c = document.createElement('canvas'); c.width = 1400; c.height = 1400
-      const ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0, 1400, 1400)
-      return { data: Array.from(ctx.getImageData(0, 0, 1400, 1400).data), w: 1400, h: 1400 }
+      const c = document.createElement('canvas'); c.width = 1000; c.height = 1000
+      const ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0, 1000, 1000)
+      return { data: Array.from(ctx.getImageData(0, 0, 1000, 1000).data), w: 1000, h: 1000 }
     })
     const res = jsQR(Uint8ClampedArray.from(px.data), px.w, px.h)
-    return { ok: res?.data === link && link.length <= 1100 && link.includes('#/backup?d='), detail: `${link.length} caracteres` }
+    return { ok: res?.data === link && link.length <= 600 && link.includes('#/backup?d='), detail: `${link.length} caracteres` }
   })
   await scan(a, 'axe: backup com QR')
   await a.context().close()

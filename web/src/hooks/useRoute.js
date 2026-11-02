@@ -7,7 +7,9 @@ const subscribe = (cb) => {
   return () => window.removeEventListener('hashchange', cb)
 }
 
-export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos', downloads: '#/downloads', subscribe: '#/assinar', publish: '#/publicar', stats: '#/estatisticas', backup: '#/backup' }
+export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos', downloads: '#/downloads', subscribe: '#/assinar', publish: '#/publicar', stats: '#/estatisticas', backup: '#/backup', authors: '#/autores' }
+export const authorPath = (slug) => `#/autor/${encodeURIComponent(slug)}`
+export const genrePath = (id) => `#/genero/${encodeURIComponent(id)}`
 export const bookPath = (slug) => `#/livro/${encodeURIComponent(slug)}`
 
 export function useRoute() {
@@ -23,6 +25,9 @@ export function useRoute() {
     }
     if (a === 'biblioteca') return { name: 'explore', key: 'biblioteca' }
     if (a === 'notas') return { name: 'notes', key: 'notas' }
+    if (a === 'autores') return { name: 'authors', key: 'autores' }
+    if (a === 'autor' && b) return { name: 'author', slug: decodeURIComponent(b), key: `autor/${b}` }
+    if (a === 'genero' && b) return { name: 'genre', id: decodeURIComponent(b), key: `genero/${b}` }
     if (a === 'estatisticas') return { name: 'stats', key: 'estatisticas' }
     if (a === 'backup') return { name: 'backup', key: 'backup', query }
     if (a === 'publicar') return { name: 'publish', key: 'publicar' }

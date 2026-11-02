@@ -2,7 +2,7 @@ import { Copy, Download, FileUp, QrCode as QrIcon } from 'lucide-react'
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import QrCode from '../components/QrCode'
 import { announce } from '../lib/announce'
-import { MAX_FILE_BYTES, applyData, backupFilename, buildBackup, decodeCompact, KEYS, parseBackup, qrLink, summarizeData } from '../lib/backup'
+import { MAX_FILE_BYTES, QR_EC, applyData, backupFilename, buildBackup, decodeCompact, KEYS, parseBackup, qrLink, summarizeData } from '../lib/backup'
 import { spokenDuration } from '../lib/stats'
 import { freezeWrites, load, save } from '../lib/storage'
 import { downloadText } from '../lib/transcript'
@@ -159,7 +159,7 @@ export default function Backup({ route }) {
         {qr.state === 'none' && <p className="text-sm text-ink-400">{b.qrNone}</p>}
         {qr.state === 'ready' && (
           <div className="glass flex flex-col items-center gap-4 rounded-3xl p-5 sm:flex-row sm:items-start">
-            <QrCode value={qr.url} size={232} label={b.qrAlt} />
+            <QrCode value={qr.url} size={320} ec={QR_EC} label={b.qrAlt} />
             <div className="flex flex-col gap-3 text-sm text-ink-300">
               <p>{b.qrNote(qr.count, qr.total)}</p>
               <p>{b.qrHow}</p>

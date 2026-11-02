@@ -13,7 +13,10 @@
         "http://localhost:4174/#/assinar",
         "http://localhost:4174/#/publicar",
         "http://localhost:4174/#/estatisticas",
-        "http://localhost:4174/#/backup"
+        "http://localhost:4174/#/backup",
+        "http://localhost:4174/#/autores",
+        "http://localhost:4174/#/autor/jose-de-alencar",
+        "http://localhost:4174/#/genero/poesia"
       ],
       "numberOfRuns": 1,
       "settings": {

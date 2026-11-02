@@ -28,7 +28,7 @@ outros outras mesmo mesma coisa coisas fazer faz fez vai vão vou pode podem pos
 PROFANITY = set("porra caralho merda foda foder puta buceta cacete viado cuzão".split())
 CATEGORY_KEYWORDS = {
     "History": "história histórico século império guerra rei revolução antigo medieval colonial",
-    "Religion & Spirituality": "deus bíblia igreja fé oração espiritual santo jesus religião sermão",
+    "Religion & Spirituality": "deus bíblia igreja fé oração espiritual jesus religião sermão evangelho",
     "Science": "ciência científico pesquisa universo física química biologia experimento",
     "Technology": "tecnologia software computador internet programação código dados digital",
     "Business": "empresa negócio mercado dinheiro investimento carreira empreendedor vendas",

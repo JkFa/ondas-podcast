@@ -2,7 +2,7 @@
 // Episódio sem `series` vira um livro de uma parte só.
 import { progressInfo } from './progress.js'
 
-const slugify = (s) =>
+export const slugify = (s) =>
   String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
 
 export const authorOf = (ep) => ep.show.replace(/^LibriVox\s*·\s*/i, '')

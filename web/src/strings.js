@@ -6,7 +6,7 @@ export const t = {
   site: { name: 'Ondas', tagline: 'Áudios e podcasts indies arquivados e prontos para ouvir.' },
 
   skip: 'Pular para o conteúdo',
-  titles: { home: 'Ondas — áudios e podcasts indies', explore: 'Biblioteca — Ondas', notes: 'Notas — Ondas', saved: 'Salvos — Ondas', stats: 'Minhas estatísticas — Ondas', backup: 'Levar para outro aparelho — Ondas', publish: 'Publique o seu episódio — Ondas', subscribe: 'Ouça no seu app — Ondas', downloads: 'Meus downloads — Ondas', book: (title) => `${title} — Ondas`, notFound: 'Obra não encontrada — Ondas' },
+  titles: { authors: 'Autores — Ondas', author: (name) => `${name} — Ondas`, genre: (label) => `${label} — Ondas`, home: 'Ondas — áudios e podcasts indies', explore: 'Biblioteca — Ondas', notes: 'Notas — Ondas', saved: 'Salvos — Ondas', stats: 'Minhas estatísticas — Ondas', backup: 'Levar para outro aparelho — Ondas', publish: 'Publique o seu episódio — Ondas', subscribe: 'Ouça no seu app — Ondas', downloads: 'Meus downloads — Ondas', book: (title) => `${title} — Ondas`, notFound: 'Obra não encontrada — Ondas' },
   main: 'Conteúdo principal',
 
   nav: {
@@ -113,6 +113,37 @@ export const t = {
     embedCopy: 'Copiar código',
     embedCopied: 'Código copiado',
     shareSite: 'Compartilhar o Ondas',
+  },
+
+  search: {
+    label: 'Buscar na biblioteca',
+    placeholder: 'Buscar por título, autor, assunto ou trecho falado',
+    loading: 'Carregando a busca…',
+    fallback: 'A busca avançada não carregou; usando a busca simples por título e autor.',
+    count: (w, p) => `${w} ${w === 1 ? 'obra' : 'obras'}${p ? ` e ${p} ${p === 1 ? 'trecho' : 'trechos'}` : ''} encontrad${w === 1 && !p ? 'a' : 'as'}.`,
+    none: (q) => `Nada encontrado para “${q}”.`,
+    passagesTitle: 'Em trechos falados e capítulos',
+    chapterTag: 'Capítulo',
+    spokenTag: 'Trecho falado',
+    open: (work, at) => `Abrir ${work} em ${at}`,
+    coverage: (n, total) => `${n} de ${total} episódios têm transcrição; nos demais a busca olha título, autor, descrição, assuntos e capítulos.`,
+  },
+
+  browse: {
+    genres: 'Gêneros',
+    genresHint: 'Classificação automática pelos assuntos do archive.org.',
+    authors: 'Autores',
+    allAuthors: 'Ver todos os autores',
+    authorsTitle: 'Autores',
+    authorsLead: (n) => `${n} autores na biblioteca.`,
+    authorEyebrow: 'Autor',
+    genreEyebrow: 'Gênero',
+    worksCount: (n) => `${n} ${n === 1 ? 'obra' : 'obras'}`,
+    authorLead: (n, time) => `${n} ${n === 1 ? 'obra' : 'obras'} · ${time}`,
+    genreLead: (n) => `${n} ${n === 1 ? 'obra' : 'obras'}. A classificação é automática, feita pelos assuntos que o archive.org registra; pode haver erros.`,
+    backLibrary: 'Biblioteca',
+    notFound: 'Não encontramos esta página.',
+    moreByAuthor: (name) => `Mais de ${name}`,
   },
 
   stats: {

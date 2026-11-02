@@ -1,0 +1,13 @@
+{
+  "_comment": "Gêneros do site. Uma obra entra em todos os gêneros cujas palavras aparecem nas tags (assuntos do archive.org ou gerados no pipeline), no título ou na série. Comparação sem acento e sem maiúsculas, por prefixo de palavra. Quem não casa com nenhum fica em 'outros'. Edite à vontade.",
+  "genres": [
+    { "id": "romance", "label": "Romance", "keywords": ["romance", "romantismo", "novel", "realismo", "naturalism", "melodrama", "folhetim"] },
+    { "id": "contos-e-fabulas", "label": "Contos e fábulas", "keywords": ["conto", "contos", "fabula", "fabulas", "fairy", "fadas", "infantil", "children", "short stor", "grimm", "esopo"] },
+    { "id": "poesia", "label": "Poesia", "keywords": ["poesia", "poema", "poemas", "poetry", "poetic", "soneto", "verso", "versos"] },
+    { "id": "teatro", "label": "Teatro", "keywords": ["teatro", "theater", "theatre", "drama", "comedia", "peca de teatro"] },
+    { "id": "cronicas-e-ensaios", "label": "Crônicas e ensaios", "keywords": ["cronica", "cronicas", "ensaio", "ensaios", "essay", "memoria", "memorias", "memoir", "cartas", "filosofia", "philosoph", "discurso", "biografia", "non-fiction", "nonfiction"] },
+    { "id": "biblia-e-religiao", "label": "Bíblia e religião", "keywords": ["biblia", "bible", "religion", "religiao", "sermon", "sermoes", "evangelho", "genesis", "salmos", "cristian"] },
+    { "id": "misterio-e-aventura", "label": "Mistério e aventura", "keywords": ["misterio", "mystery", "policial", "detetive", "detective", "aventura", "adventure", "terror", "horror", "gotico", "fantas", "science fiction", "ficcao cientifica", "suspense"] }
+  ],
+  "other": { "id": "outros", "label": "Outros" }
+}

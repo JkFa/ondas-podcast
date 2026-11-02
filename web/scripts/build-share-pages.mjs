@@ -7,13 +7,17 @@
 //
 // Não usa a rede: roda em segundos a partir de public/catalog.json. Uso: node scripts/build-share-pages.mjs
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { buildAuthors } from '../src/lib/authors.js'
 import { buildBooks, partLabel } from '../src/lib/books.js'
+import { createGenres } from '../src/lib/genres-core.js'
 import { site } from './site.mjs'
 import { clip, escHtml, fmt, synopsis } from './text.mjs'
 
 const root = new URL('../', import.meta.url)
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const books = buildBooks(episodes)
+const genres = createGenres(JSON.parse(await readFile(new URL('../config/genres.json', root), 'utf8'))).groupByGenre(books)
+const authors = buildAuthors(books)
 
 const esc = escHtml
 
@@ -104,6 +108,35 @@ for (const b of books) {
     }))
   }
 }
+// Autores e gêneros: prévia com a capa da primeira obra e redirecionamento para #/autor/<slug> e #/genero/<id>
+const listing = (list) => {
+  const names = list.slice(0, 3).map((b) => b.title).join(', ')
+  return `${list.length} ${list.length === 1 ? 'obra' : 'obras'}: ${names}${list.length > 3 ? '…' : ''}.`
+}
+for (const a of authors) {
+  await write(`autor/${encodeURIComponent(a.slug)}`, page({
+    url: `${site}autor/${encodeURIComponent(a.slug)}/`,
+    title: a.name,
+    description: clip(`${a.name} no Ondas. ${listing(a.books)}`, 200),
+    image: a.books.find((b) => b.cover)?.cover,
+    redirect: { up: '../../', hash: `#/autor/${encodeURIComponent(a.slug)}`, withTime: false },
+    heading: a.name,
+    lead: `${a.books.length} ${a.books.length === 1 ? 'obra' : 'obras'} · ${fmt(a.duration)}`,
+    cta: 'Ver as obras no Ondas',
+  }))
+}
+for (const g of genres) {
+  await write(`genero/${encodeURIComponent(g.id)}`, page({
+    url: `${site}genero/${encodeURIComponent(g.id)}/`,
+    title: g.label,
+    description: clip(`${g.label} no Ondas. ${listing(g.books)}`, 200),
+    image: g.books.find((b) => b.cover)?.cover,
+    redirect: { up: '../../', hash: `#/genero/${encodeURIComponent(g.id)}`, withTime: false },
+    heading: g.label,
+    lead: `${g.books.length} ${g.books.length === 1 ? 'obra' : 'obras'}`,
+    cta: 'Ver as obras no Ondas',
+  }))
+}
 // Página de assinatura (compartilhar o catálogo): prévia própria e redireciona para #/assinar
 await write('assinar', page({
   url: `${site}assinar/`,
@@ -115,4 +148,4 @@ await write('assinar', page({
   lead: 'Assine o Ondas no app de podcasts que você já usa.',
   cta: 'Escolher o app',
 }))
-console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios) + assinar`)
+console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios) + ${authors.length} autores + ${genres.length} gêneros + assinar`)
