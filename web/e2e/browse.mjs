@@ -101,7 +101,8 @@ const status = (page) => page.locator('[role=status][aria-label="Avisos"]')
     await page.getByRole('button', { name: 'Concluídos' }).click()
     await page.getByText(/Nenhuma obra nesta seção|Nada encontrado/).first().waitFor()
     await page.getByRole('button', { name: 'Todos' }).click()
-    return (await bookCards(page).count()) > 0
+    await bookCards(page).first().waitFor()
+    return true
   })
   await box(page).fill('naomi sogra')
   await page.locator('#pass-h ~ ol a').first().waitFor()
@@ -126,6 +127,7 @@ const status = (page) => page.locator('[role=status][aria-label="Avisos"]')
   await go(page, '#/biblioteca')
   await check('gêneros', 'a Biblioteca mostra os gêneros com a contagem e o atalho para os autores', async () => {
     const nav = page.getByRole('navigation', { name: 'Gêneros' })
+    await nav.waitFor()
     const names = await nav.getByRole('link').allInnerTexts()
     return { ok: names.length >= 6 && names.some((n) => /^Poesia\s*\d+/.test(n)) && names.some((n) => /todos os autores/.test(n)), detail: names.map((n) => n.replace(/\s+/g, ' ')).join(' | ') }
   })
@@ -160,6 +162,7 @@ const status = (page) => page.locator('[role=status][aria-label="Avisos"]')
   const page = await newPage()
   await go(page, '#/autores')
   await check('autores', 'índice com dezenas de autores em ordem alfabética', async () => {
+    await page.locator('main ul li a').first().waitFor()
     const names = await page.locator('main ul li a').evaluateAll((els) => els.map((e) => e.querySelector('span')?.textContent))
     const sorted = [...names].sort((a, b) => a.localeCompare(b, 'pt-BR'))
     return { ok: names.length >= 30 && JSON.stringify(names) === JSON.stringify(sorted) && (await page.title()) === 'Autores — Ondas', detail: `${names.length} autores` }
