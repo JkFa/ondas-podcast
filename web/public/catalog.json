@@ -28893,6 +28893,76 @@
       "source": "local",
       "series": "Helena",
       "part": 28
+    },
+    {
+      "schemaVersion": 1,
+      "id": "matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102",
+      "title": "Matheus e Matheusa — ato único de Qorpo Santo",
+      "show": "Teatro em domínio público · Qorpo Santo (texto) · voluntários do LibriVox (leitura)",
+      "description": "Ato único de Qorpo Santo (século XIX), precursor do teatro do absurdo no Brasil. Um casal de idosos, Mateus e Mateusa, acusa-se mutuamente de abandono depois de 50 anos de convivência, e as filhas Silvestra, Pêdra e Catarina \"cantam\" o que sentem pelos pais. Gravação do LibriVox em domínio público, lida por vários voluntários. Episódio de teste do fluxo automático de publicação do Ondas.",
+      "shortDescription": "Comédia de Qorpo Santo em ato único, lida por voluntários do LibriVox. Um casal de idosos se acusa de abandono depois de 50 anos juntos.",
+      "audioUrl": "https://archive.org/download/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102.mp3",
+      "archiveId": "matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102",
+      "cover": "https://archive.org/download/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102/cover.jpg",
+      "accentColor": "#6d5dfc",
+      "duration": 1642,
+      "publishedAt": "2026-11-02T02:42:56Z",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseName": "CC0 1.0",
+      "language": "pt",
+      "category": "Arts",
+      "explicit": false,
+      "source": "local",
+      "sha256": "bdbdb41d051cda7b76006e8c747b144631b4235ec586d45624c9aee5c5e85b93",
+      "sourceSha256": "45ed2959e84df9e66fecb31ee3a16f1e1645a35b1521781231c71a0b6a45cc69",
+      "tags": [
+        "teatro",
+        "qorpo santo",
+        "comédia",
+        "teatro do absurdo",
+        "domínio público",
+        "librivox"
+      ],
+      "chapters": [
+        {
+          "start": 0,
+          "title": "Abertura"
+        },
+        {
+          "start": 206,
+          "title": "Para que, hein?"
+        },
+        {
+          "start": 412,
+          "title": "Tornando a abraçada"
+        },
+        {
+          "start": 621,
+          "title": "As filhas cantam"
+        },
+        {
+          "start": 829,
+          "title": "Pedro e Catarina"
+        },
+        {
+          "start": 1035,
+          "title": "Contente"
+        },
+        {
+          "start": 1242,
+          "title": "Que seria de mim?"
+        },
+        {
+          "start": 1450,
+          "title": "Sem orelha"
+        }
+      ],
+      "transcripts": {
+        "vtt": "https://archive.org/download/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102.vtt",
+        "txt": "https://archive.org/download/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102.txt",
+        "md": "https://archive.org/download/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102/matheus-e-matheusa-ato-unico-de-qorpo-santo-20261102.md",
+        "language": "pt"
+      }
     }
   ]
 }
