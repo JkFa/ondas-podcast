@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Download, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, BarChart3, Download, Repeat2, X } from 'lucide-react'
 import { useDownloads } from '../hooks/useDownloads'
 import { paths } from '../hooks/useRoute'
 import { formatBytes, totalBytes } from '../lib/downloads'
@@ -26,6 +26,17 @@ export default function Saved({ episodes, engine }) {
           <span className="block text-xs text-ink-400">{nDownloads ? t.downloads.downloadsSize(nDownloads, formatBytes(totalBytes(meta))) : t.downloads.empty.split('.')[0] + '.'}</span>
         </span>
       </a>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <a href={paths.stats} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+          <BarChart3 size={20} className="text-signal" aria-hidden="true" />
+          <span className="min-w-0 flex-1"><span className="block font-medium">{t.stats.link}</span><span className="block text-xs text-ink-400">{t.stats.linkHint}</span></span>
+        </a>
+        <a href={paths.backup} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+          <Repeat2 size={20} className="text-signal" aria-hidden="true" />
+          <span className="min-w-0 flex-1"><span className="block font-medium">{t.backup.link}</span><span className="block text-xs text-ink-400">{t.backup.linkHint}</span></span>
+        </a>
+      </div>
 
       <section aria-labelledby="queue-h" className="flex flex-col gap-3">
         <h2 id="queue-h" className="eyebrow">A seguir</h2>

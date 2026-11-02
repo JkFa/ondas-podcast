@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { t } from '../strings'
 
 /** QR code em SVG (gerado no navegador, sem serviço externo). Fundo branco e módulos escuros: lê bem em qualquer tema. */
-export default function QrCode({ value, size = 224 }) {
+export default function QrCode({ value, size = 224, label }) {
   const svg = useMemo(() => {
     const qr = qrcode(0, 'M')
     qr.addData(value)
@@ -17,7 +17,7 @@ export default function QrCode({ value, size = 224 }) {
     return { d, total }
   }, [value])
   return (
-    <svg role="img" aria-label={t.subscribe.qrAlt(value)} viewBox={`0 0 ${svg.total} ${svg.total}`} width={size} height={size} className="rounded-2xl bg-white" shapeRendering="crispEdges">
+    <svg role="img" aria-label={label ?? t.subscribe.qrAlt(value)} viewBox={`0 0 ${svg.total} ${svg.total}`} width={size} height={size} className="rounded-2xl bg-white" shapeRendering="crispEdges">
       <path d={svg.d} fill="#0b0b14" />
     </svg>
   )

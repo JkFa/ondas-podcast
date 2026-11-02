@@ -17,7 +17,8 @@
     "test:share": "node e2e/share.mjs",
     "test:offline": "node e2e/offline.mjs",
     "test:subscribe": "node e2e/subscribe.mjs",
-    "test:publish": "node e2e/publish.mjs"
+    "test:publish": "node e2e/publish.mjs",
+    "test:mydata": "node e2e/mydata.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",

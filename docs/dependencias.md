@@ -63,3 +63,8 @@ Sem SDK de nenhum app: tudo são links e esquemas de URL.
 | Ollama / API compatível com a da OpenAI | opcionais; só se você configurar `AI_*` ou rodar o Ollama | conforme o provedor |
 
 GitHub Actions, formulários de Issue e a CLI `gh` são recursos do próprio GitHub (gratuitos em repositório público).
+
+## Fase 7 — Estatísticas e backup
+
+Nenhuma dependência nova. O backup usa `CompressionStream`/`DecompressionStream` (API do navegador) e o `qrcode-generator` (MIT) que já existia;
+o teste e2e reutiliza o `jsqr` (Apache-2.0) para ler o QR gerado.

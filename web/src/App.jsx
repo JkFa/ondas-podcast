@@ -36,7 +36,9 @@ import Explore from './views/Explore'
 import Home from './views/Home'
 import Notes from './views/Notes'
 import Publish from './views/Publish'
+import Backup from './views/Backup'
 import Saved from './views/Saved'
+import Stats from './views/Stats'
 import Subscribe from './views/Subscribe'
 
 export default function App() {
@@ -162,7 +164,7 @@ export default function App() {
     }
   }
 
-  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : route.name
+  const view = route.name === 'book' ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : ['stats', 'backup'].includes(route.name) ? 'saved' : route.name
   const wide = ['home', 'explore', 'book', 'subscribe', 'publish'].includes(route.name)
   const hasPlayer = !!engine.current
 
@@ -197,6 +199,8 @@ export default function App() {
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}
             {route.name === 'saved' && <Saved episodes={episodes} engine={engine} />}
             {route.name === 'publish' && <Publish />}
+            {route.name === 'stats' && <Stats books={books} engine={engine} />}
+            {route.name === 'backup' && <Backup route={route} />}
             {route.name === 'subscribe' && <Subscribe books={books} onShare={shareSubscribe} />}
             {route.name === 'downloads' && <Downloads episodes={episodes} engine={engine} pwa={pwa} />}
           </main>
@@ -213,6 +217,10 @@ export default function App() {
               <a href={paths.subscribe} className="underline underline-offset-2 hover:text-ink-200">{t.subscribe.link}</a>
               {' · '}
               <a href={paths.downloads} className="underline underline-offset-2 hover:text-ink-200">{t.downloads.link}</a>
+              {' · '}
+              <a href={paths.stats} className="underline underline-offset-2 hover:text-ink-200">{t.stats.link}</a>
+              {' · '}
+              <a href={paths.backup} className="underline underline-offset-2 hover:text-ink-200">{t.backup.link}</a>
               {' · '}
               <button onClick={shareSite} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.share.shareSite}</button>
             </p>

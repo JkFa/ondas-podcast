@@ -11,7 +11,13 @@ export function load(key, fallback) {
   }
 }
 
-export function save(key, value) {
+// Durante a restauração de um backup a página recarrega em seguida; escritas do app antigo (posição do áudio, preferências)
+// não podem sobrescrever o que acabou de ser importado.
+let frozen = false
+export const freezeWrites = () => { frozen = true }
+
+export function save(key, value, { force = false } = {}) {
+  if (frozen && !force) return
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value))
   } catch {

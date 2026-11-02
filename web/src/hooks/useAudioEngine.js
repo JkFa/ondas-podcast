@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { announce } from '../lib/announce'
 import { t } from '../strings'
 import { DONE_RATIO, progressInfo } from '../lib/progress'
+import { EMPTY_STATS, addListening, sanitizeStats, tickDelta } from '../lib/stats'
 import { usePersistentState } from './usePersistentState'
 
 export { DONE_RATIO, progressInfo }
@@ -27,6 +28,7 @@ export function useAudioEngine(episodes, { isPlayable } = {}) {
   const [queue, setQueue] = usePersistentState('queue', [])
   const [rate, setRate] = usePersistentState('rate', 1)
   const [volume, setVolumeState] = usePersistentState('volume', 1)
+  const [stats, setStatsRaw] = usePersistentState('stats', EMPTY_STATS) // tempo ouvido por dia, só neste aparelho
   const [muted, setMuted] = useState(false)
   const [sleep, setSleepState] = useState({ mode: 'off', endsAt: 0, minutes: 0 }) // 'off' | 'time' | 'end'
 
@@ -39,15 +41,25 @@ export function useAudioEngine(episodes, { isPlayable } = {}) {
     live.current = { currentId, progress, queue, rate, volume, byId, sleep, isPlayable }
   })
   const lastSave = useRef(0)
+  const tick = useRef(null) // último timeupdate em reprodução contínua {media, wall}
+  const pendingListen = useRef({ c: 0, w: 0 })
   const pendingSeek = useRef(0)
 
+  const flushStats = useCallback(() => {
+    const { c, w } = pendingListen.current
+    if (!(c > 0)) return
+    pendingListen.current = { c: 0, w: 0 }
+    setStatsRaw((s) => addListening(sanitizeStats(s), c, w))
+  }, [setStatsRaw])
+
   const persistPosition = useCallback(() => {
+    flushStats()
     const a = audioRef.current
     const { currentId: id } = live.current
     if (!a || !id || !Number.isFinite(a.duration) || a.duration <= 0) return
     lastSave.current = Date.now()
     setProgress((p) => ({ ...p, [id]: { pos: a.currentTime, dur: a.duration, at: Date.now() } }))
-  }, [setProgress])
+  }, [setProgress, flushStats])
 
   const safePlay = useCallback(() => {
     // Autoplay bloqueado/interrompido não é erro de mídia.
@@ -226,11 +238,18 @@ export function useAudioEngine(episodes, { isPlayable } = {}) {
       },
       timeupdate: () => {
         setPosition(a.currentTime)
+        if (!a.paused) {
+          const now = performance.now()
+          const d = tickDelta(tick.current, a.currentTime, now, a.playbackRate)
+          if (d) { pendingListen.current.c += d.content; pendingListen.current.w += d.wall }
+          tick.current = { media: a.currentTime, wall: now }
+        }
         if (!a.paused && Date.now() - lastSave.current > SAVE_EVERY_MS) persistPosition()
       },
-      play: () => setPlaying(true),
+      play: () => { setPlaying(true); tick.current = null },
       playing: () => { setPlaying(true); setBuffering(false) },
-      pause: () => { setPlaying(false); persistPosition() },
+      pause: () => { tick.current = null; setPlaying(false); persistPosition() },
+      seeking: () => { tick.current = null },
       seeked: persistPosition,
       waiting: () => setBuffering(true),
       canplay: () => setBuffering(false),
@@ -257,7 +276,7 @@ export function useAudioEngine(episodes, { isPlayable } = {}) {
 
   return {
     audioRef, current, playing, buffering, error, position, duration, rate, volume, muted, sleep,
-    progress, favorites, queue,
+    progress, favorites, queue, stats: sanitizeStats(stats), resetStats: () => { pendingListen.current = { c: 0, w: 0 }; setStatsRaw(EMPTY_STATS) },
     select, toggle, seek, skip, playNext, playPrevious, stepRate, setPlaybackRate, setVolume, adjustVolume, toggleMute, setSleep, retry,
     toggleFavorite, enqueue, dequeue, moveInQueue,
   }

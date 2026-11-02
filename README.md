@@ -325,6 +325,34 @@ Como a transcrição chega ao catálogo (campo `transcripts`, ver o schema abaix
 - Os arquivos baixados são gerados no navegador a partir do texto carregado; **funcionar offline** depende de o
   episódio estar baixado (Fase 4), que também vai guardar o `.vtt` em cache.
 
+## Estatísticas e backup (sem conta)
+
+Duas páginas, ambas funcionando só no aparelho (nada vai para servidor): **Minhas estatísticas** (`#/estatisticas`) e **Levar para
+outro aparelho** (`#/backup`). Os atalhos ficam em *Salvos* e no rodapé.
+
+### Estatísticas pessoais
+- Mostram tempo ouvido (total, hoje e últimos 7 dias, em lista com texto além do gráfico), dias com escuta, média por dia, sequência de
+  dias seguidos, velocidade média, episódios e obras concluídas e obras em andamento.
+- O tempo é medido no player (`useAudioEngine`): conta só reprodução contínua; arrastar a barra ou pular de capítulo **não** conta,
+  e pausas longas entre eventos são descartadas. A 2× rende o dobro de áudio por segundo real.
+- Guardadas em `localStorage` (`ondas:v1:stats`, por dia, até 800 dias). O botão **Apagar minhas estatísticas** zera só o tempo, não o progresso.
+- **Limite:** não há histórico de antes deste recurso. O tempo começa a contar na primeira escuta depois da atualização; obras e episódios
+  concluídos valem para todo o histórico, porque vêm do progresso que já era salvo.
+
+### Backup e troca de aparelho
+- **Arquivo** `ondas-backup-AAAA-MM-DD.json` (legível, versão 1) com progresso, favoritos, fila, episódios adicionados por você,
+  estatísticas, velocidade, volume e preferências de acessibilidade. Não inclui os downloads offline (arquivos de áudio são do aparelho).
+- **Importar** mostra uma prévia do que vai entrar e pede confirmação. *Mesclar* (recomendado): em cada episódio vale o registro mais
+  recente, favoritos e fila são somados e as estatísticas ficam com o maior valor de cada dia, então importar o mesmo arquivo duas vezes
+  não duplica nada; suas preferências não mudam. *Substituir*: o que o backup traz troca o que há aqui, inclusive as preferências.
+- **QR code**: é um link `#/backup?d=…` com os dados compactados (deflate + base64url). A câmera do outro aparelho abre o link; o Ondas
+  mostra a prévia e só grava depois da confirmação. **Limite honesto:** um QR comporta pouco (o link fica em ~1.100 caracteres), então
+  ele leva o progresso dos episódios *mais recentes*, os favoritos, a fila e a velocidade. Para levar tudo, use o arquivo. A tela diz
+  quantos episódios couberam.
+- **Segurança**: tudo o que entra é tratado como texto não confiável (tipos, tamanhos, 2 MB no máximo, chaves conhecidas, `__proto__`
+  ignorado, preferências e episódios revalidados). Ao importar, a página recarrega e o app antigo fica proibido de gravar, para a posição
+  do áudio que estava tocando não sobrescrever o backup.
+
 ## Acessibilidade (WCAG 2.2 AA)
 
 Botão fixo no canto superior direito abre o painel **Acessibilidade** (salvo só no aparelho): tema

@@ -10,7 +10,10 @@
         "http://localhost:4174/#/notas",
         "http://localhost:4174/#/salvos",
         "http://localhost:4174/#/downloads",
-        "http://localhost:4174/#/assinar"
+        "http://localhost:4174/#/assinar",
+        "http://localhost:4174/#/publicar",
+        "http://localhost:4174/#/estatisticas",
+        "http://localhost:4174/#/backup"
       ],
       "numberOfRuns": 1,
       "settings": {
