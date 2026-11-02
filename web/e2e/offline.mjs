@@ -2,11 +2,14 @@
 //   npm run build:fast && (npx vite preview --port 4173 &) && BASE_URL=http://localhost:4173/ npm run test:offline
 // Critério de aceite: em modo avião o app abre, lista os downloads e toca do início ao fim, com saltos funcionando.
 import AxeBuilder from '@axe-core/playwright'
+import { readFileSync } from 'node:fs'
 import { chromium } from 'playwright'
 
 const BASE = (process.env.BASE_URL || 'http://localhost:4173/').replace(/\/?$/, '/')
 // Episódio curto usado nos testes: O Livro de Ruth, capítulo 3 (~3:24, ~3,8 MB)
 const SHORT_AUDIO = 'https://archive.org/download/livro_de_ruth_1811_librivox/ruth_3_almeida.mp3'
+// Quantas obras o catálogo tem agora (uma obra = série ou episódio avulso): cresce sempre que um episódio novo é publicado.
+const WORKS = new Set(JSON.parse(readFileSync(new URL('../public/catalog.json', import.meta.url), 'utf8')).episodes.map((e) => (e.series ? `s:${e.series}` : `e:${e.id}`))).size
 const results = []
 const rec = (g, n, ok, d = '') => { results.push({ g, n, ok }); console.log(`${ok ? 'OK  ' : 'FALHA'} [${g}] ${n}${d ? ` — ${d}` : ''}`) }
 const check = async (g, n, fn) => { try { const r = await fn(); rec(g, n, r === undefined || r === true || r?.ok !== false, r?.detail) } catch (e) { rec(g, n, false, String(e.message).split('\n')[0]) } }
@@ -127,12 +130,12 @@ await check('modo avião', 'a faixa "Sem conexão. Você pode ouvir os episódio
   return { ok: /Sem conexão/.test(await statusText(page)) }
 })
 await page.reload()
-await check('modo avião', 'o app ABRE sem internet (reload offline) e o catálogo carrega (71 obras)', async () => {
+await check('modo avião', 'o app ABRE sem internet (reload offline) e o catálogo carrega (todas as obras)', async () => {
   await page.waitForSelector('main h1', { timeout: 15000 })
   await page.goto(`${BASE}#/biblioteca`)
   await page.waitForSelector('a[href^="#/livro/"]', { timeout: 15000 })
   const n = await page.locator('a[href^="#/livro/"]').count()
-  return { ok: n === 71, detail: `${n} obras` }
+  return { ok: n === WORKS, detail: `${n} obras` }
 })
 await check('modo avião', 'fontes continuam as do app (sem recorrer à rede)', async () => ({ ok: await page.evaluate(() => document.fonts.check("16px 'Inter Variable'")) }))
 await check('modo avião', 'filtro "Baixados" mostra só a obra com download, com o selo Offline', async () => {

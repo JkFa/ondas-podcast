@@ -4,10 +4,13 @@
 // são conferidos na URL enviada ao sistema e no plano B quando o app não abre.
 import AxeBuilder from '@axe-core/playwright'
 import jsQR from 'jsqr'
+import { readFileSync } from 'node:fs'
 import { chromium } from 'playwright'
 
 const BASE = (process.env.BASE_URL || 'http://localhost:4173/').replace(/\/?$/, '/')
 const FEED = `${BASE}feed.xml`
+// Quantas obras o catálogo tem agora (uma obra = série ou episódio avulso): cresce sempre que um episódio novo é publicado.
+const WORKS = new Set(JSON.parse(readFileSync(new URL('../public/catalog.json', import.meta.url), 'utf8')).episodes.map((e) => (e.series ? `s:${e.series}` : `e:${e.id}`))).size
 const results = []
 const rec = (g, n, ok, d = '') => { results.push({ g, n, ok }); console.log(`${ok ? 'OK  ' : 'FALHA'} [${g}] ${n}${d ? ` — ${d}` : ''}`) }
 const check = async (g, n, fn) => { try { const r = await fn(); rec(g, n, r === undefined || r === true || r?.ok !== false, r?.detail) } catch (e) { rec(g, n, false, String(e.message).split('\n')[0]) } }
@@ -225,7 +228,7 @@ for (const [plat, expectOne, expectManualHas, expectManualNot] of [
     const ascending = info.dates?.every((d, i) => i === 0 || d > info.dates[i - 1])
     return { ok: info.title === 'O Livro de Ruth' && info.type === 'serial' && info.n === 4 && ascending && info.guids === 4 && info.types[0] === 'audio/mpeg' && info.eps.join() === '1,2,3,4' && /feeds\/o-livro-de-ruth\.xml$/.test(info.self), detail: JSON.stringify({ n: info.n, type: info.type, eps: info.eps }) }
   })
-  await check('por obra', 'os 71 feeds por obra existem e são XML válido (amostra de 10 + o geral)', async () => {
+  await check('por obra', 'os feeds por obra existem e são XML válido (amostra de 10 + o geral)', async () => {
     const cat = await (await fetch(`${BASE}catalog.json`)).json()
     const slugs = [...new Set(cat.episodes.map((e) => (e.series || e.title).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')))]
     const sample = slugs.filter((_, i) => i % 7 === 0).slice(0, 10)
@@ -236,7 +239,7 @@ for (const [plat, expectOne, expectManualHas, expectManualNot] of [
       if (!ok) bad.push(s)
     }
     const gen = await fetch(FEED)
-    return { ok: bad.length === 0 && gen.status === 200 && slugs.length === 71, detail: `${slugs.length} obras; falhas: ${bad.join(',') || 'nenhuma'}` }
+    return { ok: bad.length === 0 && gen.status === 200 && slugs.length === WORKS, detail: `${slugs.length} obras; falhas: ${bad.join(',') || 'nenhuma'}` }
   })
   await page.context().close()
 }
