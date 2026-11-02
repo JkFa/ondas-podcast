@@ -131,7 +131,7 @@ const status = (page) => page.locator('[role=status][aria-label="Avisos"]')
   })
   await check('gêneros', 'abrir "Poesia": título, obras e aba do navegador', async () => {
     await page.getByRole('navigation', { name: 'Gêneros' }).getByRole('link', { name: /^Poesia/ }).click()
-    await page.waitForSelector('main h1')
+    await page.waitForFunction(() => document.title === 'Poesia — Ondas')
     const h1 = await page.locator('main h1').textContent()
     const n = await page.locator('main section a[href^="#/livro/"]').count()
     const lead = await page.locator('main header p').last().textContent()
