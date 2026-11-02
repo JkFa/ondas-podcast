@@ -94,6 +94,21 @@ def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
 
 
+_GENERIC_SUBJECTS = {"librivox", "audiobook", "audiobooks", "audio book", "audio books", "audio", "livro de áudio", "audiolivro", "audiolivros"}
+
+
+def clean_subjects(raw, limit=12):
+    """`subject` do archive.org (texto livre, `;` ou lista) → tags em minúsculas, sem as genéricas ("librivox", "audiobooks")."""
+    items = raw if isinstance(raw, list) else [raw] if raw else []
+    out = []
+    for item in items:
+        for tag in re.split(r"[;,]", str(item)):
+            tag = re.sub(r"\s+", " ", tag).strip().strip(".").lower()
+            if tag and tag not in _GENERIC_SUBJECTS and tag not in out and len(tag) <= 60:
+                out.append(tag)
+    return out[:limit]
+
+
 def clean_description(raw):
     t = re.sub(r"<br\s*/?>", "\n", raw or "")
     t = re.sub(r"<[^>]+>", "", t)
@@ -232,6 +247,7 @@ def build_item(identifier, opts, existing_by_url):
     previous = next((existing_by_url[u] for u in urls if u in existing_by_url), None)
     accent = previous["accentColor"] if previous and previous.get("accentColor") else (accent_from(cover) if cover else NEUTRAL_ACCENT)
 
+    tags = clean_subjects(m.get("subject"))
     single = len(parts) == 1
     episodes = []
     for n, (p, url, dur) in enumerate(zip(parts, urls, durations), 1):
@@ -249,12 +265,13 @@ def build_item(identifier, opts, existing_by_url):
             "duration": dur,
             "publishedAt": published,
             **({"license": license_url} if license_url else {}),
+            **({"tags": tags} if n == 1 and tags else {}),  # assuntos do archive.org, só na 1ª parte (a obra inteira usa os dela)
             "source": "local",
         }
         if not single:
             ep["series"], ep["part"] = series, n
         if old:  # preserva o que foi curado à mão (título, descrição, capítulos, transcrição)
-            for k in ("title", "description", "chapters", "transcript"):
+            for k in ("title", "description", "chapters", "transcript", "tags"):
                 if k in old:
                     ep[k] = old[k]
         episodes.append(ep)

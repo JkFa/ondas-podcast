@@ -98,7 +98,13 @@
         }
       ],
       "series": "O Alienista",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "portuguese",
+        "brazilian",
+        "literature",
+        "fiction"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -251,7 +257,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Negrinha",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "modernismo",
+        "racismo",
+        "conto urbano"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -353,7 +365,10 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Iracema",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "português"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -506,7 +521,10 @@
       "title": "Páginas Recolhidas — O Caso da Vara",
       "duration": 1399,
       "series": "Páginas Recolhidas",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "contos"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -805,7 +823,15 @@
       "title": "Os Lusíadas — Canto I",
       "duration": 2197,
       "series": "Os Lusíadas",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "portuguese",
+        "poetry",
+        "lusiadas",
+        "luis vaz de camoes",
+        "patriotism",
+        "epic poem"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -975,7 +1001,12 @@
       "title": "Cinco Minutos — Capitulo 01",
       "duration": 584,
       "series": "Cinco Minutos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "romantismo",
+        "josé de alencar"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1145,7 +1176,13 @@
       "title": "Casa Velha — Capítulo primeiro: Antes e depois da missa",
       "duration": 1923,
       "series": "Casa Velha",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "machado de assis",
+        "romance de costumes",
+        "realismo",
+        "ficção histórica"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1281,7 +1318,15 @@
       "title": "Demônios — Seção 1 - Capítulos 1 a 3",
       "duration": 1552,
       "series": "Demônios",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura",
+        "terror",
+        "sobrenatural",
+        "brasileira",
+        "trevas",
+        "noite"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1400,7 +1445,14 @@
       "title": "Era uma vez… — Parte A",
       "duration": 459,
       "series": "Era uma vez…",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura infantil",
+        "princesa",
+        "imaginação",
+        "filho único",
+        "o pior cego"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1468,7 +1520,12 @@
       "title": "Desencantos — Parte 1",
       "duration": 1607,
       "series": "Desencantos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "teatro brasileiro",
+        "machado de assis",
+        "desencantos"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1502,7 +1559,13 @@
       "title": "Amor por Anexins",
       "duration": 1567,
       "series": "Amor por Anexins",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "teatro brasileiro",
+        "século xix",
+        "artur de azevedo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1611,7 +1674,14 @@
       "title": "Auto da Barca do Inferno",
       "duration": 2142,
       "series": "Auto da Barca do Inferno",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "drama",
+        "inferno",
+        "paraíso",
+        "alegoria",
+        "moralidade"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -1628,7 +1698,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Amor de Perdição",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "crime",
+        "romantismo",
+        "politica",
+        "amor proibido",
+        "relações familiares"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -2002,7 +2079,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "A Mão e a Luva",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "romance urbano",
+        "ficção"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -2342,7 +2424,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Antologia de Discursos em Português",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "discursos",
+        "oratória",
+        "retórica"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -2546,7 +2633,14 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos Brasileiros, coleção 1",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "short stories",
+        "portuguese",
+        "contos",
+        "brazilian",
+        "brasileiro"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -3056,7 +3150,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Esaú e Jacó",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "novel",
+        "historical novel",
+        "machado de assis",
+        "realism",
+        "social satire"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -3651,7 +3752,11 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Poemas em Português, coletânea",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "poetry",
+        "portuguese"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -3991,7 +4096,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Contos de Eça de Queirós",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "short stories",
+        "portuguese",
+        "contos",
+        "eça de queirós"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -4501,7 +4612,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Canaã",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "pré-romantismo",
+        "naturalismo",
+        "positivismo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -4739,7 +4855,14 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos de Artur de Azevedo, vol. 1",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura",
+        "contos",
+        "rio de janeiro",
+        "século xix",
+        "humor"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -5079,7 +5202,15 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Sonetos - Poemas Filosoficos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "poemas",
+        "lírica",
+        "camões",
+        "português",
+        "sonetos",
+        "maneirismo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -5606,7 +5737,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Triste Fim de Policarpo Quaresma",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "pré-modernismo",
+        "lima barreto"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -5861,7 +5997,14 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Senhora",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura",
+        "português",
+        "romantismo",
+        "josé de alencar",
+        "senhora"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -6558,7 +6701,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Os Sertões",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "canudos",
+        "euclides da cunha",
+        "os sertões"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -7391,7 +7540,16 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Sonetos - Poemas de Amor",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "poemas",
+        "lírica",
+        "cam&otildees",
+        "português",
+        "amor",
+        "sonetos",
+        "maneirismo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -8122,7 +8280,13 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Poesias Infantis",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "criança",
+        "bilac",
+        "infantil",
+        "poesia brasileira"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -9346,7 +9510,17 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "O Abolicionismo",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "escravatura",
+        "negro",
+        "abolicionismo",
+        "tráfico humano",
+        "humanidade",
+        "justiça",
+        "economia do brasil",
+        "história do brasil"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -9652,7 +9826,12 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Bíblia (ALM) 01: Gênesis",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "bíblia",
+        "almeida original",
+        "gênesis"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -9822,7 +10001,12 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "source": "local",
       "series": "O Ateneu",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "impressionismo",
+        "literatura brasileira",
+        "ateneu"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -10026,7 +10210,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "O Defunto",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "horror",
+        "terror",
+        "sobrenatural"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -10094,7 +10283,11 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Como e porque sou romancista",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "século xix"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -10145,7 +10338,18 @@
       "license": "https://librivox.org/pages/public-domain/",
       "source": "local",
       "series": "Semana de Arte Moderna de 1922 - Coletânea Centenário",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "modernismo",
+        "vanguardismo",
+        "arte moderna",
+        "semana de arte moderna",
+        "mário de andrade",
+        "menotti del picchia",
+        "graça aranha",
+        "futurismo",
+        "semana de 22"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -10519,7 +10723,12 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Sermões",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "religion",
+        "sermons",
+        "brazilian portuguese language"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -10723,7 +10932,15 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Saudades: História de Menina e Moça",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "romance pastoril",
+        "galego-português",
+        "romance renascentista",
+        "bernardim ribeiro",
+        "saudades",
+        "menina e moça"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -11250,7 +11467,13 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos para Velhos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "contos",
+        "poemas",
+        "literatura brasileira",
+        "tema adulto"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -11522,7 +11745,15 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Dom Casmurro",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "rio de janeiro",
+        "realismo",
+        "traição",
+        "capitu",
+        "bentinho"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -12032,7 +12263,13 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos de Artur de Azevedo, vol. 2",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "contos",
+        "humor",
+        "rio de janeiro",
+        "artur de azevedo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -12372,7 +12609,14 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Coleção de Autoras em Português",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura portuguesa",
+        "literatura brasileira",
+        "poema",
+        "feminino",
+        "escritoras"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -12712,7 +12956,16 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Os Escravos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "castro alves",
+        "literatura brasileira",
+        "poesia brasileira",
+        "romantismo",
+        "abolição",
+        "escravatura",
+        "escravos"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -13290,7 +13543,13 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos de Lima Barreto",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "modernismo",
+        "contos",
+        "lima barreto"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -13630,7 +13889,13 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Broquéis",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "poesia brasileira",
+        "simbolismo",
+        "cruz e sousa"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -14531,7 +14796,14 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "Contos de Artur de Azevedo, vol. 3",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura",
+        "contos",
+        "rio de janeiro",
+        "século xix",
+        "humor"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -14871,7 +15143,11 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Um club da má língua",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "português",
+        "portuguese"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -15126,7 +15402,12 @@
       "license": "https://creativecommons.org/licenses/publicdomain/",
       "source": "local",
       "series": "As Primaveras",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "poesia brasileira",
+        "romantismo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -16333,7 +16614,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Eu e Outras Poesias",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "poesia brasileira",
+        "augusto dos anjos"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -19869,7 +20155,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Contos Fluminenses e Histórias da Meia-Noite",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "machado de assis",
+        "contos",
+        "miss dollar",
+        "literatura brasileira",
+        "portugese"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -20107,7 +20400,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Fábulas de Esopo, vol. 1",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "fábulas",
+        "literatura infantil",
+        "língua portuguesa",
+        "esopo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -20634,7 +20933,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Fábulas de Esopo, vol. 2",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "fábulas",
+        "literatura infantil",
+        "língua portuguesa",
+        "esopo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -21144,7 +21449,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Coletânea de Leandro Gomes de Barros",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura de cordel",
+        "literatura nordestina",
+        "uma viagem ao céu",
+        "boi misterioso",
+        "cachorros dos mortos"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -21212,7 +21524,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Os Sonetos Completos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "antero de quental",
+        "poesia portuguesa",
+        "soneto",
+        "geração de 70",
+        "questão coimbrã"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -22793,7 +23112,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Noites de insomnia, vol. 1",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "sátira",
+        "castelo branco",
+        "portuguese"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -23014,7 +23338,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "A Viuvinha",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "josé de alencar",
+        "romance urbano",
+        "rio de janeiro",
+        "século xix",
+        "literatura brasileira"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -23286,7 +23617,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Noites de insomnia, vol. 2",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "romantismo",
+        "literatura portuguesa",
+        "contos",
+        "crítica social",
+        "camilo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -23507,7 +23845,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "A Relíquia",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura portuguesa",
+        "portugal",
+        "crítica social",
+        "religiosidade"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -23949,7 +24293,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Diva",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "romantismo",
+        "romance urbano"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -24612,7 +24961,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "O Mulato",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "romance",
+        "naturalismo",
+        "racismo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -24901,7 +25255,12 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "O Cortiço",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "romance naturalista",
+        "favela carioca no século xix",
+        "clássico da literatura brasileira"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -25292,7 +25651,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Memórias Póstumas de Brás Cubas",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "machado de assis",
+        "realismo",
+        "brás cubas",
+        "ironia"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -25836,7 +26201,14 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Pérolas E Diamantes - Contos Infantis",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "grimm",
+        "contos",
+        "fantasía",
+        "infantil",
+        "contos de fadas"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -25972,7 +26344,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Orpheu nº 1",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura portuguesa",
+        "vanguardismo",
+        "vanguarda",
+        "geração"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -26771,7 +27149,15 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Papéis Avulsos",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "literatura brasileira",
+        "brazil",
+        "contos",
+        "machado de assis",
+        "brazilian literature",
+        "portuguese"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -27060,7 +27446,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Vida vertiginosa",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "rio de janeiro",
+        "crônicas",
+        "carioca",
+        "bélle époque"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -27485,7 +27877,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Fábulas de Esopo, vol. 3",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "fábulas",
+        "literatura infantil",
+        "língua portuguesa",
+        "esopo"
+      ]
     },
     {
       "schemaVersion": 1,
@@ -28029,7 +28427,13 @@
       "license": "https://creativecommons.org/publicdomain/mark/1.0/",
       "source": "local",
       "series": "Helena",
-      "part": 1
+      "part": 1,
+      "tags": [
+        "melodrama",
+        "romantismo",
+        "romance urbano",
+        "romance de costumes"
+      ]
     },
     {
       "schemaVersion": 1,
