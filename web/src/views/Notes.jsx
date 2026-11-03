@@ -12,7 +12,7 @@ export default function Notes({ episodes, engine }) {
       </header>
       <div className="flex flex-col gap-3">
         {episodes.map((ep) => (
-          <details key={ep.id} className="glass group rounded-3xl open:bg-white/[0.06]">
+          <details key={ep.id} className="glass group rounded-lg open:bg-white/[0.06]">
             <summary className="flex cursor-pointer list-none items-center gap-4 p-3 [&::-webkit-details-marker]:hidden">
               <Cover src={ep.cover} className="h-14 w-14 shrink-0 rounded-xl" />
               <span className="min-w-0 flex-1">

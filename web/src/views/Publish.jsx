@@ -60,7 +60,7 @@ export default function Publish() {
         <ol className="list-decimal space-y-1.5 pl-5 text-sm text-ink-300">{p.steps.map((s) => <li key={s}>{s}</li>)}</ol>
       </section>
 
-      <form onSubmit={submit} noValidate aria-label={p.title} className="glass flex flex-col gap-5 rounded-3xl p-5 sm:p-6">
+      <form onSubmit={submit} noValidate aria-label={p.title} className="glass flex flex-col gap-5 rounded-lg p-5 sm:p-6">
         {Object.keys(errors).length > 0 && (
           <div ref={summary} tabIndex={-1} role="alert" className="rounded-xl border border-rose-400 p-3 text-sm text-rose-300">
             <p className="font-medium">{p.errors.summary(Object.keys(errors).length)}</p>

@@ -192,7 +192,7 @@ export default function App() {
   const hasPlayer = !!engine.current
 
   return (
-    <div className="h-dvh text-ink-50">
+    <div className="h-dvh text-ink-50" style={{ '--accent': ambient, '--dock': hasPlayer ? '6.25rem' : '0.5rem', transition: '--accent 800ms ease' }}>
       <a
         href="#conteudo"
         onClick={(e) => {
@@ -210,12 +210,16 @@ export default function App() {
       <A11yPanel onShowShortcuts={() => setHelpOpen(true)} />
       <StatusBar needRefresh={pwa.needRefresh} onUpdate={pwa.update} />
 
-      <div ref={mainRef} className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] lg:pl-28 lg:pr-8 ${hasPlayer ? 'pb-56' : 'pb-36'} lg:pb-32`}>
+      {/* Desktop: o conteúdo é um painel arredondado ao lado da sidebar, com um degradê da cor da obra no topo. */}
+      <div
+        ref={mainRef}
+        className={`h-full overflow-y-auto overflow-x-hidden px-4 pt-[max(1.5rem,env(safe-area-inset-top))] desk:fixed desk:inset-y-2 desk:bottom-[var(--dock)] desk:left-[16.5rem] desk:right-2 desk:h-auto desk:rounded-lg desk:bg-ink-900 desk:px-8 desk:pt-8 desk:[background-image:linear-gradient(to_bottom,color-mix(in_oklab,var(--accent)_26%,var(--color-ink-900)),var(--color-ink-900)_22rem)] ${hasPlayer ? 'pb-56' : 'pb-36'} desk:pb-10`}
+      >
         <div className={`mx-auto ${wide ? 'max-w-5xl' : 'max-w-3xl'}`}>
           <header className="sr-only">
             <p>{t.site.name}: {t.site.tagline}</p>
           </header>
-          <main id="conteudo" tabIndex={-1} aria-label={t.main} className="outline-none focus-visible:outline-none">
+          <main id="conteudo" tabIndex={-1} aria-label={t.main} className="outline-none focus-visible:shadow-none focus-visible:outline-none">
             {route.name === 'home' && <Home books={books} episodes={episodes} engine={engine} loading={loading} />}
             {route.name === 'explore' && <Explore books={books} engine={engine} loading={loading} error={error} genres={genreGroups} />}
             {route.name === 'authors' && <Authors authors={authors} loading={loading} />}

@@ -47,7 +47,7 @@ export default function Saved({ episodes, engine }) {
               <Cover src={ep.cover} className="h-12 w-12 shrink-0 rounded-lg" />
               <button onClick={() => engine.select(ep)} className="press min-w-0 flex-1 text-left">
                 <span className="block truncate text-sm font-medium">{ep.title}</span>
-                <span className="eyebrow block truncate tabular-nums normal-case tracking-wider">{ep.show} · {formatTime(ep.duration)}</span>
+                <span className="eyebrow block truncate tabular-nums">{ep.show} · {formatTime(ep.duration)}</span>
               </button>
               <button onClick={() => engine.moveInQueue(ep.id, -1)} disabled={i === 0} aria-label={`Subir ${ep.title}`} className={btn}><ArrowUp size={16} /></button>
               <button onClick={() => engine.moveInQueue(ep.id, 1)} disabled={i === queue.length - 1} aria-label={`Descer ${ep.title}`} className={btn}><ArrowDown size={16} /></button>

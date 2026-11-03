@@ -10,7 +10,7 @@ export default function ShortcutsHelp({ open, onClose }) {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="help-title" className="max-h-full w-full max-w-md overflow-y-auto rounded-3xl border border-[color:var(--line)] bg-ink-900 p-5 shadow-2xl">
+      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="help-title" className="max-h-full w-full max-w-md overflow-y-auto rounded-lg border border-[color:var(--line)] bg-ink-900 p-5 shadow-2xl">
         <div className="mb-4 flex items-start justify-between gap-3">
           <h2 id="help-title" className="font-display text-2xl">{t.help.title}</h2>
           <button onClick={onClose} aria-label={t.help.close} data-autofocus className="press flex h-11 w-11 shrink-0 items-center justify-center rounded-full hover:bg-white/10">

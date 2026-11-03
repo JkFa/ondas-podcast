@@ -17,6 +17,7 @@ export const t = {
     saved: 'Salvos',
     films: 'Filmes',
     import: 'Publicar ou importar episódio',
+    importShort: 'Publicar',
   },
 
   footer: {

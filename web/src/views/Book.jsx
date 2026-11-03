@@ -100,7 +100,7 @@ export default function Book({ book, engine, loading, onShare }) {
 
       <header className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-end sm:text-left">
         <div
-          className="aspect-square w-56 max-w-full shrink-0 overflow-hidden rounded-3xl bg-ink-800 sm:w-60"
+          className="aspect-square w-56 max-w-full shrink-0 overflow-hidden rounded-lg bg-ink-800 sm:w-60"
           style={{ boxShadow: `0 30px 70px -28px ${book.accentColor || '#6d5dfc'}` }}
         >
           <Cover src={book.cover} alt={t.player.cover(book.title, book.author)} className="h-full w-full" />

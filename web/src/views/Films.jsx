@@ -5,7 +5,7 @@ import { FILM_GENRES, filterFilms, inProgress, sortFilms } from '../lib/films'
 import { t } from '../strings'
 
 const chip = (on) =>
-  `press flex min-h-11 items-center rounded-full border px-4 text-sm font-medium ${on ? 'border-signal bg-signal text-ink-950' : 'border-[color:var(--control-line)] text-ink-200 hover:bg-white/10'}`
+  `press flex min-h-11 items-center rounded-full border px-4 text-sm font-medium ${on ? 'border-signal bg-signal text-ink-950' : 'border-transparent bg-white/10 text-ink-100 hover:bg-white/20'}`
 
 export default function Films({ catalog, progress, online, initialGenre = '' }) {
   const [genre, setGenre] = useState(FILM_GENRES.includes(initialGenre) ? initialGenre : '')

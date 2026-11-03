@@ -12,7 +12,7 @@ export default function ResumeCard({ book, engine }) {
   const label = { resume: `Continuar · ${formatTime(target.resumeAt)}`, next: 'Ouvir próxima parte', start: 'Ouvir', again: 'Ouvir de novo' }[target.state]
   const stats = bookStats(book, engine.progress)
   return (
-    <section aria-labelledby="resume-h" className="glass fade-up flex items-center gap-4 rounded-3xl p-3 sm:gap-5 sm:p-4">
+    <section aria-labelledby="resume-h" className="glass fade-up flex items-center gap-4 rounded-lg p-3 sm:gap-5 sm:p-4">
       <a href={bookPath(book.slug)} tabIndex={-1} aria-hidden="true" className="shrink-0">
         <Cover src={book.cover} className="h-24 w-24 rounded-2xl sm:h-28 sm:w-28" />
       </a>

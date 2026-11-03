@@ -98,7 +98,7 @@ export default function PlayerSheet({ engine, accent, open, onClose, tab, onTab,
           <Cover
             alt={t.player.cover(ep.title, authorOf(ep))}
             src={ep.cover}
-            className="mx-auto aspect-square w-full max-w-[22rem] rounded-3xl"
+            className="mx-auto aspect-square w-full max-w-[22rem] rounded-lg"
             style={{ boxShadow: '0 40px 90px -30px color-mix(in oklab, var(--accent) 80%, transparent)' }}
           />
 

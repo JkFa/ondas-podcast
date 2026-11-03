@@ -15,7 +15,7 @@ export default function EpisodeCard({ ep, engine, featured = false }) {
   const icon = 'press flex h-11 w-11 items-center justify-center rounded-full text-ink-300 hover:bg-white/10 hover:text-white'
 
   return (
-    <article className={`group fade-up glass flex gap-4 rounded-3xl p-3 ${featured ? 'flex-col sm:flex-row sm:p-4' : 'items-center'}`}>
+    <article className={`group fade-up glass flex gap-4 rounded-lg p-3 ${featured ? 'flex-col sm:flex-row sm:p-4' : 'items-center'}`}>
       <button
         onClick={onPlay}
         aria-label={`${isPlaying ? 'Pausar' : 'Tocar'} ${ep.title}`}
@@ -32,7 +32,7 @@ export default function EpisodeCard({ ep, engine, featured = false }) {
         <p className="eyebrow truncate">{featured ? 'Em destaque · ' : ''}{ep.show}</p>
         <h3 className={`font-display leading-tight ${featured ? 'text-3xl sm:text-4xl' : 'line-clamp-2 text-xl'}`}>{ep.title}</h3>
         {featured && <p className="line-clamp-3 text-sm text-ink-400">{ep.description.replace(/[*#[\]]|\(http[^)]*\)/g, '')}</p>}
-        <p className="eyebrow tabular-nums normal-case tracking-wider">
+        <p className="eyebrow tabular-nums">
           {formatDate(ep.publishedAt)}{ep.publishedAt ? ' · ' : ''}{formatTime(ep.duration)}
           {info.done && ' · Concluído'}
         </p>

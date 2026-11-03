@@ -40,6 +40,7 @@ export function applyPrefs(prefs, root = document.documentElement) {
   root.dataset.font = prefs.font
   root.dataset.motion = prefs.motion
   root.dataset.spacing = prefs.spacing ? 'wide' : 'normal'
+  root.dataset.text = prefs.textScale >= 150 ? 'large' : 'normal' // com texto grande o app usa o layout de celular (a sidebar não cabe)
   root.style.fontSize = `${prefs.textScale}%`
   const meta = root.ownerDocument?.querySelector('meta[name="theme-color"]')
   if (meta) meta.setAttribute('content', prefs.contrast ? (theme === 'light' ? '#ffffff' : '#000000') : theme === 'light' ? '#f6f6fc' : '#0b0b14')

@@ -89,7 +89,7 @@ export default function ShareDialog({ target, onClose, embedEpisode }) {
 
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="share-title" className="flex max-h-[92dvh] w-full max-w-lg flex-col gap-5 overflow-y-auto rounded-t-3xl border border-[color:var(--line)] bg-ink-900 p-5 pb-8 shadow-2xl sm:rounded-3xl">
+      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby="share-title" className="flex max-h-[92dvh] w-full max-w-lg flex-col gap-5 overflow-y-auto rounded-t-3xl border border-[color:var(--line)] bg-ink-900 p-5 pb-8 shadow-2xl sm:rounded-lg">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <h2 id="share-title" className="font-display text-2xl">{s.title}</h2>

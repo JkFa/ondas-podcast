@@ -24,6 +24,7 @@
         r.dataset.theme = light ? 'light' : 'dark';
         r.dataset.contrast = p.contrast ? 'high' : 'normal';
         if (p.textScale) r.style.fontSize = p.textScale + '%';
+        r.dataset.text = p.textScale >= 150 ? 'large' : 'normal';
       } catch (e) {}
     </script>
     <title>Ondas — áudios e podcasts indies</title>

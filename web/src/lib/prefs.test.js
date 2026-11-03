@@ -24,7 +24,7 @@ describe('applyPrefs', () => {
   it('grava os atributos lidos pelo CSS', () => {
     const root = { dataset: {}, style: {} }
     applyPrefs({ ...DEFAULT_PREFS, theme: 'light', contrast: true, textScale: 200, font: 'atkinson', motion: 'reduce', spacing: true }, root)
-    expect(root.dataset).toEqual({ theme: 'light', contrast: 'high', font: 'atkinson', motion: 'reduce', spacing: 'wide' })
+    expect(root.dataset).toEqual({ theme: 'light', contrast: 'high', font: 'atkinson', motion: 'reduce', spacing: 'wide', text: 'large' })
     expect(root.style.fontSize).toBe('200%')
   })
 })

@@ -127,7 +127,7 @@ export default function Backup({ route }) {
       {error && <p role="alert" className="rounded-2xl border border-rose-400 p-4 text-sm text-rose-300">{error}</p>}
 
       {incoming && (
-        <section ref={previewRef} tabIndex={-1} aria-labelledby={`${uid}-in-h`} className="glass flex flex-col gap-4 rounded-3xl p-5 sm:p-6">
+        <section ref={previewRef} tabIndex={-1} aria-labelledby={`${uid}-in-h`} className="glass flex flex-col gap-4 rounded-lg p-5 sm:p-6">
           <h2 id={`${uid}-in-h`} className="font-display text-2xl">{incoming.source}</h2>
           {incoming.exportedAt && <p className="text-sm text-ink-300">{b.exportedAt(dateFmt.format(new Date(incoming.exportedAt)))}</p>}
           <Preview summary={incoming.summary} />
@@ -159,7 +159,7 @@ export default function Backup({ route }) {
         </div>
         {qr.state === 'none' && <p className="text-sm text-ink-400">{b.qrNone}</p>}
         {qr.state === 'ready' && (
-          <div className="glass flex flex-col items-center gap-4 rounded-3xl p-5 sm:flex-row sm:items-start">
+          <div className="glass flex flex-col items-center gap-4 rounded-lg p-5 sm:flex-row sm:items-start">
             <QrCode value={qr.url} size={320} ec={QR_EC} label={b.qrAlt} />
             <div className="flex flex-col gap-3 text-sm text-ink-300">
               <p>{b.qrNote(qr.count, qr.total)}</p>

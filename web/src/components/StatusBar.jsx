@@ -19,7 +19,7 @@ export default function StatusBar({ needRefresh, onUpdate }) {
 
   if (online && !needRefresh) return null
   return (
-    <div className="pointer-events-none fixed inset-x-3 top-[max(0.75rem,env(safe-area-inset-top))] z-[35] flex flex-col items-center gap-2 pr-14 lg:left-24">
+    <div className="pointer-events-none fixed inset-x-3 top-[max(0.75rem,env(safe-area-inset-top))] z-[35] flex flex-col items-center gap-2 pr-14 desk:left-[17rem]">
       {!online && (
         <div data-testid="offline-banner" className="pointer-events-auto glass flex max-w-xl items-center gap-3 rounded-2xl bg-ink-900/95 px-4 py-2.5 text-sm shadow-xl">
           <WifiOff size={18} className="shrink-0 text-signal" aria-hidden="true" />

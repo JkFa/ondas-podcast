@@ -41,6 +41,15 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Layout de desktop (sidebar + painéis): a partir de 1024 px, exceto com texto ampliado (≥150%), quando fica o layout de celular. */
+@custom-variant desk {
+  @media (min-width: 64rem) {
+    &:where(:root:not([data-text='large']) *) {
+      @slot;
+    }
+  }
+}
+
 @theme {
   --font-display: 'Bricolage Grotesque Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -132,19 +141,41 @@
 
 /* Títulos: grotesca geométrica, peso firme e tracking fechado. */
 .font-display {
-  font-weight: 650;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 @layer components {
-  /* Metadados em versalete miúdo com tracking largo. */
+  /* Metadados: texto miúdo e cinza em caixa normal (AA sobre ink-950). */
   .eyebrow {
-    font-size: 0.6875rem;
-    line-height: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-ink-400); /* AA sobre ink-950 */
+    color: var(--color-ink-400);
+  }
+  /* Prateleira de cartões: grade compacta; o cartão ganha fundo no hover. */
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(11rem, 100%), 1fr));
+    gap: 0.25rem;
+  }
+  /* Botão de tocar sobre a capa: sobe e aparece no hover/foco (sempre visível em telas de toque ou tocando). */
+  .card-play {
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 200ms var(--ease-out-soft), transform 200ms var(--ease-out-soft), background-color 150ms, scale 150ms;
+  }
+  .group:hover .card-play,
+  .group:focus-within .card-play,
+  .card-play[data-on='true'] {
+    opacity: 1;
+    transform: none;
+  }
+  @media (pointer: coarse) {
+    .card-play {
+      opacity: 1;
+      transform: none;
+    }
   }
   .glass {
     background: var(--glass);

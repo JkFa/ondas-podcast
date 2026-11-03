@@ -49,7 +49,7 @@ export default function Downloads({ episodes, engine, pwa }) {
         {!supported() && <p role="alert" className="text-sm text-rose-300">{d.unsupported}</p>}
       </header>
 
-      <section aria-labelledby="storage-h" className="glass flex flex-col gap-3 rounded-3xl p-5">
+      <section aria-labelledby="storage-h" className="glass flex flex-col gap-3 rounded-lg p-5">
         <h2 id="storage-h" className="eyebrow">{d.storage}</h2>
         <p className="text-sm text-ink-200">{d.downloadsSize(Object.keys(meta).length, formatBytes(total))}</p>
         {info.quota > 0 && <p className="text-xs text-ink-400">{d.storageUsed(formatBytes(info.usage), formatBytes(info.quota))}</p>}
@@ -60,14 +60,14 @@ export default function Downloads({ episodes, engine, pwa }) {
       </section>
 
       {ios && !standalone && (
-        <section aria-labelledby="ios-h" className="glass rounded-3xl p-5">
+        <section aria-labelledby="ios-h" className="glass rounded-lg p-5">
           <h2 id="ios-h" className="font-display text-xl">{d.iosTitle}</h2>
           <p className="mt-1 text-sm text-ink-300">{d.iosText}</p>
         </section>
       )}
 
       {(canInstall || standalone) && (
-        <section aria-labelledby="install-h" className="glass flex flex-col items-start gap-2 rounded-3xl p-5">
+        <section aria-labelledby="install-h" className="glass flex flex-col items-start gap-2 rounded-lg p-5">
           <h2 id="install-h" className="font-display text-xl">{d.installTitle}</h2>
           <p className="text-sm text-ink-300">{standalone ? d.installed : d.installText}</p>
           {canInstall && <button onClick={install} className="press min-h-11 rounded-xl bg-signal px-5 font-semibold text-ink-950 hover:bg-signal-hover">{d.install}</button>}

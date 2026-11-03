@@ -18,8 +18,8 @@ export default function FilmCard({ film, saved }) {
   const flags = [film.silent && t.films.silent, film.captions.length > 0 && t.films.captions].filter(Boolean)
   const label = `${film.title}, ${film.year}. ${genre}, ${formatDuration(film.duration)}${film.silent ? `. ${t.films.silent}` : ''}${film.captions.length ? `. ${t.films.captions}` : `. ${t.films.noCaptions}`}${p.done ? '. Concluído' : p.started ? '. Em andamento' : ''}`
   return (
-    <a href={filmPath(film.slug)} aria-label={label} className="group fade-up flex flex-col gap-3 rounded-3xl outline-offset-4">
-      <div className="relative aspect-video overflow-hidden rounded-2xl bg-ink-800 transition duration-300 ease-out-soft group-hover:-translate-y-1">
+    <a href={filmPath(film.slug)} aria-label={label} className="group fade-up flex flex-col gap-3 rounded-lg p-3 transition-colors duration-200 hover:bg-white/10 focus-visible:bg-white/10">
+      <div className="relative aspect-video overflow-hidden rounded-md bg-ink-800 shadow-lg shadow-black/30">
         <Poster src={film.poster} />
         {flags.length > 0 && (
           <span className="absolute left-2 top-2 flex gap-1" aria-hidden="true">
@@ -35,9 +35,9 @@ export default function FilmCard({ film, saved }) {
           </span>
         )}
       </div>
-      <div className="min-w-0 px-0.5">
-        <h3 className="font-display line-clamp-2 text-lg leading-tight">{film.title}</h3>
-        <p className="eyebrow mt-1 normal-case tracking-wider tabular-nums">{film.year} · {genre} · {formatDuration(film.duration)}</p>
+      <div className="min-w-0">
+        <h3 className="line-clamp-2 text-base font-bold leading-snug">{film.title}</h3>
+        <p className="eyebrow mt-1 tabular-nums">{film.year} · {genre} · {formatDuration(film.duration)}</p>
       </div>
     </a>
   )

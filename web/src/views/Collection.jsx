@@ -26,8 +26,8 @@ export default function Collection({ eyebrow, title, lead, books, engine, loadin
             </button>
           </header>
           <section aria-label={title}>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8">
-              {books.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={b.slug === playingSlug} offline={b.parts.filter((p) => downloads[p.id]).length} />)}
+            <div className="shelf">
+              {books.map((b) => <BookCard key={b.slug} book={b} engine={engine} progress={engine.progress} playing={b.slug === playingSlug} offline={b.parts.filter((p) => downloads[p.id]).length} />)}
             </div>
           </section>
         </>

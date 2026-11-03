@@ -16,7 +16,7 @@ export default function CaptionBar({ transcript, position, lifted }) {
     <div
       aria-hidden="true"
       data-testid="caption-bar"
-      className={`pointer-events-none fixed inset-x-3 z-[45] flex justify-center lg:left-20 ${lifted ? 'bottom-[calc(env(safe-area-inset-bottom)+9.5rem)] lg:bottom-28' : 'bottom-[calc(env(safe-area-inset-bottom)+1rem)]'}`}
+      className={`pointer-events-none fixed inset-x-3 z-[45] flex justify-center desk:left-[16.5rem] ${lifted ? 'bottom-[calc(env(safe-area-inset-bottom)+9.5rem)] desk:bottom-32' : 'bottom-[calc(env(safe-area-inset-bottom)+1rem)]'}`}
     >
       <p className="max-w-3xl rounded-2xl bg-ink-950/90 px-5 py-3 text-center text-[clamp(1.25rem,4.5vw,2rem)] font-semibold leading-snug text-ink-50 shadow-2xl ring-1 ring-[color:var(--control-line)]">
         {seg.text}

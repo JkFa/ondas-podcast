@@ -13,10 +13,10 @@ import { t } from '../strings'
 
 export function Skeletons() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8" aria-hidden="true">
+    <div className="shelf" aria-hidden="true">
       {Array.from({ length: 8 }, (_, i) => (
-        <div key={i} className="flex flex-col gap-3">
-          <div className="skeleton aspect-square rounded-3xl" />
+        <div key={i} className="flex flex-col gap-3 p-3">
+          <div className="skeleton aspect-square rounded-md" />
           <div className="skeleton h-4 w-3/4" />
           <div className="skeleton h-3 w-1/2" />
         </div>
@@ -77,10 +77,10 @@ export default function Explore({ books, engine, loading, error, genres = [] }) 
     <div className="flex flex-col gap-8">
       <header className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h1 className="font-display text-5xl sm:text-6xl">Biblioteca</h1>
+          <h1 className="font-display text-5xl sm:text-7xl">Biblioteca</h1>
           <p className="max-w-lg text-ink-400">Áudios e podcasts indies arquivados e prontos para ouvir.</p>
         </div>
-        <label className="glass flex items-center gap-3 rounded-2xl border-[color:var(--control-line)] px-4 sm:max-w-md">
+        <label className="glass flex items-center gap-3 rounded-full border-[color:var(--control-line)] px-5 sm:max-w-md">
           <Search size={18} className="text-ink-400" aria-hidden="true" />
           <input
             type="search"
@@ -98,7 +98,7 @@ export default function Explore({ books, engine, loading, error, genres = [] }) 
             <ul className="flex flex-wrap gap-2">
               {genres.map((g) => (
                 <li key={g.id}>
-                  <a href={genrePath(g.id)} className="press flex min-h-11 items-center rounded-full border border-[color:var(--control-line)] px-4 text-sm text-ink-300 hover:bg-white/10 hover:text-white">
+                  <a href={genrePath(g.id)} className="press flex min-h-11 items-center rounded-full bg-white/10 px-4 text-sm font-medium text-ink-100 hover:bg-white/20">
                     {g.label} <span className="ml-1.5 text-xs text-ink-400" aria-label={`, ${t.browse.worksCount(g.books.length)}`}>{g.books.length}</span>
                   </a>
                 </li>
@@ -127,7 +127,7 @@ export default function Explore({ books, engine, loading, error, genres = [] }) 
                   type="button"
                   aria-pressed={filter === f.id}
                   onClick={() => setFilter(f.id)}
-                  className={`press min-h-11 rounded-full border px-4 py-2 text-sm ${filter === f.id ? 'border-signal bg-signal text-ink-950' : 'border-[color:var(--control-line)] text-ink-300 hover:bg-white/10'}`}
+                  className={`press min-h-11 rounded-full px-4 py-2 text-sm font-medium ${filter === f.id ? 'bg-signal text-ink-950' : 'bg-white/10 text-ink-100 hover:bg-white/20'}`}
                 >
                   {f.label}
                 </button>
@@ -139,8 +139,8 @@ export default function Explore({ books, engine, loading, error, genres = [] }) 
               {q ? t.search.none(query.trim()) : filter === 'all' ? 'O catálogo está vazio. Use + para importar um episódio.' : 'Nenhuma obra nesta seção ainda.'}
             </p>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10.5rem,100%),1fr))] gap-x-4 gap-y-8">
-              {results.map((b) => <BookCard key={b.slug} book={b} progress={engine.progress} playing={b.slug === playingSlug} offline={b.parts.filter((p) => downloads[p.id]).length} />)}
+            <div className="shelf">
+              {results.map((b) => <BookCard key={b.slug} book={b} engine={engine} progress={engine.progress} playing={b.slug === playingSlug} offline={b.parts.filter((p) => downloads[p.id]).length} />)}
             </div>
           )}
         </section>
