@@ -232,6 +232,7 @@ const waitCards = (page) => page.waitForSelector('main a[href^="#/filme/"]')
     const requests = videoRequests.filter((u) => u.includes(f.id)).length
     await page.getByRole('button', { name: 'Entendi, quero assistir' }).click()
     await page.waitForSelector('video')
+    await page.waitForFunction(() => document.activeElement?.tagName === 'VIDEO', null, { timeout: 3000 }).catch(() => {})
     const focused = await page.evaluate(() => document.activeElement?.tagName)
     return { ok: before === 0 && requests === 0 && focused === 'VIDEO', detail: `vídeos antes: ${before}, pedidos: ${requests}, foco: ${focused}` }
   })

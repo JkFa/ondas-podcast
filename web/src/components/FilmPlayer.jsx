@@ -51,11 +51,18 @@ export default function FilmPlayer({ film, saved, onProgress, pauseAudio, captio
     }
   }, [save])
 
-  // Ao confirmar o aviso, o foco vai para o player.
+  // Ao confirmar o aviso, o foco vai para o player (depois de o <video> existir na página).
+  const justConfirmed = useRef(false)
   const confirm = () => {
+    justConfirmed.current = true
     setConfirmed(true)
-    requestAnimationFrame(() => ref.current?.focus())
   }
+  useEffect(() => {
+    if (confirmed && justConfirmed.current) {
+      justConfirmed.current = false
+      ref.current?.focus()
+    }
+  }, [confirmed])
 
   const onLoadedMetadata = () => {
     const v = ref.current
