@@ -9,7 +9,7 @@
   --focus-b: #0b0b14;
   --line: rgb(190 190 255 / 0.12);
   --control-line: rgb(255 255 255 / 0.4); /* contorno de campos e botões: ≥ 3:1 sobre o fundo */
-  --glass: rgb(190 190 255 / 0.05);
+  --glass: rgb(190 190 255 / 0.08);
   --track: rgb(255 255 255 / 0.2);
   color-scheme: dark;
 }
@@ -36,7 +36,7 @@
   --focus-b: #ffffff;
   --line: rgb(30 30 80 / 0.14);
   --control-line: rgb(11 11 20 / 0.55);
-  --glass: rgb(255 255 255 / 0.7);
+  --glass: rgb(30 30 80 / 0.06);
   --track: rgb(11 11 20 / 0.2);
   color-scheme: light;
 }
@@ -85,6 +85,7 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-width: 2px;
+  border-color: var(--line);
 }
 :root[data-contrast='high'] [class*='border-white'],
 :root[data-contrast='high'] [class*='border-signal'] {

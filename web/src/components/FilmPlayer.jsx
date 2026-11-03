@@ -97,14 +97,14 @@ export default function FilmPlayer({ film, saved, onProgress, pauseAudio, captio
   return (
     <section aria-label={t.films.playerLabel(film.title)} className="flex flex-col gap-4">
       {film.warning && (
-        <div role="note" className="flex gap-3 rounded-2xl border border-[color:var(--control-line)] bg-white/5 px-4 py-3 text-sm text-ink-100">
+        <div role="note" className="flex gap-3 rounded-lg border border-[color:var(--control-line)] bg-white/5 px-4 py-3 text-sm text-ink-100">
           <AlertTriangle size={20} className="mt-0.5 shrink-0 text-signal" aria-hidden="true" />
           <p><strong className="font-semibold">{t.films.warningTitle}:</strong> {t.films.warnings[film.warning]}</p>
         </div>
       )}
 
       {!confirmed ? (
-        <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 rounded-2xl bg-ink-900 p-6 text-center">
+        <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 rounded-lg bg-ink-900 p-6 text-center">
           <p className="max-w-md text-ink-200">{t.films.confirmPrompt}</p>
           <button onClick={confirm} className="press min-h-11 rounded-full bg-signal px-6 text-[0.9375rem] font-semibold text-ink-950 hover:bg-signal-hover">{t.films.confirmGraphic}</button>
         </div>
@@ -118,7 +118,7 @@ export default function FilmPlayer({ film, saved, onProgress, pauseAudio, captio
           playsInline
           preload="metadata"
           aria-label={t.films.playerLabel(film.title)}
-          className="aspect-video w-full rounded-2xl bg-black"
+          className="aspect-video w-full rounded-lg bg-black"
           onLoadedMetadata={onLoadedMetadata}
           onPlay={() => latest.current.pauseAudio()}
           onPause={save}
@@ -136,7 +136,7 @@ export default function FilmPlayer({ film, saved, onProgress, pauseAudio, captio
       )}
 
       {failed && (
-        <p role="alert" className="rounded-2xl border border-[color:var(--control-line)] px-4 py-3 text-sm text-ink-100">
+        <p role="alert" className="rounded-lg border border-[color:var(--control-line)] px-4 py-3 text-sm text-ink-100">
           {t.films.videoError}{' '}
           {film.archiveUrl && <a href={film.archiveUrl} target="_blank" rel="noreferrer noopener" className="inline-flex min-h-11 items-center font-medium text-signal underline underline-offset-2">{t.films.openArchive}</a>}
         </p>

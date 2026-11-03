@@ -159,7 +159,7 @@ export default function ShareDialog({ target, onClose, embedEpisode }) {
           {card.status === 'ready' && (
             <div className="flex flex-col items-center gap-3">
               <h4 ref={cardHeading} tabIndex={-1} className="sr-only">{s.cardPreview(subject)}</h4>
-              <img src={card.url} alt={s.cardPreview(subject)} className="max-h-72 w-auto rounded-2xl border border-[color:var(--line)]" />
+              <img src={card.url} alt={s.cardPreview(subject)} className="max-h-72 w-auto rounded-lg border border-[color:var(--line)]" />
               <div className="flex flex-wrap justify-center gap-2">
                 <button onClick={downloadCard} className={action}><Download size={16} aria-hidden="true" /> {s.cardDownload}</button>
                 <button onClick={shareCard} className={action}><ImageIcon size={16} aria-hidden="true" /> {s.cardShare}</button>

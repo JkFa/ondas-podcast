@@ -11,7 +11,7 @@ const dateFmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-dig
 
 function Tile({ label, value }) {
   return (
-    <div className="glass flex flex-col gap-1 rounded-2xl p-4">
+    <div className="glass flex flex-col gap-1 rounded-lg p-4">
       <dt className="text-xs text-ink-300">{label}</dt>
       <dd className="font-display text-2xl tabular-nums sm:text-3xl">{value}</dd>
     </div>
@@ -33,7 +33,7 @@ export default function Stats({ books, engine }) {
         <p className="text-ink-300">{s.lead}</p>
       </header>
 
-      {!hasTime && sum.episodesDone === 0 && <p className="glass rounded-2xl p-5 text-ink-300">{s.empty}</p>}
+      {!hasTime && sum.episodesDone === 0 && <p className="glass rounded-lg p-5 text-ink-300">{s.empty}</p>}
 
       <section aria-labelledby="nums-h" className="flex flex-col gap-3">
         <h2 id="nums-h" className="sr-only">Números</h2>
@@ -71,7 +71,7 @@ export default function Stats({ books, engine }) {
 
       <div className="flex flex-col gap-3">
         {confirming ? (
-          <div role="group" aria-label={s.reset} className="glass flex flex-col gap-3 rounded-2xl p-4">
+          <div role="group" aria-label={s.reset} className="glass flex flex-col gap-3 rounded-lg p-4">
             <p className="text-sm">{s.resetAsk}</p>
             <div className="flex flex-wrap gap-2">
               <button onClick={() => { engine.resetStats(); setConfirming(false); announce(s.resetDone) }} className="press min-h-11 rounded-full bg-rose-300 px-5 text-sm font-semibold text-ink-950">{s.resetYes}</button>

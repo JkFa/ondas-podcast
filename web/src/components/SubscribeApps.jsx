@@ -81,7 +81,7 @@ export default function SubscribeApps({ feed, title, scope = 'catalog' }) {
       )}
 
       {fail && (
-        <div role="alert" className="glass flex flex-col gap-3 rounded-2xl p-4">
+        <div role="alert" className="glass flex flex-col gap-3 rounded-lg p-4">
           <p className="font-medium">{s.failTitle(fail.name)}</p>
           <p className="text-sm text-ink-300">{s.failText}</p>
           <div className="flex flex-wrap gap-2">
@@ -113,7 +113,7 @@ export default function SubscribeApps({ feed, title, scope = 'catalog' }) {
         <section aria-label={s.others} className="flex flex-col gap-2">
           <h3 className="eyebrow">{s.others}</h3>
           {manual.map((app) => (
-            <details key={app.id} className="glass rounded-2xl">
+            <details key={app.id} className="glass rounded-lg">
               <summary className="min-h-11 cursor-pointer list-none px-4 py-3 text-sm font-medium">{app.name}</summary>
               <div className="flex flex-col gap-3 px-4 pb-4">
                 <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-300" aria-label={s.stepsFor(app.name)}>

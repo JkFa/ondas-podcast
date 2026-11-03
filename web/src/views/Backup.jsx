@@ -123,8 +123,8 @@ export default function Backup({ route }) {
         <p className="text-ink-300">{b.lead}</p>
       </header>
 
-      {done && <p role="status" className="rounded-2xl border border-signal p-4 text-sm">{b.done}</p>}
-      {error && <p role="alert" className="rounded-2xl border border-rose-400 p-4 text-sm text-rose-300">{error}</p>}
+      {done && <p role="status" className="rounded-lg border border-signal p-4 text-sm">{b.done}</p>}
+      {error && <p role="alert" className="rounded-lg border border-rose-400 p-4 text-sm text-rose-300">{error}</p>}
 
       {incoming && (
         <section ref={previewRef} tabIndex={-1} aria-labelledby={`${uid}-in-h`} className="glass flex flex-col gap-4 rounded-lg p-5 sm:p-6">

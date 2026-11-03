@@ -21,14 +21,14 @@ export default function StatusBar({ needRefresh, onUpdate }) {
   return (
     <div className="pointer-events-none fixed inset-x-3 top-[max(0.75rem,env(safe-area-inset-top))] z-[35] flex flex-col items-center gap-2 pr-14 desk:left-[17rem]">
       {!online && (
-        <div data-testid="offline-banner" className="pointer-events-auto glass flex max-w-xl items-center gap-3 rounded-2xl bg-ink-900/95 px-4 py-2.5 text-sm shadow-xl">
+        <div data-testid="offline-banner" className="pointer-events-auto glass flex max-w-xl items-center gap-3 rounded-lg bg-ink-900/95 px-4 py-2.5 text-sm shadow-xl">
           <WifiOff size={18} className="shrink-0 text-signal" aria-hidden="true" />
           <span>{t.pwa.offlineBanner}</span>
           <a href={paths.downloads} className="shrink-0 font-medium text-signal underline-offset-2 hover:underline">{t.pwa.seeDownloads}</a>
         </div>
       )}
       {needRefresh && (
-        <div className="pointer-events-auto glass flex max-w-xl items-center gap-3 rounded-2xl bg-ink-900/95 px-4 py-2.5 text-sm shadow-xl">
+        <div className="pointer-events-auto glass flex max-w-xl items-center gap-3 rounded-lg bg-ink-900/95 px-4 py-2.5 text-sm shadow-xl">
           <span>{t.pwa.updateReady}. {t.pwa.updateHint}</span>
           <button onClick={onUpdate} className="press min-h-11 shrink-0 rounded-xl bg-signal px-4 font-semibold text-ink-950 hover:bg-signal-hover">{t.pwa.update}</button>
         </div>

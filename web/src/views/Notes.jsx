@@ -14,7 +14,7 @@ export default function Notes({ episodes, engine }) {
         {episodes.map((ep) => (
           <details key={ep.id} className="glass group rounded-lg open:bg-white/[0.06]">
             <summary className="flex cursor-pointer list-none items-center gap-4 p-3 [&::-webkit-details-marker]:hidden">
-              <Cover src={ep.cover} className="h-14 w-14 shrink-0 rounded-xl" />
+              <Cover src={ep.cover} className="h-14 w-14 shrink-0 rounded-md" />
               <span className="min-w-0 flex-1">
                 <span className="eyebrow block truncate">{ep.show}</span>
                 <span className="block truncate font-display text-xl">{ep.title}</span>
@@ -29,7 +29,7 @@ export default function Notes({ episodes, engine }) {
                     <li key={i}>
                       <button
                         onClick={() => engine.select(ep, { startAt: c.start })}
-                        className="press flex min-h-11 w-full gap-4 rounded-xl px-3 py-2 text-left hover:bg-white/5"
+                        className="press flex min-h-11 w-full gap-4 rounded-xl px-3 py-2 text-left hover:bg-white/10"
                       >
                         <span className="w-14 shrink-0 text-xs tabular-nums text-ink-400">{formatTime(c.start)}</span>
                         <span className="text-ink-200">{c.title}</span>

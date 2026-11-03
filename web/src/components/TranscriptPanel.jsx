@@ -73,7 +73,7 @@ export default function TranscriptPanel({ transcript, position, onSeek, linkFor,
 
   if (status === 'none') {
     return (
-      <div className="glass rounded-2xl p-5 text-center">
+      <div className="glass rounded-lg p-5 text-center">
         <p className="font-medium">{tr.soon}</p>
         <p className="mt-1 text-sm text-ink-400">{tr.soonHint}</p>
       </div>
@@ -139,7 +139,7 @@ export default function TranscriptPanel({ transcript, position, onSeek, linkFor,
         onWheel={onUserScroll}
         onTouchMove={onUserScroll}
         onKeyDown={(e) => ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.key) && onUserScroll()}
-        className="relative flex max-h-[45vh] flex-col gap-1 overflow-y-auto overscroll-contain rounded-2xl border border-[color:var(--line)] p-1"
+        className="relative flex max-h-[45vh] flex-col gap-1 overflow-y-auto overscroll-contain rounded-lg border border-[color:var(--line)] p-1"
       >
         {paragraphs.map((p, i) => (
           <li key={`${p.start}-${i}`} data-p={i} ref={i === active ? activeRef : undefined}>
@@ -147,7 +147,7 @@ export default function TranscriptPanel({ transcript, position, onSeek, linkFor,
               onClick={() => { setPicked(i); onSeek(p.start) }}
               aria-current={i === active ? 'true' : undefined}
               aria-label={`${tr.seekTo(formatTime(p.start))}: ${p.text.slice(0, 80)}`}
-              className={`press flex min-h-11 w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/5 ${
+              className={`press flex min-h-11 w-full gap-3 rounded-xl px-3 py-2 text-left leading-relaxed transition-colors hover:bg-white/10 ${
                 i === active ? 'bg-white/10 text-white' : picked === i ? 'bg-white/5 text-ink-200' : 'text-ink-300'
               } ${i === hitAt ? 'ring-2 ring-signal' : ''}`}
             >

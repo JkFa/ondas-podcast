@@ -112,11 +112,11 @@ export default function Publish() {
         <ExternalLink size={16} aria-hidden="true" /> {p.track}
       </a>
 
-      <details className="glass rounded-2xl">
+      <details className="glass rounded-lg">
         <summary className="min-h-11 cursor-pointer list-none px-4 py-3 text-sm font-medium">{p.cliTitle}</summary>
         <div className="flex flex-col gap-3 px-4 pb-4">
           <p className="text-sm text-ink-300">{p.cliText}</p>
-          <pre tabIndex={0} aria-label="Exemplo de comando para publicar um episódio" className="overflow-x-auto rounded-2xl bg-ink-950/70 p-4 text-xs leading-relaxed text-ink-200 sm:text-sm"><code>{`python pipeline/publish.py https://exemplo.com/episodio.mp3 \\
+          <pre tabIndex={0} aria-label="Exemplo de comando para publicar um episódio" className="overflow-x-auto rounded-lg bg-ink-950/70 p-4 text-xs leading-relaxed text-ink-200 sm:text-sm"><code>{`python pipeline/publish.py https://exemplo.com/episodio.mp3 \\
   --license by --transcribe`}</code></pre>
           <a href={`https://github.com/${REPO}/tree/main/pipeline`} target="_blank" rel="noopener noreferrer" className="press flex min-h-11 w-fit items-center gap-2 text-sm font-medium text-signal hover:underline">
             <ExternalLink size={16} aria-hidden="true" /> {p.cliHelp}

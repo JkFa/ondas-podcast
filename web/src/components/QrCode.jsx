@@ -17,7 +17,7 @@ export default function QrCode({ value, size = 224, label, ec = 'M' }) {
     return { d, total }
   }, [value, ec])
   return (
-    <svg role="img" aria-label={label ?? t.subscribe.qrAlt(value)} viewBox={`0 0 ${svg.total} ${svg.total}`} width={size} height={size} style={{ maxWidth: '100%', height: 'auto' }} className="rounded-2xl bg-white" shapeRendering="crispEdges">
+    <svg role="img" aria-label={label ?? t.subscribe.qrAlt(value)} viewBox={`0 0 ${svg.total} ${svg.total}`} width={size} height={size} style={{ maxWidth: '100%', height: 'auto' }} className="rounded-lg bg-white" shapeRendering="crispEdges">
       <path d={svg.d} fill="#0b0b14" />
     </svg>
   )

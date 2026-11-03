@@ -29,18 +29,24 @@ function Part({ book, ep, index, engine }) {
   const queued = queue.includes(ep.id)
   const label = partLabel(book, ep)
   return (
-    <li className={`flex items-center gap-1 rounded-2xl pr-1 ${isCurrent ? 'bg-white/10' : 'hover:bg-white/5'}`}>
+    <li className={`group/row flex items-center gap-1 rounded-md pr-1 ${isCurrent ? 'bg-white/10' : 'hover:bg-white/10'}`}>
       <button
         onClick={() => (isCurrent ? engine.toggle() : engine.select(ep))}
         disabled={blocked}
         aria-label={`${isPlaying ? 'Pausar' : 'Tocar'} ${ep.title}${info.done ? '. Concluída' : ''}${offlineReady ? `. ${t.downloads.available}` : ''}${blocked ? `. ${t.downloads.unavailable}` : ''}`}
-        className="press flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-3 py-3 text-left disabled:opacity-50"
+        className="press flex min-w-0 flex-1 items-center gap-3 rounded-md px-3 py-3 text-left disabled:opacity-50"
       >
-        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm tabular-nums ${isCurrent ? 'bg-signal text-ink-950' : 'bg-white/10 text-ink-300'}`}>
-          {isPlaying ? <Pause size={16} fill="currentColor" aria-hidden="true" /> : isCurrent ? <Play size={16} fill="currentColor" aria-hidden="true" /> : info.done ? '✓' : index + 1}
+        {/* Número da faixa; no hover/foco vira o ícone de tocar (como a lista de faixas do Spotify). */}
+        <span className={`relative flex h-9 w-9 shrink-0 items-center justify-center text-sm tabular-nums ${isCurrent ? 'text-signal' : 'text-ink-400'}`}>
+          {isPlaying ? <Pause size={16} fill="currentColor" aria-hidden="true" /> : isCurrent ? <Play size={16} fill="currentColor" aria-hidden="true" /> : (
+            <>
+              <span className="group-hover/row:invisible group-focus-within/row:invisible">{info.done ? '✓' : index + 1}</span>
+              <Play size={16} fill="currentColor" aria-hidden="true" className="invisible absolute text-ink-50 group-hover/row:visible group-focus-within/row:visible" />
+            </>
+          )}
         </span>
         <span className="min-w-0 flex-1">
-          <span className={`block truncate text-[0.9375rem] font-medium ${info.done && !isCurrent ? 'text-ink-400' : ''}`}>{label}</span>
+          <span className={`block truncate text-[0.9375rem] font-medium ${isCurrent ? 'text-signal' : info.done ? 'text-ink-400' : ''}`}>{label}</span>
           <span className="mt-0.5 flex items-center gap-2 text-xs tabular-nums text-ink-400">
             {formatDuration(ep.duration)}
             {offlineReady && <span className="rounded-full border border-[color:var(--control-line)] px-2 py-0.5 text-[0.6875rem] font-medium text-signal" aria-hidden="true">{t.downloads.available}</span>}
@@ -100,21 +106,21 @@ export default function Book({ book, engine, loading, onShare }) {
 
       <header className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-end sm:text-left">
         <div
-          className="aspect-square w-56 max-w-full shrink-0 overflow-hidden rounded-lg bg-ink-800 sm:w-60"
+          className="aspect-square w-56 max-w-full shrink-0 overflow-hidden rounded-md bg-ink-800 sm:w-60"
           style={{ boxShadow: `0 30px 70px -28px ${book.accentColor || '#6d5dfc'}` }}
         >
           <Cover src={book.cover} alt={t.player.cover(book.title, book.author)} className="h-full w-full" />
         </div>
         <div className="flex min-w-0 flex-col items-center gap-3 sm:items-start">
           <p className="eyebrow"><a href={authorPath(authorSlug(book.author))} aria-label={`${t.browse.authorEyebrow}: ${book.author}. ${t.browse.moreByAuthor(book.author)}`} className="inline-flex min-h-11 items-center underline-offset-4 hover:underline">{book.author}</a></p>
-          <h1 className="font-display text-4xl leading-[1.05] sm:text-5xl">{book.title}</h1>
+          <h1 className="font-display text-4xl leading-[1.05] sm:text-6xl">{book.title}</h1>
           <p className="text-sm tabular-nums text-ink-300">
             {book.isSeries ? `${n} ${n === 1 ? 'parte' : 'partes'} · ` : ''}{formatDuration(book.duration)}
             {stats.done > 0 && book.isSeries && ` · ${stats.done} de ${n} concluídas`}
           </p>
           <ul aria-label={t.browse.genres} className="flex flex-wrap justify-center gap-2 sm:justify-start">
             {genresOfBook(book).map((id) => (
-              <li key={id}><a href={genrePath(id)} className="press flex min-h-11 items-center rounded-full border border-[color:var(--control-line)] px-3.5 text-xs text-ink-300 hover:bg-white/10 hover:text-white">{genreById(id)?.label}</a></li>
+              <li key={id}><a href={genrePath(id)} className="press flex min-h-11 items-center rounded-full bg-white/10 px-4 text-xs font-medium text-ink-100 hover:bg-white/20">{genreById(id)?.label}</a></li>
             ))}
           </ul>
           <ViewCount viewKey={viewKey('livro', book.slug)} label="acessos a esta obra" />
@@ -122,12 +128,12 @@ export default function Book({ book, engine, loading, onShare }) {
             <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
             <button
               onClick={() => (inBook ? engine.toggle() : engine.select(target.part))}
-              className="press flex items-center gap-2.5 rounded-full bg-signal px-6 py-3 text-[0.9375rem] font-semibold text-ink-950 hover:bg-signal-hover"
+              className="press flex items-center gap-2.5 rounded-full bg-signal px-8 py-3.5 text-[0.9375rem] font-bold text-ink-950 hover:scale-105 hover:bg-signal-hover"
             >
               {inBook && engine.playing ? <Pause size={18} fill="currentColor" aria-hidden="true" /> : <Play size={18} fill="currentColor" aria-hidden="true" />}
               {cta}
             </button>
-            <button onClick={() => onShare(book)} aria-haspopup="dialog" className="press flex min-h-11 items-center gap-2 rounded-full border border-[color:var(--control-line)] px-5 text-[0.9375rem] font-medium text-ink-200 hover:bg-white/10">
+            <button onClick={() => onShare(book)} aria-haspopup="dialog" className="press flex min-h-11 items-center gap-2 rounded-full border border-[color:var(--control-line)] px-5 text-[0.9375rem] font-bold text-ink-100 hover:scale-105 hover:border-white">
               <Share2 size={18} aria-hidden="true" /> {t.share.button}
             </button>
             </div>
@@ -143,13 +149,13 @@ export default function Book({ book, engine, loading, onShare }) {
           <div className={`flex max-w-2xl flex-col gap-3 text-[0.9375rem] leading-relaxed text-ink-300 ${expanded ? '' : 'line-clamp-5'}`}>
             {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
           </div>
-          <button onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} className="press min-h-11 w-fit text-sm font-medium text-signal hover:underline">
+          <button onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} className="press min-h-11 w-fit text-sm font-bold text-ink-50 hover:underline">
             {expanded ? 'Mostrar menos' : 'Ler mais'}
           </button>
         </section>
       )}
 
-      <details className="group glass rounded-2xl" onToggle={(e) => setSubscribeOpen(e.currentTarget.open)}>
+      <details className="group glass rounded-lg" onToggle={(e) => setSubscribeOpen(e.currentTarget.open)}>
         <summary className="min-h-11 cursor-pointer list-none px-4 py-3 text-sm font-medium">{t.subscribe.bookSummary}</summary>
         <div className="px-4 pb-5">
           {subscribeOpen && <SubscribeApps feed={feedUrl(new URL(import.meta.env.BASE_URL, location.origin).href, book.slug)} title={book.title} scope="book" />}

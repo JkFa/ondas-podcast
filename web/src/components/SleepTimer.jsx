@@ -15,7 +15,7 @@ export default function SleepTimer({ id, open, engine }) {
   const { sleep, setSleep } = engine
   const value = sleep.mode === 'time' ? String(sleep.minutes) : sleep.mode
   return (
-    <div id={id} className="glass rounded-2xl p-4">
+    <div id={id} className="glass rounded-lg p-4">
       <Segmented
         legend={t.sleep.title}
         value={value}

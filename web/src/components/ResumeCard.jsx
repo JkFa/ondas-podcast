@@ -14,7 +14,7 @@ export default function ResumeCard({ book, engine }) {
   return (
     <section aria-labelledby="resume-h" className="glass fade-up flex items-center gap-4 rounded-lg p-3 sm:gap-5 sm:p-4">
       <a href={bookPath(book.slug)} tabIndex={-1} aria-hidden="true" className="shrink-0">
-        <Cover src={book.cover} className="h-24 w-24 rounded-2xl sm:h-28 sm:w-28" />
+        <Cover src={book.cover} className="h-24 w-24 rounded-lg sm:h-28 sm:w-28" />
       </a>
       <div className="flex min-w-0 flex-1 flex-col gap-1.5">
         <h2 id="resume-h" className="eyebrow">Continue de onde parou</h2>

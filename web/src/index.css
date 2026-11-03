@@ -177,9 +177,10 @@
       transform: none;
     }
   }
+  /* Cartão: só preenchimento, sem contorno (o contorno volta no alto contraste). */
   .glass {
     background: var(--glass);
-    border: 1px solid var(--line);
+    border: 1px solid transparent;
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
   }

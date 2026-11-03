@@ -81,7 +81,7 @@ export default function Downloads({ episodes, engine, pwa }) {
             {pending.map(([id, job]) => {
               const ep = byId.get(id)
               return ep ? (
-                <li key={id} className="flex items-center gap-3 rounded-2xl px-3">
+                <li key={id} className="flex items-center gap-3 rounded-lg px-3">
                   <span className="min-w-0 flex-1 truncate text-sm">{ep.title}</span>
                   <span aria-hidden="true" className="text-xs tabular-nums text-ink-400">{job.status === 'error' ? '!' : job.total ? `${Math.min(99, Math.round((job.loaded / job.total) * 100))}%` : ''}</span>
                   <DownloadButton ep={ep} />
@@ -107,12 +107,12 @@ export default function Downloads({ episodes, engine, pwa }) {
                 const current = ep && engine.current?.id === ep.id
                 const playing = current && engine.playing
                 return (
-                  <li key={it.id} className={`flex items-center gap-1 rounded-2xl pr-1 ${current ? 'bg-white/10' : ''}`}>
+                  <li key={it.id} className={`flex items-center gap-1 rounded-lg pr-1 ${current ? 'bg-white/10' : ''}`}>
                     <button
                       onClick={() => ep && (current ? engine.toggle() : engine.select(ep))}
                       disabled={!ep}
                       aria-label={playing ? d.pause(it.title) : d.play(it.title)}
-                      className="press flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-2xl px-3 py-2 text-left"
+                      className="press flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 py-2 text-left"
                     >
                       <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${current ? 'bg-signal text-ink-950' : 'bg-white/10 text-ink-300'}`}>
                         {playing ? <Pause size={16} fill="currentColor" aria-hidden="true" /> : <Play size={16} fill="currentColor" aria-hidden="true" />}

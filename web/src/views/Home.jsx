@@ -88,7 +88,7 @@ function CopyField({ value }) {
     }
   }
   return (
-    <div className="glass flex items-center gap-2 rounded-2xl py-1.5 pl-4 pr-1.5">
+    <div className="glass flex items-center gap-2 rounded-lg py-1.5 pl-4 pr-1.5">
       <code className="min-w-0 flex-1 truncate text-xs text-ink-200 sm:text-sm">{value}</code>
       <button onClick={copy} className="press flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl bg-white/10 px-3 py-2 text-xs font-medium hover:bg-white/15" aria-live="polite">
         {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}

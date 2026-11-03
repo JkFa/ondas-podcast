@@ -19,7 +19,7 @@ export default function Saved({ episodes, engine }) {
     <div className="flex flex-col gap-10">
       <h1 className="font-display text-5xl">Salvos</h1>
 
-      <a href={paths.downloads} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+      <a href={paths.downloads} className="glass press flex min-h-11 items-center gap-3 rounded-lg p-4 hover:bg-white/10">
         <Download size={20} className="text-signal" aria-hidden="true" />
         <span className="min-w-0 flex-1">
           <span className="block font-medium">{t.downloads.link}</span>
@@ -28,11 +28,11 @@ export default function Saved({ episodes, engine }) {
       </a>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <a href={paths.stats} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+        <a href={paths.stats} className="glass press flex min-h-11 items-center gap-3 rounded-lg p-4 hover:bg-white/10">
           <BarChart3 size={20} className="text-signal" aria-hidden="true" />
           <span className="min-w-0 flex-1"><span className="block font-medium">{t.stats.link}</span><span className="block text-xs text-ink-400">{t.stats.linkHint}</span></span>
         </a>
-        <a href={paths.backup} className="glass press flex min-h-11 items-center gap-3 rounded-2xl p-4 hover:bg-white/5">
+        <a href={paths.backup} className="glass press flex min-h-11 items-center gap-3 rounded-lg p-4 hover:bg-white/10">
           <Repeat2 size={20} className="text-signal" aria-hidden="true" />
           <span className="min-w-0 flex-1"><span className="block font-medium">{t.backup.link}</span><span className="block text-xs text-ink-400">{t.backup.linkHint}</span></span>
         </a>
@@ -43,7 +43,7 @@ export default function Saved({ episodes, engine }) {
         {queue.length === 0 && <p className="text-sm text-ink-400">A fila está vazia. Adicione episódios com o botão de fila.</p>}
         <ol className="flex flex-col gap-2">
           {queue.map((ep, i) => (
-            <li key={ep.id} className="glass flex items-center gap-3 rounded-2xl p-2 pr-3">
+            <li key={ep.id} className="glass flex items-center gap-3 rounded-lg p-2 pr-3">
               <Cover src={ep.cover} className="h-12 w-12 shrink-0 rounded-lg" />
               <button onClick={() => engine.select(ep)} className="press min-w-0 flex-1 text-left">
                 <span className="block truncate text-sm font-medium">{ep.title}</span>

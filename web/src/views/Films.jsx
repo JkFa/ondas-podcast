@@ -35,11 +35,11 @@ export default function Films({ catalog, progress, online, initialGenre = '' }) 
         <h1 className="font-display text-4xl sm:text-5xl">{t.films.title}</h1>
         {catalog.status === 'ready' && <p className="max-w-2xl text-ink-300">{t.films.lead(films.length)}</p>}
         <p className="max-w-2xl text-sm text-ink-400">{t.films.rightsNote} <button onClick={() => { const el = document.getElementById('direitos-filmes'); el?.scrollIntoView({ block: 'start' }); el?.focus({ preventScroll: true }) }} className="min-h-6 underline underline-offset-2 hover:text-ink-200">{t.films.rightsTitle}</button>.</p>
-        {!online && <p role="status" className="max-w-2xl rounded-2xl border border-[color:var(--control-line)] px-4 py-3 text-sm text-ink-200">{t.films.offline}</p>}
+        {!online && <p role="status" className="max-w-2xl rounded-lg border border-[color:var(--control-line)] px-4 py-3 text-sm text-ink-200">{t.films.offline}</p>}
       </header>
 
       {catalog.status === 'loading' && <p className="text-ink-300" role="status">{t.films.loading}</p>}
-      {catalog.status === 'error' && <p role="alert" className="max-w-2xl rounded-2xl border border-[color:var(--control-line)] px-4 py-3 text-ink-200">{t.films.loadError}</p>}
+      {catalog.status === 'error' && <p role="alert" className="max-w-2xl rounded-lg border border-[color:var(--control-line)] px-4 py-3 text-ink-200">{t.films.loadError}</p>}
 
       {catalog.status === 'ready' && (
         <>

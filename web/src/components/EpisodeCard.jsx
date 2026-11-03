@@ -19,12 +19,16 @@ export default function EpisodeCard({ ep, engine, featured = false }) {
       <button
         onClick={onPlay}
         aria-label={`${isPlaying ? 'Pausar' : 'Tocar'} ${ep.title}`}
-        className={`press relative shrink-0 overflow-hidden rounded-2xl bg-ink-800 ${featured ? 'aspect-square w-52 self-center sm:w-56 sm:self-auto' : 'h-20 w-20'}`}
+        className={`press relative shrink-0 overflow-hidden rounded-lg bg-ink-800 ${featured ? 'aspect-square w-52 self-center sm:w-56 sm:self-auto' : 'h-20 w-20'}`}
         style={featured ? { boxShadow: `0 24px 60px -20px ${ep.accentColor || '#6d5dfc'}99` } : undefined}
       >
         <Cover src={ep.cover} className="h-full w-full" />
-        <span className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100">
-          {isPlaying ? <Pause size={featured ? 36 : 24} fill="currentColor" /> : <Play size={featured ? 36 : 24} fill="currentColor" />}
+        <span
+          aria-hidden="true"
+          data-on={isPlaying || undefined}
+          className={`card-play absolute flex items-center justify-center rounded-full bg-signal text-ink-950 shadow-xl shadow-black/40 ${featured ? 'bottom-3 right-3 h-12 w-12' : 'bottom-1.5 right-1.5 h-9 w-9'}`}
+        >
+          {isPlaying ? <Pause size={featured ? 22 : 16} fill="currentColor" /> : <Play size={featured ? 22 : 16} fill="currentColor" className="translate-x-px" />}
         </span>
       </button>
 

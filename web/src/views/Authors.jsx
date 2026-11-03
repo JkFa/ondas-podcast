@@ -16,7 +16,7 @@ export default function Authors({ authors, loading }) {
       <ul className="grid gap-2 sm:grid-cols-2">
         {authors.map((a) => (
           <li key={a.slug}>
-            <a href={authorPath(a.slug)} className="glass press flex min-h-14 flex-col justify-center rounded-2xl px-4 py-3 hover:bg-white/5">
+            <a href={authorPath(a.slug)} className="glass press flex min-h-14 flex-col justify-center rounded-lg px-4 py-3 hover:bg-white/10">
               <span className="font-medium">{a.name}</span>
               <span className="text-xs text-ink-400">{t.browse.worksCount(a.books.length)} · {formatDuration(a.duration)}</span>
             </a>

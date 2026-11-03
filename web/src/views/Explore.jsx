@@ -163,7 +163,7 @@ export default function Explore({ books, engine, loading, error, genres = [] }) 
                   <a
                     href={`#/livro/${encodeURIComponent(p.slug)}?ep=${encodeURIComponent(p.ep)}&t=${p.start}`}
                     aria-label={`${p.kind === 'chapter' ? t.search.chapterTag : t.search.spokenTag}: ${p.snippet}. ${t.search.open(where, at)}`}
-                    className="glass press flex min-h-11 flex-col gap-1 rounded-2xl px-4 py-3 hover:bg-white/5"
+                    className="glass press flex min-h-11 flex-col gap-1 rounded-lg px-4 py-3 hover:bg-white/10"
                   >
                     <span className="text-xs text-ink-400">
                       <span className="font-medium text-ink-300">{where}</span> · {p.kind === 'chapter' ? t.search.chapterTag : t.search.spokenTag} · <span className="tabular-nums">{at}</span>
