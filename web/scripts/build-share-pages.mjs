@@ -16,6 +16,7 @@ import { clip, escHtml, fmt, synopsis } from './text.mjs'
 const root = new URL('../', import.meta.url)
 const { episodes } = JSON.parse(await readFile(new URL('public/catalog.json', root), 'utf8'))
 const books = buildBooks(episodes)
+const films = await readFile(new URL('public/films.json', root), 'utf8').then((j) => JSON.parse(j).films, () => [])
 const genres = createGenres(JSON.parse(await readFile(new URL('../config/genres.json', root), 'utf8'))).groupByGenre(books)
 const authors = buildAuthors(books)
 
@@ -137,6 +138,20 @@ for (const g of genres) {
     cta: 'Ver as obras no Ondas',
   }))
 }
+// Filmes: prévia com o pôster do archive.org e redirecionamento para #/filme/<slug>
+for (const f of films) {
+  const dir = `filme/${encodeURIComponent(f.slug)}`
+  await write(dir, page({
+    url: `${site}${dir}/`,
+    title: f.title,
+    description: clip(`${f.title} (${f.year})${f.director ? `, de ${f.director}` : ''}. ${synopsis(f.description) || 'Filme de domínio público ou licença livre'} · ${fmt(f.duration)}`, 200),
+    image: f.poster,
+    redirect: { up: '../../', hash: `#/filme/${encodeURIComponent(f.slug)}`, withTime: false },
+    heading: `${f.title} (${f.year})`,
+    lead: `${f.director ? `${f.director} · ` : ''}${fmt(f.duration)}`,
+    cta: 'Assistir no Ondas',
+  }))
+}
 // Página de assinatura (compartilhar o catálogo): prévia própria e redireciona para #/assinar
 await write('assinar', page({
   url: `${site}assinar/`,
@@ -148,4 +163,4 @@ await write('assinar', page({
   lead: 'Assine o Ondas no app de podcasts que você já usa.',
   cta: 'Escolher o app',
 }))
-console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios) + ${authors.length} autores + ${genres.length} gêneros + assinar`)
+console.log(`[share] ${count} páginas em dist/obra e dist/episodio (${books.length} obras, ${episodes.length} episódios) + ${authors.length} autores + ${genres.length} gêneros + ${films.length} filmes + assinar`)

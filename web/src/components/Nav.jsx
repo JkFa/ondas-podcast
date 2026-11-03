@@ -1,9 +1,10 @@
-import { BookOpen, Bookmark, Home, Library, Plus } from 'lucide-react'
+import { BookOpen, Bookmark, Clapperboard, Home, Library, Plus } from 'lucide-react'
 import { t } from '../strings'
 
 const ITEMS = [
   { id: 'home', label: t.nav.home, Icon: Home },
   { id: 'explore', label: t.nav.library, Icon: Library },
+  { id: 'films', label: t.nav.films, Icon: Clapperboard },
   { id: 'notes', label: t.nav.notes, Icon: BookOpen },
   { id: 'saved', label: t.nav.saved, Icon: Bookmark },
 ]
@@ -14,7 +15,7 @@ export default function Nav({ view, onView, onImport }) {
       key={id}
       onClick={() => onView(id)}
       aria-current={view === id ? 'page' : undefined}
-      className={`press flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-2 text-[0.6875rem] font-medium tracking-wide lg:w-14 lg:flex-none ${
+      className={`press flex flex-1 flex-col items-center gap-1 rounded-xl px-1 py-2 lg:px-2 text-[0.6875rem] font-medium tracking-wide lg:w-14 lg:flex-none ${
         view === id ? 'text-signal' : 'text-ink-400 hover:text-ink-200'
       } ${extra}`}
     >
@@ -40,11 +41,9 @@ export default function Nav({ view, onView, onImport }) {
         className="glass fixed inset-x-0 bottom-0 bg-ink-950/85 z-30 flex items-center gap-1 rounded-t-3xl border-x-0 border-b-0 px-3 pt-2 lg:hidden"
         style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}
       >
-        {tab(ITEMS[0].id, ITEMS[0].label, ITEMS[0].Icon)}
-        {tab(ITEMS[1].id, ITEMS[1].label, ITEMS[1].Icon)}
+        {ITEMS.slice(0, 3).map(({ id, label, Icon }) => tab(id, label, Icon))}
         {importBtn}
-        {tab(ITEMS[2].id, ITEMS[2].label, ITEMS[2].Icon)}
-        {tab(ITEMS[3].id, ITEMS[3].label, ITEMS[3].Icon)}
+        {ITEMS.slice(3).map(({ id, label, Icon }) => tab(id, label, Icon))}
       </nav>
 
       {/* Desktop: sidebar estreita */}

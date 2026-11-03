@@ -13,6 +13,7 @@ import PlayerSheet from './components/PlayerSheet'
 import { useAccent } from './hooks/useAccent'
 import { useAnnouncements } from './hooks/useAnnouncements'
 import { useDownloads } from './hooks/useDownloads'
+import { useFilms } from './hooks/useFilms'
 import { useMonoAudio } from './hooks/useMonoAudio'
 import { useOnline } from './hooks/useOnline'
 import { usePrefs } from './hooks/usePrefs'
@@ -30,11 +31,14 @@ import { announce } from './lib/announce'
 import { formatDuration, formatTime } from './lib/format'
 import { authorBySlug, buildAuthors } from './lib/authors'
 import { groupByGenre } from './lib/genres'
+import { filmBySlug, withProgress } from './lib/films'
 import { t } from './strings'
 import { mergeCatalog, parseCatalogJson, serializeCatalog, validEpisodes } from './lib/catalog'
 import Book from './views/Book'
 import Downloads from './views/Downloads'
 import Explore from './views/Explore'
+import Film from './views/Film'
+import Films from './views/Films'
 import Home from './views/Home'
 import Notes from './views/Notes'
 import Publish from './views/Publish'
@@ -60,6 +64,7 @@ export default function App() {
   const pwa = usePwa()
   const [transcriptOn, setTranscriptOn] = usePersistentState('transcript-on', false) // "Ver transcrição": desligada por padrão, lembrada
   const [importOpen, setImportOpen] = useState(false)
+  const [filmProgress, setFilmProgress] = usePersistentState('films', {}) // progresso dos filmes: { id: { pos, dur, at } }
 
   useEffect(() => {
     const ctrl = new AbortController()
@@ -73,6 +78,9 @@ export default function App() {
 
   const episodes = useMemo(() => mergeCatalog(base, validEpisodes(imported, 'importados')), [base, imported])
   const online = useOnline()
+  const filmCatalog = useFilms(route.name === 'films' || route.name === 'film')
+  const film = route.name === 'film' ? filmBySlug(filmCatalog.films, route.slug) : undefined
+  const saveFilmProgress = useCallback((id, pos, dur) => setFilmProgress((p) => withProgress(p, id, pos, dur)), [setFilmProgress])
   const { meta: downloaded } = useDownloads()
   // Sem internet só dá para tocar o que foi baixado; o motor usa isso para escolher a "próxima parte".
   const engine = useAudioEngine(episodes, { isPlayable: (ep) => online || !!downloaded[ep.id] })
@@ -82,7 +90,7 @@ export default function App() {
   useVLibras(prefs.vlibras)
   useShortcuts({
     engine,
-    enabled: prefs.shortcuts,
+    enabled: prefs.shortcuts && route.name !== 'film', // na página do filme o <video> tem os próprios atalhos
     sheetOpen,
     // T: mostra/oculta a transcrição; ao mostrar, abre o player se estiver fechado.
     onToggleTranscript: () => {
@@ -115,6 +123,7 @@ export default function App() {
   const shareBook = useCallback((b) => setShareTarget({ key: `book:${b.slug}`, kind: 'book', slug: b.slug, title: b.title, author: b.author, cover: b.cover, accentColor: b.accentColor }), [])
   const shareSubscribe = useCallback(() => setShareTarget({ key: 'subscribe', kind: 'subscribe', title: t.subscribe.title, cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
   const shareCollection = useCallback((kind, path, title, books) => setShareTarget({ key: `${kind}:${path}`, kind, path, title, cover: books.find((b) => b.cover)?.cover, accentColor: books[0]?.accentColor }), [])
+  const shareFilm = useCallback((f) => setShareTarget({ key: `film:${f.slug}`, kind: 'film', path: `filme/${encodeURIComponent(f.slug)}/`, title: f.title, author: String(f.year), cover: f.poster }), [])
   const shareSite = useCallback(() => setShareTarget({ key: 'site', kind: 'site', title: 'Ondas', cover: `${import.meta.env.BASE_URL}cover-1400.png`, accentColor: '#6d5dfc' }), [])
 
   const playerAccent = useAccent(engine.current)
@@ -142,9 +151,10 @@ export default function App() {
     document.title =
       route.name === 'book' ? (book ? t.titles.book(book.title) : t.titles.notFound)
       : route.name === 'author' ? (author ? t.titles.author(author.name) : t.titles.notFound)
+      : route.name === 'film' ? (film ? t.titles.film(film.title) : filmCatalog.status === 'loading' || filmCatalog.status === 'idle' ? t.titles.films : t.titles.filmNotFound)
       : route.name === 'genre' ? (genre ? t.titles.genre(genre.label) : t.titles.notFound)
       : t.titles[route.name]
-  }, [route.name, route.key, book, author, genre])
+  }, [route.name, route.key, book, author, genre, film, filmCatalog.status])
   useEffect(() => {
     if (firstRoute.current) { firstRoute.current = false; return }
     document.getElementById('conteudo')?.focus({ preventScroll: true })
@@ -177,8 +187,8 @@ export default function App() {
     }
   }
 
-  const view = ['book', 'authors', 'author', 'genre'].includes(route.name) ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : ['stats', 'backup'].includes(route.name) ? 'saved' : route.name
-  const wide = ['home', 'explore', 'book', 'subscribe', 'publish', 'author', 'genre'].includes(route.name)
+  const view = ['films', 'film'].includes(route.name) ? 'films' : ['book', 'authors', 'author', 'genre'].includes(route.name) ? 'explore' : route.name === 'downloads' ? 'saved' : ['subscribe', 'publish'].includes(route.name) ? 'home' : ['stats', 'backup'].includes(route.name) ? 'saved' : route.name
+  const wide = ['home', 'explore', 'book', 'subscribe', 'publish', 'author', 'genre', 'films', 'film'].includes(route.name)
   const hasPlayer = !!engine.current
 
   return (
@@ -214,6 +224,10 @@ export default function App() {
             )}
             {route.name === 'genre' && (
               <Collection eyebrow={t.browse.genreEyebrow} title={genre?.label} lead={genre && t.browse.genreLead(genre.books.length)} books={genre?.books} engine={engine} loading={loading} onShare={() => shareCollection('genre', `genero/${encodeURIComponent(genre.id)}/`, genre.label, genre.books)} />
+            )}
+            {route.name === 'films' && <Films catalog={filmCatalog} progress={filmProgress} online={online} initialGenre={route.query?.g} />}
+            {route.name === 'film' && (
+              <Film film={film} status={filmCatalog.status} progress={filmProgress} onProgress={saveFilmProgress} pauseAudio={() => engine.playing && engine.toggle()} captionsOn={prefs.captions} onShare={shareFilm} />
             )}
             {route.name === 'book' && <Book book={book} engine={engine} loading={loading} onShare={shareBook} />}
             {route.name === 'notes' && <Notes episodes={episodes} engine={engine} />}

@@ -1,0 +1,3002 @@
+{
+ "schemaVersion": 1,
+ "generatedAt": "2026-11-02",
+ "source": "https://archive.org/details/feature_films_unsorted",
+ "films": [
+  {
+   "id": "farewell_to_arms",
+   "slug": "a-farewell-to-arms",
+   "title": "A Farewell to Arms",
+   "year": 1932,
+   "director": "Edward A. Blatt",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 4703,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "pdmovies"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/farewell_to_arms",
+   "video": {
+    "url": "https://archive.org/download/farewell_to_arms/farewell_to_arms_512kb.mp4",
+    "size": 341686051
+   },
+   "archiveUrl": "https://archive.org/details/farewell_to_arms",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/farewell_to_arms/farewell_to_arms.mp4",
+    "size": 490231575
+   }
+  },
+  {
+   "id": "Eisenstein-TheGeneralLine",
+   "slug": "a-linha-geral-the-general-line",
+   "title": "A Linha Geral (The General Line)",
+   "year": 1929,
+   "director": "Sergei Eisenstein",
+   "description": "The General Line aka Old and New (translit. Staroye i novoye) is a 1929 Soviet film directed by Sergei Eisenstein.",
+   "duration": 7252,
+   "language": "ru",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "eisenstein",
+    "old and new",
+    "the general line",
+    "staroye i novoye"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Eisenstein-TheGeneralLine",
+   "video": {
+    "url": "https://archive.org/download/Eisenstein-TheGeneralLine/Eisenstein-TheGeneralLine_512kb.mp4",
+    "size": 523003749
+   },
+   "archiveUrl": "https://archive.org/details/Eisenstein-TheGeneralLine",
+   "captions": [
+    {
+     "lang": "en",
+     "auto": false,
+     "src": "films/captions/Eisenstein-TheGeneralLine.en.vtt"
+    }
+   ]
+  },
+  {
+   "id": "A_Shriek_in_the_Night",
+   "slug": "a-shriek-in-the-night",
+   "title": "A Shriek in the Night",
+   "year": 1933,
+   "director": "M.H. Hoffman Jr.",
+   "description": "A man falls to his death from the balcony of his penthouse apartment. Two reporters fighting over the scoop start to uncover a sinister plot.\n\nYou can find out more about this film on its IMDB page.",
+   "duration": 3997,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "murder",
+    "reporters",
+    "ginger rogers",
+    "lyle talbot"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/A_Shriek_in_the_Night",
+   "video": {
+    "url": "https://archive.org/download/A_Shriek_in_the_Night/A_Shriek_in_the_Night_512kb.mp4",
+    "size": 290487438
+   },
+   "archiveUrl": "https://archive.org/details/A_Shriek_in_the_Night",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/A_Shriek_in_the_Night/A_Shriek_in_the_Night.mp4",
+    "size": 416755734
+   }
+  },
+  {
+   "id": "AStarIsBorn",
+   "slug": "a-star-is-born",
+   "title": "A Star Is Born",
+   "year": 1937,
+   "director": "David O. Selznick",
+   "description": "Esther Blodgett (Janet Gaynor) is just another starry-eyed farm kid trying to break into the movies.\nWaitressing at a Hollywood party, she catches the eye of alcoholic star Norman Maine (Fredric March), is given a test, and is caught up in the Hollywood glamor machine.\nShe and her idol Norman marry; but his career abruptly dwindles to nothing\n\nThis was also Lana Turner's film debut as an extra.",
+   "duration": 6653,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/AStarIsBorn",
+   "video": {
+    "url": "https://archive.org/download/AStarIsBorn/AStarIsBorn_512kb.mp4",
+    "size": 482911378
+   },
+   "archiveUrl": "https://archive.org/details/AStarIsBorn",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/AStarIsBorn/AStarIsBorn.mp4",
+    "size": 692202742
+   }
+  },
+  {
+   "id": "A_Study_In_Scarlet",
+   "slug": "a-study-in-scarlet",
+   "title": "A Study in Scarlet",
+   "year": 1933,
+   "director": null,
+   "description": "From IMDb:\nIn London, a secret society led by lawyer Thaddeus Merrydew collects the assets of any of its deceased members and divides them among the remaining members. Society members start dropping like flies. Sherlock Holmes is approached by member James Murphy's widow, who is miffed at being left penniless by her husband. When Captain Pyke is shot, Holmes keys in on his mysterious Chinese widow as well as the shady Merrydew. Other members keep dying--Malcom Dearing first, then Mr. Baker. There is also an attempt on the life of young Eileen Forrester, who became a reluctant society member upon the death of her father. Holmes' uncanny observations and insights are put to the test.",
+   "duration": 4279,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "sherlock holmes"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/A_Study_In_Scarlet",
+   "video": {
+    "url": "https://archive.org/download/A_Study_In_Scarlet/A_Study_In_Scarlet_512kb.mp4",
+    "size": 310866069
+   },
+   "archiveUrl": "https://archive.org/details/A_Study_In_Scarlet",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/A_Study_In_Scarlet/A_Study_In_Scarlet.mp4",
+    "size": 445884801
+   }
+  },
+  {
+   "id": "AbileneTown",
+   "slug": "abilene-town",
+   "title": "Abilene Town",
+   "year": 1946,
+   "director": "Jules Levey",
+   "description": "Randolph Scott plays the Marshall Dan Mitchell who tries to keep things peaceful in town. Edgar Buchanan plays the sheriff Bravo Trimble who rather gambles than shoots. Lloyd Bridges can be seen as Henry Dreiser.\nAnd sure there are also some pretty ladies involved.",
+   "duration": 5361,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "romance",
+    "western",
+    "ann dvorak",
+    "lloyd bridges",
+    "edgar buchanan",
+    "randolph scott"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/AbileneTown",
+   "video": {
+    "url": "https://archive.org/download/AbileneTown/AbileneTown_512kb.mp4",
+    "size": 389463045
+   },
+   "archiveUrl": "https://archive.org/details/AbileneTown",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/AbileneTown/AbileneTown.mp4",
+    "size": 558805310
+   }
+  },
+  {
+   "id": "abraham_lincoln",
+   "slug": "abraham-lincoln",
+   "title": "Abraham Lincoln",
+   "year": 1930,
+   "director": "D. W. Griffith",
+   "description": "A biography of the beloved United States president by D. W. Griffith.\n\nYou can find more information regarding this film on its IMDb page.",
+   "duration": 5080,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "pdmovies"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/abraham_lincoln",
+   "video": {
+    "url": "https://archive.org/download/abraham_lincoln/abraham_lincoln_512kb.mp4",
+    "size": 369303629
+   },
+   "archiveUrl": "https://archive.org/details/abraham_lincoln",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/abraham_lincoln/abraham_lincoln.mp4",
+    "size": 528749539
+   }
+  },
+  {
+   "id": "Afgrunden_1910",
+   "slug": "afgrunden-o-abismo",
+   "title": "Afgrunden (O Abismo)",
+   "year": 1910,
+   "director": "Urban Gad",
+   "description": "This is the tale of a young woman who abandons her fiancé, and runs off with a circus performer. Things do not end well. The movie was heavily censored when originally shown in the US due to its erotic content. It is notable for the natural acting style of Asta Nielsen, a method unseen at the time in American cinema. There are many missing and degraded frames due to deterioration of the nitrate-based film used in making the picture.\n\nStars: Asta Nielsen, Poul Reumert, Hans Neergaard, Robert Dinesen, Emilie Sannom, and Oscar Stribolt\n\nIMDb Page\n\nThe intertitles are in Danish. English subtitles are listed as SUBRIP and via the torrent file.",
+   "duration": 2211,
+   "language": "da",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "drama",
+    "gaucho dance"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "licenseName": "CC0 1.0",
+   "rights": "cc",
+   "poster": "https://archive.org/services/img/Afgrunden_1910",
+   "video": {
+    "url": "https://archive.org/download/Afgrunden_1910/Afgrunden_1910.mp4",
+    "size": 193141088
+   },
+   "archiveUrl": "https://archive.org/details/Afgrunden_1910",
+   "captions": [
+    {
+     "lang": "en",
+     "auto": false,
+     "src": "films/captions/Afgrunden_1910.en.vtt"
+    }
+   ]
+  },
+  {
+   "id": "africa_speaks",
+   "slug": "africa-speaks",
+   "title": "Africa Speaks!",
+   "year": 1930,
+   "director": null,
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 3002,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "adventure",
+    "documentary"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/africa_speaks",
+   "video": {
+    "url": "https://archive.org/download/africa_speaks/africa_speaks_512kb.mp4",
+    "size": 218443482
+   },
+   "archiveUrl": "https://archive.org/details/africa_speaks",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/africa_speaks/africa_speaks.mp4",
+    "size": 312452956
+   }
+  },
+  {
+   "id": "angel_and_the_badman",
+   "slug": "angel-and-the-badman",
+   "title": "Angel and the Badman",
+   "year": 1947,
+   "director": "John Wayne",
+   "description": "John Wayne plays Quirt Evans, a gunslinger with a nasty rep who is injured and nursed back to health by a Quaker family.",
+   "duration": 5971,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "western",
+    "romance",
+    "john wayne"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/angel_and_the_badman",
+   "video": {
+    "url": "https://archive.org/download/angel_and_the_badman/angel_and_the_badman_512kb.mp4",
+    "size": 435329521
+   },
+   "archiveUrl": "https://archive.org/details/angel_and_the_badman",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/angel_and_the_badman/angel_and_the_badman.mp4",
+    "size": 622377473
+   }
+  },
+  {
+   "id": "Becky_Sharp_",
+   "slug": "becky-sharp",
+   "title": "Becky Sharp",
+   "year": 1935,
+   "director": "Kenneth Macgowan, Rouben Mamoulian",
+   "description": "Becky Sharp released in 1935 and based on the play of the same name by Langdon Mitchell, which in turn is based on the William Makepeace Thackeray's novel \"Vanity Fair\".\nIt tells the story of a lower-class girl who insinuates herself into an upper class family, only to see her life and the lives of those around her destroyed. The ruthless, self-willed and beautiful Becky is one of the most famous characters in English literature.\n\nAfter the tremendous success of the short La Cucaracha in 1934, John Hay Whitney and his cousin Cornelius Vanderbilt Whitney formed Pioneer Pictures to produce color films, of which this was the first.\nBeing the first Technicolor film, the color at the time did not look too realistic; one critic commented that the cast looked like \"boiled salmon dipped in mayonnaise\".",
+   "duration": 10008,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Becky_Sharp_",
+   "video": {
+    "url": "https://archive.org/download/Becky_Sharp_/Becky_Sharp_512kb.mp4",
+    "size": 391254333
+   },
+   "archiveUrl": "https://archive.org/details/Becky_Sharp_",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Becky_Sharp_/Becky_Sharp.mp4",
+    "size": 519701084
+   }
+  },
+  {
+   "id": "BillAndCoo1948",
+   "slug": "bill-and-coo",
+   "title": "Bill and Coo",
+   "year": 1948,
+   "director": "pearlheartgtr",
+   "description": "Welcome to Chirpendale. There's plenty of parking space, plus it has everything: a bar where bird citizens can drink junebug sundaes and listen to jazzy music. But the bird citizens are terrorized by an evil raven called \"The Black Menace\", but a pluck young bird named Bill Singer, who's a taxi driver by day, comes to the aid of a damsel in distress, Coo, who's trapped in a fire. And soon the circus comes to town, Bill and Coo get box perches and witness ferocious feats and even laugh along with Cannonball Twitcher on an out of control motorcycle! But soon The Black Menace returns, and Bill and the rest of the citizens put together a plan to put him away for good.\n\nXvid avi file\n\nhttp://www.imdb.com/title/tt0039188/\n\nRuntime:61 min\nCountry:USA\nLanguage:English\nColor:Color (Trucolor)",
+   "duration": 3615,
+   "language": "en",
+   "silent": false,
+   "genre": "comedia",
+   "tags": [
+    "bill",
+    "coo",
+    "bill and coo"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/BillAndCoo1948",
+   "video": {
+    "url": "https://archive.org/download/BillAndCoo1948/BillandCoo_512kb.mp4",
+    "size": 262218776
+   },
+   "archiveUrl": "https://archive.org/details/BillAndCoo1948",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/BillAndCoo1948/BillandCoo.mp4",
+    "size": 375711790
+   }
+  },
+  {
+   "id": "BoweryAtMidnigh",
+   "slug": "bowery-at-midnight",
+   "title": "Bowery at Midnight",
+   "year": 1942,
+   "director": null,
+   "description": "This film has fallen into the Public Domain.",
+   "duration": 3695,
+   "language": "en",
+   "silent": false,
+   "genre": "terror",
+   "tags": [
+    "bowery at midnight"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/BoweryAtMidnigh",
+   "video": {
+    "url": "https://archive.org/download/BoweryAtMidnigh/Bowery_at_Midnight_1942.mp4",
+    "size": 383540105
+   },
+   "archiveUrl": "https://archive.org/details/BoweryAtMidnigh",
+   "captions": []
+  },
+  {
+   "id": "Cyrano_DeBergerac",
+   "slug": "cyrano-de-bergerac",
+   "title": "Cyrano de Bergerac",
+   "year": 1950,
+   "director": "Stanley Kramer",
+   "description": "From:IMDb:\nFrance, 1640: Cyrano, the charismatic swordsman-poet with the absurd nose, hopelessly loves the beauteous Roxane; she, in turn, confesses to Cyrano her love for the handsome but tongue-tied Christian. The chivalrous Cyrano sets up with Christian an innocent deception, with tragic results. Much cut from the play, but dialogue not rewritten.",
+   "duration": 6772,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Cyrano_DeBergerac",
+   "video": {
+    "url": "https://archive.org/download/Cyrano_DeBergerac/Cyrano_De_Bergerac_512kb.mp4",
+    "size": 490408170
+   },
+   "archiveUrl": "https://archive.org/details/Cyrano_DeBergerac",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Cyrano_DeBergerac/Cyrano_De_Bergerac.mp4",
+    "size": 703840279
+   }
+  },
+  {
+   "id": "DarkJourney1937",
+   "slug": "dark-journey",
+   "title": "Dark Journey",
+   "year": 1937,
+   "director": null,
+   "description": "In WWI Stockholm, a British and German soldier meet and fall in love.\n\nPD In UK At GATT Date. Not Eligible For GATT\nU.S. Copyright not renewed\n\nMystic Nights Videos",
+   "duration": 4538,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "conrad veidt",
+    "vivien leigh",
+    "joan gardner",
+    "anthony bushell",
+    "ursula jeans",
+    "margery pickard",
+    "war",
+    "mystic nights videos"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/DarkJourney1937",
+   "video": {
+    "url": "https://archive.org/download/DarkJourney1937/DarkJourney1937_512kb.mp4",
+    "size": 327609115
+   },
+   "archiveUrl": "https://archive.org/details/DarkJourney1937",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/DarkJourney1937/DarkJourney1937.mp4",
+    "size": 471354270
+   }
+  },
+  {
+   "id": "dishonored_lady",
+   "slug": "dishonored-lady",
+   "title": "Dishonored Lady",
+   "year": 1947,
+   "director": null,
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 5041,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "crime"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/dishonored_lady",
+   "video": {
+    "url": "https://archive.org/download/dishonored_lady/dishonored_lady_512kb.mp4",
+    "size": 366258101
+   },
+   "archiveUrl": "https://archive.org/details/dishonored_lady",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/dishonored_lady/dishonored_lady.mp4",
+    "size": 523810466
+   }
+  },
+  {
+   "id": "DonQuixote",
+   "slug": "don-quixote",
+   "title": "Don Quixote",
+   "year": 1933,
+   "director": null,
+   "description": "The classic film \"Don Quixote\" starring famous Russian singer Feodor Chaliapin.",
+   "duration": 3321,
+   "language": "en",
+   "silent": false,
+   "genre": "aventura",
+   "tags": [
+    "1933",
+    "classic",
+    "feodor chaliapin"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/DonQuixote",
+   "video": {
+    "url": "https://archive.org/download/DonQuixote/DonQuixote_512kb.mp4",
+    "size": 239104159
+   },
+   "archiveUrl": "https://archive.org/details/DonQuixote",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/DonQuixote/DonQuixote.mp4",
+    "size": 344595049
+   }
+  },
+  {
+   "id": "DreamingOutLoud1940",
+   "slug": "dreaming-out-loud",
+   "title": "Dreaming Out Loud",
+   "year": 1940,
+   "director": null,
+   "description": "Alice works in the post office at Lum and Abner's General store. She would like to marry Kenneth but her aunt tries everything to prevent it due to a feud with his father.\n\nMystic Nights Videos",
+   "duration": 3910,
+   "language": "en",
+   "silent": false,
+   "genre": "comedia",
+   "tags": [
+    "lum and abner",
+    "chester lauck",
+    "norris goff",
+    "frances langford",
+    "frank craven",
+    "bobs watson",
+    "irving bacon",
+    "clara blandick"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/DreamingOutLoud1940",
+   "video": {
+    "url": "https://archive.org/download/DreamingOutLoud1940/DreamingOutLoud1940_512kb.mp4",
+    "size": 281573838
+   },
+   "archiveUrl": "https://archive.org/details/DreamingOutLoud1940",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/DreamingOutLoud1940/DreamingOutLoud1940.mp4",
+    "size": 406885544
+   }
+  },
+  {
+   "id": "dressed_to_kill",
+   "slug": "dressed-to-kill",
+   "title": "Dressed to Kill",
+   "year": 1946,
+   "director": null,
+   "description": "Aka 'Sherlock Holmes in Dressed To Kill' - features Basil Rathbone as Sherlock Holmes.\n\nYou can find more information regarding this film on its IMDb page.",
+   "duration": 4290,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "thriller",
+    "pdmovies"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/dressed_to_kill",
+   "video": {
+    "url": "https://archive.org/download/dressed_to_kill/dressed_to_kill_512kb.mp4",
+    "size": 311813650
+   },
+   "archiveUrl": "https://archive.org/details/dressed_to_kill",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/dressed_to_kill/dressed_to_kill.mp4",
+    "size": 447136720
+   }
+  },
+  {
+   "id": "ElephantBoy",
+   "slug": "elephant-boy",
+   "title": "Elephant Boy",
+   "year": 1937,
+   "director": "Alexander Korda",
+   "description": "Rudyard Kipling's short story \"Toomai of the Elephants\" comes to life in this exciting little movie from Sir Alexander Korda.\nThe original material has been embroidered upon, but the changes from Kipling, who had died in 1936, actually give the slight tale more punch without destroying its integrity.\nLocation shooting, personally granted by the Maharaja of Mysore on his private lands, gives a veracity to the film which no studio back lot could equal.\nIn the title role, 13 year old, Sabu Dastagir in his film debut plays a young Elephant Boy who dreams of becoming a hunter like his father, grandfather and great-grandfather.",
+   "duration": 4697,
+   "language": "en",
+   "silent": false,
+   "genre": "aventura",
+   "tags": [
+    "adventure",
+    "drama",
+    "sabu dastagir"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/ElephantBoy",
+   "video": {
+    "url": "https://archive.org/download/ElephantBoy/ElephantBoy_512kb.mp4",
+    "size": 340982184
+   },
+   "archiveUrl": "https://archive.org/details/ElephantBoy",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/ElephantBoy/ElephantBoy.mp4",
+    "size": 489580021
+   }
+  },
+  {
+   "id": "Friday_the_Thirteenth_1933",
+   "slug": "friday-the-thirteenth",
+   "title": "Friday the Thirteenth",
+   "year": 1933,
+   "director": null,
+   "description": "Flashbacks tell the stories of the 13 passengers on a bus that crashes.",
+   "duration": 4960,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "bus",
+    "british"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Friday_the_Thirteenth_1933",
+   "video": {
+    "url": "https://archive.org/download/Friday_the_Thirteenth_1933/Friday_the_Thirteenth_1933_512kb.mp4",
+    "size": 357702883
+   },
+   "archiveUrl": "https://archive.org/details/Friday_the_Thirteenth_1933",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Friday_the_Thirteenth_1933/Friday_the_Thirteenth_1933.mp4",
+    "size": 516579942
+   }
+  },
+  {
+   "id": "gaslight-1940-restored-movie-720p-hd",
+   "slug": "gaslight",
+   "title": "Gaslight",
+   "year": 1940,
+   "director": null,
+   "description": "Plot: Twenty years after the murder of\nAlice Barlow, her house is finally occupied again.",
+   "duration": 5041,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "gaslight",
+    "restored",
+    "movie",
+    "film",
+    "cinema",
+    "720p",
+    "hd",
+    "1940"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/gaslight-1940-restored-movie-720p-hd",
+   "video": {
+    "url": "https://archive.org/download/gaslight-1940-restored-movie-720p-hd/gaslight-1940-restored%20movie-720p-hd.mp4",
+    "size": 484811494
+   },
+   "archiveUrl": "https://archive.org/details/gaslight-1940-restored-movie-720p-hd",
+   "captions": []
+  },
+  {
+   "id": "Go_for_Broke",
+   "slug": "go-for-broke",
+   "title": "Go for Broke!",
+   "year": 1951,
+   "director": "Dore Schary",
+   "description": "The film dramatizes the real-life story of the 442nd Regimental Combat Team, which was composed of Nisei, second-generation Americans born of Japanese parents.\nFighting in the European theater during World War II, this unit became the most heavily decorated unit for its size and length of service in the history of the United States Army. As well as one of the units with the highest casualty rates.",
+   "duration": 5420,
+   "language": "en",
+   "silent": false,
+   "genre": "guerra",
+   "tags": [
+    "drama",
+    "war"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Go_for_Broke",
+   "video": {
+    "url": "https://archive.org/download/Go_for_Broke/Go_for_Broke_512kb.mp4",
+    "size": 393496410
+   },
+   "archiveUrl": "https://archive.org/details/Go_for_Broke",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Go_for_Broke/Go_for_Broke.mp4",
+    "size": 562799386
+   }
+  },
+  {
+   "id": "GreatExpectations1946",
+   "slug": "great-expectations",
+   "title": "Great Expectations",
+   "year": 1946,
+   "director": "David Lean",
+   "description": "The classic story of Pip the British orphan.\n\nGreat Expectations (1946) Fall's Under The Transitional Aspects Of UK Law.\nhttp://www.archive.org/post/285670/are-these-public-domain\n\nMystic Nights Videos",
+   "duration": 6801,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "john mills",
+    "tony wager",
+    "alec guinness",
+    "valerie hobson",
+    "jean simmons",
+    "mystic nights videos"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/GreatExpectations1946",
+   "video": {
+    "url": "https://archive.org/download/GreatExpectations1946/GreatExpectations1946_512kb.mp4",
+    "size": 490902250
+   },
+   "archiveUrl": "https://archive.org/details/GreatExpectations1946",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/GreatExpectations1946/GreatExpectations1946.mp4",
+    "size": 706452491
+   }
+  },
+  {
+   "id": "gullivers_travels1939",
+   "slug": "gulliver-s-travels",
+   "title": "Gulliver's Travels",
+   "year": 1939,
+   "director": "Dave Fleischer",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 4360,
+   "language": "en",
+   "silent": false,
+   "genre": "animacao",
+   "tags": [
+    "animation"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/gullivers_travels1939",
+   "video": {
+    "url": "https://archive.org/download/gullivers_travels1939/gullivers_travels1939_512kb.mp4",
+    "size": 316765284
+   },
+   "archiveUrl": "https://archive.org/details/gullivers_travels1939",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/gullivers_travels1939/gullivers_travels1939.mp4",
+    "size": 454183111
+   }
+  },
+  {
+   "id": "hanawa-hekonai-meito-no-maki-1917",
+   "slug": "hanawa-hekonai-meito-no-maki",
+   "title": "Hanawa Hekonai meitō no maki",
+   "year": 1917,
+   "director": "Junichi Kôuchi",
+   "description": "Namakura Gatana, meaning “dull-edged sword,” is a four-minute comedy about a samurai who, thanks to his dull instrument, loses every time he attacks a weak opponent. In order to examine the sword, he tries to attack passers-by, but lower-class townspeople fight back and knock him down.\nWatch on RetroFlix.org: https://retroflix.org/hanawa-hekonai-meito-no-maki-1917/",
+   "duration": 251,
+   "language": "ja",
+   "silent": true,
+   "genre": "animacao",
+   "tags": [
+    "hanawa hekonai meitô no maki (1917)"
+   ],
+   "warning": null,
+   "license": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/hanawa-hekonai-meito-no-maki-1917",
+   "video": {
+    "url": "https://archive.org/download/hanawa-hekonai-meito-no-maki-1917/Hanawa%20Hekonai%20meit%C3%B4%20no%20maki%20%281917%29.mp4",
+    "size": 26383741
+   },
+   "archiveUrl": "https://archive.org/details/hanawa-hekonai-meito-no-maki-1917",
+   "captions": []
+  },
+  {
+   "id": "Heading_Home",
+   "slug": "headin-home",
+   "title": "Headin' Home",
+   "year": 1920,
+   "director": null,
+   "description": "Heading Home is a 1920 Silent feature starring Babe Ruth.\n\nhttp://www.imdb.com/title/tt0011267/",
+   "duration": 3321,
+   "language": "en",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "babe ruth",
+    "baseball",
+    "yankees"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Heading_Home",
+   "video": {
+    "url": "https://archive.org/download/Heading_Home/HeadingHome-BabeRuth1920_512kb.mp4",
+    "size": 241113219
+   },
+   "archiveUrl": "https://archive.org/details/Heading_Home",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Heading_Home/HeadingHome-BabeRuth1920.mp4",
+    "size": 346001747
+   }
+  },
+  {
+   "id": "Hemp_for_victory_1942",
+   "slug": "hemp-for-victory",
+   "title": "Hemp for Victory",
+   "year": 1942,
+   "director": null,
+   "description": "US government propaganda film made during WWII touting the virtues of hemp. The film was aimed at farmers at a time when the miltary was facing a shortage of hemp, it shows how hemp is grown and processed into rope and other products.\n\nYou can find more information regarding this film on its IMDb page.",
+   "duration": 823,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "propaganda",
+    "government film",
+    "pdmovies"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Hemp_for_victory_1942",
+   "video": {
+    "url": "https://archive.org/download/Hemp_for_victory_1942/Hemp_for_victory_1942_512kb.mp4",
+    "size": 49237227
+   },
+   "archiveUrl": "https://archive.org/details/Hemp_for_victory_1942",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Hemp_for_victory_1942/Hemp_for_victory_1942.mp4",
+    "size": 71466168
+   }
+  },
+  {
+   "id": "HisPrivateSecretary1933",
+   "slug": "his-private-secretary",
+   "title": "His Private Secretary",
+   "year": 1933,
+   "director": null,
+   "description": "Dick Wallace wants to marry a minister's grand-daughter but his father, who wants him to get work on his company's business, is opposed.\n\nMystic Nights Videos",
+   "duration": 3612,
+   "language": "en",
+   "silent": false,
+   "genre": "comedia",
+   "tags": [
+    "evalyn knapp",
+    "john wayne",
+    "reginald barlow",
+    "alec b. francis",
+    "arthur hoyt",
+    "natalie kingston",
+    "patrick cunning",
+    "al st. john"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/HisPrivateSecretary1933",
+   "video": {
+    "url": "https://archive.org/download/HisPrivateSecretary1933/HisPrivateSecretary1933_512kb.mp4",
+    "size": 260845651
+   },
+   "archiveUrl": "https://archive.org/details/HisPrivateSecretary1933",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/HisPrivateSecretary1933/HisPrivateSecretary1933.mp4",
+    "size": 375878115
+   }
+  },
+  {
+   "id": "In_Which_We_Serve",
+   "slug": "in-which-we-serve",
+   "title": "In Which We Serve",
+   "year": 1942,
+   "director": "Noël Coward e David Lean",
+   "description": "Based on the true story of Lord Mountbatten's destroyer, the film unfolds in flashback as survivors cling to a dinghy, and interweaves the history of their ship with the onshore lives of her crew.\n\nHope someone uploads a better copy!\n\nNoel Coward produced, wrote the screenplay, composed the score, and starred as Captain Edward Kinross. Coward also officially codirected, though he handed the reigns to David Lean (his directorial debut).\n\nAlso stars: John Mills, Bernard Miles, Celia Johnson, Kay Walsh, and Joyce Carey\n\nIMDb Page\nWikipedia Page",
+   "duration": 6569,
+   "language": "en",
+   "silent": false,
+   "genre": "guerra",
+   "tags": [
+    "war",
+    "wwii",
+    "ww2",
+    "drama",
+    "propaganda"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/In_Which_We_Serve",
+   "video": {
+    "url": "https://archive.org/download/In_Which_We_Serve/In_Which_We_Serve_512kb.mp4",
+    "size": 529321411
+   },
+   "archiveUrl": "https://archive.org/details/In_Which_We_Serve",
+   "captions": []
+  },
+  {
+   "id": "Jamaica_Inn",
+   "slug": "jamaica-inn",
+   "title": "Jamaica Inn",
+   "year": 1939,
+   "director": "Alfred Hitchcock",
+   "description": "From IMDb: Set in Cornwall where the young orphan, Mary, is sent to live with Aunt Patience and Uncle Joss who are the landlords of the Jamaica Inn. Mary soon realizes that her uncle's inn is the base of a gang of pirates who lure ships to their doom on the rocky coast. The girl starts fearing for her life.\n\nStars: Charles Laughton, Maureen O'Hara and Leslie Banks",
+   "duration": 5929,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "hitchcock",
+    "suspense",
+    "murder",
+    "pirates"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Jamaica_Inn",
+   "video": {
+    "url": "https://archive.org/download/Jamaica_Inn/JAMAICA_INN_512kb.mp4",
+    "size": 430157451
+   },
+   "archiveUrl": "https://archive.org/details/Jamaica_Inn",
+   "captions": []
+  },
+  {
+   "id": "KingSolomonsMines1937",
+   "slug": "king-solomon-s-mines",
+   "title": "King Solomon's Mines",
+   "year": 1937,
+   "director": null,
+   "description": "A young Irish woman hires a hunter to find her father in unexplored Africa.\n\nMystic Nights Videos",
+   "duration": 4821,
+   "language": "en",
+   "silent": false,
+   "genre": "aventura",
+   "tags": [
+    "paul robeson",
+    "cedric hardwicke",
+    "roland young",
+    "anna lee",
+    "mystic nights videos"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/KingSolomonsMines1937",
+   "video": {
+    "url": "https://archive.org/download/KingSolomonsMines1937/KingSolomonsMines1937_512kb.mp4",
+    "size": 347891970
+   },
+   "archiveUrl": "https://archive.org/details/KingSolomonsMines1937",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/KingSolomonsMines1937/KingSolomonsMines1937.mp4",
+    "size": 503404446
+   }
+  },
+  {
+   "id": "LouisianaStory",
+   "slug": "louisiana-story",
+   "title": "Louisiana Story",
+   "year": 1948,
+   "director": "Robert Flaherty",
+   "description": "A young Cajun boy named Alexander Napolean Ulysses Latour (Joseph Boudreaux) spends his time on a Louisiana bayou.\nThere he plays, fishes and hunts, worrying only about the alligators which infest its waters.\nThe boy's innocent routine changes forever when his father (Lionel Le Blanc) signs a lease agreement with an oil company which brings a derrick into their corner of the bayou.",
+   "duration": 4709,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "documentary",
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/by/3.0/",
+   "licenseName": "CC BY 3.0",
+   "rights": "cc",
+   "poster": "https://archive.org/services/img/LouisianaStory",
+   "video": {
+    "url": "https://archive.org/download/LouisianaStory/LouisianaStory_512kb.mp4",
+    "size": 339587373
+   },
+   "archiveUrl": "https://archive.org/details/LouisianaStory",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/LouisianaStory/LouisianaStory.mp4",
+    "size": 490413073
+   }
+  },
+  {
+   "id": "fritz-langs-m-1931-restored-movie-720p-hd",
+   "slug": "m-o-vampiro-de-dusseldorf",
+   "title": "M — O Vampiro de Düsseldorf",
+   "year": 1931,
+   "director": "Fritz Lang",
+   "description": "M (German: M – Eine Stadt sucht einen Mörder, lit. M – A City Searches for a Murderer) is a\n1931 German thriller film directed by Fritz Lang and\nstarring Peter Lorre in his breakthrough role as Hans\nBeckert, a serial killer of children. An early example of\na procedural drama, the film centers on the manhunt\nfor Lorre’s character, conducted by both the police and the criminal\nunderworld.\n\nThe film’s screenplay was written by Lang and his wife Thea\nvon Harbou and was the director's first sound film. It\nfeatures many cinematic innovations, including the use of long, fluid tracking\nshots, and a musical leitmotif in\nthe form of \"In\nthe Hall of the Mountain King\" whistled by Lorre's character. Now\nconsidered a timeless classic, the film was deemed by Lang to be his magnum\nopus. It is widely considered one of the greatest films of all time, and\nan indispensable influence on modern crime and thr",
+   "duration": 6581,
+   "language": "de",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "m",
+    "german",
+    "m – eine stadt sucht einen mörder",
+    "m – a city searches for a murderer",
+    "1931",
+    "thriller",
+    "film",
+    "fritz lang"
+   ],
+   "warning": "violence",
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/fritz-langs-m-1931-restored-movie-720p-hd",
+   "video": {
+    "url": "https://archive.org/download/fritz-langs-m-1931-restored-movie-720p-hd/fritz%20lang%27s%20m-1931-restored%20movie-720p-hd.mp4",
+    "size": 631179212
+   },
+   "archiveUrl": "https://archive.org/details/fritz-langs-m-1931-restored-movie-720p-hd",
+   "captions": []
+  },
+  {
+   "id": "MoulinRouge1928OlgaTschechowaEveGrayJeanBradinGeorgesTreville",
+   "slug": "moulin-rouge",
+   "title": "Moulin Rouge",
+   "year": 1928,
+   "director": "E. A. Dupont",
+   "description": "Moulin Rouge 1929 Olga Tschechowa, Eve Gray, Jean Bradin, Georges Tréville",
+   "duration": 5089,
+   "language": "en",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "moulin rouge",
+    "1929",
+    "olga tschechowa",
+    "eve gray",
+    "jean bradin",
+    "georges tréville"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/MoulinRouge1928OlgaTschechowaEveGrayJeanBradinGeorgesTreville",
+   "video": {
+    "url": "https://archive.org/download/MoulinRouge1928OlgaTschechowaEveGrayJeanBradinGeorgesTreville/MoulinRouge1928.mp4",
+    "size": 528654958
+   },
+   "archiveUrl": "https://archive.org/details/MoulinRouge1928OlgaTschechowaEveGrayJeanBradinGeorgesTreville",
+   "captions": []
+  },
+  {
+   "id": "Murder_At_The_Baskervilles",
+   "slug": "murder-at-the-baskervilles",
+   "title": "Murder at the Baskervilles",
+   "year": 1937,
+   "director": "Julius Hagen",
+   "description": "From IMDb:\nSherlock Holmes takes a vacation and visits his old friend Sir Henry Baskerville. His vacation ends when he suddenly finds himself in the middle of a double-murder mystery. Now he's got to find Professor Moriarty and the horse Silver Blaze before the great cup final horse race.",
+   "duration": 3937,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "sherlock holmes"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Murder_At_The_Baskervilles",
+   "video": {
+    "url": "https://archive.org/download/Murder_At_The_Baskervilles/Murder_At_The_Baskervilles_512kb.mp4",
+    "size": 285999710
+   },
+   "archiveUrl": "https://archive.org/details/Murder_At_The_Baskervilles",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Murder_At_The_Baskervilles/Murder_At_The_Baskervilles.mp4",
+    "size": 409739756
+   }
+  },
+  {
+   "id": "MurderByTelevision1935",
+   "slug": "murder-by-television",
+   "title": "Murder by Television",
+   "year": 1935,
+   "director": null,
+   "description": "A scientist collapses while demonstrating his new television machine. Bela Lugosi stars in this great who dun-it. Produced by Cameo Pictures.",
+   "duration": 3244,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "murder by television",
+    "bela lugosi"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/MurderByTelevision1935",
+   "video": {
+    "url": "https://archive.org/download/MurderByTelevision1935/MurderbytelevisiTitle3_512kb.mp4",
+    "size": 241933965
+   },
+   "archiveUrl": "https://archive.org/details/MurderByTelevision1935",
+   "captions": []
+  },
+  {
+   "id": "My_Favorite_Brunette_Xvid",
+   "slug": "my-favorite-brunette",
+   "title": "My Favorite Brunette",
+   "year": 1947,
+   "director": "Elliott Nugent",
+   "description": "This was one of the three films that Bob Hope did for Paramount with the theme of favorites: blonde, spy and brunette. He was at one of the best moments of his career when this spoof about the detective movie genre went into production.\n\n\"My Favorite Brunette\" was directed by Elliott Nugent with a style that made it fun and light to watch. The screen play by Edmund Beloin and Jack Rose parodies those films that showed a charismatic private eye get into all kinds of dangerous situations. In this film, Ronnie Jackson, a photographer in San Francisco is suddenly, thrown into a web of intrigue when he steps into the office of his neighbor, the real P.I, Sam McCloud, who is fed up with the job and is leaving town.\n\nEnter the femme fatale, something that is a must in this type of film, Carlotta Montay. She will get Ronnie into all kinds of difficult situations and even the gas chamber as he tr",
+   "duration": 5234,
+   "language": "en",
+   "silent": false,
+   "genre": "comedia",
+   "tags": [
+    "death row",
+    "murder",
+    "bob hope",
+    "detective"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/My_Favorite_Brunette_Xvid",
+   "video": {
+    "url": "https://archive.org/download/My_Favorite_Brunette_Xvid/My_Favorite_Brunette_512kb.mp4",
+    "size": 379984240
+   },
+   "archiveUrl": "https://archive.org/details/My_Favorite_Brunette_Xvid",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/My_Favorite_Brunette_Xvid/My_Favorite_Brunette.mp4",
+    "size": 544366952
+   }
+  },
+  {
+   "id": "nazi_concentration_camps",
+   "slug": "nazi-concentration-camps",
+   "title": "Nazi Concentration Camps",
+   "year": 1945,
+   "director": "George Stevens (Unidade de Filmagem do Exército dos EUA)",
+   "description": "**This film contains extremely graphic scenes of human suffering, please exercise caution when viewing.**\n\nCompilation footage of Nazi concentration camps in the immediate aftermath of World War II.  The footage was gathered by the US Department of Defense as part of the effort to conduct war crimes trials.\n\nThis copy was dubbed from a video copy at the National Archives in College Park, Maryland.\n\nNational Archives Identifiers:\n\nARC: 43452\n\nNAIL: 238.2",
+   "duration": 3556,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "nazi",
+    "war",
+    "world war ii",
+    "concentration camp"
+   ],
+   "warning": "graphic",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/nazi_concentration_camps",
+   "video": {
+    "url": "https://archive.org/download/nazi_concentration_camps/nazi_concentration_camps_512kb.mp4",
+    "size": 258348773
+   },
+   "archiveUrl": "https://archive.org/details/nazi_concentration_camps",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/nazi_concentration_camps/nazi_concentration_camps.mp4",
+    "size": 370493225
+   }
+  },
+  {
+   "id": "nosferatu_201508",
+   "slug": "nosferatu",
+   "title": "Nosferatu",
+   "year": 1922,
+   "director": "F. W. Murnau",
+   "description": "This film has fallen into the Public Domain.",
+   "duration": 5602,
+   "language": "de",
+   "silent": true,
+   "genre": "terror",
+   "tags": [
+    "nosferatu"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/nosferatu_201508",
+   "video": {
+    "url": "https://archive.org/download/nosferatu_201508/dom-6567newnosferatu.mp4",
+    "size": 581131427
+   },
+   "archiveUrl": "https://archive.org/details/nosferatu_201508",
+   "captions": []
+  },
+  {
+   "id": "PhantasmagoriaTheater-BattleshipPotemkin1925396",
+   "slug": "o-encouracado-potemkin-battleship-potemkin",
+   "title": "O Encouraçado Potemkin (Battleship Potemkin)",
+   "year": 1925,
+   "director": "Sergei Eisenstein",
+   "description": "Montage, which was not just Eistenstein's knack but also his life's blood early in his career, is often misused in the present cinema, or if not misused then in an improper context for the story. Sometimes montage is used now as just another device to get from point A to point B. Montage was something else for Eisenstein; he was trying to communicate in the most direct way that he could the urgency, the passion(s), and the ultimate tragedies that were in the Russian people at the time and place. Even if one doesn't see all of Eisenstein's narrative or traditional 'story' ideas to have much grounding (Kubrick has said this), one can't deny the power of seeing the ships arriving at the harbor, the people on the stairs, and the soldiers coming at them every which way with guns. Some may find it hard to believe this was done in the 20's; it has that power like the Passion of Joan of Arc to o",
+   "duration": 4392,
+   "language": "ru",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "pdmovies"
+   ],
+   "warning": "violence",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/PhantasmagoriaTheater-BattleshipPotemkin1925396",
+   "video": {
+    "url": "https://archive.org/download/PhantasmagoriaTheater-BattleshipPotemkin1925396/PhantasmagoriaTheater-BattleshipPotemkin1925396_512kb.mp4",
+    "size": 318641587
+   },
+   "archiveUrl": "https://archive.org/details/PhantasmagoriaTheater-BattleshipPotemkin1925396",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/PhantasmagoriaTheater-BattleshipPotemkin1925396/PhantasmagoriaTheater-BattleshipPotemkin1925396.mp4",
+    "size": 455863821
+   }
+  },
+  {
+   "id": "oliver_twist",
+   "slug": "oliver-twist",
+   "title": "Oliver Twist",
+   "year": 1933,
+   "director": "I.E. Chadwick",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 4255,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/oliver_twist",
+   "video": {
+    "url": "https://archive.org/download/oliver_twist/oliver_twist_512kb.mp4",
+    "size": 309072829
+   },
+   "archiveUrl": "https://archive.org/details/oliver_twist",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/oliver_twist/oliver_twist.mp4",
+    "size": 443058727
+   }
+  },
+  {
+   "id": "OperationIVY1952",
+   "slug": "operation-ivy",
+   "title": "Operation Ivy",
+   "year": 1952,
+   "director": "Joint Task Force 132",
+   "description": "\"The island of Elugelab is missing!\" President Eisenhower heard this short report on the Mike shot in Operation IVY from Gordon Dean, Chairman of the Atomic Energy Commission.\n\nMike was the first full-scale hydrogen explosive device to be tested, yet was only a scientific test of a thermofusion implosion device concept. Mike was not a deliverable weapon.\n\nThe island where the device was detonated was vaporized. The hole Mike left was big enough to accommodate 14 Pentagon-size buildings and deep enough to hold 17 story building under water, in a crater one mile in diameter and approximately 175 feet deep. Mike's yield was an incredible 10.4 megatons, signaling the proof-tested expansion of the nuclear explosive technology concepts from nuclear fission to thermofusion. Thermofusion is the same process that occurs in the core of the Sun.\n\nThis test, however, was not the first test of a liqu",
+   "duration": 3765,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "operation ivy",
+    "ivy",
+    "atomic",
+    "nuclear",
+    "cold war",
+    "atomic testing",
+    "nuclear testing",
+    "1952"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/by-nc-nd/2.5/",
+   "licenseName": "CC BY-NC-ND 2.5",
+   "rights": "cc",
+   "poster": "https://archive.org/services/img/OperationIVY1952",
+   "video": {
+    "url": "https://archive.org/download/OperationIVY1952/OperationIVY1952_512kb.mp4",
+    "size": 264606398
+   },
+   "archiveUrl": "https://archive.org/details/OperationIVY1952",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/OperationIVY1952/OperationIVY1952.mp4",
+    "size": 392819547
+   }
+  },
+  {
+   "id": "Our_Town",
+   "slug": "our-town",
+   "title": "Our Town",
+   "year": 1940,
+   "director": null,
+   "description": "Our Town is a 1940 film adaptation of a play of the same name by Thornton Wilder starring William Holden, Martha Scott, Fay Bainter, Beulah Bondi, Thomas Mitchell, Guy Kibbee and Frank Craven. It was adapted by Harry Chandlee, Craven and Wilder. It was directed by Sam Wood. The movie was nominated for the Academy Award for Best Picture. Scott, who repeated her stage role as Emily Webb, was nominated for the Academy Award for Best Actress, and Aaron Copland was nominated for Best Score. This film is in the public domain.",
+   "duration": 5218,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Our_Town",
+   "video": {
+    "url": "https://archive.org/download/Our_Town/OurTown_512kb.mp4",
+    "size": 378771776
+   },
+   "archiveUrl": "https://archive.org/details/Our_Town",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Our_Town/OurTown.mp4",
+    "size": 544108689
+   }
+  },
+  {
+   "id": "princess_iron_fan",
+   "slug": "princess-iron-fan",
+   "title": "Princess Iron Fan",
+   "year": 1941,
+   "director": null,
+   "description": "Produced by the Wan brothers in the midst of war, Princess Iron Fan is the first feature length animation made in China. We follow the Monkey King and his friends on their journey to the west. As they reach Fire Mountain they are unable to pass because of the fire but learn that a special iron fan can quench the flames. However, the fan belongs to Princess Iron Fan and she will not willingly lend it to them...\n\nSubtitles:\nVobSub (Chinese Simplified & Traditional)\nChinese Simplified (GB)\nChinese Traditional (Big5)\nCzech (Windows-1250) (by Michal Maňas aka Snek01)\nEnglish (by Philip Jägenstedt, Esn/Niffiwan and others)\nRussian (by anmo-222 and Esn/Niffiwan)\n\nUTF-8 encoding unless otherwise noted.",
+   "duration": 4367,
+   "language": "zh",
+   "silent": false,
+   "genre": "animacao",
+   "tags": [
+    "china",
+    "animation"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/princess_iron_fan",
+   "video": {
+    "url": "https://archive.org/download/princess_iron_fan/princess_iron_fan_512kb.mp4",
+    "size": 317201970
+   },
+   "archiveUrl": "https://archive.org/details/princess_iron_fan",
+   "captions": [
+    {
+     "lang": "en",
+     "auto": false,
+     "src": "films/captions/princess_iron_fan.en.vtt"
+    }
+   ],
+   "hd": {
+    "url": "https://archive.org/download/princess_iron_fan/princess_iron_fan.mp4",
+    "size": 454587837
+   }
+  },
+  {
+   "id": "rain1932",
+   "slug": "rain",
+   "title": "Rain",
+   "year": 1932,
+   "director": "Lewis Milestone",
+   "description": "Sadie Thompson vs. The Puritans. Maxwell Anderson's screenplay of the W. Somerset Maugham story.\nJoan Crawford. Walter Huston, William Gargan\nFor more info on this film see its IMDB.com entry",
+   "duration": 5618,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama",
+    "south seas"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/rain1932",
+   "video": {
+    "url": "https://archive.org/download/rain1932/Rain_512kb.mp4",
+    "size": 408161807
+   },
+   "archiveUrl": "https://archive.org/details/rain1932",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/rain1932/Rain.mp4",
+    "size": 585084957
+   }
+  },
+  {
+   "id": "RandyRidesAlone1934",
+   "slug": "randy-rides-alone",
+   "title": "Randy Rides Alone",
+   "year": 1934,
+   "director": null,
+   "description": "Randy is arrested for murders he didn't commit. Sally Rogers breaks him out and he discovers the real murderers hideout.\n\nMystic Nights Videos",
+   "duration": 3145,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "john wayne",
+    "alberta vaughn",
+    "george 'gabby' hayes",
+    "yakima canutt",
+    "earl dwire",
+    "artie ortego",
+    "tex phelps",
+    "mystic nights videos"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/RandyRidesAlone1934",
+   "video": {
+    "url": "https://archive.org/download/RandyRidesAlone1934/RandyRidesAlone1934_512kb.mp4",
+    "size": 227200802
+   },
+   "archiveUrl": "https://archive.org/details/RandyRidesAlone1934",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/RandyRidesAlone1934/RandyRidesAlone1934.mp4",
+    "size": 327127662
+   }
+  },
+  {
+   "id": "Rembrandt",
+   "slug": "rembrandt",
+   "title": "Rembrandt",
+   "year": 1936,
+   "director": null,
+   "description": "From IMDb: This character study joins the painter at the height of his fame in 1642, when his adored wife suddenly dies and his work takes a dark, sardonic turn that offends his patrons. By 1656, he is bankrupt but consoles himself with the company of pretty maid Hendrickje, whom he's unable to marry. Their relationship brings ostracism but also some measure of happiness. The final scenes find him in his last year, 1669, physically enfeebled but his spirit undimmed.\n\nStars: Charles Laughton, Gertrude Lawrence and Elsa Lanchester.",
+   "duration": 5043,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "biography",
+    "drama",
+    "painting"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Rembrandt",
+   "video": {
+    "url": "https://archive.org/download/Rembrandt/Rembrandt_512kb.mp4",
+    "size": 366113673
+   },
+   "archiveUrl": "https://archive.org/details/Rembrandt",
+   "captions": []
+  },
+  {
+   "id": "RidersofDestiny_",
+   "slug": "riders-of-destiny",
+   "title": "Riders of Destiny",
+   "year": 1933,
+   "director": "Paul Malvern",
+   "description": "John Wayne portrays Singin' Sandy Saunders and has a reputation as the most notorious gunman since Billy the Kid.\nThat's somewhat ironic though, since it's later revealed that he's a special Secret Service agent sent from Washington to investigate a land swindle scheme under the direction of town boss James Kincaid (Forrest Taylor).",
+   "duration": 3165,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "romance",
+    "western",
+    "john wayne",
+    "george hayes"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/RidersofDestiny_",
+   "video": {
+    "url": "https://archive.org/download/RidersofDestiny_/RidersofDestiny_512kb.mp4",
+    "size": 229929689
+   },
+   "archiveUrl": "https://archive.org/details/RidersofDestiny_",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/RidersofDestiny_/RidersofDestiny.mp4",
+    "size": 329596872
+   }
+  },
+  {
+   "id": "Sabotage_1936",
+   "slug": "sabotage",
+   "title": "Sabotage",
+   "year": 1936,
+   "director": "Alfred Hitchcock",
+   "description": "From IMDb: Mr. Verloc, a cinema owner, is part of a gang of saboteurs in London. He lives with his wife, Winnie, and her young brother, Stevie. They know nothing about Verloc's secret. Scotland Yard assigns an undercover detective, Ted, to work in a shop near the cinema and investigate the man. The head of the gang assigns Verloc to put a bomb in the metro. The man sends Stevie there with the \"bag\".\n\nStars: Sylvia Sidney, Oskar Homolka, Desmond Tester, and John Loder",
+   "duration": 4555,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "thriller",
+    "hitchcock",
+    "sabotage",
+    "terrorism"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Sabotage_1936",
+   "video": {
+    "url": "https://archive.org/download/Sabotage_1936/Sabotage_512kb.mp4",
+    "size": 383246299
+   },
+   "archiveUrl": "https://archive.org/details/Sabotage_1936",
+   "captions": []
+  },
+  {
+   "id": "SagebrushTrail",
+   "slug": "sagebrush-trail",
+   "title": "Sagebrush Trail",
+   "year": 1933,
+   "director": "Paul Malvern, Trem Carr",
+   "description": "Imprisoned for a murder he did not commit, John Brant (John Wayne) escapes and ends up out west where, after giving the local lawmen the slip, he joins up with an outlaw gang. Brant finds out that 'Jones' (Nancy Shubert), one of the outlaws he has become friends with, committed the murder that Brant was sent up for, but has no knowledge that anyone was ever put in jail for his crime.",
+   "duration": 3208,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "western",
+    "john wayne"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/SagebrushTrail",
+   "video": {
+    "url": "https://archive.org/download/SagebrushTrail/SagebrushTrail_512kb.mp4",
+    "size": 232711903
+   },
+   "archiveUrl": "https://archive.org/details/SagebrushTrail",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/SagebrushTrail/SagebrushTrail.mp4",
+    "size": 333270396
+   }
+  },
+  {
+   "id": "Santa_Fe_Trail",
+   "slug": "santa-fe-trail",
+   "title": "Santa Fe Trail",
+   "year": 1940,
+   "director": null,
+   "description": "From Wikipedia:\nThe film loosely follows the life of J.E.B. Stuart (Errol Flynn) before the outbreak of the American Civil War. Among its sub-plots include a romance with the fictional Kit Carson Holliday (Olivia de Havilland), friendship with George Armstrong Custer (Ronald Reagan), and battles against abolitionist John Brown (Raymond Massey).\n\nhttp://www.imdb.com/title/tt0033021/\nhttp://en.wikipedia.org/wiki/Santa_Fe_Trail_(film)",
+   "duration": 6567,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "western",
+    "santa fe trail",
+    "ronald reagan",
+    "errol flynn",
+    "olivia de havilland",
+    "raymond massey"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Santa_Fe_Trail",
+   "video": {
+    "url": "https://archive.org/download/Santa_Fe_Trail/Santa_Fe_Trail_512kb.mp4",
+    "size": 477119502
+   },
+   "archiveUrl": "https://archive.org/details/Santa_Fe_Trail",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Santa_Fe_Trail/Santa_Fe_Trail.mp4",
+    "size": 683964104
+   }
+  },
+  {
+   "id": "second_chorus",
+   "slug": "second-chorus",
+   "title": "Second Chorus",
+   "year": 1940,
+   "director": "Boris Morros",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 5018,
+   "language": "en",
+   "silent": false,
+   "genre": "musical",
+   "tags": [],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/second_chorus",
+   "video": {
+    "url": "https://archive.org/download/second_chorus/second_chorus_512kb.mp4",
+    "size": 356012563
+   },
+   "archiveUrl": "https://archive.org/details/second_chorus",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/second_chorus/second_chorus.mp4",
+    "size": 521421670
+   }
+  },
+  {
+   "id": "Hitchcock_Secret_Agent",
+   "slug": "secret-agent",
+   "title": "Secret Agent",
+   "year": 1936,
+   "director": "Alfred Hitchcock",
+   "description": "From IMDb: During the first world war, novelist Edgar Brodie is sent to Switzerland by the Intelligence Service. He has to kill a German agent. During the mission he meets a fake general first and then Elsa Carrington who helps him in his duty.\n\nStars: John Gielgud, Peter Lorre, Madeleine Carroll and Robert Young",
+   "duration": 5155,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "hitchcock",
+    "suspense",
+    "spy",
+    "pdmovies"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Hitchcock_Secret_Agent",
+   "video": {
+    "url": "https://archive.org/download/Hitchcock_Secret_Agent/Secret_Agent_512kb.mp4",
+    "size": 373986401
+   },
+   "archiveUrl": "https://archive.org/details/Hitchcock_Secret_Agent",
+   "captions": []
+  },
+  {
+   "id": "secret_weapon",
+   "slug": "sherlock-holmes-and-the-secret-weapon",
+   "title": "Sherlock Holmes and the Secret Weapon",
+   "year": 1943,
+   "director": null,
+   "description": "Based on the Sir Authur Conan Doyle story \"The Dancing Men\",  Sherlock Holmes and Dr. Watson are placed in WWII europe to help protect a scientist and his invention from the Nazis.\n\nBasil Rathbone   ....   Sherlock Holmes\nNigel Bruce   ....   Dr. John H. Watson\nLionel Atwill   ....   Professor Moriarty\nKaaren Verne   ....   Charlotte Eberli\nWilliam Post Jr.   ....   Dr. Franz Tobel\nDennis Hoey   ....   Inspector Lestrade\nHolmes Herbert   ....   Sir Reginald Bailey\nMary Gordon   ....   Mrs. Hudson",
+   "duration": 4114,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "crime",
+    "sherlock holmes"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/secret_weapon",
+   "video": {
+    "url": "https://archive.org/download/secret_weapon/secret_weapon_ipod_512kb.mp4",
+    "size": 290875932
+   },
+   "archiveUrl": "https://archive.org/details/secret_weapon",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/secret_weapon/sherlock_holmes_and_the_secret_weapon.mp4",
+    "size": 425209362
+   }
+  },
+  {
+   "id": "spring_in_a_small_town",
+   "slug": "spring-in-a-small-town",
+   "title": "Spring in a Small Town",
+   "year": 1948,
+   "director": "Fei Mu",
+   "description": "Seen by many as the greatest Chinese film ever, Spring in a Small Town is different from other films of the era. In a time when most films were colored by the politics of the time, Spring in a Small Town is a story of a woman with a love dilemma.\n\nSubtitles:\nVobSub (Chinese Simplified & Traditional)\nEnglish",
+   "duration": 5596,
+   "language": "zh",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "china"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/spring_in_a_small_town",
+   "video": {
+    "url": "https://archive.org/download/spring_in_a_small_town/spring_in_a_small_town_512kb.mp4",
+    "size": 406462825
+   },
+   "archiveUrl": "https://archive.org/details/spring_in_a_small_town",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/spring_in_a_small_town/spring_in_a_small_town.mp4",
+    "size": 581942947
+   }
+  },
+  {
+   "id": "Suddenly_1954",
+   "slug": "suddenly",
+   "title": "Suddenly",
+   "year": 1954,
+   "director": "Robert Bassler",
+   "description": "Three killers commandeer a house on a hill in order to terminate a politician.\n\nThis is a sharper copy than the two versions that were already here.",
+   "duration": 4547,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "frank sinatra",
+    "sterling hayden",
+    "james gleason",
+    "nancy gates"
+   ],
+   "warning": "violence",
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Suddenly_1954",
+   "video": {
+    "url": "https://archive.org/download/Suddenly_1954/Suddenly_1954.mp4",
+    "size": 447608090
+   },
+   "archiveUrl": "https://archive.org/details/Suddenly_1954",
+   "captions": []
+  },
+  {
+   "id": "Terror_By_Night",
+   "slug": "terror-by-night",
+   "title": "Terror by Night",
+   "year": 1946,
+   "director": "Howard Benedict",
+   "description": "From IMDb:\nHolmes is hired by Roland Carstairs to prevent the theft of the Star of Rhodesia, an enormous diamond owned by Carstairs' mother, Lady Margaret. Believing the diamond will be stolen on a train trip from London to Edinburgh, Holmes deftly switches diamonds with Lady Margaret while in her compartment. Soon after, Roland is murdered and the fake diamond is stolen. Red herrings abound as Holmes, aided by Dr. Watson and Inspector Lestrade, discover the murderer's hiding place and deduce that long-time foe Moriarty's henchman Colonel Sebastian Moran is somehow involved in the crime.",
+   "duration": 3494,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "sherlock holmes"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Terror_By_Night",
+   "video": {
+    "url": "https://archive.org/download/Terror_By_Night/Terror_By_Night_512kb.mp4",
+    "size": 254101934
+   },
+   "archiveUrl": "https://archive.org/details/Terror_By_Night",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Terror_By_Night/Terror_By_Night.mp4",
+    "size": 364687110
+   }
+  },
+  {
+   "id": "the_battle_of_midway",
+   "slug": "the-battle-of-midway",
+   "title": "The Battle of Midway",
+   "year": 1942,
+   "director": "John Ford",
+   "description": "Academy Award winning documentary on the pivotal naval battle of the war in the Pacific.  Filmed while the attack on Midway Island was underway, standout director John Ford was actually injured during filming.\n\nMore info on the film is available on its IMDB page.\n\nThis version was produced from a video copy of a fair film transfer at the National Archives.\n\nNAIL: 80-MN-1433\nARC: 12870",
+   "duration": 1065,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "wwii",
+    "war",
+    "documentary"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/the_battle_of_midway",
+   "video": {
+    "url": "https://archive.org/download/the_battle_of_midway/the_battle_of_midway_512kb.mp4",
+    "size": 77422099
+   },
+   "archiveUrl": "https://archive.org/details/the_battle_of_midway",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/the_battle_of_midway/the_battle_of_midway.mp4",
+    "size": 110871599
+   }
+  },
+  {
+   "id": "TheBigWheel",
+   "slug": "the-big-wheel",
+   "title": "The Big Wheel",
+   "year": 1949,
+   "director": "Mort Briskin, Samuel H. Stiefel",
+   "description": "The plot focus is on Mickey Rooney's character Bill Coy who follows in his father's footsteps for good and for bad.",
+   "duration": 5330,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "action",
+    "drama",
+    "mickey rooney"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheBigWheel",
+   "video": {
+    "url": "https://archive.org/download/TheBigWheel/TheBigWheel_512kb.mp4",
+    "size": 387175942
+   },
+   "archiveUrl": "https://archive.org/details/TheBigWheel",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheBigWheel/TheBigWheel.mp4",
+    "size": 555331934
+   }
+  },
+  {
+   "id": "bigamist_the",
+   "slug": "the-bigamist",
+   "title": "The Bigamist",
+   "year": 1953,
+   "director": "Ida Lupino",
+   "description": "Taken form IMDB: Harry and Eve Graham are trying to adopt a baby. The head of the agency senses Harry is keeping a secret and does some investigating. He soon discovers Harry has done an unusual amount of traveling from his home in San Francisco to Los Angeles. Harry gets tracked down in LA where he has a second wife and a baby. Via flashbacks, Harry tells the adoption agent how he ended up in two marriages.",
+   "duration": 4766,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/bigamist_the",
+   "video": {
+    "url": "https://archive.org/download/bigamist_the/the_bigamist_512kb.mp4",
+    "size": 346056289
+   },
+   "archiveUrl": "https://archive.org/details/bigamist_the",
+   "captions": []
+  },
+  {
+   "id": "Black_Raven_movie",
+   "slug": "the-black-raven",
+   "title": "The Black Raven",
+   "year": 1943,
+   "director": null,
+   "description": "George Zucco, Glenn Strange, and Byron Foulger in a poverty row film. The IMDB entry is here.",
+   "duration": 3669,
+   "language": "en",
+   "silent": false,
+   "genre": "terror",
+   "tags": [
+    "george zucco",
+    "glenn strange",
+    "byron foulger",
+    "wanda mckay",
+    "noel madison",
+    "robert livingston",
+    "charles middleton",
+    "i. stanford jolley"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Black_Raven_movie",
+   "video": {
+    "url": "https://archive.org/download/Black_Raven_movie/Black_Raven.mp4",
+    "size": 381313303
+   },
+   "archiveUrl": "https://archive.org/details/Black_Raven_movie",
+   "captions": []
+  },
+  {
+   "id": "blood_of_jesus",
+   "slug": "the-blood-of-jesus",
+   "title": "The Blood of Jesus",
+   "year": 1941,
+   "director": "Spencer Williams",
+   "description": "The Blood of Jesus (1941) is a classic example of the \"race film\" genre of films by African-American directors and casts, geared exclusively for an African-American audience. This film, written and directed by Spencer William Jr. of the TV show Amos & Andy Show (who also played Razz Williams in the film), is a morality tale about a woman (Cathryn Caviness) who is accidentally shot to death by her husband. Facing death, she must choose between Hell, represented as urban life, and Zion, represented as pastoral America, and between Satan and God. The climax comes when she makes her decision at the foot of the cross and wakes up to singing of her church choir. Intended to promote a Black Southern Baptist ideal of a virtuous rural life, the film was a major success and the most popular hit in its genre.\n\nSee Also, IMDB Entry\n\nThe film has also been selected for preservation in the United Stat",
+   "duration": 3405,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "religion",
+    "race"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/blood_of_jesus",
+   "video": {
+    "url": "https://archive.org/download/blood_of_jesus/blood_of_jesus_512kb.mp4",
+    "size": 247439173
+   },
+   "archiveUrl": "https://archive.org/details/blood_of_jesus",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/blood_of_jesus/blood_of_jesus.mp4",
+    "size": 354870379
+   }
+  },
+  {
+   "id": "bronze_buckaroo",
+   "slug": "the-bronze-buckaroo",
+   "title": "The Bronze Buckaroo",
+   "year": 1939,
+   "director": "Jed Buell",
+   "description": "Taken from IMDB: Bob Blake and his boys arrive at Joe Jackson's ranch to find him missing. While Slim cheats Dusty out of his money using ventriloquism and marked cards, Blake tries to find Jackson. Learning that Thorne and his gang hold him prisoner, he and his men trail them. When Thorne's gang gets the drop on them, Slim puts his ventriloquism to work.",
+   "duration": 3338,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "western",
+    "african american cinema"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/bronze_buckaroo",
+   "video": {
+    "url": "https://archive.org/download/bronze_buckaroo/the_bronze_buckaroo_512kb.mp4",
+    "size": 235831977
+   },
+   "archiveUrl": "https://archive.org/details/bronze_buckaroo",
+   "captions": []
+  },
+  {
+   "id": "Dark_Tower_1943",
+   "slug": "the-dark-tower",
+   "title": "The Dark Tower",
+   "year": 1943,
+   "director": null,
+   "description": "A British circus-drama. Read about it at the IMDb.",
+   "duration": 5599,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "ben lyon",
+    "anne crawford",
+    "david farrar",
+    "herbert lom",
+    "circus"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Dark_Tower_1943",
+   "video": {
+    "url": "https://archive.org/download/Dark_Tower_1943/Dark_Tower_1943_512kb.mp4",
+    "size": 404375663
+   },
+   "archiveUrl": "https://archive.org/details/Dark_Tower_1943",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Dark_Tower_1943/Dark_Tower_1943.mp4",
+    "size": 581516807
+   }
+  },
+  {
+   "id": "TheEmpererJones",
+   "slug": "the-emperor-jones",
+   "title": "The Emperor Jones",
+   "year": 1933,
+   "director": "Gifford Cochran, John Krimsky",
+   "description": "The Emperor Jones is a 1920 play by American dramatist, Eugene O'Neill which tells the tale of Brutus Jones (Paul Robeson), an African-American man who kills a man, goes to prison, escapes to a Caribbean island, and sets himself up as emperor.",
+   "duration": 4377,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama",
+    "paul robeson"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheEmpererJones",
+   "video": {
+    "url": "https://archive.org/download/TheEmpererJones/TheEmpererJones_512kb.mp4",
+    "size": 317912347
+   },
+   "archiveUrl": "https://archive.org/details/TheEmpererJones",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheEmpererJones/TheEmpererJones.mp4",
+    "size": 455280310
+   }
+  },
+  {
+   "id": "TheFirstOfTheFew",
+   "slug": "the-first-of-the-few",
+   "title": "The First of the Few",
+   "year": 1942,
+   "director": "British Aviation Pictures",
+   "description": "By the late 1920's aircraft designer R.J. Mitchell feels he has achieved all he wants with his revolutionary mono-planes winning trophy after trophy. But a holiday in Germany shortly after Hitler assumes power convinces him that it is vital to design a completely new type of fighter plane and that sooner or later Britain's very survival may depend on what he comes to call the Spitfire. - IMDB Description",
+   "duration": 6826,
+   "language": "en",
+   "silent": false,
+   "genre": "guerra",
+   "tags": [
+    "action",
+    "biography",
+    "movie powder",
+    "avi"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheFirstOfTheFew",
+   "video": {
+    "url": "https://archive.org/download/TheFirstOfTheFew/MoviePowderPresentsTheFirstOfTheFew_512kb.mp4",
+    "size": 494040643
+   },
+   "archiveUrl": "https://archive.org/details/TheFirstOfTheFew",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheFirstOfTheFew/MoviePowderPresentsTheFirstOfTheFew.mp4",
+    "size": 710153422
+   }
+  },
+  {
+   "id": "forgotten_village",
+   "slug": "the-forgotten-village",
+   "title": "The Forgotten Village",
+   "year": 1941,
+   "director": "Alexander Hammid, Herbert Kline",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 3906,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/forgotten_village",
+   "video": {
+    "url": "https://archive.org/download/forgotten_village/forgotten_village_512kb.mp4",
+    "size": 283769943
+   },
+   "archiveUrl": "https://archive.org/details/forgotten_village",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/forgotten_village/forgotten_village.mp4",
+    "size": 405778303
+   }
+  },
+  {
+   "id": "great_gabbo",
+   "slug": "the-great-gabbo",
+   "title": "The Great Gabbo",
+   "year": 1929,
+   "director": "Jonathan Cordish, James Cruze, Henry D. Meyer",
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 4099,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/great_gabbo",
+   "video": {
+    "url": "https://archive.org/download/great_gabbo/great_gabbo_512kb.mp4",
+    "size": 298117194
+   },
+   "archiveUrl": "https://archive.org/details/great_gabbo",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/great_gabbo/great_gabbo.mp4",
+    "size": 426124708
+   }
+  },
+  {
+   "id": "iron_mask",
+   "slug": "the-iron-mask",
+   "title": "The Iron Mask",
+   "year": 1929,
+   "director": "Douglas Fairbanks",
+   "description": "A swashbuckling Alexandre Dumas adventure featuring Douglas Fairbanks.\nYou can find more information regarding this film on its IMDb page.",
+   "duration": 4337,
+   "language": "en",
+   "silent": false,
+   "genre": "aventura",
+   "tags": [
+    "adventure",
+    "romance"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/iron_mask",
+   "video": {
+    "url": "https://archive.org/download/iron_mask/iron_mask_512kb.mp4",
+    "size": 315106088
+   },
+   "archiveUrl": "https://archive.org/details/iron_mask",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/iron_mask/iron_mask.mp4",
+    "size": 452078868
+   }
+  },
+  {
+   "id": "Jackie_Robinson_Story_The",
+   "slug": "the-jackie-robinson-story",
+   "title": "The Jackie Robinson Story",
+   "year": 1950,
+   "director": "Mort Briskin",
+   "description": "This biography of Jackie Robinson is not a great film. More than anything it represents a significant milestone in baseball and the civil right movement. Jackie doesn't do a terrible acting job which you don't really notice because the screen play, although light, is very face paced. The viewer is rocketed through the life of a young pre-teen Jackie Robinson, his football college career, touches on his military service in the second world war, his minor league career, and through his 1949 season with the Brooklyn Dodgers.",
+   "duration": 4609,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "baseball",
+    "jackie robinson"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Jackie_Robinson_Story_The",
+   "video": {
+    "url": "https://archive.org/download/Jackie_Robinson_Story_The/jrs_512kb.mp4",
+    "size": 334956130
+   },
+   "archiveUrl": "https://archive.org/details/Jackie_Robinson_Story_The",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Jackie_Robinson_Story_The/jrs.mp4",
+    "size": 481885007
+   }
+  },
+  {
+   "id": "TheJoeLouisStory",
+   "slug": "the-joe-louis-story",
+   "title": "The Joe Louis Story",
+   "year": 1953,
+   "director": "Stirling Silliphant",
+   "description": "The life and career of Heavyweight Champion Joe Louis, who held the title for 12 years--longer than any other boxer in history--and who had to not only battle opponents inside the ring and racism outside it.",
+   "duration": 5248,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "biography",
+    "drama",
+    "coley wallace"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheJoeLouisStory",
+   "video": {
+    "url": "https://archive.org/download/TheJoeLouisStory/TheJoeLouisStory_512kb.mp4",
+    "size": 381067508
+   },
+   "archiveUrl": "https://archive.org/details/TheJoeLouisStory",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheJoeLouisStory/TheJoeLouisStory.mp4",
+    "size": 547545470
+   }
+  },
+  {
+   "id": "PublicdomainTheLastoftheMohicans",
+   "slug": "the-last-of-the-mohicans",
+   "title": "The Last of the Mohicans",
+   "year": 1920,
+   "director": null,
+   "description": "Adaptation of James Fenimore Cooper novel about the American frontier during the French and Indian War.",
+   "duration": 4266,
+   "language": "en",
+   "silent": true,
+   "genre": "aventura",
+   "tags": [],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/PublicdomainTheLastoftheMohicans",
+   "video": {
+    "url": "https://archive.org/download/PublicdomainTheLastoftheMohicans/Last_of_the_Mohicans_512kb.mp4",
+    "size": 309961776
+   },
+   "archiveUrl": "https://archive.org/details/PublicdomainTheLastoftheMohicans",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/PublicdomainTheLastoftheMohicans/Last_of_the_Mohicans.mp4",
+    "size": 443632281
+   }
+  },
+  {
+   "id": "TheLostZeppelin1929ConwayTearleVirginiaValliRicardoCortezDukeMartin",
+   "slug": "the-lost-zeppelin",
+   "title": "The Lost Zeppelin",
+   "year": 1929,
+   "director": "PDMovies2014",
+   "description": "The Lost Zeppelin 1929 Conway Tearle, Virginia Valli, Ricardo Cortez, Duke Martin",
+   "duration": 4297,
+   "language": "en",
+   "silent": false,
+   "genre": "aventura",
+   "tags": [
+    "the lost zeppelin",
+    "1929",
+    "conway tearle",
+    "virginia valli",
+    "ricardo cortez",
+    "duke martin"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheLostZeppelin1929ConwayTearleVirginiaValliRicardoCortezDukeMartin",
+   "video": {
+    "url": "https://archive.org/download/TheLostZeppelin1929ConwayTearleVirginiaValliRicardoCortezDukeMartin/LostZepp.mp4",
+    "size": 447012816
+   },
+   "archiveUrl": "https://archive.org/details/TheLostZeppelin1929ConwayTearleVirginiaValliRicardoCortezDukeMartin",
+   "captions": []
+  },
+  {
+   "id": "TheMemphisBelleAStoryofaFlyingFortress",
+   "slug": "the-memphis-belle",
+   "title": "The Memphis Belle",
+   "year": 1944,
+   "director": "William Wyler",
+   "description": "This film is a war documentary produced by one of the \"Hollywood Colonels,\" William Wyler, who joined the Air Force Film unit and recorded the sights and sounds of the last mission of a B-17 bomber known as the Memphis Belle, named after the girlfriend of the pilot.\nA narrator told the story of the 10 crewmen as examples of simple average American boys doing a tough job.\nThe men and plane were filmed during the bombing raid on the submarine plens in Wilhelmshafen, Germany, \"just one mission of just one plane and one crew in one squadron in one group of one wing of one Air Force out of fifteen United States Army Air Forces.\"\nIt used handheld 16mm and 35mm cameras inside the plane to give the perspective of the crew.\nWyler in fact combined footage from several missions to represent this last 25th mission of the plane, a mission that was actually a milk run with no casualties and no difficu",
+   "duration": 2490,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "wwii",
+    "war",
+    "documentary",
+    "b17"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheMemphisBelleAStoryofaFlyingFortress",
+   "video": {
+    "url": "https://archive.org/download/TheMemphisBelleAStoryofaFlyingFortress/Memphis.BelleTheA.Story.Of.A.Flying.Fortress.1944_512kb.mp4",
+    "size": 179436817
+   },
+   "archiveUrl": "https://archive.org/details/TheMemphisBelleAStoryofaFlyingFortress",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheMemphisBelleAStoryofaFlyingFortress/Memphis.BelleTheA.Story.Of.A.Flying.Fortress.1944.mp4",
+    "size": 259639019
+   }
+  },
+  {
+   "id": "The_Monster_Walks",
+   "slug": "the-monster-walks",
+   "title": "The Monster Walks",
+   "year": 1932,
+   "director": "Cliff P. Broughton and Ralph M. Like",
+   "description": "Family and servants gather to hear the reading of a will in a spooky old house on a stormy night. Afterward, the household retires for the night, and a plot against the sole heir is hatched.\n\nStars: Rex Lease, Vera Reynolds, Sheldon Lewis, Mischa Auer, Martha Mattox, Sidney Bracey, and Willie Best\n\nIMDb Page\n\nThe 584MB MPEG4 file was derived from the 3.5GB MPEG2 found on this page.",
+   "duration": 3566,
+   "language": "en",
+   "silent": false,
+   "genre": "terror",
+   "tags": [
+    "mystery",
+    "murder",
+    "ape"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/The_Monster_Walks",
+   "video": {
+    "url": "https://archive.org/download/The_Monster_Walks/The_Monster_Walks_512kb.mp4",
+    "size": 302952551
+   },
+   "archiveUrl": "https://archive.org/details/The_Monster_Walks",
+   "captions": []
+  },
+  {
+   "id": "ThePrivateLifeofHenryVIII.",
+   "slug": "the-private-life-of-henry-viii",
+   "title": "The Private Life of Henry VIII",
+   "year": 1933,
+   "director": "Alexander Korda, Ludovico Toeplitz",
+   "description": "The film follows the private life of the infamous 16th century British monarch, King Henry the VIII, and his misadventures in his various marriages.\nHenry the VIII is wonderfully portrayed by the highly talented and entertaining Charles Laughton, a masterful one-of-a-kind character actor who managed to land many plum roles despite looking like a bloated fish.\nLaughton portrays the King as a rollicking, impetuous, boozing lover of women. A man equal parts charming, childish and dangerous.\n\nThe best part of the movie is when he tries to explain how to make babys to his 4th wife Anne of Cleves (Elsa Lanchester, Laughton´s wife)ending up playing cards on the marriage bed.",
+   "duration": 5410,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "biography",
+    "drama",
+    "history",
+    "charles laughton",
+    "elsa lanchester",
+    "merle oberon"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/ThePrivateLifeofHenryVIII.",
+   "video": {
+    "url": "https://archive.org/download/ThePrivateLifeofHenryVIII./ThePrivateLifeofHenryVIII._512kb.mp4",
+    "size": 392745404
+   },
+   "archiveUrl": "https://archive.org/details/ThePrivateLifeofHenryVIII.",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/ThePrivateLifeofHenryVIII./ThePrivateLifeofHenryVIII..mp4",
+    "size": 562594292
+   }
+  },
+  {
+   "id": "the_quiet_one",
+   "slug": "the-quiet-one",
+   "title": "The Quiet One",
+   "year": 1948,
+   "director": null,
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 3837,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "documentary"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/the_quiet_one",
+   "video": {
+    "url": "https://archive.org/download/the_quiet_one/the_quiet_one_512kb.mp4",
+    "size": 278757325
+   },
+   "archiveUrl": "https://archive.org/details/the_quiet_one",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/the_quiet_one/the_quiet_one.mp4",
+    "size": 399135525
+   }
+  },
+  {
+   "id": "The_Sign_OF_Four",
+   "slug": "the-sign-of-four",
+   "title": "The Sign of Four",
+   "year": 1932,
+   "director": null,
+   "description": "From IMDb:\n   A young woman turns to Sherlock Holmes for protection when she's menaced by an escaped killer seeking missing treasure. However, when the woman is kidnapped, Holmes and Watson must penetrate the city's criminal underworld to find her.",
+   "duration": 4365,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "sherlock holmes"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/The_Sign_OF_Four",
+   "video": {
+    "url": "https://archive.org/download/The_Sign_OF_Four/The_Sign_Of_Four_512kb.mp4",
+    "size": 317243928
+   },
+   "archiveUrl": "https://archive.org/details/The_Sign_OF_Four",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/The_Sign_OF_Four/The_Sign_Of_Four.mp4",
+    "size": 454662886
+   }
+  },
+  {
+   "id": "TheSoutherner",
+   "slug": "the-southerner",
+   "title": "The Southerner",
+   "year": 1945,
+   "director": "Jean Renoir",
+   "description": "Jean Renoir's classic tale of a cotton picker (Zachary Scott) who moves his wife (Betty Field) and children to a run down farm in hopes that they can grow their own cotton and make for a better future.",
+   "duration": 5510,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheSoutherner",
+   "video": {
+    "url": "https://archive.org/download/TheSoutherner/TheSoutherner_512kb.mp4",
+    "size": 399788553
+   },
+   "archiveUrl": "https://archive.org/details/TheSoutherner",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/TheSoutherner/TheSoutherner.mp4",
+    "size": 573233274
+   }
+  },
+  {
+   "id": "TheSphinx-1933",
+   "slug": "the-sphinx",
+   "title": "The Sphinx",
+   "year": 1933,
+   "director": null,
+   "description": "Perennial bad guy, Lionel Atwill stars in this mystery, involving murder, a frame up, secret passageways, and a twin brother.\nI downloaded the source for this movie, from archive.org; and cleaned up the audio a bit.",
+   "duration": 3742,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "lionel atwil",
+    "sheila terry",
+    "theodore newton",
+    "thriller",
+    "mystery",
+    "murder",
+    "twins",
+    "secret"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheSphinx-1933",
+   "video": {
+    "url": "https://archive.org/download/TheSphinx-1933/TheSphinx1933.mp4",
+    "size": 385870751
+   },
+   "archiveUrl": "https://archive.org/details/TheSphinx-1933",
+   "captions": []
+  },
+  {
+   "id": "The_Star_Packer",
+   "slug": "the-star-packer",
+   "title": "The Star Packer",
+   "year": 1934,
+   "director": "Paul Malvern",
+   "description": "A gang working for \"The Shadow\" is terrorizing the town.\nJohn Travers (John Wayne) decides to take on the job of sheriff and do something about it.",
+   "duration": 3277,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "action",
+    "western",
+    "romance",
+    "john wayne"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/The_Star_Packer",
+   "video": {
+    "url": "https://archive.org/download/The_Star_Packer/The_Star_Packer_512kb.mp4",
+    "size": 237771964
+   },
+   "archiveUrl": "https://archive.org/details/The_Star_Packer",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/The_Star_Packer/The_Star_Packer.mp4",
+    "size": 339995248
+   }
+  },
+  {
+   "id": "Strange_Woman_movie",
+   "slug": "the-strange-woman",
+   "title": "The Strange Woman",
+   "year": 1946,
+   "director": null,
+   "description": "Hedy Lamarr and George Sanders in a movie based on Ben Ames Williams' novel of early 19th-century Maine.  The IMDB entry is here.\n\nThe video files with \"_1946\" in the file-name are of higher quality; the picture is sharper and there are no covered up watermarks. However, they have a very slight problem. At 1:25:26 the sign on the church is in French instead of English.\n\nThe mpeg2 file is ready to be loaded into DVDAuthorGUI (a free program) to create a DVD to watch on your television.",
+   "duration": 5916,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "logging",
+    "maine",
+    "george sanders",
+    "hedy lamarr",
+    "moroni olsen",
+    "alan napier",
+    "ben ames williams"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Strange_Woman_movie",
+   "video": {
+    "url": "https://archive.org/download/Strange_Woman_movie/Strange_Woman_512kb.mp4",
+    "size": 429766516
+   },
+   "archiveUrl": "https://archive.org/details/Strange_Woman_movie",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Strange_Woman_movie/Strange_Woman.mp4",
+    "size": 616936430
+   }
+  },
+  {
+   "id": "TheStranger720p",
+   "slug": "the-stranger",
+   "title": "The Stranger",
+   "year": 1946,
+   "director": "Orson Welles",
+   "description": "NOTE: Only the MKV file is HD, the others are derived at lower resolutions. *cough* Kevin VandeWettering *cough* jk...\nseriously though. MKV is HD, The h264 mp4 is 480p.",
+   "duration": 5698,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheStranger720p",
+   "video": {
+    "url": "https://archive.org/download/TheStranger720p/TheStranger720p.mp4",
+    "size": 582034159
+   },
+   "archiveUrl": "https://archive.org/details/TheStranger720p",
+   "captions": []
+  },
+  {
+   "id": "The_Thirteenth_Guest",
+   "slug": "the-thirteenth-guest",
+   "title": "The Thirteenth Guest",
+   "year": 1932,
+   "director": "M.H. Hoffman",
+   "description": "A young woman visits her childhood home, shuttered some 13 years after the fateful night her father died at the dinner table while they waited for a 13th guest. While reminiscing, she hears a noise. Frightened, she begins to explore. She screams. A shot is fired. On arrival, the police find the stiffened body of a young woman sitting at the dinner table.\n\nStars: Ginger Rogers, Lyle Talbot, and J. Farrell MacDonald\n\nIMDb Page\n\nThe 659MB MPEG4 was derived from the 2.9GB MPEG2 on this page.",
+   "duration": 4129,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "murder",
+    "betrayal",
+    "maniac"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/The_Thirteenth_Guest",
+   "video": {
+    "url": "https://archive.org/download/The_Thirteenth_Guest/The_Thirteenth_Guest_512kb.mp4",
+    "size": 329084017
+   },
+   "archiveUrl": "https://archive.org/details/The_Thirteenth_Guest",
+   "captions": []
+  },
+  {
+   "id": "TheThreePassions1929",
+   "slug": "the-three-passions",
+   "title": "The Three Passions",
+   "year": 1929,
+   "director": "PDMovies2014",
+   "description": "The Three Passions 1929 Alice Terry, Iván Petrovich and Shayle Gardner",
+   "duration": 3879,
+   "language": "en",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "the three passions",
+    "1929",
+    "alice terry",
+    "iván petrovich",
+    "shayle gardner"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/publicdomain/mark/1.0/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/TheThreePassions1929",
+   "video": {
+    "url": "https://archive.org/download/TheThreePassions1929/The%20Three%20Passions.mp4",
+    "size": 342142298
+   },
+   "archiveUrl": "https://archive.org/details/TheThreePassions1929",
+   "captions": []
+  },
+  {
+   "id": "The_Triumph_of_Sherlock_Holmes",
+   "slug": "the-triumph-of-sherlock-holmes",
+   "title": "The Triumph of Sherlock Holmes",
+   "year": 1935,
+   "director": "Julius Hagen",
+   "description": "The Triumph of Sherlock Holmes stars the British Arthur Wontner, today a forgotten interpreter of Holmes who would soon be overshadowed by the glossy American productions starring the illustrious Basil Rathbone, for some people the greatest Holmes ever.\n\nPlot:\nSherlock Holmes (Arthur Wontner) and Dr. Watson (Ian Fleming) come out of retirement to investigate a mysterious murder.\nThey find that a group of coalminers, called The Scowlers, are caught up in the mystery, along with the treacherous Professor Moriarty (Lyn Harding).\nHolmes must outsmart Moriarity and an American gangster in order to find the murderers and save The Scowlers.",
+   "duration": 4723,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "mystery",
+    "thriller"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/The_Triumph_of_Sherlock_Holmes",
+   "video": {
+    "url": "https://archive.org/download/The_Triumph_of_Sherlock_Holmes/The_Triumph_of_Sherlock_Holmes_512kb.mp4",
+    "size": 343162941
+   },
+   "archiveUrl": "https://archive.org/details/The_Triumph_of_Sherlock_Holmes",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/The_Triumph_of_Sherlock_Holmes/The_Triumph_of_Sherlock_Holmes.mp4",
+    "size": 492970087
+   }
+  },
+  {
+   "id": "ThreeGuysNamedMike1951",
+   "slug": "three-guys-named-mike",
+   "title": "Three Guys Named Mike",
+   "year": 1951,
+   "director": null,
+   "description": "A stewardess becomes romantically involved with an airline pilot, a college professor, and a successful businessman, all of whom are named Mike. When the three find out about each other, she has to decide which one she loves the most.\n\nMystic Nights Videos",
+   "duration": 5412,
+   "language": "en",
+   "silent": false,
+   "genre": "comedia",
+   "tags": [
+    "jane wyman",
+    "van johnson",
+    "howard keel",
+    "barry sullivan",
+    "phyllis kirk",
+    "anne sargent",
+    "jeff donnell",
+    "herbert heyes"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/ThreeGuysNamedMike1951",
+   "video": {
+    "url": "https://archive.org/download/ThreeGuysNamedMike1951/ThreeGuysNamedMike1951_512kb.mp4",
+    "size": 391169046
+   },
+   "archiveUrl": "https://archive.org/details/ThreeGuysNamedMike1951",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/ThreeGuysNamedMike1951/ThreeGuysNamedMike1951.mp4",
+    "size": 564058046
+   }
+  },
+  {
+   "id": "We_Dive_at_Dawn_1943",
+   "slug": "we-dive-at-dawn",
+   "title": "We Dive at Dawn",
+   "year": 1943,
+   "director": "Edward Black",
+   "description": "From IMDb: The crew of HMS submarine Sea Tiger have their leave (and assorted family problems) cut short when they are recalled for a special mission: sink the new German battleship Brandenburg. En route, they learn that their target has entered the heavily defended Baltic; rather than fail, they follow it. Tension builds as they approach their target. After the attempt, escape seems impossible...unless they can refuel in enemy waters.\n\nStars: John Mills, Louis Bradfield, Ronald Millar, and Jack Watling",
+   "duration": 5578,
+   "language": "en",
+   "silent": false,
+   "genre": "guerra",
+   "tags": [
+    "war",
+    "wwii",
+    "submarine"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "licenseName": "CC0 1.0",
+   "rights": "cc",
+   "poster": "https://archive.org/services/img/We_Dive_at_Dawn_1943",
+   "video": {
+    "url": "https://archive.org/download/We_Dive_at_Dawn_1943/We_Dive_at_Dawn_512kb.mp4",
+    "size": 404989358
+   },
+   "archiveUrl": "https://archive.org/details/We_Dive_at_Dawn_1943",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/We_Dive_at_Dawn_1943/We_Dive_at_Dawn.mp4",
+    "size": 579602977
+   }
+  },
+  {
+   "id": "west_of_the_divide",
+   "slug": "west-of-the-divide",
+   "title": "West of the Divide",
+   "year": 1934,
+   "director": null,
+   "description": "You can find more information regarding this film on its IMDb page.",
+   "duration": 3204,
+   "language": "en",
+   "silent": false,
+   "genre": "faroeste",
+   "tags": [
+    "western"
+   ],
+   "warning": "period",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/west_of_the_divide",
+   "video": {
+    "url": "https://archive.org/download/west_of_the_divide/west_of_the_divide_512kb.mp4",
+    "size": 233149544
+   },
+   "archiveUrl": "https://archive.org/details/west_of_the_divide",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/west_of_the_divide/west_of_the_divide.mp4",
+    "size": 333126078
+   }
+  },
+  {
+   "id": "wwf_prelude_to_war",
+   "slug": "why-we-fight-prelude-to-war",
+   "title": "Why We Fight: Prelude to War",
+   "year": 1943,
+   "director": "Frank Capra",
+   "description": "Produced by the U.S. Army Special Service Division, and directed by Frank Capra \"Why We Fight\" is a seven part propaganda/documentary series that traces the earliest beginnings of the second world war starting with Japan's invasion of China in 1931,  to the Nazi's march across europe.\n\nThis is a remasterd version encoded for Apple TV.",
+   "duration": 2438,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "wwii",
+    "documentary",
+    "propoganda"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/wwf_prelude_to_war",
+   "video": {
+    "url": "https://archive.org/download/wwf_prelude_to_war/The_Nazis_Strike_512kb.mp4",
+    "size": 170487891
+   },
+   "archiveUrl": "https://archive.org/details/wwf_prelude_to_war",
+   "captions": []
+  },
+  {
+   "id": "wwf_the_battle_of_britain",
+   "slug": "why-we-fight-the-battle-of-britain",
+   "title": "Why We Fight: The Battle of Britain",
+   "year": 1943,
+   "director": "Frank Capra",
+   "description": "Produced by the U.S. Army Special Service Division, and directed by Frank Capra \"Why We Fight\" is a seven part propaganda/documentary series that traces the earliest beginnings of the second world war starting with Japan's invasion of China in 1931,  to the Nazi's march across europe.\n\nThis is a remasterd version encoded for Apple TV.",
+   "duration": 3130,
+   "language": "en",
+   "silent": false,
+   "genre": "documentario",
+   "tags": [
+    "wwii",
+    "documentary",
+    "propoganda"
+   ],
+   "warning": "war",
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/wwf_the_battle_of_britain",
+   "video": {
+    "url": "https://archive.org/download/wwf_the_battle_of_britain/the_battle_of_britain_512kb.mp4",
+    "size": 220489912
+   },
+   "archiveUrl": "https://archive.org/details/wwf_the_battle_of_britain",
+   "captions": []
+  },
+  {
+   "id": "Winterset",
+   "slug": "winterset",
+   "title": "Winterset",
+   "year": 1936,
+   "director": null,
+   "description": "Years after the execution of his father, a young man convinced of his innocence searches for evidence to prove it.",
+   "duration": 4620,
+   "language": "en",
+   "silent": false,
+   "genre": "drama",
+   "tags": [
+    "drama",
+    "burgess meredith",
+    "john carradine"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Winterset",
+   "video": {
+    "url": "https://archive.org/download/Winterset/Winterset_512kb.mp4",
+    "size": 334620967
+   },
+   "archiveUrl": "https://archive.org/details/Winterset",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/Winterset/Winterset.mp4",
+    "size": 481217877
+   }
+  },
+  {
+   "id": "WonInTheClouds",
+   "slug": "won-in-the-clouds",
+   "title": "Won in the Clouds",
+   "year": 1928,
+   "director": null,
+   "description": "Early aviation barnstormer Al Wilson became an acttion star in silent movies with films like this, using a simple adventure story about stolen diamonds in Africa to support loads of bi-plane action.",
+   "duration": 3127,
+   "language": "en",
+   "silent": true,
+   "genre": "aventura",
+   "tags": [],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/WonInTheClouds",
+   "video": {
+    "url": "https://archive.org/download/WonInTheClouds/WonInTheClouds_512kb.mp4",
+    "size": 227186850
+   },
+   "archiveUrl": "https://archive.org/details/WonInTheClouds",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/WonInTheClouds/WonInTheClouds.mp4",
+    "size": 326165725
+   }
+  },
+  {
+   "id": "YoungandInnocentTheGirlWasYoung",
+   "slug": "young-and-innocent",
+   "title": "Young and Innocent",
+   "year": 1937,
+   "director": "Alfred Hitchcock",
+   "description": "A man on the run from a murder charge enlists a beautiful stranger who must put herself at risk for his cause.",
+   "duration": 4925,
+   "language": "en",
+   "silent": false,
+   "genre": "misterio",
+   "tags": [
+    "crime",
+    "drama",
+    "thriller",
+    "alfred hitchcock"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/YoungandInnocentTheGirlWasYoung",
+   "video": {
+    "url": "https://archive.org/download/YoungandInnocentTheGirlWasYoung/Young_and_Innocent_512kb.mp4",
+    "size": 357574635
+   },
+   "archiveUrl": "https://archive.org/details/YoungandInnocentTheGirlWasYoung",
+   "captions": [],
+   "hd": {
+    "url": "https://archive.org/download/YoungandInnocentTheGirlWasYoung/Young_and_Innocent.mp4",
+    "size": 512802097
+   }
+  },
+  {
+   "id": "Zwenigora",
+   "slug": "zvenigora",
+   "title": "Zvenigora",
+   "year": 1928,
+   "director": "Alexander Dovzhenko",
+   "description": "Alexander Dovzhenko,1928. Soviet Union",
+   "duration": 5500,
+   "language": "ru",
+   "silent": true,
+   "genre": "drama",
+   "tags": [
+    "1928",
+    "sovietunion"
+   ],
+   "warning": null,
+   "license": "http://creativecommons.org/licenses/publicdomain/",
+   "licenseName": "Domínio público",
+   "rights": "pd",
+   "poster": "https://archive.org/services/img/Zwenigora",
+   "video": {
+    "url": "https://archive.org/download/Zwenigora/Zwenigora_512kb.mp4",
+    "size": 442672242
+   },
+   "archiveUrl": "https://archive.org/details/Zwenigora",
+   "captions": []
+  }
+ ]
+}

@@ -76,3 +76,8 @@ Autores e gêneros não usam dependências novas (regras em `config/genres.json`
 
 Nenhuma dependência nova. O backup usa `CompressionStream`/`DecompressionStream` (API do navegador) e o `qrcode-generator` (MIT) que já existia;
 o teste e2e reutiliza o `jsqr` (Apache-2.0) para ler o QR gerado.
+
+## Filmes
+
+Nenhuma dependência nova (front: `<video>` nativo; pipeline: só biblioteca padrão do Python via `import_archive.py`). Serviço externo: o próprio
+Internet Archive, que hospeda os vídeos e os pôsteres (`archive.org/download`, `archive.org/services/img`), como já fazia com os áudios.

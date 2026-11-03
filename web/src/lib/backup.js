@@ -10,7 +10,7 @@ export const BACKUP_VERSION = 1
 export const QR_MAX_CHARS = 600
 export const QR_EC = 'L'
 export const MAX_FILE_BYTES = 2 * 1024 * 1024
-export const KEYS = ['progress', 'favorites', 'queue', 'rate', 'volume', 'transcript-on', 'a11y', 'imported', 'stats']
+export const KEYS = ['progress', 'favorites', 'queue', 'rate', 'volume', 'transcript-on', 'a11y', 'imported', 'stats', 'films']
 const LIMITS = { progress: 6000, ids: 6000, imported: 500 }
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 const hasControl = (s) => [...s].some((ch) => ch.charCodeAt(0) < 32 || ch.charCodeAt(0) === 127)
@@ -19,16 +19,19 @@ const isNum = (v) => typeof v === 'number' && Number.isFinite(v)
 const FORBIDDEN = new Set(['__proto__', 'constructor', 'prototype'])
 
 // ------------------------------------------------------------------ validação por chave
+const cleanProgress = (raw) => {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null
+  const out = {}
+  for (const [id, p] of Object.entries(raw).slice(0, LIMITS.progress)) {
+    if (!isId(id) || FORBIDDEN.has(id) || !p || !isNum(p.pos) || !isNum(p.dur) || p.pos < 0 || p.dur <= 0) continue
+    out[id] = { pos: Math.min(p.pos, p.dur), dur: p.dur, ...(isNum(p.at) && p.at >= 0 ? { at: p.at } : {}) }
+  }
+  return out
+}
+
 const cleaners = {
-  progress(raw) {
-    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null
-    const out = {}
-    for (const [id, p] of Object.entries(raw).slice(0, LIMITS.progress)) {
-      if (!isId(id) || FORBIDDEN.has(id) || !p || !isNum(p.pos) || !isNum(p.dur) || p.pos < 0 || p.dur <= 0) continue
-      out[id] = { pos: Math.min(p.pos, p.dur), dur: p.dur, ...(isNum(p.at) && p.at >= 0 ? { at: p.at } : {}) }
-    }
-    return out
-  },
+  progress: cleanProgress,
+  films: cleanProgress,
   favorites: (raw) => (Array.isArray(raw) ? [...new Set(raw.filter(isId))].slice(0, LIMITS.ids) : null),
   queue: (raw) => (Array.isArray(raw) ? [...new Set(raw.filter(isId))].slice(0, LIMITS.ids) : null),
   rate: (raw) => (RATES.includes(raw) ? raw : null),
@@ -69,6 +72,7 @@ export function summarizeData(data) {
   const days = Object.values(data.stats?.days || {})
   return {
     progress: Object.keys(data.progress || {}).length,
+    films: Object.keys(data.films || {}).length,
     favorites: (data.favorites || []).length,
     queue: (data.queue || []).length,
     imported: (data.imported || []).length,
@@ -93,7 +97,7 @@ export function parseBackup(text) {
   if (json.version > BACKUP_VERSION) return { ok: false, error: 'newer' }
   const data = cleanData(json.data)
   const summary = summarizeData(data)
-  if (!summary.progress && !summary.favorites && !summary.queue && !summary.statsDays && !summary.imported && !summary.hasSettings) return { ok: false, error: 'nothing' }
+  if (!summary.progress && !summary.films && !summary.favorites && !summary.queue && !summary.statsDays && !summary.imported && !summary.hasSettings) return { ok: false, error: 'nothing' }
   const t = Date.parse(json.exportedAt)
   return { ok: true, data, summary, exportedAt: Number.isNaN(t) ? null : new Date(t).toISOString() }
 }
@@ -118,6 +122,11 @@ export function applyData(current, incoming, mode = 'merge') {
     const merged = { ...(current.progress || {}) }
     for (const [id, p] of Object.entries(incoming.progress)) merged[id] = merged[id] ? newer(merged[id], p) : p
     out.progress = merged
+  }
+  if (incoming.films) {
+    const merged = { ...(current.films || {}) }
+    for (const [id, p] of Object.entries(incoming.films)) merged[id] = merged[id] ? newer(merged[id], p) : p
+    out.films = merged
   }
   if (incoming.favorites) out.favorites = union(current.favorites, incoming.favorites).slice(0, LIMITS.ids)
   if (incoming.queue) out.queue = union(current.queue, incoming.queue).slice(0, LIMITS.ids)

@@ -96,6 +96,18 @@ describe('aplicar', () => {
   })
 })
 
+describe('progresso dos filmes', () => {
+  it('é exportado, validado e mesclado pelo mais recente', () => {
+    const data = cleanData({ films: { f1: { pos: 600, dur: 5400, at: 5000 }, f2: { pos: 'x', dur: 10 }, __proto__: { pos: 1, dur: 2 } } })
+    expect(Object.keys(data.films)).toEqual(['f1'])
+    expect(summarizeData(data).films).toBe(1)
+    const out = applyData({ films: { f1: { pos: 100, dur: 5400, at: 9000 }, f3: { pos: 5, dur: 10, at: 1 } } }, data, 'merge')
+    expect(out.films.f1.pos).toBe(100) // o daqui é mais recente
+    expect(out.films.f3).toBeDefined()
+    expect(parseBackup(JSON.stringify({ app: 'ondas', kind: 'backup', version: 1, data: { films: data.films } })).ok).toBe(true)
+  })
+})
+
 describe('QR compacto', () => {
   // ids parecidos com os reais, mas pouco repetitivos (a compressão não pode "ajudar" o teste)
   const id = (i) => `${(i * 2654435761 >>> 0).toString(36)}-${(i * 40503 + 7).toString(36)}-parte-${i}-20261101`

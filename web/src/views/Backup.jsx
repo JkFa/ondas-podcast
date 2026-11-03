@@ -18,6 +18,7 @@ const base = () => new URL(import.meta.env.BASE_URL, location.origin).href
 function Preview({ summary }) {
   const items = [
     summary.progress && b.items.progress(summary.progress),
+    summary.films && b.items.films(summary.films),
     summary.favorites && b.items.favorites(summary.favorites),
     summary.queue && b.items.queue(summary.queue),
     summary.imported && b.items.imported(summary.imported),

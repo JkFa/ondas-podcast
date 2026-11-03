@@ -62,6 +62,11 @@ jobs:
           npx vite preview --port 4181 &
           sleep 4
           BASE_URL=http://localhost:4181/ npm run test:browse
+      - name: Filmes (lista, filtros, player, avisos, progresso)
+        run: |
+          npx vite preview --port 4182 &
+          sleep 4
+          BASE_URL=http://localhost:4182/ npm run test:films
       - name: Estatísticas e backup (importar, exportar, QR)
         run: |
           npx vite preview --port 4180 &

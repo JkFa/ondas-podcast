@@ -1,15 +1,16 @@
 import { useMemo, useSyncExternalStore } from 'react'
 
 // Rotas por hash (funciona em GitHub Pages sem configuração de servidor):
-//   #/ → página principal · #/biblioteca · #/livro/<slug> → obra · #/notas · #/salvos
+//   #/ → página principal · #/biblioteca · #/livro/<slug> → obra · #/notas · #/salvos · #/filmes · #/filme/<slug>
 const subscribe = (cb) => {
   window.addEventListener('hashchange', cb)
   return () => window.removeEventListener('hashchange', cb)
 }
 
-export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos', downloads: '#/downloads', subscribe: '#/assinar', publish: '#/publicar', stats: '#/estatisticas', backup: '#/backup', authors: '#/autores' }
+export const paths = { home: '#/', explore: '#/biblioteca', notes: '#/notas', saved: '#/salvos', downloads: '#/downloads', subscribe: '#/assinar', publish: '#/publicar', stats: '#/estatisticas', backup: '#/backup', authors: '#/autores', films: '#/filmes' }
 export const authorPath = (slug) => `#/autor/${encodeURIComponent(slug)}`
 export const genrePath = (id) => `#/genero/${encodeURIComponent(id)}`
+export const filmPath = (slug) => `#/filme/${encodeURIComponent(slug)}`
 export const bookPath = (slug) => `#/livro/${encodeURIComponent(slug)}`
 
 export function useRoute() {
@@ -22,6 +23,12 @@ export function useRoute() {
       let slug = b
       try { slug = decodeURIComponent(b) } catch { /* mantém cru */ }
       return { name: 'book', slug, key: `livro/${b}`, query }
+    }
+    if (a === 'filmes') return { name: 'films', key: 'filmes', query }
+    if (a === 'filme' && b) {
+      let slug = b
+      try { slug = decodeURIComponent(b) } catch { /* mantém cru */ }
+      return { name: 'film', slug, key: `filme/${b}` }
     }
     if (a === 'biblioteca') return { name: 'explore', key: 'biblioteca' }
     if (a === 'notas') return { name: 'notes', key: 'notas' }

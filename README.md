@@ -371,6 +371,35 @@ outro aparelho** (`#/backup`). Os atalhos ficam em *Salvos* e no rodapé.
   O archive.org não tem campo de gênero, então há erros e uma obra pode estar em mais de um; quem não casa vai para "Outros".
 - Autores e gêneros têm botão de compartilhar e páginas estáticas com prévia nas redes (`/autor/<slug>/`, `/genero/<id>/`).
 
+## Filmes (coleção do Internet Archive)
+
+A seção **Filmes** (`#/filmes`, `#/filme/<nome>`) toca filmes da coleção [feature_films_unsorted](https://archive.org/details/feature_films_unsorted)
+direto do archive.org, com o `<video>` nativo do navegador (teclado, tela cheia e legendas já acessíveis). Nada é copiado nem reenviado.
+
+- **Catálogo curado** (`config/films.json`, ~100 títulos): a coleção tem ~17,7 mil itens misturados, inclusive cópias comerciais sem licença.
+  `python pipeline/films.py build` lê a curadoria, confere cada filme no archive.org e grava `web/public/films.json` (+ legendas em WebVTT).
+  `python pipeline/films.py candidates` lista os candidatos mais baixados para quem quiser ampliar a curadoria.
+- **Regra de elegibilidade** (verificada por filme, com testes em `pipeline/tests/test_films.py`):
+  1. o item declara **domínio público** ou **Creative Commons** no archive.org;
+  2. domínio público só vale até **1955**: no Brasil, obra audiovisual tem 70 anos de proteção a partir de 1º de janeiro do ano seguinte à divulgação
+     (Lei 9.610/98, art. 44). Filmes de 1956 em diante, mesmo marcados como domínio público no archive.org (nos EUA isso depende de formalidades de registro que não valem aqui),
+     ficaram de fora; licença Creative Commons explícita vale em qualquer ano;
+  3. o vídeo responde `200` com tipo `video/*` (arquivos de áudio/vídeo com problema são recusados).
+- **Conteúdo sensível:** filmes de exploração (sexo, nudez, drogas), propaganda nazista e cópias comerciais ficam fora (lista `deny` em
+  `config/films.json`, por palavra inteira). Cada filme pode ter aviso (`period`, `violence`, `war`, `graphic`); com `graphic`
+  (*Nazi Concentration Camps*, imagens reais de crimes de guerra) o vídeo **só carrega depois de a pessoa confirmar**.
+- **Reprodução:** retoma de onde parou e grava o progresso neste aparelho (entra no backup/exportação); escolha de qualidade quando existe versão maior;
+  o áudio do app pausa quando o filme começa. Os filmes exigem internet: não há download offline (os arquivos têm centenas de MB).
+- **Legendas — limite honesto:** só **3 de 96** filmes têm legenda utilizável no archive.org (todas em inglês; nenhuma em português). A página de cada filme
+  diz se há legendas. Para o `<track>` funcionar, as legendas são convertidas para WebVTT e servidas pelo próprio site (o archive.org não envia CORS).
+  O restante não atende ao critério 1.2.2 do WCAG (legendas para vídeo); o teste automático de acessibilidade ignora só a regra `video-caption` nesses filmes.
+  Gerar legendas com Whisper no GitHub Actions é o próximo passo natural.
+- **Idioma:** a maioria está em inglês; há mudos (filtro "Só mudos"), em alemão, russo, japonês e chinês. Não informamos idioma quando o archive.org não informa.
+- **Direitos:** a licença é a *declarada* por quem enviou ao archive.org; o projeto não faz parecer jurídico. A página dos filmes traz o aviso e o caminho para
+  pedir a retirada de um título (abrir uma Issue no repositório).
+- Cada filme tem página estática para redes sociais (`/filme/<nome>/`, com o pôster do archive.org) e botão de compartilhar.
+- **Portugueses sem licença declarada:** *Lisboa* (1930) e *Tormenta* (1930) estão na coleção, mas sem licença no archive.org; por isso não entraram.
+
 ## Acessibilidade (WCAG 2.2 AA)
 
 Botão fixo no canto superior direito abre o painel **Acessibilidade** (salvo só no aparelho): tema
